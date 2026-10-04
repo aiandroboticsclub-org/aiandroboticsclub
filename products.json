@@ -1,0 +1,10 @@
+[
+  {
+    "id": "prod-1",
+    "title": "AI Robotics Kit Starter",
+    "price": "$49.99",
+    "description": "An entry-level robotics kit with programmable modules.",
+    "image": "Images/kit-starter.jpg",
+    "featured": true
+  }
+]
