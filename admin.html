@@ -1,87 +1,316 @@
-// Configuration constants
-const REPO_OWNER = 'aiandroboticsclub-org';
-const REPO_NAME = 'aiandroboticsclub';
-const FILE_PATH = 'products.json';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AI & Robotics Club</title>
+  <link rel="stylesheet" href="style.css">
 
-// Auto-fill token from browser storage if previously saved locally
-document.addEventListener('DOMContentLoaded', () => {
-  const savedToken = localStorage.getItem('gh_admin_pat');
-  if (savedToken) {
-    document.getElementById('ghToken').value = savedToken;
-  }
-});
+  <!-- Shared Header and Footer Scripts -->
+  <script src="header.js" defer></script>
+  <script src="footer.js" defer></script>
 
-document.getElementById('productForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+  <style>
+    .admin-container {
+      max-width: 650px;
+      margin: 2.5rem auto;
+      padding: 2rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      font-family: Arial, sans-serif;
+    }
 
-  const tokenInput = document.getElementById('ghToken').value.trim();
-  if (!tokenInput) {
-    return alert('Please enter your new GitHub Personal Access Token.');
-  }
+    .admin-header {
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 1rem;
+    }
 
-  // Save token locally in browser storage for convenience
-  localStorage.setItem('gh_admin_pat', tokenInput);
+    .admin-header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      color: #0f172a;
+    }
 
-  const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+    .admin-header p {
+      margin: 0.5rem 0 0 0;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
 
-  try {
-    // 1. Fetch products.json from your organization repo
-    const res = await fetch(getUrl, {
-      headers: {
-        'Authorization': `Bearer ${tokenInput}`,
-        'Accept': 'application/vnd.github.v3+json'
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #25D366;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #25D366;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #1da851;
+    }
+
+    /* Diagnostic Box */
+    .status-log {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .status-log.success {
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .status-log.error {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    .status-log.info {
+      background-color: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #075985;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Header injected by header.js -->
+  <div id="site-header"></div>
+
+  <main class="admin-container">
+    <div class="admin-header">
+      <h1>Product Manager Dashboard</h1>
+      <p>Add new products directly to the <code>aiandroboticsclub</code> repository</p>
+    </div>
+
+    <form id="productForm">
+      <!-- Token Input -->
+      <div class="form-group">
+        <label for="ghToken">Fine-Grained Access Token</label>
+        <input 
+          type="password" 
+          id="ghToken" 
+          placeholder="github_pat_11XXXXXXXXXXXXXXXX..." 
+          required
+        >
+        <small style="color: #64748b; display: block; margin-top: 0.25rem;">
+          Saved in your local browser storage for convenience.
+        </small>
+      </div>
+
+      <!-- Title -->
+      <div class="form-group">
+        <label for="title">Product Title</label>
+        <input type="text" id="title" placeholder="e.g., Arduino Robotics Starter Kit" required>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" id="price" placeholder="e.g., $49.99 or Rs. 5,000" required>
+      </div>
+
+      <!-- Image Path -->
+      <div class="form-group">
+        <label for="image">Image Path</label>
+        <input type="text" id="image" placeholder="Images/product1.jpg" required>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Product Description</label>
+        <textarea id="description" rows="4" placeholder="Enter key features and specs..." required></textarea>
+      </div>
+
+      <!-- Featured Flag -->
+      <div class="form-group">
+        <label class="checkbox-group">
+          <input type="checkbox" id="featured">
+          Feature this product in Homepage Slider
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit">Add Product & Commit to GitHub</button>
+    </form>
+
+    <!-- Output / Status Console -->
+    <div id="statusLog" class="status-log"></div>
+  </main>
+
+  <!-- Dynamic Footer injected by footer.js -->
+  <div id="site-footer"></div>
+
+  <script>
+    // GitHub Repository Configuration
+    const REPO_OWNER = 'aiandroboticsclub-org';
+    const REPO_NAME = 'aiandroboticsclub';
+    const FILE_PATH = 'products.json';
+
+    const logBox = document.getElementById('statusLog');
+
+    function logStatus(message, type = 'info') {
+      logBox.style.display = 'block';
+      logBox.className = `status-log ${type}`;
+      logBox.innerHTML = `<strong>[${type.toUpperCase()}]:</strong> ${message}`;
+    }
+
+    // Load saved token from browser storage on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedToken = localStorage.getItem('gh_fine_pat');
+      if (savedToken) {
+        document.getElementById('ghToken').value = savedToken;
       }
     });
 
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(`GitHub GET (${res.status}): ${err.message}`);
-    }
+    document.getElementById('productForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-    const fileData = await res.json();
-    const existingProducts = JSON.parse(decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, '')))));
+      const token = document.getElementById('ghToken').value.trim();
+      if (!token) return alert('Please enter your GitHub Fine-Grained Access Token');
 
-    // 2. Build the new product entry
-    const newProduct = {
-      id: 'prod-' + Date.now(),
-      title: document.getElementById('title').value,
-      price: document.getElementById('price').value,
-      image: document.getElementById('image').value || 'Images/placeholder.jpg',
-      description: document.getElementById('description').value,
-      featured: document.getElementById('featured').checked
-    };
+      // Save token locally in browser storage
+      localStorage.setItem('gh_fine_pat', token);
 
-    existingProducts.push(newProduct);
+      logStatus('Connecting to GitHub API...', 'info');
 
-    // 3. Encode and Commit to GitHub
-    const updatedContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(existingProducts, null, 2))));
+      const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 
-    const putRes = await fetch(getUrl, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${tokenInput}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github.v3+json'
-      },
-      body: JSON.stringify({
-        message: `Add product: ${newProduct.title}`,
-        content: updatedContentBase64,
-        sha: fileData.sha
-      })
+      try {
+        // Step 1: Fetch existing products.json
+        const getRes = await fetch(getUrl, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!getRes.ok) {
+          const err = await getRes.json();
+          if (getRes.status === 404) {
+            throw new Error(`products.json not found in root directory of repo "${REPO_NAME}". Create an empty products.json file first.`);
+          } else {
+            throw new Error(`GitHub GET Error (${getRes.status}): ${err.message}`);
+          }
+        }
+
+        const fileData = await getRes.json();
+        logStatus('Retrieved current product list. Encoding new product...', 'info');
+
+        // Safely decode Base64 UTF-8 string
+        const cleanContent = fileData.content.replace(/\s/g, '');
+        const decodedString = decodeURIComponent(escape(atob(cleanContent)));
+        const existingProducts = JSON.parse(decodedString);
+
+        // Step 2: Create new product object
+        const newProduct = {
+          id: 'prod-' + Date.now(),
+          title: document.getElementById('title').value.trim(),
+          price: document.getElementById('price').value.trim(),
+          image: document.getElementById('image').value.trim() || 'Images/placeholder.jpg',
+          description: document.getElementById('description').value.trim(),
+          featured: document.getElementById('featured').checked
+        };
+
+        existingProducts.push(newProduct);
+
+        // Step 3: Base64 Encode UTF-8 content for Commit
+        const jsonString = JSON.stringify(existingProducts, null, 2);
+        const updatedBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+        // Step 4: PUT request to commit changes
+        const putRes = await fetch(getUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Add product: ${newProduct.title}`,
+            content: updatedBase64,
+            sha: fileData.sha
+          })
+        });
+
+        if (putRes.ok) {
+          logStatus(`Success! "${newProduct.title}" has been committed to GitHub. Pages will re-deploy in ~1-2 minutes.`, 'success');
+          
+          // Reset form fields except token
+          document.getElementById('title').value = '';
+          document.getElementById('price').value = '';
+          document.getElementById('image').value = '';
+          document.getElementById('description').value = '';
+          document.getElementById('featured').checked = false;
+        } else {
+          const putErr = await putRes.json();
+          throw new Error(`Commit Failed (${putRes.status}): ${putErr.message}`);
+        }
+
+      } catch (err) {
+        console.error(err);
+        logStatus(err.message, 'error');
+      }
     });
-
-    if (putRes.ok) {
-      alert('Product added successfully! GitHub Pages will publish the changes in ~1-2 minutes.');
-      document.getElementById('productForm').reset();
-      // Keep saved token in input
-      document.getElementById('ghToken').value = tokenInput;
-    } else {
-      const putErr = await putRes.json();
-      alert(`Commit Failed (${putRes.status}): ${putErr.message}`);
-    }
-
-  } catch (err) {
-    console.error(err);
-    alert(`Operation Failed: ${err.message}`);
-  }
-});
+  </script>
+</body>
+</html>
