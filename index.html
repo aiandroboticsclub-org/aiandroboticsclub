@@ -14,12 +14,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            blue: '#00F0FF',
+                            cyan: '#00F0FF',
                             indigo: '#6366F1',
                             purple: '#A855F7',
-                            dark: '#0B0F19',
-                            card: '#111827',
-                            cardHover: '#1F2937'
+                            dark: '#060913',
+                            card: '#0F172A',
+                            cardHover: '#1E293B'
                         }
                     },
                     fontFamily: {
@@ -33,10 +33,9 @@
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS Animations and Utilities -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -45,27 +44,28 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphism background effect */
+        /* Glassmorphism panel styling */
         .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .glass-nav {
             background: rgba(6, 9, 19, 0.85);
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Gradient Glow effects */
+        /* Glow effects */
         .glow-cyan {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
         }
 
         .glow-purple {
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
         }
 
         .gradient-text {
@@ -76,14 +76,14 @@
 
         .gradient-border {
             position: relative;
-            border-radius: 1rem;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(168, 85, 247, 0.3));
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(168, 85, 247, 0.4));
             padding: 1px;
         }
 
-        /* Subtle grid background pattern */
+        /* Tech Background Grid Pattern */
         .bg-grid-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
         }
     </style>
@@ -93,9 +93,9 @@
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
+                <!-- Brand Logo -->
                 <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform duration-300">
                         <i class="fa-solid fa-robot"></i>
                     </div>
                     <span class="font-extrabold text-xl tracking-tight text-white">
@@ -112,7 +112,7 @@
                     <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
                 </nav>
 
-                <!-- Action Button -->
+                <!-- Action CTA -->
                 <div class="hidden md:flex items-center gap-4">
                     <a href="#contact" class="px-5 py-2.5 rounded-xl font-semibold text-sm text-black bg-cyan-400 hover:bg-cyan-300 transition-all shadow-lg glow-cyan flex items-center gap-2">
                         <i class="fa-solid fa-calendar-check"></i> Free Trial Class
@@ -126,8 +126,8 @@
             </div>
         </div>
 
-        <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800 px-4 pt-4 pb-6 space-y-3">
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800 px-6 pt-4 pb-6 space-y-3">
             <a href="#about" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">About</a>
             <a href="#video" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Highlights</a>
             <a href="#programs" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Programs</a>
@@ -153,13 +153,13 @@
                         Empowering Next-Gen Creators in STEM & AI
                     </div>
 
-                    <!-- Main Headline -->
+                    <!-- Hero Title -->
                     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
                         Where Young Creators <br class="hidden sm:inline">
                         <span class="gradient-text">Build Real Robots & Code</span>
                     </h1>
 
-                    <!-- Subtitle -->
+                    <!-- Hero Subtitle -->
                     <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed">
                         Unleash your child's creativity through hands-on electronics, Arduino programming, Scratch game design, and kid-friendly AI logic in an interactive maker space.
                     </p>
@@ -184,10 +184,9 @@
                     <p class="text-gray-400 text-sm sm:text-base">Watch how our students construct, code, and bring their ideas to life!</p>
                 </div>
 
-                <!-- Video Card Container -->
+                <!-- Responsive Video Container -->
                 <div class="gradient-border shadow-2xl glow-purple overflow-hidden">
-                    <div class="bg-gray-950 rounded-[15px] p-2 sm:p-4">
-                        <!-- 16:9 Aspect Ratio Container -->
+                    <div class="bg-gray-950 rounded-[18px] p-2 sm:p-4">
                         <div class="relative w-full overflow-hidden rounded-xl bg-gray-900" style="padding-top: 56.25%;">
                             <iframe 
                                 class="absolute top-0 left-0 w-full h-full border-0 rounded-xl"
@@ -209,9 +208,8 @@
                     <p class="text-gray-400">Our comprehensive curriculum blends physical crafting, microcontroller programming, and software engineering tailored for young learners.</p>
                 </div>
 
-                <!-- Programs Grid -->
+                <!-- Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
                     <!-- Card 1 -->
                     <div class="glass-panel rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
                         <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
@@ -283,7 +281,6 @@
                         </p>
                         <span class="inline-block text-xs font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">Maker Space Craft</span>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -335,7 +332,6 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gray-800 relative overflow-hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        
                         <!-- Left Info Column -->
                         <div>
                             <span class="text-cyan-400 font-semibold text-sm tracking-wider uppercase mb-2 block">Get In Touch</span>
@@ -344,7 +340,7 @@
                                 Ready to start building? Contact us via WhatsApp or Email, or visit our physical robotics lab in Lahore.
                             </p>
 
-                            <!-- Contact List -->
+                            <!-- Contact Info Details -->
                             <div class="space-y-6">
                                 <div class="flex items-start gap-4">
                                     <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
@@ -425,12 +421,11 @@
         </div>
     </footer>
 
-    <!-- Interactive JS Script for Mobile Menu & Dynamic Dates -->
     <script>
-        // Update copyright year dynamically
+        // Set dynamic copyright year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile navbar drawer toggle logic
+        // Responsive mobile menu toggle handler
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -438,7 +433,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when clicking a link
+        // Auto-close menu when clicking links on mobile
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
