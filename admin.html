@@ -1,111 +1,87 @@
-<!-- admin.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard - AI & Robotics Club</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
-    .form-group { margin-bottom: 1rem; }
-    label { display: block; margin-bottom: .25rem; font-weight: bold; }
-    input, textarea { width: 100%; padding: .5rem; box-sizing: border-box; }
-    button { padding: .75rem 1.5rem; background: #25D366; color: #fff; border: none; cursor: pointer; }
-  </style>
-</head>
-<body>
-  <h2>Add New Product</h2>
+// Configuration constants
+const REPO_OWNER = 'aiandroboticsclub-org';
+const REPO_NAME = 'aiandroboticsclub';
+const FILE_PATH = 'products.json';
 
-  <div class="form-group">
-    <label>GitHub Personal Access Token (PAT):</label>
-    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
-    <small>Requires 'repo' write scope permissions.</small>
-  </div>
+// Auto-fill token from browser storage if previously saved locally
+document.addEventListener('DOMContentLoaded', () => {
+  const savedToken = localStorage.getItem('gh_admin_pat');
+  if (savedToken) {
+    document.getElementById('ghToken').value = savedToken;
+  }
+});
 
-  <form id="productForm">
-    <div class="form-group">
-      <label>Product Title</label>
-      <input type="text" id="title" required>
-    </div>
-    <div class="form-group">
-      <label>Price</label>
-      <input type="text" id="price" placeholder="$29.99" required>
-    </div>
-    <div class="form-group">
-      <label>Image Path</label>
-      <input type="text" id="image" placeholder="Images/product.jpg" required>
-    </div>
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="description" rows="3" required></textarea>
-    </div>
-    <div class="form-group">
-      <label>
-        <input type="checkbox" id="featured"> Show on Homepage Slider
-      </label>
-    </div>
-    <button type="submit">Save & Commit to GitHub</button>
-  </form>
+document.getElementById('productForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-  <script>
-    const REPO_OWNER = 'aiandroboticsclub'; // Update this
-    const REPO_NAME = 'aiandroboticsclub';       // Update this
-    const FILE_PATH = 'products.json';
+  const tokenInput = document.getElementById('ghToken').value.trim();
+  if (!tokenInput) {
+    return alert('Please enter your new GitHub Personal Access Token.');
+  }
 
-    document.getElementById('productForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const token = document.getElementById('ghToken').value.trim();
-      if (!token) return alert('Please enter your GitHub Token');
+  // Save token locally in browser storage for convenience
+  localStorage.setItem('gh_admin_pat', tokenInput);
 
-      try {
-        // 1. Fetch existing products.json & SHA key from GitHub REST API
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, {
-          headers: { 'Authorization': `token ${token}` }
-        });
-        const fileData = await res.json();
-        
-        // Decode existing content
-        const existingProducts = JSON.parse(atob(fileData.content));
+  const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 
-        // 2. Add new product entry
-        const newProduct = {
-          id: 'prod-' + Date.now(),
-          title: document.getElementById('title').value,
-          price: document.getElementById('price').value,
-          image: document.getElementById('image').value,
-          description: document.getElementById('description').value,
-          featured: document.getElementById('featured').checked
-        };
-        existingProducts.push(newProduct);
-
-        // 3. Commit updated JSON back to repository
-        const updatedContentBase64 = btoa(JSON.stringify(existingProducts, null, 2));
-        
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Add product: ${newProduct.title}`,
-            content: updatedContentBase64,
-            sha: fileData.sha
-          })
-        });
-
-        if (putRes.ok) {
-          alert('Product added successfully! GitHub Pages will update in 1-2 minutes.');
-          document.getElementById('productForm').reset();
-        } else {
-          alert('Error committing changes. Check token permissions.');
-        }
-      } catch (err) {
-        console.error(err);
-        alert('Operation failed. Check browser console.');
+  try {
+    // 1. Fetch products.json from your organization repo
+    const res = await fetch(getUrl, {
+      headers: {
+        'Authorization': `Bearer ${tokenInput}`,
+        'Accept': 'application/vnd.github.v3+json'
       }
     });
-  </script>
-</body>
-</html>
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(`GitHub GET (${res.status}): ${err.message}`);
+    }
+
+    const fileData = await res.json();
+    const existingProducts = JSON.parse(decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, '')))));
+
+    // 2. Build the new product entry
+    const newProduct = {
+      id: 'prod-' + Date.now(),
+      title: document.getElementById('title').value,
+      price: document.getElementById('price').value,
+      image: document.getElementById('image').value || 'Images/placeholder.jpg',
+      description: document.getElementById('description').value,
+      featured: document.getElementById('featured').checked
+    };
+
+    existingProducts.push(newProduct);
+
+    // 3. Encode and Commit to GitHub
+    const updatedContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(existingProducts, null, 2))));
+
+    const putRes = await fetch(getUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenInput}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: `Add product: ${newProduct.title}`,
+        content: updatedContentBase64,
+        sha: fileData.sha
+      })
+    });
+
+    if (putRes.ok) {
+      alert('Product added successfully! GitHub Pages will publish the changes in ~1-2 minutes.');
+      document.getElementById('productForm').reset();
+      // Keep saved token in input
+      document.getElementById('ghToken').value = tokenInput;
+    } else {
+      const putErr = await putRes.json();
+      alert(`Commit Failed (${putRes.status}): ${putErr.message}`);
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert(`Operation Failed: ${err.message}`);
+  }
+});
