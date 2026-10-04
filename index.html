@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & Robotics Club | Empowering Young Creators & Future Innovators</title>
-    
+    <title>AI & Robotics Club | Empowering Future Innovators</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,7 +36,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Custom style.css logic integrated -->
     <style>
+        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #060913;
@@ -81,7 +83,7 @@
             padding: 1px;
         }
 
-        /* Tech Background Grid Pattern */
+        /* Grid Pattern Background */
         .bg-grid-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
@@ -90,6 +92,7 @@
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
+    <!-- Header Navigation -->
     <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -105,31 +108,29 @@
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-                    <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-                    <a href="#video" class="hover:text-cyan-400 transition-colors">Highlights</a>
+                    <a href="#hero" class="hover:text-cyan-400 transition-colors">Home</a>
                     <a href="#programs" class="hover:text-cyan-400 transition-colors">Programs</a>
                     <a href="#benefits" class="hover:text-cyan-400 transition-colors">Why Join Us</a>
                     <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
                 </nav>
 
-                <!-- Action CTA -->
+                <!-- Action CTA Button -->
                 <div class="hidden md:flex items-center gap-4">
                     <a href="#contact" class="px-5 py-2.5 rounded-xl font-semibold text-sm text-black bg-cyan-400 hover:bg-cyan-300 transition-all shadow-lg glow-cyan flex items-center gap-2">
                         <i class="fa-solid fa-calendar-check"></i> Free Trial Class
                     </a>
                 </div>
 
-                <!-- Mobile Menu Toggle Button -->
-                <button id="menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg focus:outline-none">
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" aria-label="Toggle Mobile Menu" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg focus:outline-none">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu Drawer -->
+        <!-- Mobile Navigation Menu Drawer -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800 px-6 pt-4 pb-6 space-y-3">
-            <a href="#about" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">About</a>
-            <a href="#video" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Highlights</a>
+            <a href="#hero" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Home</a>
             <a href="#programs" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Programs</a>
             <a href="#benefits" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Why Join Us</a>
             <a href="#contact" class="block text-gray-300 hover:text-cyan-400 py-2 transition-colors">Contact</a>
@@ -140,75 +141,70 @@
     </header>
 
     <main class="pt-20">
-        <section id="about" class="relative py-20 lg:py-28 overflow-hidden">
-            <!-- Background Glow Orbs -->
+        <!-- Hero Section with Integrated 50/50 Video Layout -->
+        <section id="hero" class="relative py-12 lg:py-24 overflow-hidden">
+            <!-- Ambient Light Glows -->
             <div class="absolute top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-3xl mx-auto">
-                    <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-semibold mb-6">
-                        <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
-                        Empowering Next-Gen Creators in STEM & AI
-                    </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Hero Left Content -->
+                    <div class="text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-semibold mb-6">
+                            <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+                            Empowering Young Innovators
+                        </div>
 
-                    <!-- Hero Title -->
-                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                        Where Young Creators <br class="hidden sm:inline">
-                        <span class="gradient-text">Build Real Robots & Code</span>
-                    </h1>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                            Where Young Minds <br>
+                            <span class="gradient-text">Build Robots & Code</span>
+                        </h1>
 
-                    <!-- Hero Subtitle -->
-                    <p class="text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed">
-                        Unleash your child's creativity through hands-on electronics, Arduino programming, Scratch game design, and kid-friendly AI logic in an interactive maker space.
-                    </p>
+                        <p class="text-base sm:text-lg text-gray-400 mb-8 leading-relaxed">
+                            Hands-on learning with Arduino, sensors, Scratch coding, and practical AI projects designed to ignite curiosity and foster future tech leaders.
+                        </p>
 
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 transition-all transform hover:-translate-y-0.5 shadow-xl glow-cyan text-center">
-                            Book a Free Trial Class <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </a>
-                        <a href="#programs" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-white glass-panel hover:bg-gray-800 transition-all border border-gray-700 hover:border-cyan-500/50 text-center">
-                            Explore Programs
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="video" class="py-16 bg-black/40 border-y border-gray-800/60 relative">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">See Our Lab in Action</h2>
-                    <p class="text-gray-400 text-sm sm:text-base">Watch how our students construct, code, and bring their ideas to life!</p>
-                </div>
-
-                <!-- Responsive Video Container -->
-                <div class="gradient-border shadow-2xl glow-purple overflow-hidden">
-                    <div class="bg-gray-950 rounded-[18px] p-2 sm:p-4">
-                        <div class="relative w-full overflow-hidden rounded-xl bg-gray-900" style="padding-top: 56.25%;">
-                            <iframe 
-                                class="absolute top-0 left-0 w-full h-full border-0 rounded-xl"
-                                src="https://www.youtube.com/embed/A-s1whtKO18" 
-                                title="AI & Robotics Club Showcase" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                            </iframe>
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                            <a href="#contact" class="px-8 py-4 rounded-xl font-bold text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 transition-all transform hover:-translate-y-0.5 shadow-xl glow-cyan text-center">
+                                Book a Free Trial <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#programs" class="px-8 py-4 rounded-xl font-bold text-white glass-panel hover:bg-gray-800 transition-all border border-gray-700 hover:border-cyan-500/50 text-center">
+                                Explore Courses
+                            </a>
                         </div>
                     </div>
+
+                    <!-- Hero Right Content: Half-Screen Video Player -->
+                    <div class="w-full">
+                        <div class="gradient-border shadow-2xl glow-purple overflow-hidden">
+                            <div class="bg-gray-950 rounded-[18px] p-2 sm:p-3">
+                                <div class="relative w-full overflow-hidden rounded-xl bg-gray-900" style="padding-top: 56.25%;">
+                                    <iframe 
+                                        class="absolute top-0 left-0 w-full h-full border-0 rounded-xl"
+                                        src="https://www.youtube.com/embed/A-s1whtKO18" 
+                                        title="AI & Robotics Club Showcase Video" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section id="programs" class="py-20 lg:py-28 relative">
+        <!-- Programs Section -->
+        <section id="programs" class="py-20 lg:py-28 relative border-t border-gray-800/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">What We Teach</h2>
-                    <p class="text-gray-400">Our comprehensive curriculum blends physical crafting, microcontroller programming, and software engineering tailored for young learners.</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Our Learning Tracks</h2>
+                    <p class="text-gray-400">Structured modules created specifically to give children practical skills in hardware, logic, and creativity.</p>
                 </div>
 
-                <!-- Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Card 1 -->
                     <div class="glass-panel rounded-2xl p-8 hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
@@ -217,9 +213,9 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Robotics Engineering</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Hands-on assembly of smart mechanical bots using cardboard, EVA foam chassis, motors, and smart sensors.
+                            Hands-on construction of smart autonomous bots using chassis, motors, and intelligent sensors.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40">Hands-On Building</span>
+                        <span class="inline-block text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40">Hardware Construction</span>
                     </div>
 
                     <!-- Card 2 -->
@@ -227,11 +223,11 @@
                         <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Arduino & Electronics</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Arduino Circuits</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Learn electronic circuits, breadboards, wiring LEDs, ultrasonic sensors, and microcontrollers from scratch.
+                            Learn electronic circuits, breadboards, wiring LEDs, ultrasonic sensors, and microcontrollers.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-purple-400 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-800/40">Hardware & Circuits</span>
+                        <span class="inline-block text-xs font-semibold text-purple-400 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-800/40">Embedded Systems</span>
                     </div>
 
                     <!-- Card 3 -->
@@ -239,11 +235,11 @@
                         <div class="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-gamepad"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Coding & Game Design</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Scratch Game Coding</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Block-based programming with MIT Scratch to design interactive stories, arcade games, and algorithmic logic.
+                            Block-based logic development for building games, stories, and computational thinking concepts.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">Block Coding (Scratch)</span>
+                        <span class="inline-block text-xs font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">Visual Logic</span>
                     </div>
 
                     <!-- Card 4 -->
@@ -253,9 +249,9 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">AI for Beginners</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Kid-friendly introductions to artificial intelligence concepts, pattern recognition, and real-world AI applications.
+                            Introductory concepts of computer vision, machine learning, and ethical artificial intelligence.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40">Artificial Intelligence</span>
+                        <span class="inline-block text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40">Future Tech</span>
                     </div>
 
                     <!-- Card 5 -->
@@ -263,11 +259,11 @@
                         <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-palette"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Animation & Digital Design</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Digital Animation</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Create digital graphics and 2D animation using tools like Canva for Kids and OpenToonz animation suites.
+                            Create digital artwork and 2D animations using specialized creative suites for kids.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-purple-400 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-800/40">Digital Art & Design</span>
+                        <span class="inline-block text-xs font-semibold text-purple-400 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-800/40">Creative Art</span>
                     </div>
 
                     <!-- Card 6 -->
@@ -275,21 +271,22 @@
                         <div class="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-cubes"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">STEAM Model Building</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Scale Prototyping</h3>
                         <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                            Miniature scale modeling, structural craftwork, and physical prototyping to foster creative problem-solving.
+                            Physical model crafting and architectural structural design for young makers.
                         </p>
-                        <span class="inline-block text-xs font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">Maker Space Craft</span>
+                        <span class="inline-block text-xs font-semibold text-blue-400 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40">Maker Space</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Benefits Section -->
         <section id="benefits" class="py-20 bg-gray-950/60 border-t border-gray-800/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Why Join AI & Robotics Club?</h2>
-                    <p class="text-gray-400">We go beyond conventional learning by giving young innovators real tools, real projects, and verified credentials.</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Why Choose Us?</h2>
+                    <p class="text-gray-400">We provide real physical components, individual attention, and recognized certifications.</p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -297,57 +294,57 @@
                         <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400 mb-4">
                             <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">Hands-On STEM Labs</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Students build real hardware prototypes and test electronic circuits in an interactive maker studio.</p>
+                        <h4 class="text-lg font-bold text-white mb-2">Hands-On Practice</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Students build physical prototypes and circuit assemblies in an interactive lab environment.</p>
                     </div>
 
                     <div class="p-6 rounded-2xl glass-panel border border-gray-800 flex flex-col items-start">
                         <div class="p-3 rounded-lg bg-purple-500/10 text-purple-400 mb-4">
                             <i class="fa-solid fa-graduation-cap text-xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">5 Included Udemy Courses</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Enrolled members gain free access to 5 online Udemy courses for extended learning at home.</p>
+                        <h4 class="text-lg font-bold text-white mb-2">Udemy Courses Included</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Enrolled members receive free access to 5 online Udemy courses for extended home study.</p>
                     </div>
 
                     <div class="p-6 rounded-2xl glass-panel border border-gray-800 flex flex-col items-start">
                         <div class="p-3 rounded-lg bg-cyan-500/10 text-cyan-400 mb-4">
                             <i class="fa-solid fa-certificate text-xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">Badges & Certificates</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Earn official certificates and achievement badges for every successfully completed project.</p>
+                        <h4 class="text-lg font-bold text-white mb-2">Official Certificates</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Earn certificates and achievement badges upon completing projects and milestones.</p>
                     </div>
 
                     <div class="p-6 rounded-2xl glass-panel border border-gray-800 flex flex-col items-start">
                         <div class="p-3 rounded-lg bg-purple-500/10 text-purple-400 mb-4">
                             <i class="fa-solid fa-users text-xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">Expert Mentorship</h4>
-                        <p class="text-gray-400 text-sm leading-relaxed">Guided by passionate instructors with deep experience in tech, marketing, and STEAM education.</p>
+                        <h4 class="text-lg font-bold text-white mb-2">Expert Instructors</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Guided by tech mentors dedicated to making coding and engineering accessible to youth.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-20 lg:py-28 relative">
+        <!-- Pre-Footer Call to Action & Contact Section -->
+        <section id="contact" class="py-20 lg:py-28 relative border-t border-gray-800/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gray-800 relative overflow-hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <!-- Left Info Column -->
+                        <!-- Left Info Details -->
                         <div>
-                            <span class="text-cyan-400 font-semibold text-sm tracking-wider uppercase mb-2 block">Get In Touch</span>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6">Join Our Next Workshop or Trial Class</h2>
+                            <span class="text-cyan-400 font-semibold text-sm tracking-wider uppercase mb-2 block">Get Started Today</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6">Book a Free Trial Session</h2>
                             <p class="text-gray-400 mb-8 leading-relaxed">
-                                Ready to start building? Contact us via WhatsApp or Email, or visit our physical robotics lab in Lahore.
+                                Join our physical lab in Lahore or participate in our global online classes. Get in touch with us to schedule a free demo session.
                             </p>
 
-                            <!-- Contact Info Details -->
                             <div class="space-y-6">
                                 <div class="flex items-start gap-4">
                                     <div class="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
                                         <i class="fa-solid fa-location-dot text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="text-white font-semibold">Location / Address</h5>
+                                        <h5 class="text-white font-semibold">Address</h5>
                                         <p class="text-gray-400 text-sm">Shah Jilani Road, Near Lahore Grammar School, Township, Lahore, Pakistan</p>
                                     </div>
                                 </div>
@@ -357,7 +354,7 @@
                                         <i class="fa-brands fa-whatsapp text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="text-white font-semibold">Phone / WhatsApp</h5>
+                                        <h5 class="text-white font-semibold">WhatsApp</h5>
                                         <a href="https://wa.me/923224217059" target="_blank" class="text-emerald-400 hover:underline text-sm font-medium">
                                             +92 322 421 7059
                                         </a>
@@ -369,7 +366,7 @@
                                         <i class="fa-solid fa-envelope text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="text-white font-semibold">Email Support</h5>
+                                        <h5 class="text-white font-semibold">Email</h5>
                                         <a href="mailto:support@aiandroboticsclub.com" class="text-purple-400 hover:underline text-sm font-medium">
                                             support@aiandroboticsclub.com
                                         </a>
@@ -378,21 +375,19 @@
                             </div>
                         </div>
 
-                        <!-- Right CTA Box -->
-                        <div class="bg-gray-900/90 rounded-2xl p-6 sm:p-8 border border-gray-800">
-                            <h3 class="text-xl font-bold text-white mb-2">Book a Free Trial Session</h3>
-                            <p class="text-gray-400 text-sm mb-6">Send us a direct WhatsApp message to reserve a spot for your child.</p>
+                        <!-- Right Interactive Action Card -->
+                        <div class="bg-gray-900/90 rounded-2xl p-6 sm:p-8 border border-gray-800 text-center">
+                            <h3 class="text-2xl font-bold text-white mb-3">Connect via WhatsApp</h3>
+                            <p class="text-gray-400 text-sm mb-8">Click below to instantly open a WhatsApp conversation with our admissions team.</p>
 
                             <a href="https://wa.me/923224217059?text=Hello!%20I%20would%20like%20to%20book%20a%20Free%20Trial%20Class%20for%20my%20child." 
                                target="_blank" 
-                               class="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-950 text-center">
+                               class="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-950 text-center text-lg">
                                 <i class="fa-brands fa-whatsapp text-2xl"></i>
-                                Book via WhatsApp
+                                Message on WhatsApp
                             </a>
 
-                            <div class="mt-6 pt-6 border-t border-gray-800 text-center">
-                                <p class="text-xs text-gray-500">Available for both On-Site (Lahore) & Online Programs globally.</p>
-                            </div>
+                            <p class="text-xs text-gray-500 mt-6">Classes running both on-site (Lahore) & online globally.</p>
                         </div>
 
                     </div>
@@ -401,6 +396,7 @@
         </section>
     </main>
 
+    <!-- Footer Section -->
     <footer class="bg-black border-t border-gray-800 py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
@@ -416,13 +412,14 @@
 
             <div class="flex items-center gap-4 text-gray-400 text-lg">
                 <a href="https://wa.me/923224217059" target="_blank" aria-label="WhatsApp" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="mailto:support@aiandroboticsclub.com" aria-label="Email" class="hover:text-purple-400 transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                <a href="mailto:support@aiandroboticsclub.com" aria-label="Email Support" class="hover:text-purple-400 transition-colors"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
+    <!-- Interactive Logic Script -->
     <script>
-        // Set dynamic copyright year
+        // Dynamically update footer current year
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Responsive mobile menu toggle handler
@@ -433,7 +430,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Auto-close menu when clicking links on mobile
+        // Close menu drawer upon selecting navigation links on mobile
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
