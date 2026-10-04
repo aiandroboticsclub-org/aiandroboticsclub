@@ -1,0 +1,12 @@
+# Allow all search engine crawlers to access all pages
+User-agent: *
+Allow: /
+
+# Disallow indexing of private or administrative sections (customize as needed)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /checkout/
+Disallow: /private/
+
+# Specify the location of your Sitemap
+Sitemap: https://example.com/sitemap.xml
