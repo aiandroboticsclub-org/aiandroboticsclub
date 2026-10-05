@@ -281,35 +281,6 @@
             </div>
         </section>
 
-
-
-
-        // slider.js
-async function initSlider() {
-  const response = await fetch('products.json');
-  const products = await response.json();
-  const featured = products.filter(p => p.featured);
-
-  const sliderTrack = document.getElementById('slider-track');
-  if (!sliderTrack) return;
-
-  featured.forEach(product => {
-    const slide = document.createElement('div');
-    slide.className = 'slide';
-    slide.innerHTML = `
-      <img src="${product.image}" alt="${product.title}">
-      <h4>${product.title}</h4>
-      <p>${product.price}</p>
-    `;
-    sliderTrack.appendChild(slide);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', initSlider);
-
-
-
-        
         <!-- Benefits Section -->
         <section id="benefits" class="py-20 bg-gray-950/60 border-t border-gray-800/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -446,8 +417,31 @@ document.addEventListener('DOMContentLoaded', initSlider);
         </div>
     </footer>
 
-    <!-- Interactive Logic Script -->
+    <!-- Interactive Logic Scripts -->
     <script>
+        // slider.js logic
+        async function initSlider() {
+            const response = await fetch('products.json');
+            const products = await response.json();
+            const featured = products.filter(p => p.featured);
+
+            const sliderTrack = document.getElementById('slider-track');
+            if (!sliderTrack) return;
+
+            featured.forEach(product => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}">
+                    <h4>${product.title}</h4>
+                    <p>${product.price}</p>
+                `;
+                sliderTrack.appendChild(slide);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initSlider);
+
         // Dynamically update footer current year
         document.getElementById('year').textContent = new Date().getFullYear();
 
