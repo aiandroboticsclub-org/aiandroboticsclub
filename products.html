@@ -296,5 +296,153 @@
     </button>
   </div>
 </aside>
+  const WHATSAPP_PHONE = '923119696807';
+let cart = JSON.parse(localStorage.getItem('arc_cart')) || [];
+
+// Open or Close Cart Drawer
+function toggleCartDrawer(open) {
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('cartOverlay');
+
+  if (open) {
+    drawer.classList.add('open');
+    overlay.classList.add('active');
+  } else {
+    drawer.classList.remove('open');
+    overlay.classList.remove('active');
+  }
+}
+
+// Add Item to Cart
+function addToCart(product) {
+  // Extract numerical price for auto-calculation
+  const numericPrice = parseFloat(String(product.price).replace(/[^0-9.]/g, '')) || 0;
+
+  const existingIndex = cart.findIndex(item => item.id === product.id);
+
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      numericPrice: numericPrice,
+      image: product.image || 'Images/placeholder.jpg',
+      quantity: 1
+    });
+  }
+
+  saveAndRenderCart();
+  toggleCartDrawer(true);
+}
+
+// Change Item Quantity
+function updateQuantity(productId, delta) {
+  const item = cart.find(i => i.id === productId);
+  if (!item) return;
+
+  item.quantity += delta;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(i => i.id !== productId);
+  }
+
+  saveAndRenderCart();
+}
+
+// Remove Single Item
+function removeFromCart(productId) {
+  cart = cart.filter(i => i.id !== productId);
+  saveAndRenderCart();
+}
+
+// Save to LocalStorage & Render UI
+function saveAndRenderCart() {
+  localStorage.setItem('arc_cart', JSON.stringify(cart));
+
+  const container = document.getElementById('cartItemsContainer');
+  const badge = document.getElementById('cartBadgeCount');
+  const subtotalText = document.getElementById('cartSubtotalText');
+
+  const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  badge.textContent = totalItemsCount;
+
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="empty-cart-msg">Your shopping cart is empty.</div>';
+    subtotalText.textContent = 'Rs. 0';
+    return;
+  }
+
+  let totalAmount = 0;
+  container.innerHTML = '';
+
+  cart.forEach(item => {
+    const itemSubtotal = item.numericPrice * item.quantity;
+    totalAmount += itemSubtotal;
+
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/55'">
+      <div class="cart-item-details">
+        <p class="cart-item-title">${item.title}</p>
+        <p class="cart-item-price">${item.price}</p>
+        <div class="cart-item-controls">
+          <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+          <span class="qty-number">${item.quantity}</span>
+          <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+          <button class="remove-item-btn" onclick="removeFromCart('${item.id}')">Remove</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  subtotalText.textContent = totalAmount > 0 ? `Rs. ${totalAmount.toLocaleString()}` : 'Calculated in chat';
+}
+
+// Generate Structured WhatsApp Link and Redirect
+function checkoutViaWhatsApp() {
+  if (cart.length === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+
+  const customerName = document.getElementById('customerName').value.trim();
+  
+  let message = `🛒 *NEW ORDER - AI & Robotics Club*\n`;
+  if (customerName) {
+    message += `👤 *Customer:* ${customerName}\n`;
+  }
+  message += `-----------------------------------\n\n`;
+
+  let grandTotal = 0;
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.numericPrice * item.quantity;
+    grandTotal += itemTotal;
+    
+    message += `${index + 1}. *${item.title}*\n`;
+    message += `   • Quantity: ${item.quantity}\n`;
+    message += `   • Price: ${item.price}\n\n`;
+  });
+
+  message += `-----------------------------------\n`;
+  if (grandTotal > 0) {
+    message += `💰 *Estimated Total:* Rs. ${grandTotal.toLocaleString()}\n\n`;
+  }
+  message += `Please confirm item availability and shipping details. Thank you!`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, '_blank');
+}
+
+// Initializing Cart on Load
+document.addEventListener('DOMContentLoaded', () => {
+  saveAndRenderCart();
+});
 </body>
 </html>
