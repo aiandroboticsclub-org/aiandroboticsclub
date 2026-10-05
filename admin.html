@@ -6,14 +6,13 @@
   <title>Admin Dashboard - AI & Robotics Club</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Shared Header and Footer Scripts -->
   <script src="header.js" defer></script>
   <script src="footer.js" defer></script>
 
   <style>
     .admin-container {
-      max-width: 650px;
-      margin: 2.5rem auto;
+      max-width: 900px;
+      margin: 2rem auto;
       padding: 2rem;
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -34,12 +33,6 @@
       color: #0f172a;
     }
 
-    .admin-header p {
-      margin: 0.5rem 0 0 0;
-      color: #64748b;
-      font-size: 0.95rem;
-    }
-
     .form-group {
       margin-bottom: 1.25rem;
     }
@@ -54,6 +47,7 @@
 
     .form-group input[type="text"],
     .form-group input[type="password"],
+    .form-group input[type="file"],
     .form-group textarea {
       width: 100%;
       padding: 0.75rem;
@@ -62,24 +56,12 @@
       font-size: 0.95rem;
       box-sizing: border-box;
       outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #25D366;
     }
 
     .checkbox-group {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      cursor: pointer;
-    }
-
-    .checkbox-group input {
-      width: 18px;
-      height: 18px;
       cursor: pointer;
     }
 
@@ -93,14 +75,27 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      margin-top: 0.5rem;
     }
 
     .btn-submit:hover {
       background-color: #1da851;
     }
 
-    /* Diagnostic Box */
+    .btn-cancel {
+      width: 100%;
+      background-color: #64748b;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
     .status-log {
       margin-top: 1.5rem;
       padding: 1rem;
@@ -108,209 +103,403 @@
       font-family: monospace;
       font-size: 0.9rem;
       display: none;
-      line-height: 1.4;
       word-break: break-word;
     }
 
-    .status-log.success {
-      background-color: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      color: #166534;
+    .status-log.success { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+    .status-log.error { background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+    .status-log.info { background-color: #f0f9ff; border: 1px solid #bae6fd; color: #075985; }
+
+    /* Products Table */
+    .products-table-section {
+      margin-top: 3rem;
+      border-top: 2px solid #f1f5f9;
+      padding-top: 1.5rem;
     }
 
-    .status-log.error {
-      background-color: #fef2f2;
-      border: 1px solid #fecaca;
-      color: #991b1b;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
     }
 
-    .status-log.info {
-      background-color: #f0f9ff;
-      border: 1px solid #bae6fd;
-      color: #075985;
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
     }
+
+    th {
+      background-color: #f8fafc;
+      color: #475569;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .product-thumb {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #f1f5f9;
+    }
+
+    .btn-action {
+      padding: 0.4rem 0.75rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 0.25rem;
+    }
+
+    .btn-edit { background-color: #0284c7; color: #fff; }
+    .btn-delete { background-color: #ef4444; color: #fff; }
   </style>
 </head>
 <body>
 
-  <!-- Dynamic Header injected by header.js -->
   <div id="site-header"></div>
 
   <main class="admin-container">
     <div class="admin-header">
       <h1>Product Manager Dashboard</h1>
-      <p>Add new products directly to the <code>aiandroboticsclub</code> repository</p>
+      <p>Manage products & upload images directly to <code>aiandroboticsclub</code></p>
     </div>
 
-    <form id="productForm">
-      <!-- Token Input -->
-      <div class="form-group">
-        <label for="ghToken">Fine-Grained Access Token</label>
-        <input 
-          type="password" 
-          id="ghToken" 
-          placeholder="github_pat_11XXXXXXXXXXXXXXXX..." 
-          required
-        >
-        <small style="color: #64748b; display: block; margin-top: 0.25rem;">
-          Saved in your local browser storage for convenience.
-        </small>
-      </div>
+    <!-- Token Input -->
+    <div class="form-group">
+      <label for="ghToken">Fine-Grained Access Token</label>
+      <input type="password" id="ghToken" placeholder="github_pat_11XXXXXXXXXXXXXXXX..." required>
+      <small style="color: #64748b; display: block; margin-top: 0.25rem;">
+        Saved securely in local browser storage.
+      </small>
+    </div>
 
-      <!-- Title -->
+    <!-- Form -->
+    <form id="productForm">
+      <h3 id="formTitle">Add New Product</h3>
+      <input type="hidden" id="editProductId">
+
       <div class="form-group">
         <label for="title">Product Title</label>
-        <input type="text" id="title" placeholder="e.g., Arduino Robotics Starter Kit" required>
+        <input type="text" id="title" placeholder="e.g., Arduino Starter Kit" required>
       </div>
 
-      <!-- Price -->
       <div class="form-group">
         <label for="price">Price</label>
         <input type="text" id="price" placeholder="e.g., $49.99 or Rs. 5,000" required>
       </div>
 
-      <!-- Image Path -->
+      <!-- Image Upload or Existing Path -->
       <div class="form-group">
-        <label for="image">Image Path</label>
-        <input type="text" id="image" placeholder="Images/product1.jpg" required>
+        <label for="imageFile">Upload Product Image (Optional)</label>
+        <input type="file" id="imageFile" accept="image/*">
+        <small style="color: #64748b; display: block; margin-top: 0.25rem;">
+          Uploading a file saves it directly into the <code>Images/</code> directory.
+        </small>
       </div>
 
-      <!-- Description -->
+      <div class="form-group">
+        <label for="imagePath">Image Path / URL</label>
+        <input type="text" id="imagePath" placeholder="Images/placeholder.jpg">
+      </div>
+
       <div class="form-group">
         <label for="description">Product Description</label>
-        <textarea id="description" rows="4" placeholder="Enter key features and specs..." required></textarea>
+        <textarea id="description" rows="3" placeholder="Key specs and features..." required></textarea>
       </div>
 
-      <!-- Featured Flag -->
       <div class="form-group">
         <label class="checkbox-group">
-          <input type="checkbox" id="featured">
-          Feature this product in Homepage Slider
+          <input type="checkbox" id="featured"> Feature in Homepage Slider
         </label>
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn-submit">Add Product & Commit to GitHub</button>
+      <button type="submit" id="submitBtn" class="btn-submit">Add Product & Commit</button>
+      <button type="button" id="cancelEditBtn" class="btn-cancel" onclick="resetForm()">Cancel Editing</button>
     </form>
 
-    <!-- Output / Status Console -->
     <div id="statusLog" class="status-log"></div>
+
+    <!-- Inventory Table -->
+    <section class="products-table-section">
+      <h3>Existing Products</h3>
+      <button onclick="loadProductsTable()" style="padding: 0.5rem 1rem; cursor: pointer; margin-bottom: 0.5rem;">
+        🔄 Refresh Product List
+      </button>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Slider</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTableBody">
+          <tr><td colspan="5" style="text-align:center;">Load token to view products...</td></tr>
+        </tbody>
+      </table>
+    </section>
   </main>
 
-  <!-- Dynamic Footer injected by footer.js -->
   <div id="site-footer"></div>
 
   <script>
-    // GitHub Repository Configuration
     const REPO_OWNER = 'aiandroboticsclub-org';
     const REPO_NAME = 'aiandroboticsclub';
     const FILE_PATH = 'products.json';
 
+    let globalProducts = [];
+    let currentSha = '';
+
     const logBox = document.getElementById('statusLog');
 
-    function logStatus(message, type = 'info') {
+    function logStatus(msg, type = 'info') {
       logBox.style.display = 'block';
       logBox.className = `status-log ${type}`;
-      logBox.innerHTML = `<strong>[${type.toUpperCase()}]:</strong> ${message}`;
+      logBox.innerHTML = `<strong>[${type.toUpperCase()}]:</strong> ${msg}`;
     }
 
-    // Load saved token from browser storage on page load
+    function getToken() {
+      const t = document.getElementById('ghToken').value.trim();
+      if (t) localStorage.setItem('gh_fine_pat', t);
+      return t;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const savedToken = localStorage.getItem('gh_fine_pat');
       if (savedToken) {
         document.getElementById('ghToken').value = savedToken;
+        loadProductsTable();
       }
     });
 
-    document.getElementById('productForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
+    // Helper: Convert File to Base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+      });
+    }
 
-      const token = document.getElementById('ghToken').value.trim();
-      if (!token) return alert('Please enter your GitHub Fine-Grained Access Token');
+    // Upload Image directly to GitHub Images/ directory
+    async function uploadImageToGitHub(file, token) {
+      const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+      const imageRepoPath = `Images/${fileName}`;
+      const base64Content = await fileToBase64(file);
 
-      // Save token locally in browser storage
-      localStorage.setItem('gh_fine_pat', token);
+      const putUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${imageRepoPath}`;
+      
+      const res = await fetch(putUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          message: `Upload product image: ${fileName}`,
+          content: base64Content
+        })
+      });
 
-      logStatus('Connecting to GitHub API...', 'info');
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(`Image upload failed: ${err.message}`);
+      }
 
-      const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+      return imageRepoPath; // Returns 'Images/1700000000-filename.jpg'
+    }
+
+    // Load products table
+    async function loadProductsTable() {
+      const token = getToken();
+      if (!token) return;
+
+      const tbody = document.getElementById('productsTableBody');
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading inventory...</td></tr>';
 
       try {
-        // Step 1: Fetch existing products.json
-        const getRes = await fetch(getUrl, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
+        const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        const res = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
         });
 
-        if (!getRes.ok) {
-          const err = await getRes.json();
-          if (getRes.status === 404) {
-            throw new Error(`products.json not found in root directory of repo "${REPO_NAME}". Create an empty products.json file first.`);
-          } else {
-            throw new Error(`GitHub GET Error (${getRes.status}): ${err.message}`);
-          }
+        if (!res.ok) throw new Error(`Fetch failed (${res.status})`);
+
+        const fileData = await res.json();
+        currentSha = fileData.sha;
+        
+        const decoded = decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, ''))));
+        globalProducts = JSON.parse(decoded);
+
+        renderTable();
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color:red; text-align:center;">${err.message}</td></tr>`;
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('productsTableBody');
+      tbody.innerHTML = '';
+
+      if (globalProducts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No products found.</td></tr>';
+        return;
+      }
+
+      globalProducts.forEach(prod => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><img src="${prod.image || 'Images/placeholder.jpg'}" class="product-thumb" onerror="this.src='https://via.placeholder.com/50'"></td>
+          <td><strong>${prod.title}</strong></td>
+          <td>${prod.price}</td>
+          <td>${prod.featured ? '✅ Yes' : '❌ No'}</td>
+          <td>
+            <button class="btn-action btn-edit" onclick="editProduct('${prod.id}')">Edit</button>
+            <button class="btn-action btn-delete" onclick="deleteProduct('${prod.id}')">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Populate form for Edit
+    function editProduct(id) {
+      const prod = globalProducts.find(p => p.id === id);
+      if (!prod) return;
+
+      document.getElementById('editProductId').value = prod.id;
+      document.getElementById('title').value = prod.title;
+      document.getElementById('price').value = prod.price;
+      document.getElementById('imagePath').value = prod.image;
+      document.getElementById('description').value = prod.description;
+      document.getElementById('featured').checked = !!prod.featured;
+
+      document.getElementById('formTitle').innerText = 'Edit Product';
+      document.getElementById('submitBtn').innerText = 'Update Product & Commit';
+      document.getElementById('cancelEditBtn').style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+      document.getElementById('productForm').reset();
+      document.getElementById('editProductId').value = '';
+      document.getElementById('formTitle').innerText = 'Add New Product';
+      document.getElementById('submitBtn').innerText = 'Add Product & Commit';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+    }
+
+    // Save (Add or Update) Product
+    document.getElementById('productForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = getToken();
+      if (!token) return alert('Token required');
+
+      const editId = document.getElementById('editProductId').value;
+      const fileInput = document.getElementById('imageFile');
+      let imagePath = document.getElementById('imagePath').value.trim();
+
+      try {
+        // Step 1: Handle image upload if a new file was chosen
+        if (fileInput.files.length > 0) {
+          logStatus('Uploading image file to GitHub Images/ folder...', 'info');
+          imagePath = await uploadImageToGitHub(fileInput.files[0], token);
+          logStatus(`Image uploaded successfully to ${imagePath}`, 'info');
         }
 
-        const fileData = await getRes.json();
-        logStatus('Retrieved current product list. Encoding new product...', 'info');
+        if (!imagePath) imagePath = 'Images/placeholder.jpg';
 
-        // Safely decode Base64 UTF-8 string
-        const cleanContent = fileData.content.replace(/\s/g, '');
-        const decodedString = decodeURIComponent(escape(atob(cleanContent)));
-        const existingProducts = JSON.parse(decodedString);
-
-        // Step 2: Create new product object
-        const newProduct = {
-          id: 'prod-' + Date.now(),
+        // Step 2: Build or Update Product object
+        const productData = {
+          id: editId || 'prod-' + Date.now(),
           title: document.getElementById('title').value.trim(),
           price: document.getElementById('price').value.trim(),
-          image: document.getElementById('image').value.trim() || 'Images/placeholder.jpg',
+          image: imagePath,
           description: document.getElementById('description').value.trim(),
           featured: document.getElementById('featured').checked
         };
 
-        existingProducts.push(newProduct);
-
-        // Step 3: Base64 Encode UTF-8 content for Commit
-        const jsonString = JSON.stringify(existingProducts, null, 2);
-        const updatedBase64 = btoa(unescape(encodeURIComponent(jsonString)));
-
-        // Step 4: PUT request to commit changes
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify({
-            message: `Add product: ${newProduct.title}`,
-            content: updatedBase64,
-            sha: fileData.sha
-          })
-        });
-
-        if (putRes.ok) {
-          logStatus(`Success! "${newProduct.title}" has been committed to GitHub. Pages will re-deploy in ~1-2 minutes.`, 'success');
-          
-          // Reset form fields except token
-          document.getElementById('title').value = '';
-          document.getElementById('price').value = '';
-          document.getElementById('image').value = '';
-          document.getElementById('description').value = '';
-          document.getElementById('featured').checked = false;
+        if (editId) {
+          const idx = globalProducts.findIndex(p => p.id === editId);
+          if (idx !== -1) globalProducts[idx] = productData;
         } else {
-          const putErr = await putRes.json();
-          throw new Error(`Commit Failed (${putRes.status}): ${putErr.message}`);
+          globalProducts.push(productData);
         }
+
+        // Step 3: Commit updated JSON to GitHub
+        logStatus('Saving changes to products.json...', 'info');
+        await commitProductsJson(token, `Dashboard: ${editId ? 'Update' : 'Add'} product ${productData.title}`);
+
+        logStatus(`Success! Product ${editId ? 'updated' : 'added'} successfully.`, 'success');
+        resetForm();
+        loadProductsTable();
 
       } catch (err) {
         console.error(err);
         logStatus(err.message, 'error');
       }
     });
+
+    // Delete Product
+    async function deleteProduct(id) {
+      const prod = globalProducts.find(p => p.id === id);
+      if (!prod) return;
+
+      if (!confirm(`Are you sure you want to delete "${prod.title}"?`)) return;
+
+      const token = getToken();
+      if (!token) return alert('Token required');
+
+      try {
+        logStatus(`Deleting "${prod.title}"...`, 'info');
+        globalProducts = globalProducts.filter(p => p.id !== id);
+
+        await commitProductsJson(token, `Dashboard: Delete product ${prod.title}`);
+        logStatus(`Product "${prod.title}" deleted successfully.`, 'success');
+        loadProductsTable();
+      } catch (err) {
+        console.error(err);
+        logStatus(err.message, 'error');
+      }
+    }
+
+    // Helper: Push updated globalProducts array to GitHub
+    async function commitProductsJson(token, commitMessage) {
+      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+      const jsonString = JSON.stringify(globalProducts, null, 2);
+      const updatedBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+      const putRes = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          message: commitMessage,
+          content: updatedBase64,
+          sha: currentSha
+        })
+      });
+
+      if (!putRes.ok) {
+        const err = await putRes.json();
+        throw new Error(`Commit failed (${putRes.status}): ${err.message}`);
+      }
+
+      const resData = await putRes.json();
+      currentSha = resData.content.sha;
+    }
   </script>
 </body>
 </html>
