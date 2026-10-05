@@ -261,5 +261,40 @@
     // Initialize on DOM load
     document.addEventListener('DOMContentLoaded', fetchProducts);
   </script>
+  <!-- Floating Cart Trigger Button -->
+<button id="cartToggleBtn" class="cart-floating-btn" onclick="toggleCartDrawer(true)">
+  🛒 Cart <span id="cartBadgeCount" class="cart-badge">0</span>
+</button>
+
+<!-- Dark Overlay Backdrop -->
+<div id="cartOverlay" class="cart-overlay" onclick="toggleCartDrawer(false)"></div>
+
+<!-- Sliding Cart Drawer -->
+<aside id="cartDrawer" class="cart-drawer">
+  <div class="cart-header">
+    <h2>Your Shopping Cart</h2>
+    <button class="cart-close-btn" onclick="toggleCartDrawer(false)">&times;</button>
+  </div>
+
+  <div id="cartItemsContainer" class="cart-items-body">
+    <!-- Dynamic Cart Items Render Here -->
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-summary">
+      <span>Subtotal:</span>
+      <strong id="cartSubtotalText">Rs. 0</strong>
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+      <label for="customerName" style="font-size:0.85rem; font-weight:bold; color:#334155;">Your Name (Optional)</label>
+      <input type="text" id="customerName" placeholder="e.g. Ali Ahmed" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; box-sizing:border-box;">
+    </div>
+
+    <button id="whatsappCheckoutBtn" class="cart-checkout-btn" onclick="checkoutViaWhatsApp()">
+      📱 Checkout via WhatsApp
+    </button>
+  </div>
+</aside>
 </body>
 </html>
