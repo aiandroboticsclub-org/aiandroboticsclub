@@ -2,34 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const footerElement = document.getElementById('site-footer');
 
   const footerHTML = `
-    <!-- Standard Page Footer -->
-    <footer style="background:#0f172a; color:#94a3b8; padding:2rem 1rem 6rem 1rem; text-align:center; margin-top:3rem;">
-      <p style="margin-bottom:1rem; font-size:0.95rem;">&copy; 2026 AI & Robotics Club. All rights reserved.</p>
-      <p style="font-size:0.9rem;">
-        <a href="privacy-policy.html" style="color:#25D366; text-decoration:none; margin:0 8px;">Privacy Policy</a> |
-        <a href="terms.html" style="color:#25D366; text-decoration:none; margin:0 8px;">Terms & Conditions</a> |
-        <a href="shipping.html" style="color:#25D366; text-decoration:none; margin:0 8px;">Shipping & Returns</a>
-      </p>
-    </footer>
-
     <!-- Sticky Bottom 50/50 Action Bar -->
     <div class="sticky-footer-bar">
-      <a href="https://wa.me/923119696807" target="_blank" class="sticky-btn btn-whatsapp">
-        💬 WhatsApp
+      <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer" class="sticky-btn btn-whatsapp">
+        <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp
       </a>
-      <a href="tel:+923119696807" class="sticky-btn btn-call">
-        📞 Call Us
+      <a href="tel:+923224217059" class="sticky-btn btn-call">
+        <i class="fa-solid fa-phone mr-2"></i> Call Us
       </a>
     </div>
 
-    <!-- Sticky Bar & Floating Cart CSS Styles -->
     <style>
-      /* Ensure page body clears the fixed bottom bar */
+      /* Space out body so content isn't covered by the fixed bar */
       body {
         padding-bottom: 70px !important;
       }
 
-      /* Fixed Container */
+      /* Fixed Bottom Container */
       .sticky-footer-bar {
         position: fixed;
         bottom: 0;
@@ -40,11 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25);
-        z-index: 997; /* Sits below cart drawer overlay */
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+        z-index: 997;
         box-sizing: border-box;
-        padding: 6px 10px;
-        gap: 10px;
+        padding: 8px 12px;
+        gap: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       /* 50/50 Split Button Styling */
@@ -54,37 +44,37 @@ document.addEventListener('DOMContentLoaded', () => {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-weight: bold;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
         text-decoration: none;
-        transition: background-color 0.2s ease, transform 0.1s ease;
+        transition: all 0.2s ease;
         box-sizing: border-box;
       }
 
       .btn-whatsapp {
-        background-color: #25D366;
+        background-color: #10b981;
         color: #ffffff;
       }
 
       .btn-whatsapp:hover {
-        background-color: #1da851;
+        background-color: #059669;
       }
 
       .btn-call {
-        background-color: #2563eb;
-        color: #ffffff;
+        background-color: #06b6d4;
+        color: #000000;
       }
 
       .btn-call:hover {
-        background-color: #1d4ed8;
+        background-color: #0891b2;
       }
 
       .sticky-btn:active {
         transform: scale(0.98);
       }
 
-      /* Reposition cart floating button so it doesn't overlap sticky bar */
+      /* Elevate floating cart button if present */
       .cart-floating-btn {
         bottom: 80px !important;
       }
@@ -94,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (footerElement) {
     footerElement.innerHTML = footerHTML;
   } else {
-    // If <div id="site-footer"></div> missing, append directly to body
     const div = document.createElement('div');
+    div.id = 'site-footer';
     div.innerHTML = footerHTML;
     document.body.appendChild(div);
   }
