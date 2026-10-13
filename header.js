@@ -3,53 +3,60 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Resolve site root from this script's location (works from / and /gulf/ etc.)
+  var base = "";
+  var scripts = document.getElementsByTagName("script");
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i].src && scripts[i].src.indexOf("header.js") !== -1) {
+      base = scripts[i].src.replace(/header\.js(\?.*)?$/, "");
+      break;
+    }
+  }
+
+  var logoUrl = base + "images/airlogo.webp";
+  var homeUrl = base + "index.html";
+  var productsUrl = base + "products.html";
+
   // Set site favicon
-  const existingFavicon = document.querySelector('link[rel="icon"]');
+  var existingFavicon = document.querySelector('link[rel="icon"]');
   if (!existingFavicon) {
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.type = 'image/webp';
-    favicon.href = 'images/airlogo.webp';
+    var favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.type = "image/webp";
+    favicon.href = logoUrl;
     document.head.appendChild(favicon);
   } else {
-    existingFavicon.href = 'images/airlogo.webp';
+    existingFavicon.href = logoUrl;
   }
 
-  let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+  var appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
   if (!appleIcon) {
-    appleIcon = document.createElement('link');
-    appleIcon.rel = 'apple-touch-icon';
+    appleIcon = document.createElement("link");
+    appleIcon.rel = "apple-touch-icon";
     document.head.appendChild(appleIcon);
   }
-  appleIcon.href = 'images/airlogo.webp';
+  appleIcon.href = logoUrl;
 
-  const headerHTML = `
-    <header class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo">
-          <img src="images/airlogo.webp" alt="AI & Robotics Club" class="logo-img">
-          <span class="logo-text">AI & <span>ROBOTICS CLUB</span></span>
-        </a>
+  var headerHTML =
+    '<header class="navbar">' +
+    '  <div class="container nav-container">' +
+    '    <a href="' + homeUrl + '" class="logo">' +
+    '      <img src="' + logoUrl + '" alt="AI & Robotics Club" class="logo-img">' +
+    '      <span class="logo-text">AI & <span>ROBOTICS CLUB</span></span>' +
+    "    </a>" +
+    '    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">' +
+    '      <span class="hamburger"></span>' +
+    "    </button>" +
+    '    <nav class="nav-menu" id="navMenu">' +
+    '      <ul class="nav-links">' +
+    '        <li><a href="' + homeUrl + '">Home</a></li>' +
+    '        <li><a href="' + productsUrl + '">Products</a></li>' +
+    "      </ul>" +
+    "    </nav>" +
+    "  </div>" +
+    "</header>";
 
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-          <span class="hamburger"></span>
-        </button>
-
-        <nav class="nav-menu" id="navMenu">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="index.html#programs">Programs</a></li>
-            <li><a href="index.html#benefits">About Us</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="index.html#contact" class="btn btn-primary nav-cta">Free Trial</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-  `;
-
-  const siteHeader = document.getElementById('site-header');
+  var siteHeader = document.getElementById("site-header");
   if (siteHeader) {
     siteHeader.innerHTML = headerHTML;
   } else {
@@ -57,22 +64,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Mobile menu toggle
-  const toggle = document.getElementById('navToggle');
-  const menu = document.getElementById('navMenu');
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("navMenu");
 
   if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      const isOpen = menu.classList.toggle('open');
-      toggle.classList.toggle('active', isOpen);
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    toggle.addEventListener("click", function () {
+      var isOpen = menu.classList.toggle("open");
+      toggle.classList.toggle("active", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    // Close menu when a link is clicked (mobile)
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menu.classList.remove('open');
-        toggle.classList.remove('active');
-        toggle.setAttribute('aria-expanded', 'false');
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("open");
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
       });
     });
   }
