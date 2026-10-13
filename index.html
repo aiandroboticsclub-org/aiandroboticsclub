@@ -7,6 +7,9 @@
     <link rel="icon" type="image/webp" href="images/airlogo.webp">
     <link rel="apple-touch-icon" href="images/airlogo.webp">
 
+    <!-- Shared site styles (navbar, logo, mobile menu) -->
+    <link rel="stylesheet" href="style.css">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,17 +41,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom style.css logic integrated -->
     <style>
-        /* Base styles */
-        body {
+        /* Page-specific dark theme (does not override navbar from style.css) */
+        body.bg-grid-pattern {
             font-family: 'Inter', sans-serif;
             background-color: #060913;
             color: #F3F4F6;
             overflow-x: hidden;
         }
 
-        /* Glassmorphism panel styling */
         .glass-panel {
             background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(16px);
@@ -56,14 +57,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glass-nav {
-            background: rgba(6, 9, 19, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        /* Glow effects */
         .glow-cyan {
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
         }
@@ -85,20 +78,25 @@
             padding: 1px;
         }
 
-        /* Grid Pattern Background */
         .bg-grid-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
+        }
+
+        /* Ensure sticky white header sits above dark content */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
     </style>
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
 
-    <!-- Header injected by header.js -->
+    <!-- Header injected by header.js (same as products page) -->
     <div id="site-header"></div>
 
-    <!-- flex-grow forces the main content to fill remaining height so footer rests at bottom -->
-    <main class="pt-20 flex-grow">
+    <main class="flex-grow">
         <!-- Hero Section -->
         <section id="hero" class="relative py-12 lg:py-24 overflow-hidden">
             <div class="absolute top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -274,30 +272,17 @@
             </div>
         </section>
 
-        <!-- NOTE: The remaining original sections (contact, footer, scripts) are present in the local prepared file. The page now uses header.js. -->
     </main>
 
-    <script>
-        async function initSlider() {
-            try {
-                const response = await fetch('products.json');
-                const products = await response.json();
-                const featured = products.filter(p => p.featured);
-                const sliderTrack = document.getElementById('slider-track');
-                if (!sliderTrack) return;
-                featured.forEach(product => {
-                    const slide = document.createElement('div');
-                    slide.className = 'slide';
-                    slide.innerHTML = `<img src="${product.image}" alt="${product.title}"><h4>${product.title}</h4><p>${product.price}</p>`;
-                    sliderTrack.appendChild(slide);
-                });
-            } catch (e) {}
-        }
-        document.addEventListener('DOMContentLoaded', initSlider);
-        const yearEl = document.getElementById('year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-    </script>
+    <div id="site-footer"></div>
+
     <script src="header.js"></script>
     <script src="footer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
