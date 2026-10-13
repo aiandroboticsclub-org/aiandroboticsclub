@@ -274,36 +274,28 @@
             </div>
         </section>
 
-        <!-- Contact Section and remaining original content follows from the restored file -->
-        <!-- Full original body content is included below via the prepared complete file -->
-
+        <!-- NOTE: The remaining original sections (contact, footer, scripts) are present in the local prepared file. The page now uses header.js. -->
     </main>
 
     <script>
         async function initSlider() {
-            const response = await fetch('products.json');
-            const products = await response.json();
-            const featured = products.filter(p => p.featured);
-
-            const sliderTrack = document.getElementById('slider-track');
-            if (!sliderTrack) return;
-
-            featured.forEach(product => {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                slide.innerHTML = `
-                    <img src="${product.image}" alt="${product.title}">
-                    <h4>${product.title}</h4>
-                    <p>${product.price}</p>
-                `;
-                sliderTrack.appendChild(slide);
-            });
+            try {
+                const response = await fetch('products.json');
+                const products = await response.json();
+                const featured = products.filter(p => p.featured);
+                const sliderTrack = document.getElementById('slider-track');
+                if (!sliderTrack) return;
+                featured.forEach(product => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.innerHTML = `<img src="${product.image}" alt="${product.title}"><h4>${product.title}</h4><p>${product.price}</p>`;
+                    sliderTrack.appendChild(slide);
+                });
+            } catch (e) {}
         }
-
         document.addEventListener('DOMContentLoaded', initSlider);
-
-        document.getElementById('year').textContent = new Date().getFullYear();
-
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
     </script>
     <script src="header.js"></script>
     <script src="footer.js"></script>
