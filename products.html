@@ -462,7 +462,7 @@
         card.className = 'product-card';
         card.innerHTML = `
           <div class="product-image-wrap">
-            <img src="${product.image || 'Images/placeholder.jpg'}" alt="${product.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220?text=No+Image'">
+            <img src="${product.image || 'images/placeholder.jpg'}" alt="${product.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x220?text=No+Image'">
           </div>
           <div class="product-details">
             <h2 class="product-title">${product.title}</h2>
@@ -517,7 +517,7 @@
           title: product.title,
           price: product.price,
           numericPrice: numericPrice,
-          image: product.image || 'Images/placeholder.jpg',
+          image: product.image || 'images/placeholder.jpg',
           quantity: 1
         });
       }
@@ -600,11 +600,11 @@
 
       const customerName = document.getElementById('customerName').value.trim();
       
-      let message = `🛒 *NEW ORDER - AI & Robotics Club*\n`;
+      let message = `🛒 *NEW ORDER - AI & Robotics Club*\\n`;
       if (customerName) {
-        message += `👤 *Customer:* ${customerName}\n`;
+        message += `👤 *Customer:* ${customerName}\\n`;
       }
-      message += `-----------------------------------\n\n`;
+      message += `-----------------------------------\\n\\n`;
 
       let grandTotal = 0;
 
@@ -612,14 +612,14 @@
         const itemTotal = item.numericPrice * item.quantity;
         grandTotal += itemTotal;
         
-        message += `${index + 1}. *${item.title}*\n`;
-        message += `   • Quantity: ${item.quantity}\n`;
-        message += `   • Price: ${item.price}\n\n`;
+        message += `${index + 1}. *${item.title}*\\n`;
+        message += `   • Quantity: ${item.quantity}\\n`;
+        message += `   • Price: ${item.price}\\n\\n`;
       });
 
-      message += `-----------------------------------\n`;
+      message += `-----------------------------------\\n`;
       if (grandTotal > 0) {
-        message += `💰 *Estimated Total:* Rs. ${grandTotal.toLocaleString()}\n\n`;
+        message += `💰 *Estimated Total:* Rs. ${grandTotal.toLocaleString()}\\n\\n`;
       }
       message += `Please confirm item availability and shipping details. Thank you!`;
 

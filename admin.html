@@ -197,13 +197,13 @@
         <label for="imageFile">Upload Product Image (Optional)</label>
         <input type="file" id="imageFile" accept="image/*">
         <small style="color: #64748b; display: block; margin-top: 0.25rem;">
-          Uploading a file saves it directly into the <code>Images/</code> directory.
+          Uploading a file saves it directly into the <code>images/</code> directory.
         </small>
       </div>
 
       <div class="form-group">
         <label for="imagePath">Image Path / URL</label>
-        <input type="text" id="imagePath" placeholder="Images/placeholder.jpg">
+        <input type="text" id="imagePath" placeholder="images/placeholder.jpg">
       </div>
 
       <div class="form-group">
@@ -289,10 +289,10 @@
       });
     }
 
-    // Upload Image directly to GitHub Images/ directory
+    // Upload Image directly to GitHub images/ directory
     async function uploadImageToGitHub(file, token) {
       const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-      const imageRepoPath = `Images/${fileName}`;
+      const imageRepoPath = `images/${fileName}`;
       const base64Content = await fileToBase64(file);
 
       const putUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${imageRepoPath}`;
@@ -315,7 +315,7 @@
         throw new Error(`Image upload failed: ${err.message}`);
       }
 
-      return imageRepoPath; // Returns 'Images/1700000000-filename.jpg'
+      return imageRepoPath; // Returns 'images/1700000000-filename.jpg'
     }
 
     // Load products table
@@ -358,7 +358,7 @@
       globalProducts.forEach(prod => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><img src="${prod.image || 'Images/placeholder.jpg'}" class="product-thumb" onerror="this.src='https://via.placeholder.com/50'"></td>
+          <td><img src="${prod.image || 'images/placeholder.jpg'}" class="product-thumb" onerror="this.src='https://via.placeholder.com/50'"></td>
           <td><strong>${prod.title}</strong></td>
           <td>${prod.price}</td>
           <td>${prod.featured ? '✅ Yes' : '❌ No'}</td>
@@ -411,12 +411,12 @@
       try {
         // Step 1: Handle image upload if a new file was chosen
         if (fileInput.files.length > 0) {
-          logStatus('Uploading image file to GitHub Images/ folder...', 'info');
+          logStatus('Uploading image file to GitHub images/ folder...', 'info');
           imagePath = await uploadImageToGitHub(fileInput.files[0], token);
           logStatus(`Image uploaded successfully to ${imagePath}`, 'info');
         }
 
-        if (!imagePath) imagePath = 'Images/placeholder.jpg';
+        if (!imagePath) imagePath = 'images/placeholder.jpg';
 
         // Step 2: Build or Update Product object
         const productData = {

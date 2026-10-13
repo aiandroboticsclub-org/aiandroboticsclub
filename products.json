@@ -4,14 +4,14 @@
     "title": "AI Robotics Kit Starter",
     "price": "$49.99",
     "description": "An entry-level robotics kit with programmable modules.",
-    "image": "Images/kit-starter.jpg",
+    "image": "images/kit-starter.jpg",
     "featured": true
   },
   {
     "id": "prod-1791208117852",
     "title": "sample webp",
     "price": "1600",
-    "image": "Images/1791208114863-WhatsApp_Image_2026-10-04_at_10.57.43_AM.jpeg",
+    "image": "images/1791208114863-WhatsApp_Image_2026-10-04_at_10.57.43_AM.jpeg",
     "description": "fgh",
     "featured": true
   }
