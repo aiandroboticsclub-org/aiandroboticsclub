@@ -3,11 +3,33 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Set site favicon (applies on every page that loads header.js)
+  const existingFavicon = document.querySelector('link[rel="icon"]');
+  if (!existingFavicon) {
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/webp';
+    favicon.href = 'images/airlogo.webp';
+    document.head.appendChild(favicon);
+  } else {
+    existingFavicon.href = 'images/airlogo.webp';
+  }
+
+  // Also set apple-touch-icon for better mobile support
+  let appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+  if (!appleIcon) {
+    appleIcon = document.createElement('link');
+    appleIcon.rel = 'apple-touch-icon';
+    document.head.appendChild(appleIcon);
+  }
+  appleIcon.href = 'images/airlogo.webp';
+
   const headerHTML = `
     <header class="navbar">
       <div class="container nav-container">
-        <a href="index.html" class="logo">
-          🤖 AI & <span>ROBOTICS CLUB</span>
+        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+          <img src="images/airlogo.webp" alt="AI & Robotics Club" style="height: 40px; width: auto; object-fit: contain;">
+          <span>AI & <span style="color: inherit;">ROBOTICS CLUB</span></span>
         </a>
         <nav>
           <ul class="nav-links">
@@ -22,6 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
     </header>
   `;
 
-  // Inject header at the beginning of the <body>
-  document.body.insertAdjacentHTML("afterbegin", headerHTML);
+  // Inject header: prefer #site-header if present, otherwise at the beginning of <body>
+  const siteHeader = document.getElementById('site-header');
+  if (siteHeader) {
+    siteHeader.innerHTML = headerHTML;
+  } else {
+    document.body.insertAdjacentHTML("afterbegin", headerHTML);
+  }
 });
