@@ -83,7 +83,6 @@
             background-size: 32px 32px;
         }
 
-        /* Ensure sticky white header sits above dark content */
         .navbar {
             position: sticky;
             top: 0;
@@ -93,7 +92,6 @@
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
 
-    <!-- Header injected by header.js (same as products page) -->
     <div id="site-header"></div>
 
     <main class="flex-grow">
@@ -274,15 +272,11 @@
 
     </main>
 
+    <div id="site-prefooter"></div>
     <div id="site-footer"></div>
 
     <script src="header.js"></script>
+    <script src="prefooter.js"></script>
     <script src="footer.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var yearEl = document.getElementById('year');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        });
-    </script>
 </body>
 </html>
