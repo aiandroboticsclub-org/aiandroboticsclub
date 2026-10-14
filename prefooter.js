@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="prefooter-title">Contact</div>
           <p><a href="tel:+923224217059">+92 322 4217059</a></p>
           <p><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
-          <p>Email: <a href="mailto:info@aiandroboticsclub.org">info@aiandroboticsclub.org</a></p>
+          <p>Email: <a href="mailto:support@aiandroboticsclub.com">support@aiandroboticsclub.com</a></p>
         </div>
 
         <div class="prefooter-col">
           <div class="prefooter-title">Address</div>
-          <p>AI & Robotics Club</p>
-          <p>Karachi, Pakistan</p>
-          <p class="prefooter-muted">(Full address to be updated)</p>
+          <p>AI &amp; Robotics Club</p>
+          <p>Shah Jilani Road, Near Lahore Grammer School Township</p>
+          <p>Lahore, Pakistan, 54770</p>
         </div>
 
         <div class="prefooter-col">
@@ -31,13 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="prefooter-col">
           <div class="prefooter-title">Legal</div>
           <p><a href="privacy-policy.html">Privacy Policy</a></p>
-          <p><a href="terms.html">Terms & Conditions</a></p>
-          <p><a href="shipping.html">Shipping & Returns</a></p>
+          <p><a href="terms.html">Terms &amp; Conditions</a></p>
+          <p><a href="shipping.html">Shipping &amp; Returns</a></p>
+          <p><a href="disclaimer.html">Disclaimer</a></p>
         </div>
       </div>
 
       <div class="prefooter-bottom">
-        &copy; <span id="prefooter-year"></span> AI & Robotics Club. All rights reserved.
+        &copy; <span id="prefooter-year"></span> AI &amp; Robotics Club. All rights reserved.
       </div>
     </div>
 
@@ -121,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (target) {
     target.innerHTML = prefooterHTML;
   } else {
-    // Insert before sticky footer if present, otherwise at end of body
     const sticky = document.getElementById("site-footer");
     const wrap = document.createElement("div");
     wrap.id = "site-prefooter";
