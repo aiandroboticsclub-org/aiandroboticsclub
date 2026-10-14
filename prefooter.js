@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><a href="privacy-policy.html">Privacy Policy</a></p>
           <p><a href="terms.html">Terms &amp; Conditions</a></p>
           <p><a href="shipping.html">Shipping &amp; Returns</a></p>
+          <p><a href="refund-return-exchange-policy.html">Refund, Return &amp; Exchange</a></p>
           <p><a href="disclaimer.html">Disclaimer</a></p>
         </div>
       </div>
