@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><a href="/index.html">Home</a></p>
           <p><a href="/products.html">Products</a></p>
           <p><a href="/programs/ai-robotics-workshops-and-courses-for-kids.html">Programs</a></p>
+          <p><a href="/programs/online-ai-and-online-robotics-courses.html">Online Courses</a></p>
           <p><a href="/programs/competitions-events.html">Competitions & Events</a></p>
           <p><a href="/programs/robotics-training-with-school-partnerships.html">School Partnerships</a></p>
         </div>
