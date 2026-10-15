@@ -1,6 +1,7 @@
 /* ==========================================================================
    AI & ROBOTICS CLUB - PRE-FOOTER (prefooter.js)
    Legal links + contact + address. Sticky WhatsApp/Call bar stays in footer.js.
+   Root-relative hrefs so links work from /programs/ and other subfolders.
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -16,30 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <div class="prefooter-col">
           <div class="prefooter-title">Address</div>
-          <p>AI &amp; Robotics Club</p>
+          <p>AI & Robotics Club</p>
           <p>Shah Jilani Road, Near Lahore Grammer School Township</p>
           <p>Lahore, Pakistan, 54770</p>
         </div>
 
         <div class="prefooter-col">
           <div class="prefooter-title">Pages</div>
-          <p><a href="index.html">Home</a></p>
-          <p><a href="products.html">Products</a></p>
-          <p><a href="competitions-events.html">Competitions &amp; Events</a></p>
+          <p><a href="/index.html">Home</a></p>
+          <p><a href="/products.html">Products</a></p>
+          <p><a href="/programs/competitions-events.html">Competitions & Events</a></p>
         </div>
 
         <div class="prefooter-col">
           <div class="prefooter-title">Legal</div>
-          <p><a href="privacy-policy.html">Privacy Policy</a></p>
-          <p><a href="terms.html">Terms &amp; Conditions</a></p>
-          <p><a href="shipping.html">Shipping &amp; Returns</a></p>
-          <p><a href="refund-return-exchange-policy.html">Refund, Return &amp; Exchange</a></p>
-          <p><a href="disclaimer.html">Disclaimer</a></p>
+          <p><a href="/privacy-policy.html">Privacy Policy</a></p>
+          <p><a href="/terms.html">Terms & Conditions</a></p>
+          <p><a href="/shipping.html">Shipping & Returns</a></p>
+          <p><a href="/refund-return-exchange-policy.html">Refund, Return & Exchange</a></p>
+          <p><a href="/disclaimer.html">Disclaimer</a></p>
         </div>
       </div>
 
       <div class="prefooter-bottom">
-        &copy; <span id="prefooter-year"></span> AI &amp; Robotics Club. All rights reserved.
+        &copy; <span id="prefooter-year"></span> AI & Robotics Club. All rights reserved.
       </div>
     </div>
 
