@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p><a href="/programs/robotics-training-with-school-partnerships.html">School Partnerships</a></p>
           <p><a href="/best-students-projects/100-mission-hero-journey.html">100 Mission Hero Journey</a></p>
           <p><a href="/best-students-projects/components-of-a-robot.html">Components of a Robot</a></p>
+          <p><a href="/best-students-projects/ai-course-for-kids-2027.html">AI Course for Kids 2027</a></p>
         </div>
 
         <div class="prefooter-col">
