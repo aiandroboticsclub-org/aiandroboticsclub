@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components of a Robot – Electronics Explained for Kids | AI & Robotics Club</title>
+  <meta name="description" content="Electronics of a robot explained simply for kids—resistors, capacitors, diodes, transistors, ICs, microcontrollers and sensors. Easy robotics guide from AI & Robotics Club.">
+  <link rel="canonical" href="https://aiandroboticsclub.com/best-students-projects/components-of-a-robot.html">
+  <link rel="icon" type="image/webp" href="../images/airlogo.webp">
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { cyan: '#00F0FF', indigo: '#6366F1', purple: '#A855F7', dark: '#060913', card: '#0F172A' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body.bg-grid-pattern {
+      font-family: 'Inter', sans-serif;
+      background-color: #060913;
+      color: #F3F4F6;
+      overflow-x: hidden;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #00F0FF 0%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .comp-card {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .comp-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(34, 211, 238, 0.4);
+      box-shadow: 0 12px 32px rgba(0, 240, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-grid-pattern min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
+
+  <div id="site-header"></div>
+
+  <main class="flex-grow">
+
+    <!-- Hero -->
+    <section class="relative py-14 lg:py-20 overflow-hidden border-b border-gray-800/80">
+      <div class="absolute top-1/4 left-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-semibold mb-5">
+              <i class="fa-solid fa-microchip"></i> Best Students Projects · Learning Guide
+            </span>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+              Electronics of a Robot
+            </h1>
+            <p class="text-lg text-gray-300 font-medium mb-4">What’s Inside a Robot? (Easy Guide for Kids)</p>
+            <p class="text-gray-400 leading-relaxed mb-6">
+              Robots may look complex, but inside they are made of simple electronic parts working together. In this guide, we explain the most important robot components in a fun and easy way for beginners and kids.
+            </p>
+            <p class="text-gray-500 text-sm mb-6">
+              Perfect for students, teachers, and parents who want to learn robotics step by step.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="#components"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 transition-all shadow-lg">
+                Explore Components <i class="fa-solid fa-arrow-down"></i>
+              </a>
+              <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20to%20learn%20robotics%20components%20with%20the%20club."
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-[#25d366] hover:bg-[#1da851] transition-all">
+                <i class="fa-brands fa-whatsapp"></i> Ask on WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="hidden lg:block rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+            <img src="../images/39.webp" alt="Robot electronics and components for kids learning" class="w-full h-72 object-cover" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="py-12 border-b border-gray-800/80">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-white mb-3">Inside a Robot</h2>
+        <p class="text-gray-400 leading-relaxed">
+          What is actually inside a robot — and what kids can imagine. A robot is a combination of
+          <strong class="text-white">electronics + programming</strong> that helps machines think, sense, and act.
+        </p>
+      </div>
+    </section>
+
+    <!-- Components grid -->
+    <section id="components" class="py-16 lg:py-20 border-b border-gray-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2 text-center">Key Electronic Components</h2>
+        <p class="text-gray-400 text-center mb-10 max-w-xl mx-auto">Simple explanations you can remember and share.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4">
+              <i class="fa-solid fa-bolt text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Resistors</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Controls the flow of electricity so components don’t get damaged.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+              <i class="fa-solid fa-battery-half text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Capacitor</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Stores energy and releases it quickly when needed — but not like batteries.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4">
+              <i class="fa-solid fa-arrow-right text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Diodes</h3>
+            <p class="text-gray-300 text-sm font-medium mb-1">One Way Traffic</p>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Allows electricity to flow in only one direction.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4">
+              <i class="fa-solid fa-toggle-on text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Transistor</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Works like a switch or amplifier to control signals at certain conditions.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+              <i class="fa-solid fa-cubes text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Integrated Circuit</h3>
+            <p class="text-gray-300 text-sm font-medium mb-1">Packed Brain</p>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              A small chip that contains many electronic components inside.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4">
+              <i class="fa-solid fa-brain text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Microcontroller</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              The “brain” of the robot that runs programs and makes decisions.
+            </p>
+          </article>
+
+          <article class="comp-card glass-panel rounded-2xl border border-gray-800 p-6 sm:col-span-2 lg:col-span-3 lg:max-w-xl lg:mx-auto">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
+              <i class="fa-solid fa-eye text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Sensors</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Help the robot see, hear, and feel the environment — so it can react to the world around it.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="py-14 lg:py-16 border-b border-gray-800/80">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-2xl border border-cyan-500/20 p-6 sm:p-8 text-center">
+          <h2 class="text-xl font-extrabold text-white mb-3">Remember This</h2>
+          <p class="text-gray-300 leading-relaxed">
+            A robot is a combination of <strong class="text-cyan-400">electronics</strong> + <strong class="text-purple-400">programming</strong>
+            that helps machines <strong class="text-white">think</strong>, <strong class="text-white">sense</strong>, and <strong class="text-white">act</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 lg:py-20">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Ready to Build & Learn?</h2>
+        <p class="text-gray-400 mb-8">Join our robotics programs, Hero Journey missions, or ask a question about components — we’re happy to help parents and students.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20to%20learn%20more%20about%20robot%20components%20and%20classes."
+             target="_blank" rel="noopener noreferrer"
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-[#25d366] hover:bg-[#1da851] transition-all shadow-lg">
+            <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp +92 322 421 7059
+          </a>
+        </div>
+        <p class="text-gray-500 text-sm mt-8">
+          <a href="100-mission-hero-journey.html" class="text-cyan-400 hover:underline">100 Mission Hero Journey</a>
+          · <a href="../programs/ai-robotics-workshops-and-courses-for-kids.html" class="text-cyan-400 hover:underline">Programs</a>
+          · <a href="../programs/online-ai-and-online-robotics-courses.html" class="text-cyan-400 hover:underline">Online Courses</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-prefooter"></div>
+  <div id="site-footer"></div>
+
+  <script src="../header.js"></script>
+  <script src="../prefooter.js"></script>
+  <script src="../footer.js"></script>
+</body>
+</html>
