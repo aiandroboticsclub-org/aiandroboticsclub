@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var logoUrl = base + "images/airlogo.webp";
   var homeUrl = base + "index.html";
   var productsUrl = base + "products.html";
+  var programsUrl = base + "programs/ai-robotics-workshops-and-courses-for-kids.html";
+  var bestProjectsUrl = base + "best-students-projects/100-mission-hero-journey.html";
 
   // Set site favicon
   var existingFavicon = document.querySelector('link[rel="icon"]');
@@ -50,6 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     '    <nav class="nav-menu" id="navMenu">' +
     '      <ul class="nav-links">' +
     '        <li><a href="' + homeUrl + '">Home</a></li>' +
+    '        <li><a href="' + programsUrl + '">Programs</a></li>' +
+    '        <li><a href="' + bestProjectsUrl + '">Best Students Projects</a></li>' +
     '        <li><a href="' + productsUrl + '">Products</a></li>' +
     "      </ul>" +
     "    </nav>" +
