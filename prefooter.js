@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="prefooter-title">Pages</div>
           <p><a href="index.html">Home</a></p>
           <p><a href="products.html">Products</a></p>
-          <p class="prefooter-muted">More pages coming soon</p>
+          <p><a href="competitions-events.html">Competitions &amp; Events</a></p>
         </div>
 
         <div class="prefooter-col">
