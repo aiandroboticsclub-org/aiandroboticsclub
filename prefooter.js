@@ -5,10 +5,16 @@
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", function () {
   function esc(s) {
-    return String(s).replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/"/g, """);
+    return String(s)
+      .replace(/&/g, "&" + "amp;")
+      .replace(/</g, "&" + "lt;")
+      .replace(/>/g, "&" + "gt;")
+      .replace(/"/g, "&" + "quot;");
   }
   function cityTitle(slug) {
-    return slug.split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+    return slug.split("-").map(function (w) {
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(" ");
   }
 
   var styles =
@@ -40,28 +46,29 @@ document.addEventListener("DOMContentLoaded", function () {
     '<p><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>' +
     '<p>Email: <a href="mailto:support@aiandroboticsclub.com">support@aiandroboticsclub.com</a></p></div>' +
     '<div class="prefooter-col"><div class="prefooter-title">Address</div>' +
-    '<p>AI & Robotics Club</p><p>Shah Jilani Road, Near Lahore Grammer School Township</p><p>Lahore, Pakistan, 54770</p></div>' +
+    '<p>AI and Robotics Club</p><p>Shah Jilani Road, Near Lahore Grammer School Township</p><p>Lahore, Pakistan, 54770</p></div>' +
     '<div class="prefooter-col"><div class="prefooter-title">Legal</div>' +
     '<p><a href="/privacy-policy.html">Privacy Policy</a></p>' +
-    '<p><a href="/terms.html">Terms & Conditions</a></p>' +
-    '<p><a href="/shipping.html">Shipping & Returns</a></p>' +
-    '<p><a href="/refund-return-exchange-policy.html">Refund, Return & Exchange</a></p>' +
+    '<p><a href="/terms.html">Terms and Conditions</a></p>' +
+    '<p><a href="/shipping.html">Shipping and Returns</a></p>' +
+    '<p><a href="/refund-return-exchange-policy.html">Refund, Return and Exchange</a></p>' +
     '<p><a href="/disclaimer.html">Disclaimer</a></p></div></div>' +
     '<div class="prefooter-areas"><div class="prefooter-title">Areas We Serve</div>' +
     '<div class="pf-areas-row">' +
     '<div class="pf-area-item pf-area-root" id="pf-gulf-root">' +
     '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Gulf <span class="pf-caret"></span></button>' +
-    '<div class="pf-area-panel" id="pf-gulf-panel"><p class="pf-area-link" style="opacity:.7">Loading areas…</p></div></div>' +
+    '<div class="pf-area-panel" id="pf-gulf-panel"><p class="pf-area-link" style="opacity:.7">Loading areas...</p></div></div>' +
     '<div class="pf-area-item pf-area-root" id="pf-europe-root">' +
     '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Europe <span class="pf-caret"></span></button>' +
-    '<div class="pf-area-panel" id="pf-europe-panel"><p class="pf-area-link" style="opacity:.7">Loading areas…</p></div></div>' +
+    '<div class="pf-area-panel" id="pf-europe-panel"><p class="pf-area-link" style="opacity:.7">Loading areas...</p></div></div>' +
     '</div></div>' +
-    '<div class="prefooter-bottom">&copy; <span id="prefooter-year"></span> AI & Robotics Club. All rights reserved.</div></div>' +
+    '<div class="prefooter-bottom">&copy; <span id="prefooter-year"></span> AI and Robotics Club. All rights reserved.</div></div>' +
     '<style>' + styles + '</style>';
 
   var target = document.getElementById("site-prefooter");
-  if (target) target.innerHTML = baseHtml;
-  else {
+  if (target) {
+    target.innerHTML = baseHtml;
+  } else {
     var sticky = document.getElementById("site-footer");
     var wrap = document.createElement("div");
     wrap.id = "site-prefooter";
