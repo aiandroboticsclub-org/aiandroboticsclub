@@ -282,6 +282,10 @@ a:hover { color: var(--accent-cyan); }
     transition: border-color 0.2s;
     box-sizing: border-box;
 }
+.lesson-select option {
+    font-size: 0.85rem;
+    padding: 6px;
+}
 .lesson-select:focus { border-color: #2563eb; }
 
 .video-wrapper {
@@ -368,9 +372,13 @@ a:hover { color: var(--accent-cyan); }
     max-width: 100% !important;
     min-width: 0 !important;
     flex: none !important;
-    font-size: 0.55rem;
+    font-size: 0.7rem !important;
     padding: 10px 8px;
     box-sizing: border-box;
+  }
+  .lesson-select option {
+    font-size: 0.7rem !important;
+    padding: 4px 6px;
   }
   .video-wrapper {
     margin-bottom: 20px;
@@ -411,8 +419,11 @@ a:hover { color: var(--accent-cyan); }
     margin: 12px 0 24px;
   }
   .lesson-select {
-    font-size: 0.5rem;
+    font-size: 0.65rem !important;
     padding: 9px 6px;
+  }
+  .lesson-select option {
+    font-size: 0.65rem !important;
   }
   .lesson-transcript h2 { font-size: 1.1rem; }
   .lesson-transcript h3 { font-size: 1rem; }
