@@ -3,7 +3,6 @@
    Target Audience: Ages 8-16 & Parents
    ========================================================================== */
 
-/* 1. Global CSS Variables (Theme Configuration) */
 :root {
   --primary-dark: #0f172a;
   --primary-blue: #2563eb;
@@ -365,13 +364,13 @@ a:hover { color: var(--accent-cyan); }
     font-weight: 600;
   }
   .lesson-select {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    flex: none;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
     font-size: 0.9rem;
     padding: 12px 10px;
-    text-overflow: ellipsis;
+    box-sizing: border-box;
   }
   .video-wrapper {
     margin-bottom: 20px;
