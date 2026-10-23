@@ -368,8 +368,8 @@ a:hover { color: var(--accent-cyan); }
     max-width: 100% !important;
     min-width: 0 !important;
     flex: none !important;
-    font-size: 0.82rem;
-    padding: 11px 10px;
+    font-size: 0.55rem;
+    padding: 10px 8px;
     box-sizing: border-box;
   }
   .video-wrapper {
@@ -411,8 +411,8 @@ a:hover { color: var(--accent-cyan); }
     margin: 12px 0 24px;
   }
   .lesson-select {
-    font-size: 0.8rem;
-    padding: 10px 8px;
+    font-size: 0.5rem;
+    padding: 9px 6px;
   }
   .lesson-transcript h2 { font-size: 1.1rem; }
   .lesson-transcript h3 { font-size: 1rem; }
