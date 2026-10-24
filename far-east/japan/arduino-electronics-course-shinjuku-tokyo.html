@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Sensor Electronics Course Shinjuku Tokyo | AI &amp; Robotics Club</title>
+  <title>Arduino Sensor Electronics Course Shinjuku Tokyo | AI & Robotics Club</title>
   <meta name="description" content="Arduino sensor and electronics prototyping course in Shinjuku—breadboards, motors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/arduino-electronics-course-shinjuku-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -20,18 +20,192 @@
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a> &rsaquo; Far East &rsaquo; Japan &rsaquo; Arduino Sensor and Electronics Prototyping Course in Shinjuku</nav>
     <div class="seo-intro"><div><span class="seo-badge">Online · Shinjuku · Tokyo</span><h1>Arduino Sensor and Electronics Prototyping Course in Shinjuku</h1>
     <p>An Arduino sensor and electronics prototyping course for Shinjuku guides students through breadboard wiring, ultrasonic sensing, motor drivers and introductory control code—simulators first, optional kits under supervision.</p></div>
-    <div><img src="../../../images/63.webp" alt="Arduino Shinjuku" loading="lazy" width="400" height="300"></div></div>
+    <div><img src="../../../images/63.webp" alt="Arduino Sensor and Electronics Prototyping Course in Shinjuku" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-22">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-22">Lesson</label>
+        <select id="lesson-select-22" class="lesson-select" aria-label="Select lesson">
+          <option value="22" selected>022: How to Loop Through Python Dictionaries and Read Their Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Advancing Loops to Structured Data</h2>
+        <p>After learning how to apply loops across fundamental sequences like strings, this module advances loop operations to more complex data structures: Python Dictionaries.</p>
+        <p>In real-world applications and artificial intelligence pipelines, data rarely exists as isolated variables or simple text strings. Instead, it is organized into structured formats. Looping through dictionaries is essential whenever a program needs to:</p>
+        <ul>
+          <li>Access structured data stored across key-value mappings.</li>
+          <li>Modify dictionary data in-place during execution.</li>
+          <li>Summarize data collected across multiple records.</li>
+          <li>Filter out specific information from large collections to display or process only the required fields.</li>
+        </ul>
+
+        <h2>2. Dictionary Foundations: Key-Value Architecture</h2>
+        <p>A Python dictionary stores data in key-value pairs, where each unique key serves as an index or label to retrieve its corresponding value.</p>
+        <p>Consider a dictionary storing data for a student named Ali:</p>
+        <ul>
+          <li><code>name</code> → <code>"Ali"</code></li>
+          <li><code>age</code> → <code>20</code></li>
+          <li><code>grade</code> → <code>"A"</code></li>
+        </ul>
+        <pre><code>student = {
+    "name": "Ali",
+    "age": 20,
+    "grade": "A"
+}</code></pre>
+
+        <h2>3. Example 1: Looping Through and Printing Dictionary Keys</h2>
+        <p>When you iterate directly over a dictionary using a <code>for</code> loop, Python defaults to iterating across its keys.</p>
+        <pre><code>student = {"name": "Ali", "age": 20, "grade": "A"}
+
+# Iterating over the dictionary to retrieve keys
+for key in student:
+    print(key)</code></pre>
+        <h3>Output & Execution Flow</h3>
+        <p>Running this loop iterates through the student record and extracts each key sequentially on a new line:</p>
+        <pre><code>name
+age
+grade</code></pre>
+        <p>The dictionary contains three keys—name, age, and grade—and the loop prints all three.</p>
+
+        <h2>4. Example 2: Looping to Extract and Print Values</h2>
+        <p>In many scenarios, programs only need the underlying values rather than the labels. To access each value, iterate over the keys and use standard dictionary indexing (<code>student[key]</code>) inside the loop body:</p>
+        <pre><code>student = {"name": "Ali", "age": 20, "grade": "A"}
+
+# Looping through keys to index and display values
+for key in student:
+    print(student[key])</code></pre>
+        <h3>Output & Execution Flow</h3>
+        <pre><code>Ali
+20
+A</code></pre>
+        <ul>
+          <li>On the first line, the value of <code>name</code> (<code>"Ali"</code>) prints.</li>
+          <li>On the second line, the value of <code>age</code> (<code>20</code>) prints.</li>
+          <li>On the third line, the value of <code>grade</code> (<code>"A"</code>) prints.</li>
+        </ul>
+
+        <h2>5. Example 3: Printing Keys and Values Together</h2>
+        <p>When generating human-readable reports or debugging records, you often need both the key identifier and its corresponding value displayed side-by-side:</p>
+        <pre><code>student = {"name": "Ali", "age": 20, "grade": "A"}
+
+# Printing both the key and its corresponding value
+for key in student:
+    print(f"{key}: {student[key]}")</code></pre>
+        <h3>Output & Execution Flow</h3>
+        <pre><code>name: Ali
+age: 20
+grade: A</code></pre>
+        <p>Each iteration pairs the attribute name with its data, producing a clean printout of the student's entire profile.</p>
+
+        <h2>6. Example 4: Advanced Manipulation & Filtering Across Multiple Records</h2>
+        <p>When managing multi-record datasets—such as multiple students within a collection—loops allow you to extract and filter out specific fields while ignoring others.</p>
+        <h3>Scenario: Extracting Academic Records While Omitting Age</h3>
+        <p>Consider a dataset containing information for two students:</p>
+        <ol>
+          <li>Ali: Age 20, Grade "A"</li>
+          <li>Sara: Age 22, Grade "B"</li>
+        </ol>
+        <pre><code>students = {
+    "student1": {"name": "Ali", "age": 20, "grade": "A"},
+    "student2": {"name": "Sara", "age": 22, "grade": "B"}
+}
+
+# Looping to filter data: displaying name and grade while omitting age
+for s_id in students:
+    student_data = students[s_id]
+    print(f"Name: {student_data['name']}, Grade: {student_data['grade']}")</code></pre>
+        <h3>Output & Execution Flow</h3>
+        <pre><code>Name: Ali, Grade: A
+Name: Sara, Grade: B</code></pre>
+        <ul>
+          <li>The loop iterates through each student entry one by one.</li>
+          <li>Instead of printing every stored attribute, the program selectively filters the data: it omits age and prints only the name and grade.</li>
+          <li>This demonstrates how loops can filter and present specific subsets of data from larger dictionaries.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is looping through dictionaries necessary in Python programming and data handling?</button>
+          <div class="accordion-body"><p>Looping through dictionaries is essential when working with structured data. It allows programs to automatically access key-value pairs, update or modify values in place, summarize records across datasets, and filter out specific information from large collections.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does a standard for loop behave when iterating over a dictionary, and how do you access its values?</button>
+          <div class="accordion-body"><p>When you iterate directly over a dictionary using <code>for key in dictionary:</code>, Python loops through the keys by default. To access the corresponding value for each key, you index back into the dictionary using bracket notation inside the loop body (e.g., <code>dictionary[key]</code>), allowing you to print or process the values individually or alongside their keys.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How can loops be used to filter data inside multi-record dictionaries?</button>
+          <div class="accordion-body"><p>Loops can selectively extract and display specific attributes while ignoring others. For example, when iterating through records that contain a student's name, age, and grade, a loop can be written to access only name and grade while omitting age. This filtering enables programs to present targeted data subsets from larger dictionary collections without altering the underlying data.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/ai-for-beginners-course-roppongi-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="#ai-lesson-22">Next lesson (coming soon)</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-22');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-22');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '22') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and motor drivers</li><li>Introductory control code logic</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
