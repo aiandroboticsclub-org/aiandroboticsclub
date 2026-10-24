@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artificial Intelligence for Beginners Course Roppongi Kids | AI &amp; Robotics Club</title>
+  <title>Artificial Intelligence for Beginners Course Roppongi Kids | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence for beginners course for Roppongi kids—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/ai-for-beginners-course-roppongi-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -20,18 +20,183 @@
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a> &rsaquo; Far East &rsaquo; Japan &rsaquo; Artificial Intelligence for Beginners Course for Roppongi Kids</nav>
     <div class="seo-intro"><div><span class="seo-badge">Online · Roppongi · Tokyo</span><h1>Artificial Intelligence for Beginners Course for Roppongi Kids</h1>
     <p>An artificial intelligence for beginners course for Roppongi kids introduces how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
-    <div><img src="../../../images/64.webp" alt="AI Roppongi" loading="lazy" width="400" height="300"></div></div>
+    <div><img src="../../../images/64.webp" alt="Artificial Intelligence for Beginners Course for Roppongi Kids" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-21">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-21">Lesson</label>
+        <select id="lesson-select-21" class="lesson-select" aria-label="Select lesson">
+          <option value="21" selected>021: How to Loop Through Strings in Python: Beginner Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Iterating Over Data Structures</h2>
+        <p>In Python, loops are not limited to repeating numbers or executing counters; they are frequently used to iterate across data structures such as strings and lists.</p>
+        <p>Because a text string is an ordered sequence of individual characters, a loop can step through each character one by one. By looping through strings, you can inspect individual letters, search for specific patterns, count character occurrences, and manipulate text data programmatically.</p>
+
+        <h2>2. Example 1: Character-by-Character Iteration</h2>
+        <p>The most direct way to loop through a string is using a <code>for</code> loop to access each character sequentially:</p>
+        <pre><code># Iterating through each character of a string
+for char in "Python":
+    print(char)</code></pre>
+        <h3>How It Works & Output</h3>
+        <ul>
+          <li>Python starts at the beginning of the string <code>"Python"</code> and assigns each letter to the loop variable <code>char</code> in sequence.</li>
+          <li>Because Python’s <code>print()</code> function defaults to placing each output call on a new line, each character appears on its own line:</li>
+        </ul>
+        <pre><code>P
+y
+t
+h
+o
+n</code></pre>
+
+        <h2>3. Example 2: Counting Specific Character Occurrences</h2>
+        <p>Rather than simply counting all characters in a string, you can combine a <code>for</code> loop with an <code>if</code> conditional statement to count how many times a specific character appears.</p>
+        <h3>Task: Count How Many Times 'a' Appears in "banana"</h3>
+        <p>To count occurrences:</p>
+        <ol>
+          <li>Initialize a counter variable (<code>count = 0</code>) before the loop begins.</li>
+          <li>Loop through each character of the string <code>"banana"</code>.</li>
+          <li>For each iteration, check if the character matches <code>'a'</code> using an <code>if</code> condition.</li>
+          <li>If it matches, increment the counter by 1 (<code>count = count + 1</code> or <code>count += 1</code>).</li>
+          <li>After the loop finishes evaluating the entire string, print the counter value.</li>
+        </ol>
+        <pre><code># 1. Initialize counter to zero
+count = 0
+
+# 2. Iterate through each character in the string "banana"
+for char in "banana":
+    # 3. Check if the current character is 'a'
+    if char == "a":
+        count += 1
+
+# 4. Print the final count after exiting the loop
+print("Total occurrences of 'a':", count)</code></pre>
+        <p><strong>Execution Result:</strong></p>
+        <pre><code>Total occurrences of 'a': 3</code></pre>
+        <p>In the string <code>"banana"</code>, the letter <code>'a'</code> appears at index positions 1, 3, and 5 (three times total). The loop inspects every character, increments the counter on each match, and outputs 3.</p>
+
+        <h2>4. Example 3: Reversing a String Using a Loop</h2>
+        <p>Loops can also be used to manipulate and transform string data, such as reversing the sequence of characters in a word.</p>
+        <pre><code># Original string
+text = "Python"
+reversed_text = ""
+
+# Prepending each character to reverse the string
+for char in text:
+    reversed_text = char + reversed_text
+
+# Displaying the reversed output
+print("Reversed string:", reversed_text)</code></pre>
+        <h3>How the String Reversal Works</h3>
+        <ul>
+          <li>By taking the current character <code>char</code> and placing it in front of the accumulated string (<code>char + reversed_text</code>), each incoming letter gets prepended:
+            <ul>
+              <li>Pass 1: <code>'P' + ""</code> → <code>'P'</code></li>
+              <li>Pass 2: <code>'y' + 'P'</code> → <code>'yP'</code></li>
+              <li>Pass 3: <code>'t' + 'yP'</code> → <code>'tyP'</code></li>
+              <li>Subsequent passes: builds up to <code>'nohtyP'</code>.</li>
+            </ul>
+          </li>
+          <li>When executed, Python prints the reversed string: <code>Reversed string: nohtyP</code></li>
+        </ul>
+
+        <h2>5. Summary: Practical Takeaways</h2>
+        <ul>
+          <li><strong>Sequence Traversal:</strong> Strings behave as iterable sequences, allowing standard <code>for</code> loops to process text character-by-character.</li>
+          <li><strong>Conditional Filtering:</strong> Nesting an <code>if</code> condition inside a string loop enables targeted operations, such as tallying specific characters.</li>
+          <li><strong>Data Manipulation:</strong> Iteration provides fine-grained control to restructure, inspect, and transform string contents.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does a for loop iterate through a text string in Python?</button>
+          <div class="accordion-body"><p>In Python, a text string acts as an iterable sequence of characters. When you run <code>for char in "Python":</code>, the loop steps through the string character-by-character from left to right, assigning each letter to the loop variable <code>char</code> in sequence. Because <code>print()</code> automatically inserts a newline after each call, each letter displays on a separate line.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How can you count the occurrences of a specific character in a string using a loop?</button>
+          <div class="accordion-body"><p>You initialize a counter variable to zero (<code>count = 0</code>) before the loop begins. Then, you iterate through the string with a <code>for</code> loop, using an <code>if</code> statement inside the loop body to compare each character to the target character (e.g., <code>if char == 'a':</code>). Each time a match is found, you increment the counter by 1. Once the loop completes all iterations, the final count is displayed.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What types of operations can be performed on data structures like strings using loops?</button>
+          <div class="accordion-body"><p>Loops can be used across data structures for multiple tasks:</p>
+            <ul>
+              <li><strong>Iterating & Printing:</strong> Stepping through characters sequentially for inspection or formatted display.</li>
+              <li><strong>Searching & Counting:</strong> Scanning through text to find patterns or determine how frequently a character appears.</li>
+              <li><strong>Manipulating Data:</strong> Restructuring the underlying sequence, such as reversing a word character-by-character.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/weekend-coding-club-medan-sumatra.html">Previous lesson</a>
+        <a class="nav-btn" href="#ai-lesson-21">Next lesson (coming soon)</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-21');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-21');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '21') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
