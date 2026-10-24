@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekend STEAM Robotics Workshops Sha Tin Hong Kong | AI &amp; Robotics Club</title>
+  <title>Weekend STEAM Robotics Workshops Sha Tin Hong Kong | AI & Robotics Club</title>
   <meta name="description" content="Weekend STEAM robotics workshops for students in Sha Tin—structure, motors and code in flexible online modules.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/hong-kong/steam-robotics-workshops-shatin-hong-kong.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,171 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Sha Tin · Hong Kong</span><h1>Weekend STEAM Robotics Workshops for Students in Sha Tin, Hong Kong</h1>
     <p>Weekend STEAM robotics workshops for students near Sha Tin combine mechanical structure ideas, motor control and programming so learners practise end-to-end engineering thinking online.</p></div>
     <div><img src="../../../images/75.webp" alt="STEAM Sha Tin" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-10">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-10">Lesson</label>
+        <select id="lesson-select-10" class="lesson-select" aria-label="Select lesson">
+          <option value="10" selected>010: Your First Python Program: How to Write and Run Python Code</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Python’s Syntax Simplicity</h2>
+        <p>When comparing Python to traditional programming languages, the most striking difference is its clean and straightforward syntax. Older languages like C++ and Java enforce strict rules, such as requiring every single statement to terminate with a semicolon (;). Missing a semicolon in those languages triggers syntax errors that beginners often spend significant time troubleshooting.</p>
+        <p>In Python, such unnecessary restrictions have been removed:</p>
+        <ul>
+          <li>No semicolons are required at the end of lines.</li>
+          <li>No boilerplate wrapper code (such as class definitions or main methods) is needed just to print a simple message.</li>
+          <li>You write precisely the command you want executed, and Python runs it directly.</li>
+        </ul>
+        <h2>2. Jupyter Notebook Interface & File Formats</h2>
+        <p>Jupyter Notebook does not use a standalone desktop IDE; instead, it hosts an interactive code editor directly inside your web browser.</p>
+        <table>
+          <thead>
+            <tr><th>Extension</th><th>Characteristics</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>.ipynb</strong> (Jupyter Notebook)</td>
+              <td>Interactive, segmented code and text cells; executes cell-by-cell with instant inline output; ideal for experimentation, learning, and debugging.</td>
+            </tr>
+            <tr>
+              <td><strong>.py</strong> (Standard Python Script)</td>
+              <td>Entire codebase executes together from top to bottom; run in editors like VS Code or PyCharm; standard for production server deployments.</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Understanding .ipynb vs. .py Files</h3>
+        <ul>
+          <li><strong>.ipynb (Interactive Python Notebook):</strong>
+            <ul>
+              <li>Code is organized into modular code cells interspersed with text segments.</li>
+              <li>Cells can be executed individually, showing output directly below each cell.</li>
+              <li>If an output needs adjustment, you can edit that specific cell and re-run it without re-executing the rest of the script.</li>
+              <li>Ideal for exploratory programming, data science, and step-by-step experimentation.</li>
+            </ul>
+          </li>
+          <li><strong>.py (Standard Python Script):</strong>
+            <ul>
+              <li>The entire program exists in a single continuous script, executing as one whole unit from top to bottom.</li>
+              <li>Used primarily when code is finalized and ready for server deployment.</li>
+            </ul>
+          </li>
+          <li><strong>Debugging:</strong> Debugging is the process of identifying, inspecting, and fixing errors that occur in code. Because debugging is completed locally on your development machine, clean .py files perform better when deployed to servers.</li>
+        </ul>
+        <h2>3. Writing Your First Python Program: The print() Command</h2>
+        <h3>The Function and Structure of print()</h3>
+        <p>In Python, output is displayed to the screen using the <code>print()</code> command. In programming terminology, “printing” refers to screen output and visual display, rather than sending text to a physical paper printer.</p>
+        <pre><code>print("Hello Mr. Waqas")</code></pre>
+        <ol>
+          <li><strong>The Command Name:</strong> <code>print</code> instructs Python to display output.</li>
+          <li><strong>Parentheses ():</strong> The brackets tell Python what specific content you want to display.</li>
+          <li><strong>Double Quotes "":</strong> Enclosing text inside quotation marks informs Python that the content is an English sentence (text/string) rather than numbers or variable names. Python outputs the enclosed text exactly as written.</li>
+        </ol>
+        <h2>4. Running and Editing Code Cells</h2>
+        <ul>
+          <li><strong>Executing Code:</strong>
+            <ul>
+              <li>You can run a cell by clicking the Play button on the toolbar.</li>
+              <li>Alternatively, use the keyboard shortcut Shift + Enter.</li>
+            </ul>
+          </li>
+          <li><strong>Interactive Output:</strong> When executed, Python displays the output immediately below the cell and automatically advances focus to the next cell.</li>
+          <li><strong>Editing and Adding Multiple Statements:</strong> In Jupyter Notebook, you can modify an existing cell at any time and re-run it. To display multiple lines, write separate <code>print()</code> commands on separate lines without semicolons or separator symbols:</li>
+        </ul>
+        <pre><code>print("Hello Mr. Waqas")
+print("Welcome")</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Hello Mr. Waqas
+Welcome</code></pre>
+        <p>Both sentences display sequentially on the screen. No extra header declarations or environment setup lines are required.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Python’s syntax differ from older languages like C++ or Java when writing basic code?</button>
+          <div class="accordion-body">
+            <p>Python eliminates unnecessary syntactic restrictions and boilerplate code. In languages like C++ and Java, every statement must end with a semicolon (;), and programmers must write extensive scaffolding (classes and main methods) just to print text. In Python, you write the print() function directly on a single line without semicolons or extra boilerplate, and Python executes it immediately.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a .ipynb file and a .py file?</button>
+          <div class="accordion-body">
+            <ul>
+              <li><strong>.ipynb (Jupyter Notebook file):</strong> Divides code into distinct cells that can be executed independently. You can view output directly beneath each cell, modify code, and re-run specific cells without restarting the entire program, making it ideal for experimentation and data analysis.</li>
+              <li><strong>.py (Standard Python file):</strong> Contains complete code that runs from start to finish all at once. It is edited in IDEs like VS Code or PyCharm and is standard for deploying finished, debugged applications to production servers.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does the print() function do, and why are quotation marks used inside it?</button>
+          <div class="accordion-body">
+            <p>The print() function instructs Python to display text or information directly on the computer screen (rather than on a physical printer). Enclosing content in double quotation marks ("") informs Python that the enclosed characters represent an English sentence (text/string), instructing the interpreter to display the message on screen exactly as typed rather than evaluating it as a variable name or numerical computation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/hong-kong/scratch-coding-animation-children-mid-levels.html">Previous lesson</a>
+        <a class="nav-btn" href="#ai-lesson-10">Next lesson (coming soon)</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-10');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-10');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '10') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Mechanical structure and craft basics</li><li>Motor and sensor logic</li><li>Block or microcontroller programming</li><li>Age-appropriate project tracks</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
