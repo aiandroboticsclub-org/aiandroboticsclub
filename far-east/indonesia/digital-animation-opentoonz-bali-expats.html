@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Animation Story Design Course Bali Expat Kids | AI &amp; Robotics Club</title>
+  <title>Digital Animation Story Design Course Bali Expat Kids | AI & Robotics Club</title>
   <meta name="description" content="Digital animation and story design course for Bali expat kids—Canva layouts and OpenToonz frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/digital-animation-opentoonz-bali-expats.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,193 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bali · Indonesia</span><h1>Digital Animation and Story Design Course for Bali Expat Kids</h1>
     <p>A digital animation and story design course for Bali expat kids covers Canva layout skills and frame-by-frame 2D animation in OpenToonz—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/73.webp" alt="Animation Bali" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-13">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-13">Lesson</label>
+        <select id="lesson-select-13" class="lesson-select" aria-label="Select lesson">
+          <option value="13" selected>013: Python Lists, Tuples, Sets, and Dictionaries Explained Simply</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Are Variable Collections?</h2>
+        <p>In earlier topics, variables held single values, such as an integer, float, or string. In real-world software and artificial intelligence pipelines, programs frequently need to collect, group, and address multiple related data points together under a single variable name.</p>
+        <p>Python provides four built-in collection data types to organize multiple elements:</p>
+        <ol>
+          <li>Lists</li>
+          <li>Tuples</li>
+          <li>Sets</li>
+          <li>Dictionaries</li>
+        </ol>
+        <p>Data types that allow their contents to be modified after creation are called <strong>mutable</strong> (changeable), whereas collections that cannot be altered once created are called <strong>immutable</strong>.</p>
+        <h2>2. Python Lists</h2>
+        <h3>Characteristics</h3>
+        <ul>
+          <li><strong>Ordered:</strong> Elements maintain a fixed sequence.</li>
+          <li><strong>Mutable:</strong> You can add, replace, shift, and remove items.</li>
+          <li><strong>Allows Duplicates:</strong> A list can store multiple identical elements.</li>
+          <li><strong>Syntax:</strong> Defined using square brackets <code>[ ]</code> with comma-separated values.</li>
+        </ul>
+        <h3>Creating a List & Allowing Duplicates</h3>
+        <pre><code># Creating a list of fruits with a duplicate item ('banana')
+fruits = ["apple", "banana", "mango", "banana"]
+print(fruits)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>['apple', 'banana', 'mango', 'banana']</code></pre>
+        <h3>Accessing Elements: Positive and Negative Indexing</h3>
+        <ul>
+          <li><strong>Positive Indexing:</strong> Starts at 0.</li>
+          <li><strong>Negative Indexing:</strong> Index -1 is the last element.</li>
+        </ul>
+        <pre><code>fruits = ["apple", "banana", "mango", "banana"]
+print(fruits[0])
+print(fruits[-1])</code></pre>
+        <h3>Core List Methods</h3>
+        <ul>
+          <li><code>.append(element)</code> — add to the end</li>
+          <li><code>.insert(index, element)</code> — insert at position</li>
+          <li><code>.remove(element)</code> — remove first match</li>
+          <li><code>.pop()</code> — remove and return last element</li>
+        </ul>
+        <h3>Iterating with a for Loop</h3>
+        <pre><code>for item in fruits:
+    print(item)</code></pre>
+        <h2>3. Python Tuples</h2>
+        <ul>
+          <li><strong>Ordered</strong> and <strong>immutable</strong></li>
+          <li>Syntax: parentheses <code>( )</code></li>
+        </ul>
+        <pre><code>colors = ("red", "green", "blue")
+print(colors[1])</code></pre>
+        <p>Assigning to a tuple index raises <code>TypeError: 'tuple' object does not support item assignment</code>.</p>
+        <pre><code>numbers = (1, 2, 3, 2, 4, 2)
+print(numbers.count(2))
+print(numbers.index(3))</code></pre>
+        <h2>4. Python Sets</h2>
+        <ul>
+          <li>Unordered, unique elements only, high performance</li>
+          <li>Syntax: curly braces</li>
+        </ul>
+        <pre><code>numbers_set = {1, 2, 3, 4, 4, 5}
+print(numbers_set)
+numbers_set.add(6)
+numbers_set.remove(2)
+A = {1, 2, 3}
+B = {3, 4, 5}
+print(A | B)
+print(A & B)
+print(A - B)</code></pre>
+        <h2>5. Python Dictionaries</h2>
+        <p>Key-value pairs for structured data and fast lookups.</p>
+        <pre><code>student = {
+    "name": "Ali",
+    "age": 22,
+    "course": "Data Science"
+}
+print(student["name"])
+print(student.get("age"))
+student["age"] = 23
+student["city"] = "Lahore"
+student.pop("course")</code></pre>
+        <h2>6. Summary Comparison Table</h2>
+        <table>
+          <thead>
+            <tr><th>Collection</th><th>Syntax</th><th>Ordered?</th><th>Mutable?</th><th>Duplicates?</th><th>Primary Use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>List</td><td>[a, b, c]</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Dynamic sequences</td></tr>
+            <tr><td>Tuple</td><td>(a, b, c)</td><td>Yes</td><td>No</td><td>Yes</td><td>Fixed records</td></tr>
+            <tr><td>Set</td><td>{a, b, c}</td><td>No</td><td>Yes</td><td>No</td><td>Uniqueness, math ops</td></tr>
+            <tr><td>Dictionary</td><td>{k: v}</td><td>Key-based</td><td>Yes</td><td>Keys unique</td><td>Structured records</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the main differences between a Python List and a Python Tuple?</button>
+          <div class="accordion-body">
+            <ul>
+              <li><strong>List:</strong> Square brackets, ordered, mutable—you can append, insert, remove, or modify elements.</li>
+              <li><strong>Tuple:</strong> Parentheses, ordered, immutable—modifying raises a TypeError.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do Sets handle duplicate items, and what mathematical operations can they perform?</button>
+          <div class="accordion-body">
+            <p>Sets enforce uniqueness (duplicates are discarded). They support union (<code>A | B</code>), intersection (<code>A & B</code>), and difference (<code>A - B</code>).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a Python Dictionary, and how do you access, update, and delete its elements?</button>
+          <div class="accordion-body">
+            <p>A Dictionary stores key-value pairs. Access with <code>dict["key"]</code> or <code>.get("key")</code>, update by assignment, delete with <code>.pop("key")</code>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/arduino-robotics-projects-bsd-city-tangerang.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/mblock-robotics-starter-bekasi.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-13');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-13');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '13') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
