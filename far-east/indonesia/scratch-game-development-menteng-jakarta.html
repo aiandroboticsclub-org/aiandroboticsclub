@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Game Development Logic Coding Menteng Jakarta | AI &amp; Robotics Club</title>
+  <title>Scratch Game Development Logic Coding Menteng Jakarta | AI & Robotics Club</title>
   <meta name="description" content="Scratch game development and logic coding in Menteng, Jakarta—arcade games, stories and visual computer science in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/scratch-game-development-menteng-jakarta.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,122 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Menteng · Jakarta</span><h1>Scratch Game Development and Logic Coding in Menteng, Jakarta</h1>
     <p>Scratch game development and logic coding in Menteng, Jakarta turns passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/102.webp" alt="Scratch Menteng" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-17">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-17">Lesson</label>
+        <select id="lesson-select-17" class="lesson-select" aria-label="Select lesson">
+          <option value="17" selected>017: Python If, Elif, and Else Statements: Making Decisions - Part 2</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Handling Multiple Outcomes with elif</h2>
+        <p><code>elif</code> (else if) tests additional conditions only when the previous <code>if</code> was False.</p>
+        <h2>2. Student Grading Example</h2>
+        <pre><code>score = 85
+
+if score > 90:
+    print("Grade: A+")
+elif score > 80:
+    print("Grade: A")
+else:
+    print("Try again")</code></pre>
+        <p>With score 85, the first check fails and the elif succeeds → “Grade: A”.</p>
+        <h2>3. Nested If Statements</h2>
+        <pre><code>age = int(input("Enter your age: "))
+
+if age > 18:
+    country = input("Enter your country: ")
+    if country == "Pakistan":
+        print("You can vote in Pakistan.")
+    else:
+        print("You cannot vote in Pakistan.")
+else:
+    print("You cannot vote.")</code></pre>
+        <h2>4. Combining Conditions with and</h2>
+        <pre><code>if age > 18 and country == "Pakistan":
+    print("Eligible voter")
+else:
+    print("Not an eligible voter")</code></pre>
+        <h2>5. Case Sensitivity and .capitalize()</h2>
+        <pre><code>country = input("Enter your country: ").capitalize()
+if age > 18 and country == "Pakistan":
+    print("Eligible voter")</code></pre>
+        <p><code>.capitalize()</code> uppercases the first letter so “pakistan” becomes “Pakistan”.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does the elif statement do, and how does it connect to the preceding if statement?</button>
+          <div class="accordion-body"><p><code>elif</code> tests another condition only if the previous <code>if</code> was False, enabling multi-branch decisions without redundant upper-bound checks.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a nested if statement, and when should you consider replacing it?</button>
+          <div class="accordion-body"><p>A nested <code>if</code> sits inside another <code>if</code>. Deep nesting hurts readability—flatten with the <code>and</code> operator when possible.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why can user string input cause an if comparison to fail, and how can .capitalize() solve this?</button>
+          <div class="accordion-body"><p>String comparisons are case-sensitive. <code>.capitalize()</code> standardizes the first letter so inputs like “pakistan” match “Pakistan”.</p></div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/python-programming-fast-track-surabaya.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/steam-model-building-crafts-semarang.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-17');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) { item.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+      var sel = document.getElementById('lesson-select-17');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id; o.textContent = L.title;
+            if (String(L.id) === '17') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
