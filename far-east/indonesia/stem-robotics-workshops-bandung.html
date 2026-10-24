@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Sensor Technology Workshops Bandung | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Sensor Technology Workshops Bandung | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics and sensor technology workshops in Bandung—sensors, motors and coding in live online English sessions.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/stem-robotics-workshops-bandung.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,108 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bandung · Indonesia</span><h1>STEM Robotics and Sensor Technology Workshops in Bandung</h1>
     <p>STEM robotics and sensor technology workshops in Bandung combine sensors, motors and programming so learners practise end-to-end engineering thinking—fully online in English.</p></div>
     <div><img src="../../../images/72.webp" alt="STEM Bandung" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-19">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-19">Lesson</label>
+        <select id="lesson-select-19" class="lesson-select" aria-label="Select lesson">
+          <option value="19" selected>019: Python While Loops Explained with Simple Examples</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Is a While Loop?</h2>
+        <p>A <code>while</code> loop repeats a block as long as its condition is True. When the condition becomes False, the loop stops.</p>
+        <h2>2. When to Use while vs for</h2>
+        <table>
+          <thead><tr><th>Feature</th><th>for Loop</th><th>while Loop</th></tr></thead>
+          <tbody>
+            <tr><td>Iterations known?</td><td>Yes (range, list, string)</td><td>No—depends on a condition</td></tr>
+            <tr><td>Ideal use</td><td>Fixed sequences</td><td>Input validation, state checks</td></tr>
+          </tbody>
+        </table>
+        <h2>3. Counting with a While Loop</h2>
+        <pre><code>count = 1
+while count <= 5:
+    print(count)
+    count = count + 1
+print("Loop finished")</code></pre>
+        <p>Prints 1–5, then exits when count becomes 6.</p>
+        <h2>4. Avoiding Infinite Loops</h2>
+        <p>Always update the condition variable inside the loop so the condition can become False. Otherwise the loop runs forever and may freeze the program.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does a while loop operate, and when does it stop executing?</button>
+          <div class="accordion-body"><p>It checks a boolean condition before each iteration. It stops as soon as the condition evaluates to False.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the primary difference between a for loop and a while loop?</button>
+          <div class="accordion-body"><p><code>for</code> is best when the number of iterations is known; <code>while</code> is best when you wait on a dynamic condition (e.g. valid user input).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What causes an infinite loop in Python, and what consequences does it have?</button>
+          <div class="accordion-body"><p>If the condition never becomes False (often because the variable is not updated), the loop never exits and can freeze the program.</p></div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/steam-model-building-crafts-semarang.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/weekend-coding-club-medan-sumatra.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-19');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) { item.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+      var sel = document.getElementById('lesson-select-19');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id; o.textContent = L.title;
+            if (String(L.id) === '19') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control practice</li><li>Coding challenges and debugging</li><li>Age-appropriate beginner to intermediate tracks</li><li>Project demonstration habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
