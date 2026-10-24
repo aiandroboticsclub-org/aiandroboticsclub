@@ -36,86 +36,595 @@
         </div>
       </div>
 
-      <div class="lesson-transcript">
-        <h2>1. Introduction: Iterating Over Data Structures</h2>
-        <p>In Python, loops are not limited to repeating numbers or executing counters; they are frequently used to iterate across data structures such as strings and lists.</p>
-        <p>Because a text string is an ordered sequence of individual characters, a loop can step through each character one by one. By looping through strings, you can inspect individual letters, search for specific patterns, count character occurrences, and manipulate text data programmatically.</p>
+      
+<style>
+/* ===== PYTHON LESSON DESIGN ===== */
+.lesson-transcript {
+  --lesson-bg: #ffffff;
+  --lesson-card: #f5f8fc;
+  --lesson-text: #263449;
+  --lesson-muted: #63748b;
+  --lesson-border: #dce5f0;
+  --lesson-blue: #2563eb;
+  --lesson-purple: #7c3aed;
+  --lesson-green: #059669;
 
-        <h2>2. Example 1: Character-by-Character Iteration</h2>
-        <p>The most direct way to loop through a string is using a <code>for</code> loop to access each character sequentially:</p>
-        <pre><code># Iterating through each character of a string
+  max-width: 1050px;
+  margin: 24px auto;
+  padding: clamp(16px, 4vw, 38px);
+  background: var(--lesson-bg);
+  color: var(--lesson-text);
+  border: 1px solid var(--lesson-border);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(30, 64, 120, 0.09);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.lesson-transcript * {
+  box-sizing: border-box;
+}
+
+.lesson-transcript h1 {
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.25;
+  margin: 0 0 14px;
+  color: #14213d;
+  letter-spacing: -0.8px;
+}
+
+.lesson-transcript h2 {
+  font-size: clamp(20px, 3vw, 25px);
+  line-height: 1.4;
+  margin: 36px 0 16px;
+  padding: 13px 16px;
+  border-left: 5px solid var(--lesson-blue);
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(90deg, #eaf2ff, #f8faff);
+  color: #1d3c75;
+}
+
+.lesson-transcript h3 {
+  margin: 22px 0 10px;
+  font-size: 18px;
+  color: #334b70;
+}
+
+.lesson-transcript p {
+  margin: 12px 0;
+}
+
+.lesson-transcript strong {
+  color: #173f85;
+}
+
+.lesson-transcript .lesson-hero {
+  padding: clamp(22px, 4vw, 38px);
+  margin: -1px 0 28px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(130deg, #102d62, #315fca 65%, #7048c8);
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-transcript .lesson-hero h1 {
+  color: #fff;
+}
+
+.lesson-transcript .lesson-hero p {
+  color: #e4ecff;
+  max-width: 720px;
+}
+
+.lesson-transcript .lesson-tag {
+  display: inline-block;
+  padding: 5px 11px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lesson-transcript .lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.lesson-transcript .lesson-card {
+  background: var(--lesson-card);
+  border: 1px solid var(--lesson-border);
+  border-radius: 13px;
+  padding: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.lesson-transcript .lesson-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, .10);
+}
+
+.lesson-transcript .lesson-card .card-icon {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 25px;
+}
+
+.lesson-transcript .lesson-card h3 {
+  margin: 0 0 7px;
+}
+
+.lesson-transcript .lesson-card p {
+  margin: 0;
+  color: var(--lesson-muted);
+  font-size: 14px;
+}
+
+.lesson-transcript pre {
+  margin: 16px 0;
+  padding: 22px;
+  border-radius: 12px;
+  overflow-x: auto;
+  background: #111827;
+  color: #e5edf9;
+  border: 1px solid #273449;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  tab-size: 4;
+  white-space: pre;
+}
+
+.lesson-transcript pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+.lesson-transcript code {
+  font-family: Consolas, "Courier New", monospace;
+  background: #eaf0ff;
+  color: #244eac;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: .92em;
+}
+
+.lesson-transcript .code-comment {
+  color: #8ca1b9;
+}
+
+.lesson-transcript .code-keyword {
+  color: #c792ea;
+}
+
+.lesson-transcript .code-string {
+  color: #c3e88d;
+}
+
+.lesson-transcript .code-function {
+  color: #82aaff;
+}
+
+.lesson-transcript .output-box {
+  margin: 15px 0 22px;
+  border-radius: 12px;
+  border: 1px solid #a8e2c5;
+  background: #effcf5;
+  overflow: hidden;
+}
+
+.lesson-transcript .output-title {
+  padding: 9px 15px;
+  background: #d8f7e6;
+  color: #086b46;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lesson-transcript .output-content {
+  padding: 15px 18px;
+  color: #14563c;
+  font-family: Consolas, "Courier New", monospace;
+  white-space: pre-wrap;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.lesson-transcript .info-box {
+  margin: 18px 0;
+  padding: 16px 18px;
+  background: #eef6ff;
+  border-left: 4px solid #3984ec;
+  border-radius: 8px;
+}
+
+.lesson-transcript .success-box {
+  margin: 18px 0;
+  padding: 16px 18px;
+  background: #edfbf3;
+  border-left: 4px solid #19a56b;
+  border-radius: 8px;
+}
+
+.lesson-transcript .table-wrap {
+  width: 100%;
+  margin: 18px 0 24px;
+  overflow-x: auto;
+  border: 1px solid var(--lesson-border);
+  border-radius: 12px;
+}
+
+.lesson-transcript table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 340px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.lesson-transcript th {
+  padding: 12px 14px;
+  background: #eaf1ff;
+  color: #244579;
+  font-weight: 700;
+}
+
+.lesson-transcript td {
+  padding: 11px 14px;
+  border-top: 1px solid var(--lesson-border);
+}
+
+.lesson-transcript tbody tr:nth-child(even) {
+  background: #f7f9fd;
+}
+
+.lesson-transcript tbody tr:hover {
+  background: #edf4ff;
+}
+
+.lesson-transcript .character {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  border-radius: 8px;
+  background: #e4ecff;
+  color: #244eac;
+  font-family: Consolas, monospace;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.lesson-transcript .step-number {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dce8ff;
+  color: #244eac;
+  font-weight: 800;
+}
+
+.lesson-transcript .lesson-summary {
+  margin-top: 30px;
+  padding: 22px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #edf4ff, #f5efff);
+  border: 1px solid #d7e2fb;
+}
+
+.lesson-transcript .lesson-summary h2 {
+  margin-top: 0;
+}
+
+.lesson-transcript .lesson-footer {
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid var(--lesson-border);
+  text-align: center;
+  color: var(--lesson-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .lesson-transcript {
+    margin: 12px auto;
+    padding: 15px;
+    border-radius: 13px;
+    font-size: 15px;
+  }
+
+  .lesson-transcript pre {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+  .lesson-transcript h2 {
+    margin-top: 28px;
+  }
+
+  .lesson-transcript .lesson-card {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-transcript .lesson-card {
+    transition: none;
+  }
+  .lesson-transcript .lesson-card:hover {
+    transform: none;
+  }
+}
+</style>
+
+<div class="lesson-transcript">
+
+  <header class="lesson-hero">
+    <span class="lesson-tag">Python Fundamentals · Topic 21</span>
+    <h1>How to Loop Through Strings in Python</h1>
+    <p>Learn how to visit each character, count letters, and reverse words using simple Python loops.</p>
+  </header>
+
+  <div class="lesson-grid">
+    <div class="lesson-card">
+      <span class="card-icon">🔤</span>
+      <h3>Explore Strings</h3>
+      <p>Visit characters one by one with a for loop.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="card-icon">🔢</span>
+      <h3>Count Letters</h3>
+      <p>Use an if statement and a counter.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="card-icon">🔄</span>
+      <h3>Reverse Text</h3>
+      <p>Build a new string in reverse order.</p>
+    </div>
+  </div>
+
+  <h2>1. Introduction: Iterating Over Data Structures</h2>
+
+  <p>In Python, loops do more than repeat instructions or count numbers. They can also travel through data structures such as strings and lists.</p>
+
+  <p>A <strong>string</strong> is an ordered sequence of characters. A <code>for</code> loop can visit each character, allowing you to inspect letters, search for patterns, count occurrences, and transform text.</p>
+
+  <div class="info-box">
+    <strong>Key idea:</strong> A string is iterable. This means Python can give you its characters one at a time inside a loop.
+  </div>
+
+  <h2>2. Example 1: Character-by-Character Iteration</h2>
+
+  <p>Let's begin with the word <code>Python</code>. The loop assigns one character at a time to the variable <code>char</code>.</p>
+
+  <pre><code><span class="code-comment"># Print each character of a string</span>
 for char in "Python":
     print(char)</code></pre>
-        <h3>How It Works & Output</h3>
-        <ul>
-          <li>Python starts at the beginning of the string <code>"Python"</code> and assigns each letter to the loop variable <code>char</code> in sequence.</li>
-          <li>Because Python’s <code>print()</code> function defaults to placing each output call on a new line, each character appears on its own line:</li>
-        </ul>
-        <pre><code>P
+
+  <h3>How does the loop work?</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Loop pass</th>
+          <th>Value of char</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="character">P</span></td><td>Print P</td></tr>
+        <tr><td>2</td><td><span class="character">y</span></td><td>Print y</td></tr>
+        <tr><td>3</td><td><span class="character">t</span></td><td>Print t</td></tr>
+        <tr><td>4</td><td><span class="character">h</span></td><td>Print h</td></tr>
+        <tr><td>5</td><td><span class="character">o</span></td><td>Print o</td></tr>
+        <tr><td>6</td><td><span class="character">n</span></td><td>Print n</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Each call to <code>print()</code> displays its character on a new line by default.</p>
+
+  <div class="output-box">
+    <div class="output-title">Expected output</div>
+    <div class="output-content">P
 y
 t
 h
 o
-n</code></pre>
+n</div>
+  </div>
 
-        <h2>3. Example 2: Counting Specific Character Occurrences</h2>
-        <p>Rather than simply counting all characters in a string, you can combine a <code>for</code> loop with an <code>if</code> conditional statement to count how many times a specific character appears.</p>
-        <h3>Task: Count How Many Times 'a' Appears in "banana"</h3>
-        <p>To count occurrences:</p>
-        <ol>
-          <li>Initialize a counter variable (<code>count = 0</code>) before the loop begins.</li>
-          <li>Loop through each character of the string <code>"banana"</code>.</li>
-          <li>For each iteration, check if the character matches <code>'a'</code> using an <code>if</code> condition.</li>
-          <li>If it matches, increment the counter by 1 (<code>count = count + 1</code> or <code>count += 1</code>).</li>
-          <li>After the loop finishes evaluating the entire string, print the counter value.</li>
-        </ol>
-        <pre><code># 1. Initialize counter to zero
+  <h2>3. Example 2: Counting Specific Character Occurrences</h2>
+
+  <p>Suppose we want to find out how many times the letter <code>a</code> appears in <code>banana</code>. We can combine a <code>for</code> loop with an <code>if</code> statement.</p>
+
+  <h3>Our plan</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Instruction</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="step-number">1</span></td>
+          <td><code>count = 0</code></td>
+          <td>Start the counter at zero.</td>
+        </tr>
+        <tr>
+          <td><span class="step-number">2</span></td>
+          <td><code>for char in "banana"</code></td>
+          <td>Visit each character.</td>
+        </tr>
+        <tr>
+          <td><span class="step-number">3</span></td>
+          <td><code>if char == "a"</code></td>
+          <td>Check for the target letter.</td>
+        </tr>
+        <tr>
+          <td><span class="step-number">4</span></td>
+          <td><code>count += 1</code></td>
+          <td>Add one when a match is found.</td>
+        </tr>
+        <tr>
+          <td><span class="step-number">5</span></td>
+          <td><code>print(count)</code></td>
+          <td>Display the final total.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Python code</h3>
+
+  <pre><code><span class="code-comment"># Start the counter</span>
 count = 0
 
-# 2. Iterate through each character in the string "banana"
+<span class="code-comment"># Visit every character in the string</span>
 for char in "banana":
-    # 3. Check if the current character is 'a'
+    <span class="code-comment"># Check whether the character is a</span>
     if char == "a":
         count += 1
 
-# 4. Print the final count after exiting the loop
+<span class="code-comment"># Display the final count</span>
 print("Total occurrences of 'a':", count)</code></pre>
-        <p><strong>Execution Result:</strong></p>
-        <pre><code>Total occurrences of 'a': 3</code></pre>
-        <p>In the string <code>"banana"</code>, the letter <code>'a'</code> appears at index positions 1, 3, and 5 (three times total). The loop inspects every character, increments the counter on each match, and outputs 3.</p>
 
-        <h2>4. Example 3: Reversing a String Using a Loop</h2>
-        <p>Loops can also be used to manipulate and transform string data, such as reversing the sequence of characters in a word.</p>
-        <pre><code># Original string
+  <h3>Track the counter</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Position (index)</th>
+          <th>Character</th>
+          <th>Is it a?</th>
+          <th>Counter after check</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td><span class="character">b</span></td><td>No</td><td>0</td></tr>
+        <tr><td>1</td><td><span class="character">a</span></td><td>Yes</td><td>1</td></tr>
+        <tr><td>2</td><td><span class="character">n</span></td><td>No</td><td>1</td></tr>
+        <tr><td>3</td><td><span class="character">a</span></td><td>Yes</td><td>2</td></tr>
+        <tr><td>4</td><td><span class="character">n</span></td><td>No</td><td>2</td></tr>
+        <tr><td>5</td><td><span class="character">a</span></td><td>Yes</td><td>3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="output-box">
+    <div class="output-title">Expected output</div>
+    <div class="output-content">Total occurrences of 'a': 3</div>
+  </div>
+
+  <div class="success-box">
+    <strong>Remember:</strong> Python string indexes start at zero. The three occurrences of <code>a</code> are at indexes 1, 3, and 5. The final counter is <strong>3</strong>.
+  </div>
+
+  <h2>4. Example 3: Reversing a String Using a Loop</h2>
+
+  <p>We can also use a loop to create a new string in reverse order. The trick is to place each new character <strong>in front of</strong> the string we have already built.</p>
+
+  <pre><code><span class="code-comment"># Original string</span>
 text = "Python"
 reversed_text = ""
 
-# Prepending each character to reverse the string
+<span class="code-comment"># Add each new character to the beginning</span>
 for char in text:
     reversed_text = char + reversed_text
 
-# Displaying the reversed output
+<span class="code-comment"># Display the reversed string</span>
 print("Reversed string:", reversed_text)</code></pre>
-        <h3>How the String Reversal Works</h3>
-        <ul>
-          <li>By taking the current character <code>char</code> and placing it in front of the accumulated string (<code>char + reversed_text</code>), each incoming letter gets prepended:
-            <ul>
-              <li>Pass 1: <code>'P' + ""</code> → <code>'P'</code></li>
-              <li>Pass 2: <code>'y' + 'P'</code> → <code>'yP'</code></li>
-              <li>Pass 3: <code>'t' + 'yP'</code> → <code>'tyP'</code></li>
-              <li>Subsequent passes: builds up to <code>'nohtyP'</code>.</li>
-            </ul>
-          </li>
-          <li>When executed, Python prints the reversed string: <code>Reversed string: nohtyP</code></li>
-        </ul>
 
-        <h2>5. Summary: Practical Takeaways</h2>
-        <ul>
-          <li><strong>Sequence Traversal:</strong> Strings behave as iterable sequences, allowing standard <code>for</code> loops to process text character-by-character.</li>
-          <li><strong>Conditional Filtering:</strong> Nesting an <code>if</code> condition inside a string loop enables targeted operations, such as tallying specific characters.</li>
-          <li><strong>Data Manipulation:</strong> Iteration provides fine-grained control to restructure, inspect, and transform string contents.</li>
-        </ul>
-      </div>
+  <h3>Watch the reversed string grow</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Pass</th>
+          <th>New character</th>
+          <th>Previous value</th>
+          <th>New reversed_text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Start</td><td>—</td><td><code>""</code></td><td><code>""</code></td></tr>
+        <tr><td>1</td><td><span class="character">P</span></td><td><code>""</code></td><td><code>P</code></td></tr>
+        <tr><td>2</td><td><span class="character">y</span></td><td><code>P</code></td><td><code>yP</code></td></tr>
+        <tr><td>3</td><td><span class="character">t</span></td><td><code>yP</code></td><td><code>tyP</code></td></tr>
+        <tr><td>4</td><td><span class="character">h</span></td><td><code>tyP</code></td><td><code>htyP</code></td></tr>
+        <tr><td>5</td><td><span class="character">o</span></td><td><code>htyP</code></td><td><code>ohtyP</code></td></tr>
+        <tr><td>6</td><td><span class="character">n</span></td><td><code>ohtyP</code></td><td><code>nohtyP</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="output-box">
+    <div class="output-title">Expected output</div>
+    <div class="output-content">Reversed string: nohtyP</div>
+  </div>
+
+  <div class="info-box">
+    <strong>Why does this work?</strong> The expression <code>char + reversed_text</code> puts the latest character at the beginning. Repeating this process gradually builds the word backward.
+  </div>
+
+  <h2>5. Summary: What Have We Learned?</h2>
+
+  <div class="lesson-grid">
+    <div class="lesson-card">
+      <span class="card-icon">🔎</span>
+      <h3>Sequence Traversal</h3>
+      <p>A for loop can visit every character in a string in order.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="card-icon">🧮</span>
+      <h3>Conditional Filtering</h3>
+      <p>An if statement lets us perform an action only when a condition is true.</p>
+    </div>
+    <div class="lesson-card">
+      <span class="card-icon">🛠️</span>
+      <h3>Text Manipulation</h3>
+      <p>Loops can help us inspect, count, and transform text.</p>
+    </div>
+  </div>
+
+  <div class="lesson-summary">
+    <h2>Key Python Concepts</h2>
+    <p><code>for</code> — visits items in a sequence.</p>
+    <p><code>if</code> — checks whether a condition is true.</p>
+    <p><code>count += 1</code> — increases a counter by one.</p>
+    <p><code>char + reversed_text</code> — adds a character to the beginning of a string.</p>
+    <p><strong>Practice challenge:</strong> Change <code>"banana"</code> to <code>"mississippi"</code> and count how many times the letter <code>s</code> appears.</p>
+  </div>
+
+  <div class="lesson-footer">
+    Python Fundamentals · Topic 21 · Learn by understanding, experimenting, and practicing.
+  </div>
+
+</div>
+ 
 
       <div class="accordion-section">
         <h3>Lesson Q&A</h3>
