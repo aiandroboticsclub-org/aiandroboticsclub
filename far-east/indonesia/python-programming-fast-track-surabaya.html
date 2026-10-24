@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Fast Track Coding Classes Surabaya Students | AI &amp; Robotics Club</title>
+  <title>Python Fast Track Coding Classes Surabaya Students | AI & Robotics Club</title>
   <meta name="description" content="Python fast track coding classes for Surabaya students—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/python-programming-fast-track-surabaya.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,115 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Surabaya · Indonesia</span><h1>Python Fast Track Coding Classes for Surabaya Students</h1>
     <p>Python fast track coding classes for Surabaya students smooth the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/105.webp" alt="Python Surabaya" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-16">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-16">Lesson</label>
+        <select id="lesson-select-16" class="lesson-select" aria-label="Select lesson">
+          <option value="16" selected>016: Python If Statements for Beginners: Making Decisions in Code - Part 1</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Are Conditional Statements?</h2>
+        <p>Conditional statements allow a program to make decisions. Real-world logic branches based on conditions:</p>
+        <ul>
+          <li>If a condition is True, the program executes one set of instructions.</li>
+          <li>If that condition is False, the program executes an alternative set instead.</li>
+        </ul>
+        <p><strong>Analogy:</strong> “Is it raining?” — If yes, take an umbrella; else, do not.</p>
+        <h2>2. Syntax: if and else</h2>
+        <pre><code>temperature = 30
+
+if temperature > 35:
+    print("It is hot weather")
+else:
+    print("It is not hot weather")</code></pre>
+        <p>Because 30 > 35 is False, Python runs the else block and prints “It is not hot weather”.</p>
+        <h2>3. Python Indentation</h2>
+        <p>Python uses indentation (typically 4 spaces) instead of curly braces to define code blocks under <code>if</code> and <code>else</code>.</p>
+        <h2>4. Combining input() and Typecasting with if</h2>
+        <p><code>input()</code> always returns a string, so convert before numeric comparisons:</p>
+        <pre><code>temp_input = input("Enter temperature: ")
+temperature = int(temp_input)
+
+if temperature > 35:
+    print("It is hot weather")
+else:
+    print("It is not hot weather")</code></pre>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a conditional statement in Python, and what do the if and else keywords do?</button>
+          <div class="accordion-body"><p>A conditional statement branches execution based on True or False. <code>if</code> runs its block when the condition is True; <code>else</code> runs when the condition is False.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is indentation in Python, and how does it replace curly braces from C++ or Java?</button>
+          <div class="accordion-body"><p>Python uses leading whitespace (conventionally 4 spaces) instead of curly braces to mark which statements belong to an <code>if</code> or <code>else</code> block.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must you typecast the result of input() before using it in a numeric if condition?</button>
+          <div class="accordion-body"><p><code>input()</code> always returns a string. Convert with <code>int()</code> or <code>float()</code> before comparing with operators like <code>></code>.</p></div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/online-robotics-classes-south-jakarta.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/scratch-game-development-menteng-jakarta.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-16');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) { item.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+      var sel = document.getElementById('lesson-select-16');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id; o.textContent = L.title;
+            if (String(L.id) === '16') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
