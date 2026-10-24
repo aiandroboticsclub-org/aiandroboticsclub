@@ -64,65 +64,28 @@ age = 25
 print(age)</code></pre>
         <p><strong>Output:</strong></p>
         <pre><code>25</code></pre>
-        <p>Executing this statement creates a variable named <code>age</code> containing the integer value 25.</p>
         <h3>2. Floating-Point Numbers (float)</h3>
         <ul>
           <li><strong>Definition:</strong> Used for storing numbers that contain a fractional or decimal point.</li>
           <li><strong>Examples:</strong> 3.5, 7.9, -8.5.</li>
           <li><strong>Mathematical Operations:</strong> You can execute standard mathematical operations (+, -, *, /) directly on numerical variables.</li>
         </ul>
-        <pre><code># Creating a float variable
-score = 3.5
+        <pre><code>score = 3.5
 print(score)
-
-# Performing a mathematical operation
 print(score + 1)</code></pre>
-        <p><strong>Output:</strong></p>
-        <pre><code>3.5
-4.5</code></pre>
-        <p>Adding 1 to <code>score</code> evaluates directly to 4.5.</p>
         <h3>3. Text Strings (str)</h3>
-        <ul>
-          <li><strong>Definition:</strong> A string is an ordered collection of characters. It can contain alphabetic letters, digits, spaces, and special symbols.</li>
-          <li><strong>Scope:</strong> A string is one of the widest, most versatile data types, capable of holding a single character, an individual sentence, a multi-line paragraph, or an entire narrative.</li>
-          <li><strong>String Concatenation (+):</strong> You can join two or more distinct strings into a single combined string using the <code>+</code> operator.</li>
-        </ul>
-        <pre><code># Storing a string variable
-name = "Ali Zafar"
+        <pre><code>name = "Ali Zafar"
 print(name)
-
-# Concatenating two strings using the + operator
 message = name + " is good"
 print(message)</code></pre>
-        <p><strong>Output:</strong></p>
-        <pre><code>Ali Zafar
-Ali Zafar is good</code></pre>
-        <p>The <code>+</code> operator joins "Ali Zafar" and " is good" together into the single string output "Ali Zafar is good".</p>
         <h3>4. Boolean Values (bool)</h3>
-        <ul>
-          <li><strong>Definition:</strong> A boolean variable can hold only one of two possible values: True or False.</li>
-          <li><strong>Flags & Decision-Making:</strong> Booleans are frequently used as flags to record whether a condition has been met or not.</li>
-          <li><strong>Naming Convention:</strong> Because booleans answer binary conditions, it is best practice to name them like questions or condition flags (for example, using underscores like <code>is_passed</code>), making their boolean purpose immediately clear.</li>
-        </ul>
-        <pre><code># Creating boolean flag variables
-is_passed = True
+        <pre><code>is_passed = True
 print(is_passed)
-
 is_passed = False
 print(is_passed)</code></pre>
-        <p><strong>Output:</strong></p>
-        <pre><code>True
-False</code></pre>
-        <p>Assigning True or False to <code>is_passed</code> allows the variable to store binary state values.</p>
         <h2>4. Checking Variable Types with the type() Function</h2>
-        <p>In larger programs, you may declare variables early in the code and later forget what data type is stored inside them. Python provides the built-in <code>type()</code> function to inspect and verify the data type of any variable.</p>
         <pre><code>score = 3.5
-
-# Checking the type of the variable
 print(type(score))</code></pre>
-        <p><strong>Output:</strong></p>
-        <pre><code><class 'float'></code></pre>
-        <p>Passing <code>score</code> into <code>type()</code> reveals that it is classified as a float, confirming that it holds decimal values.</p>
       </div>
       <div class="accordion-section">
         <h3>Lesson Q&A</h3>
@@ -130,30 +93,27 @@ print(type(score))</code></pre>
           <button type="button" class="accordion-header" aria-expanded="false">What are the primary differences between an integer (int) and a floating-point number (float) in Python?</button>
           <div class="accordion-body">
             <ul>
-              <li><strong>Integer (int):</strong> Represents whole numbers without decimal points, including positive and negative values (such as 25, 7, and -5).</li>
-              <li><strong>Float (float):</strong> Represents numbers that contain decimal or fractional points (such as 3.5, 7.9, and -8.5).</li>
+              <li><strong>Integer (int):</strong> Whole numbers without decimal points (e.g., 25, 7, -5).</li>
+              <li><strong>Float (float):</strong> Numbers with decimal points (e.g., 3.5, 7.9, -8.5).</li>
             </ul>
-            <p>Python automatically assigns the correct numerical type when you store the value, and standard mathematical operations (+, -, *, /) can be performed on both types.</p>
           </div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-header" aria-expanded="false">What is a string (str), and how does the + operator work with strings?</button>
           <div class="accordion-body">
-            <p>A string is a collection of characters that can include alphabets, numbers, spaces, and special symbols, capable of storing anything from a single word to an entire story.</p>
-            <p>When applied between strings, the <code>+</code> operator performs concatenation—joining two or more separate strings together into one continuous string (for example, combining "Ali Zafar" and " is good" produces "Ali Zafar is good").</p>
+            <p>A string is a collection of characters. The <code>+</code> operator concatenates strings (e.g., "Ali Zafar" + " is good" → "Ali Zafar is good").</p>
           </div>
         </div>
         <div class="accordion-item">
           <button type="button" class="accordion-header" aria-expanded="false">What values can a Boolean (bool) variable hold, and how can you check a variable’s data type?</button>
           <div class="accordion-body">
-            <p>A Boolean variable can hold only two possible values: True or False. Because it represents two outcomes, it is commonly used as a condition “flag” (often named descriptively, such as <code>is_passed</code>).</p>
-            <p>If you need to check or verify what data type is assigned to any variable in your program, you can pass the variable name into Python’s built-in <code>type()</code> function (e.g., <code>type(score)</code>), which outputs its underlying type.</p>
+            <p>A Boolean holds only True or False. Use <code>type(variable)</code> to inspect any variable’s data type.</p>
           </div>
         </div>
       </div>
       <div class="lesson-footer-nav">
         <a class="nav-btn prev-btn" href="/far-east/indonesia/ai-courses-for-children-pik-jakarta.html">Previous lesson</a>
-        <a class="nav-btn" href="#ai-lesson-12">Next lesson (coming soon)</a>
+        <a class="nav-btn" href="/far-east/indonesia/digital-animation-opentoonz-bali-expats.html">Next lesson</a>
       </div>
     </div>
     <script>
