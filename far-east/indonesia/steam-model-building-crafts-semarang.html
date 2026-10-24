@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Miniature Model Building Prototyping Semarang | AI &amp; Robotics Club</title>
+  <title>STEAM Miniature Model Building Prototyping Semarang | AI & Robotics Club</title>
   <meta name="description" content="STEAM miniature model building and prototyping in Semarang—foam, gears, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/steam-model-building-crafts-semarang.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,114 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Semarang · Indonesia</span><h1>STEAM Miniature Model Building and Prototyping in Semarang</h1>
     <p>STEAM miniature model building and prototyping for Semarang introduces safe maker materials—foam board, cardboard, gears, LEDs and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/74.webp" alt="STEAM Semarang" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-18">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-18">Lesson</label>
+        <select id="lesson-select-18" class="lesson-select" aria-label="Select lesson">
+          <option value="18" selected>018: Python For Loops Explained: Repeat Tasks Automatically</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Are Loops?</h2>
+        <p>Loops repeat an action automatically. Instead of writing 30 separate <code>print()</code> statements, write the instruction once and tell Python how many times to run it.</p>
+        <h2>2. Why and Where We Use Loops</h2>
+        <ul>
+          <li>Automating repetitive output</li>
+          <li>Iterating over collections and strings</li>
+          <li>Controlling start/stop boundaries</li>
+          <li>Searching data element-by-element</li>
+        </ul>
+        <h2>3. The Basic range() Loop</h2>
+        <pre><code>for i in range(3):
+    print("Python is fun")</code></pre>
+        <p>Runs three times (i = 0, 1, 2).</p>
+        <h2>4. Iterating Over a String</h2>
+        <pre><code>word = "Python"
+for char in word:
+    print(char)</code></pre>
+        <p>Each character prints on its own line because each <code>print()</code> starts a new line.</p>
+        <h2>5. Patterns with Loops</h2>
+        <pre><code>rows = 5
+for i in range(rows):
+    spaces = " " * (rows - i - 1)
+    stars = "*" * (2 * i + 1)
+    print(spaces + stars)</code></pre>
+        <p>Builds a centered pyramid of asterisks.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the primary purpose of a loop in Python, and how does it save development time?</button>
+          <div class="accordion-body"><p>Loops automate repetition. Write an instruction once and specify a count (e.g. <code>range(30)</code>) instead of duplicating statements.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens when you iterate over a text string using a for loop, and why does each character print on a new line?</button>
+          <div class="accordion-body"><p>Python steps through each character. Each <code>print()</code> call starts a new line, so characters appear one per line.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">When are multiple or nested loops required, and what is a common practical use case?</button>
+          <div class="accordion-body"><p>When working with two dimensions (rows and columns), matrices, or geometric patterns that need coordinated changes across two axes.</p></div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/scratch-game-development-menteng-jakarta.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/stem-robotics-workshops-bandung.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-18');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) { item.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+      var sel = document.getElementById('lesson-select-18');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id; o.textContent = L.title;
+            if (String(L.id) === '18') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature robots and scaled engineering projects</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
