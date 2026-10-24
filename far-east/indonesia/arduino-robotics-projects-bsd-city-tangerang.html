@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Electronics Robotics Projects BSD City Tangerang | AI &amp; Robotics Club</title>
+  <title>Arduino Electronics Robotics Projects BSD City Tangerang | AI & Robotics Club</title>
   <meta name="description" content="Arduino electronics and robotics projects in BSD City, Tangerang—breadboards, sensors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/arduino-robotics-projects-bsd-city-tangerang.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,193 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · BSD City · Tangerang</span><h1>Arduino Electronics and Robotics Projects in BSD City, Tangerang</h1>
     <p>Arduino electronics and robotics projects for BSD City, Tangerang guide students through breadboard wiring, ultrasonic sensing, motor control and introductory C++ logic—simulators first, optional kits under supervision.</p></div>
     <div><img src="../../../images/103.webp" alt="Arduino BSD" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-12">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-12">Lesson</label>
+        <select id="lesson-select-12" class="lesson-select" aria-label="Select lesson">
+          <option value="12" selected>012: Python Data Types for Beginners: Numbers, Text, and True or False Values</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Recap: Variables as Labeled Containers</h2>
+        <p>In Python, a variable functions as a storage box or container held in computer memory to store data, with a label placed on the box representing its variable name. The data held inside is called a “variable” because its value can vary or change throughout the life of a program.</p>
+        <p>In Python, you do not need to explicitly declare a data type beforehand. Whenever you assign data to a variable, Python automatically inspects the assigned value and determines its data type dynamically.</p>
+        <h2>2. The Four Core Fundamental Data Types</h2>
+        <p>Topic 12 introduces the four foundational data types used across Python programs:</p>
+        <table>
+          <thead>
+            <tr><th>Type</th><th>Description</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Integer (int)</strong></td><td>Whole numbers</td><td>25, 7, -5</td></tr>
+            <tr><td><strong>Float (float)</strong></td><td>Decimal numbers</td><td>3.5, -8.5</td></tr>
+            <tr><td><strong>String (str)</strong></td><td>Text, letters, symbols</td><td>"Ali Zafar"</td></tr>
+            <tr><td><strong>Boolean (bool)</strong></td><td>Binary flags</td><td>True or False</td></tr>
+          </tbody>
+        </table>
+        <h2>3. Detailed Breakdown & Code Examples</h2>
+        <h3>1. Integer (int)</h3>
+        <ul>
+          <li><strong>Definition:</strong> Used to store whole numbers, including positive numbers, negative numbers, and zero, without any fractional or decimal component.</li>
+          <li><strong>Examples:</strong> 2, 5, 7, -3, -5, -8.</li>
+        </ul>
+        <pre><code># Creating an integer variable
+age = 25
+
+# Displaying the value
+print(age)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>25</code></pre>
+        <p>Executing this statement creates a variable named <code>age</code> containing the integer value 25.</p>
+        <h3>2. Floating-Point Numbers (float)</h3>
+        <ul>
+          <li><strong>Definition:</strong> Used for storing numbers that contain a fractional or decimal point.</li>
+          <li><strong>Examples:</strong> 3.5, 7.9, -8.5.</li>
+          <li><strong>Mathematical Operations:</strong> You can execute standard mathematical operations (+, -, *, /) directly on numerical variables.</li>
+        </ul>
+        <pre><code># Creating a float variable
+score = 3.5
+print(score)
+
+# Performing a mathematical operation
+print(score + 1)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>3.5
+4.5</code></pre>
+        <p>Adding 1 to <code>score</code> evaluates directly to 4.5.</p>
+        <h3>3. Text Strings (str)</h3>
+        <ul>
+          <li><strong>Definition:</strong> A string is an ordered collection of characters. It can contain alphabetic letters, digits, spaces, and special symbols.</li>
+          <li><strong>Scope:</strong> A string is one of the widest, most versatile data types, capable of holding a single character, an individual sentence, a multi-line paragraph, or an entire narrative.</li>
+          <li><strong>String Concatenation (+):</strong> You can join two or more distinct strings into a single combined string using the <code>+</code> operator.</li>
+        </ul>
+        <pre><code># Storing a string variable
+name = "Ali Zafar"
+print(name)
+
+# Concatenating two strings using the + operator
+message = name + " is good"
+print(message)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Ali Zafar
+Ali Zafar is good</code></pre>
+        <p>The <code>+</code> operator joins "Ali Zafar" and " is good" together into the single string output "Ali Zafar is good".</p>
+        <h3>4. Boolean Values (bool)</h3>
+        <ul>
+          <li><strong>Definition:</strong> A boolean variable can hold only one of two possible values: True or False.</li>
+          <li><strong>Flags & Decision-Making:</strong> Booleans are frequently used as flags to record whether a condition has been met or not.</li>
+          <li><strong>Naming Convention:</strong> Because booleans answer binary conditions, it is best practice to name them like questions or condition flags (for example, using underscores like <code>is_passed</code>), making their boolean purpose immediately clear.</li>
+        </ul>
+        <pre><code># Creating boolean flag variables
+is_passed = True
+print(is_passed)
+
+is_passed = False
+print(is_passed)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>True
+False</code></pre>
+        <p>Assigning True or False to <code>is_passed</code> allows the variable to store binary state values.</p>
+        <h2>4. Checking Variable Types with the type() Function</h2>
+        <p>In larger programs, you may declare variables early in the code and later forget what data type is stored inside them. Python provides the built-in <code>type()</code> function to inspect and verify the data type of any variable.</p>
+        <pre><code>score = 3.5
+
+# Checking the type of the variable
+print(type(score))</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code><class 'float'></code></pre>
+        <p>Passing <code>score</code> into <code>type()</code> reveals that it is classified as a float, confirming that it holds decimal values.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the primary differences between an integer (int) and a floating-point number (float) in Python?</button>
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Integer (int):</strong> Represents whole numbers without decimal points, including positive and negative values (such as 25, 7, and -5).</li>
+              <li><strong>Float (float):</strong> Represents numbers that contain decimal or fractional points (such as 3.5, 7.9, and -8.5).</li>
+            </ul>
+            <p>Python automatically assigns the correct numerical type when you store the value, and standard mathematical operations (+, -, *, /) can be performed on both types.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a string (str), and how does the + operator work with strings?</button>
+          <div class="accordion-body">
+            <p>A string is a collection of characters that can include alphabets, numbers, spaces, and special symbols, capable of storing anything from a single word to an entire story.</p>
+            <p>When applied between strings, the <code>+</code> operator performs concatenation—joining two or more separate strings together into one continuous string (for example, combining "Ali Zafar" and " is good" produces "Ali Zafar is good").</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What values can a Boolean (bool) variable hold, and how can you check a variable’s data type?</button>
+          <div class="accordion-body">
+            <p>A Boolean variable can hold only two possible values: True or False. Because it represents two outcomes, it is commonly used as a condition “flag” (often named descriptively, such as <code>is_passed</code>).</p>
+            <p>If you need to check or verify what data type is assigned to any variable in your program, you can pass the variable name into Python’s built-in <code>type()</code> function (e.g., <code>type(score)</code>), which outputs its underlying type.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/ai-courses-for-children-pik-jakarta.html">Previous lesson</a>
+        <a class="nav-btn" href="#ai-lesson-12">Next lesson (coming soon)</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-12');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-12');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '12') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and motor control</li><li>Introductory microcontroller code</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
