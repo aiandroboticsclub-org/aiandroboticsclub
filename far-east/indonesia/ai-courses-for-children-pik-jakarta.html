@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artificial Intelligence Courses for Children Pantai Indah Kapuk | AI &amp; Robotics Club</title>
+  <title>Artificial Intelligence Courses for Children Pantai Indah Kapuk | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence courses for children in Pantai Indah Kapuk (PIK)—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/ai-courses-for-children-pik-jakarta.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,211 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · PIK · Jakarta</span><h1>Artificial Intelligence Courses for Children in Pantai Indah Kapuk (PIK)</h1>
     <p>Artificial intelligence courses for children in Pantai Indah Kapuk (PIK) introduce how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/104.webp" alt="AI PIK" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-11">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-11">Lesson</label>
+        <select id="lesson-select-11" class="lesson-select" aria-label="Select lesson">
+          <option value="11" selected>011: Python Variables Explained: Naming Rules and Beginner Examples</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. What is a Variable? The Box Analogy</h2>
+        <p>In Python and programming in general, a variable is one of the most fundamental concepts. A variable acts as a container or box used to store data in computer memory.</p>
+        <p>Imagine you want to store information about a student named Ali:</p>
+        <ul>
+          <li>You can dedicate one box to hold Ali’s name.</li>
+          <li>A second box to hold Ali’s age.</li>
+          <li>A third box to hold his grade or academic GPA.</li>
+          <li>A fourth box to record his habits or other attributes.</li>
+        </ul>
+        <pre><code>name = "Ali"
+age = 21
+gpa = 3.4</code></pre>
+        <p>In programming, these named storage boxes are called variables.</p>
+        <h2>2. Why Are They Called “Variables”?</h2>
+        <p>The word <em>variable</em> literally means something that is capable of changing. In programming, variables are given this name because the data stored inside them can be updated or replaced whenever needed:</p>
+        <ul>
+          <li>If Ali is currently 21 years old, his age variable holds 21.</li>
+          <li>Next year, that value can be updated to 22.</li>
+          <li>If Ali is currently in Grade 12, the grade variable can later be modified to Grade 13.</li>
+        </ul>
+        <p>Variables do not just hold data once; they allow programs to alter and update that data as execution progresses.</p>
+        <h2>3. Dynamic Typing: How Python Creates Variables</h2>
+        <p>In many traditional languages (such as C++ or Java), programmers must explicitly declare a variable and specify its data type (such as int, float, or long) before assigning a value to it.</p>
+        <p>Python simplifies this process entirely through <strong>dynamic typing</strong>:</p>
+        <ul>
+          <li><strong>No explicit declaration:</strong> You do not declare a data type beforehand.</li>
+          <li><strong>Single-line execution:</strong> Simply write the variable name, followed by the assignment operator (<code>=</code>), followed by the value.</li>
+        </ul>
+        <p>Writing a single assignment statement performs three actions simultaneously:</p>
+        <ol>
+          <li>Creates the variable in memory.</li>
+          <li>Determines its data type automatically by examining the assigned data.</li>
+          <li>Initializes it with the specified value.</li>
+        </ol>
+        <p>Because Python is an interpreted language, variable types are resolved dynamically at runtime based on how they are used, rather than during a static compilation step.</p>
+        <h2>4. Beginner Examples of Data Stored in Variables</h2>
+        <h3>1. Integers (Whole Numbers)</h3>
+        <p>Used for numbers without fractional or decimal parts.</p>
+        <pre><code>age = 21</code></pre>
+        <p>Python inspects 21, automatically creates the variable <code>age</code>, and assigns it the integer data type.</p>
+        <h3>2. Floating-Point Numbers (Decimals)</h3>
+        <p>Used when numbers include decimal values.</p>
+        <pre><code>gpa = 3.4</code></pre>
+        <p>Python assigns this variable the float type to store decimal numbers accurately.</p>
+        <h3>3. Text Strings</h3>
+        <p>Used to store alphabetic characters, words, or full sentences.</p>
+        <pre><code>message = "This is a very nice programming language"</code></pre>
+        <p>Enclosing characters in quotes signals to Python that the variable holds a text string.</p>
+        <h2>5. Best Practices: Writing Meaningful Variable Names</h2>
+        <p>Beginners often name variables with arbitrary single letters such as <code>a = 5</code>, <code>b = 10</code>, or <code>c</code>. While Python executes this code without issue, it creates serious maintenance problems:</p>
+        <ul>
+          <li>In large codebases, single letters give no indication of what the variable actually stores or why it was created.</li>
+          <li>If you or a teammate inspect the code months or years later, poor naming makes the logic difficult to decipher.</li>
+        </ul>
+        <p><strong>The Descriptive Naming Rule:</strong></p>
+        <ul>
+          <li>Always choose descriptive, intuitive names that clearly explain their purpose, typically longer than three characters.</li>
+          <li>Use <code>student_name</code> instead of <code>a</code>.</li>
+          <li>Use <code>total_marks</code> instead of <code>x</code>.</li>
+        </ul>
+        <p>While descriptive names require slightly more typing, they drastically improve code readability and long-term maintainability.</p>
+        <h2>6. Python Variable Naming Rules</h2>
+        <p>When creating variable names in Python, you must follow specific language rules:</p>
+        <table>
+          <thead>
+            <tr><th>Rule</th><th>Explanation & Valid Patterns</th><th>Invalid Patterns</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Allowed Characters</td>
+              <td>Can contain letters, digits, and underscores (_).</td>
+              <td>Special symbols like @, $, %, or - are not allowed.</td>
+            </tr>
+            <tr>
+              <td>Starting Character</td>
+              <td>Must begin with a letter (lowercase or uppercase) or an underscore (_). Standard practice prefers starting with lowercase letters.</td>
+              <td>Cannot begin with a digit (e.g., 1variable is invalid).</td>
+            </tr>
+            <tr>
+              <td>No Whitespace</td>
+              <td>Spaces are not allowed inside variable names, as spaces cause Python to interpret words as separate tokens.</td>
+              <td><code>student name = "Ali"</code> triggers a syntax error.</td>
+            </tr>
+            <tr>
+              <td>No Reserved Keywords</td>
+              <td>Python reserved keywords cannot be used as variable names.</td>
+              <td>Words like for, while, if, or else cannot be variable names.</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>7. Common Naming Styles</h2>
+        <p>When a variable name contains multiple words, developers use standardized formatting styles:</p>
+        <ul>
+          <li><strong>Snake Case (snake_case):</strong>
+            <ul>
+              <li>Words are written in lowercase and joined with underscores.</li>
+              <li>Examples: <code>student_name</code>, <code>total_marks</code>.</li>
+            </ul>
+          </li>
+          <li><strong>Camel Case (camelCase):</strong>
+            <ul>
+              <li>Words are joined without spaces or underscores; the first word begins with a lowercase letter, and each subsequent word starts with a capital letter.</li>
+              <li>Examples: <code>studentName</code>, <code>totalMarks</code>.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a variable in Python, and why is it called a “variable”?</button>
+          <div class="accordion-body">
+            <p>A variable is a storage container or “box” in computer memory used to hold data (such as numbers or text). It is called a “variable” because the data stored inside it is capable of changing over time. For example, a student’s age variable can initially hold 21 and later be updated to 22 in subsequent years without needing to create an entirely new storage container.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does “dynamic typing” mean when declaring variables in Python?</button>
+          <div class="accordion-body">
+            <p>Unlike languages that require you to explicitly declare a data type (like int or float) before using a variable, Python is dynamically typed. When you assign a value using the format <code>variable_name = value</code>, Python automatically executes three steps at once: it creates the variable, determines its data type based on the assigned data, and initializes it with that value at runtime.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the primary syntax rules and conventions for naming Python variables?</button>
+          <div class="accordion-body">
+            <p>When naming variables in Python, you must observe these key rules:</p>
+            <ul>
+              <li><strong>Starting Character:</strong> Must begin with an alphabetic letter or an underscore (_), and can never begin with a number.</li>
+              <li><strong>No Spaces:</strong> Spaces are strictly disallowed between words.</li>
+              <li><strong>No Reserved Keywords:</strong> Built-in keywords such as if, else, for, and while cannot be used as variable names.</li>
+              <li><strong>Conventions:</strong> Names should be descriptive (e.g., <code>student_name</code> or <code>total_marks</code>) rather than single letters, formatted using styles like snake_case (with underscores) or camelCase (capitalizing subsequent words).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/hong-kong/steam-robotics-workshops-shatin-hong-kong.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/arduino-robotics-projects-bsd-city-tangerang.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-11');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-11');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '11') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
