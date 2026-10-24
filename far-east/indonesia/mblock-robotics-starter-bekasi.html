@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock STEM Robotics Starter Course Bekasi Students | AI &amp; Robotics Club</title>
+  <title>mBlock STEM Robotics Starter Course Bekasi Students | AI & Robotics Club</title>
   <meta name="description" content="mBlock STEM robotics starter course for Bekasi students—visual algorithms to motors and sensors online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/indonesia/mblock-robotics-starter-bekasi.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,148 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bekasi · Indonesia</span><h1>mBlock STEM Robotics Starter Course for Bekasi Students</h1>
     <p>An mBlock STEM robotics starter course for Bekasi students lets learners write visual algorithms that control motor drives, distance sensing and light indicators—on screen first, optional hardware later.</p></div>
     <div><img src="../../../images/71.webp" alt="mBlock Bekasi" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-14">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-14">Lesson</label>
+        <select id="lesson-select-14" class="lesson-select" aria-label="Select lesson">
+          <option value="14" selected>014: Python Type Conversion: How to Change One Data Type into Another</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction to Type Conversion (Typecasting)</h2>
+        <p>Type conversion (often referred to as typecasting) is the process of changing a value from one data type into another. For example:</p>
+        <ul>
+          <li>Converting an integer to a string if you need to apply string-based operations to it.</li>
+          <li>Converting a string containing digits into an integer or float so that mathematical calculations can be performed.</li>
+        </ul>
+        <table>
+          <thead>
+            <tr><th>Conversion</th><th>Example</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>String to Integer</td><td><code>int("34")</code></td><td>34 (calculable)</td></tr>
+            <tr><td>String to Float</td><td><code>float("34.5")</code></td><td>34.5 (decimal)</td></tr>
+            <tr><td>Number to String</td><td><code>str(100)</code></td><td>"100" (text)</td></tr>
+          </tbody>
+        </table>
+        <h2>2. Converting Numeric Strings to Integers</h2>
+        <p>When numerical data is enclosed in quotation marks (such as <code>"34"</code>), Python treats it strictly as text (<code>str</code>). To convert a numeric string into an integer, pass the variable into the built-in <code>int()</code> function:</p>
+        <pre><code>age = "34"
+print(type(age))
+# Output: <class 'str'>
+
+print(int(age) + 1)
+# Output: 35</code></pre>
+        <p>The same principle applies when converting text representations of decimals into floating-point numbers using <code>float()</code>.</p>
+        <h2>3. Getting User Input with the input() Function</h2>
+        <p>Python provides the built-in <code>input()</code> function to prompt the user for keyboard data:</p>
+        <pre><code>age = input("Please write your age: ")</code></pre>
+        <p>When this line executes, Python displays the prompt and waits until the user types a response and presses Enter.</p>
+        <h2>4. The Golden Rule of input(): Everything Arrives as a String</h2>
+        <p>The <code>input()</code> function <strong>always</strong> returns user input in string (<code>str</code>) format—even if the user types digits like 71 or 25:</p>
+        <pre><code>age = input("Please write your age: ")
+# User enters: 71
+print(type(age))
+# Output: <class 'str'></code></pre>
+        <p>Because the value is stored as a string, you cannot immediately execute mathematical calculations with it.</p>
+        <h2>5. Typecasting User Input for Computations</h2>
+        <p>To perform calculations on numbers collected from the user, convert the string into an integer using <code>int()</code>:</p>
+        <pre><code>age = input("Please write your age: ")
+my_age = int(age)
+print(type(my_age))
+# Output: <class 'int'>
+
+next_year_age = my_age + 1
+print("Next year you will be:", next_year_age)</code></pre>
+        <p>Once converted, the program can execute any arithmetic operation without errors.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is type conversion (typecasting) in Python, and why is it necessary?</button>
+          <div class="accordion-body">
+            <p>Type conversion is the process of converting a variable from one data type into another (for example, a string into an integer or float). It is necessary because data often arrives in a format that cannot be used in arithmetic until it is explicitly cast into a numeric type—or into a string when text-based manipulations are required.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What data type does the input() function always return in Python?</button>
+          <div class="accordion-body">
+            <p>The <code>input()</code> function always returns data in string (<code>str</code>) format, regardless of what the user types. Even whole numbers like 71 or 25 are stored as text, which you can verify with <code>type()</code>.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you take a numerical input from a user and perform a mathematical calculation on it?</button>
+          <div class="accordion-body">
+            <p>Convert the string input into an integer or float before performing math:</p>
+            <pre><code>age = input("Please write your age: ")
+my_age = int(age)
+print(my_age + 1)</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/indonesia/digital-animation-opentoonz-bali-expats.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/indonesia/online-robotics-classes-south-jakarta.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-14');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-14');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '14') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Visual blocks linked to robot motion</li><li>Distance sensing and light indicator ideas</li><li>Virtual lab simulation before hardware</li><li>Gentle bridge toward text code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
