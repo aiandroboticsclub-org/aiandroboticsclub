@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding and Animation Children Mid-Levels HK | AI &amp; Robotics Club</title>
+  <title>Scratch Coding and Animation Children Mid-Levels HK | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and digital animation for children in Mid-Levels, Hong Kong—games, sprites and computational thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/hong-kong/scratch-coding-animation-children-mid-levels.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,188 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Mid-Levels · Hong Kong</span><h1>Scratch Coding and Digital Animation for Children in Mid-Levels, HK</h1>
     <p>Scratch coding and digital animation for children in Mid-Levels, Hong Kong introduce event-driven logic so young creators build games and animated scenes—ideal first steps in computational thinking.</p></div>
     <div><img src="../../../images/72.webp" alt="Scratch Mid-Levels" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-9">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-9">Lesson</label>
+        <select id="lesson-select-9" class="lesson-select" aria-label="Select lesson">
+          <option value="9" selected>009: How to Install Python and Set Up Your Coding Environment</option>
+        </select>
+      </div>
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Introduction & Overview</h2>
+        <p>Before writing artificial intelligence algorithms, you must configure a clean, functional programming environment. This lecture covers how to download Python from its official portal, understand Python version lifecycles, evaluate modern code editors, and set up an isolated workspace using the Anaconda Distribution and Jupyter Notebook.</p>
+        <h2>2. Downloading Python from the Official Website</h2>
+        <ul>
+          <li><strong>Official Source:</strong> Navigate in your web browser to <a href="https://www.python.org" target="_blank" rel="noopener noreferrer">python.org</a>.</li>
+          <li><strong>Operating System Support:</strong> The website automatically detects your operating system (such as Windows or macOS) and provides the corresponding installer. Installers are also available for Linux, Android, and other platforms.</li>
+          <li><strong>Installer vs. Standalone:</strong> You can download through the automated Python Install Manager or download a direct standalone installer.</li>
+          <li><strong>Version Compatibility in AI:</strong>
+            <ul>
+              <li>While the latest stable Python releases are available, several advanced AI libraries currently maintain verified compatibility up to recent 3.x releases such as Python 3.12.</li>
+              <li>Basic AI and general Python programming can run on the latest versions, but keeping compatibility in mind is critical when installing specialized data science and machine learning packages.</li>
+            </ul>
+          </li>
+        </ul>
+        <h2>3. Python’s Version Lifecycle: From Python 2 to Python 3</h2>
+        <table>
+          <thead>
+            <tr><th>Version / Milestone</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Python 1.x</td><td>Initial release</td></tr>
+            <tr><td>Python 2.x</td><td>Massive global adoption in production</td></tr>
+            <tr><td>Python 3.x</td><td>Architectural revamp & modernized core</td></tr>
+            <tr><td>2020 Milestone</td><td>Python 2.7 reached End-of-Life (EOL)</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><strong>The Python 2 vs. 3 Dilemma:</strong> In the past, vast amounts of enterprise software were deployed in Python 2. Because Python 3 brought fundamental language changes, developers previously faced a dilemma: choose Python 3 for modern libraries, or stay on Python 2 for mature community packages.</li>
+          <li><strong>The 2020 Transition:</strong> In 2020, Python 2.7 reached official End of Life (EOL).</li>
+          <li><strong>Understanding End of Life (EOL):</strong> When a Python version reaches EOL, the core development team no longer issues updates. If security vulnerabilities or broken dependencies arise, they are not patched, making running EOL versions a security risk.</li>
+          <li><strong>Release Cycles:</strong> Active versions receive both feature updates and security maintenance during their primary support window before transitioning to security-only fixes and eventual retirement.</li>
+        </ul>
+        <h2>4. Python Code Editors & Development Environments</h2>
+        <p>Choosing the right editor depends on the development use case:</p>
+        <table>
+          <thead>
+            <tr><th>Editor / IDE</th><th>Key Characteristics & Best Use Case</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PyCharm</td><td>Built specifically and dedicated exclusively for Python software development.</td></tr>
+            <tr><td>Visual Studio Code (VS Code)</td><td>A versatile, lightweight, free code editor with multi-language and extensive plugin support.</td></tr>
+            <tr><td>Jupyter Notebook</td><td>An interactive editor where you can execute code cell-by-cell or line-by-line and view the output immediately beneath the code. This makes it the standard for AI experimentation and data analysis.</td></tr>
+          </tbody>
+        </table>
+        <h2>5. Why Use Anaconda Distribution?</h2>
+        <ul>
+          <li><strong>Contained Virtual Environments:</strong> Anaconda provides an isolated environment container. Any libraries or Python versions installed within this container do not interfere with other Python installations or operating system dependencies.</li>
+          <li><strong>8,000+ Pre-Installed Libraries:</strong> The complete Anaconda package bundles over 8,000 libraries, saving you from having to manually download data science packages individually.</li>
+          <li><strong>Built-in Tools:</strong> Comes integrated with Jupyter Notebook, JupyterLab, and Spyder IDE.</li>
+        </ul>
+        <h2>6. Step-by-Step Installation & Setup Guide</h2>
+        <h3>Step 1: Download Anaconda</h3>
+        <ol>
+          <li>Search for “Anaconda Distribution” and navigate to the official download page.</li>
+          <li>Download the Windows 64-bit Graphical Installer (the file is approximately 1.1 GB).</li>
+        </ol>
+        <h3>Step 2: Run the Installer</h3>
+        <ol>
+          <li>Open the downloaded installer file.</li>
+          <li>Click Next and accept the license terms (I Agree).</li>
+          <li>For installation type, select “Just Me (recommended)” so the setup remains scoped to your user account without altering other system profiles.</li>
+          <li>Verify destination folder and disk space: Anaconda requires about 6.1 GB of free disk space (ensure extra storage is available for your program files and datasets).</li>
+          <li>Proceed through the wizard to complete the installation.</li>
+        </ol>
+        <h3>Step 3: Launching Jupyter Notebook</h3>
+        <p>There are two ways to start Jupyter Notebook:</p>
+        <ul>
+          <li><strong>Method 1 (Via Anaconda Navigator):</strong>
+            <ol>
+              <li>Open your Windows Start Menu and search for Anaconda Navigator.</li>
+              <li>Launch the application (it takes a few moments to initialize configurations depending on your system’s processing speed).</li>
+              <li>From the dashboard, locate Jupyter Notebook and click Launch. It will open your home directory directly inside your default web browser.</li>
+            </ol>
+          </li>
+          <li><strong>Method 2 (Direct Launch):</strong>
+            <ol>
+              <li>Open the Windows Start Menu and search directly for Jupyter Notebook.</li>
+              <li>Click the icon to open a command prompt console that automatically starts the local server and opens Jupyter Notebook in your web browser.</li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is Jupyter Notebook preferred for Artificial Intelligence and Data Science?</button>
+          <div class="accordion-body">
+            <p>Jupyter Notebook is preferred because of its interactive, cell-based architecture. Instead of having to execute an entire script from start to finish every time, Jupyter allows developers to run code cell-by-cell or line-by-line and view the output, tables, and visualizations immediately underneath. This makes it ideal for step-by-step data analysis, visual inspection, and iterative machine learning experimentation.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the Anaconda Distribution, and what advantages does it offer over a standard Python installation?</button>
+          <div class="accordion-body">
+            <p>Anaconda is a specialized distribution designed for scientific computing and data science:</p>
+            <ul>
+              <li><strong>Environment Isolation:</strong> It creates a contained environment so that packages installed for your projects do not conflict with or disrupt other Python versions or operating system setups on your computer.</li>
+              <li><strong>Massive Built-in Ecosystem:</strong> The distribution bundles over 8,000 pre-configured libraries alongside built-in coding tools like Jupyter Notebook, JupyterLab, and Spyder, eliminating the need to configure complex dependencies manually.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the two ways to launch Jupyter Notebook on your computer after installing Anaconda?</button>
+          <div class="accordion-body">
+            <p>You can launch Jupyter Notebook using either of the following methods:</p>
+            <ol>
+              <li><strong>Via Anaconda Navigator:</strong> Open the Start Menu, launch the Anaconda Navigator desktop dashboard, find the Jupyter Notebook tile, and click Launch.</li>
+              <li><strong>Direct Windows Search:</strong> Type Jupyter Notebook directly into the Windows search bar and run the application. This launches a background command prompt that automatically opens the Jupyter file browser inside your web browser.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/hong-kong/python-coding-fast-track-discovery-bay.html">Previous lesson</a>
+        <a class="nav-btn" href="#ai-lesson-9">Next lesson (coming soon)</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-9');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-9');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '9') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Sprite animation and game physics ideas</li><li>Loops, variables and conditionals</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
