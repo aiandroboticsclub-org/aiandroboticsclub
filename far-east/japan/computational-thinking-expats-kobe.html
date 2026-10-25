@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Logic Classes Expat Kids Kobe | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Logic Classes Expat Kids Kobe | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking logic classes for expat kids in Kobe—patterns, decomposition and algorithms online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/computational-thinking-expats-kobe.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,170 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Kobe · Japan</span><h1>Computational Thinking Logic Classes for Expat Kids in Kobe</h1>
     <p>Computational thinking logic classes for expat kids in Kobe teach pattern recognition, decomposition and algorithmic design through puzzles, Scratch challenges and mentor feedback—in English.</p></div>
     <div><img src="../../../images/69.webp" alt="Computational thinking Kobe" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-23">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-23">Lesson</label>
+        <select id="lesson-select-23" class="lesson-select" aria-label="Select lesson">
+          <option value="23" selected>023: Python Functions for Beginners: How to Create and Call Functions</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Is a Function?</h2>
+        <p>In earlier topics, loops were introduced as a way to repeat a task multiple times automatically. In software development, functions represent another fundamental and frequently used concept.</p>
+        <p>A function is a reusable, self-contained block or lines of code designed to perform a specific task. When you write, debug, and refine a high-quality piece of code, you do not want to rewrite it every time that logic is needed. Instead, you preserve and store that code block inside a function. Once stored, you can call and execute that function from any part of your program or across different programs.</p>
+
+        <h2>2. Why Functions Are Good Programming Practice</h2>
+        <p>Dividing your codebase into modular functions provides major structural advantages:</p>
+        <ul>
+          <li><strong>Code Reusability</strong> — Write once, call anywhere. Instead of manually copying and pasting identical lines of code, you write, test, and debug the logic once. Wrapping it in a function allows you to reuse it repeatedly without redundant coding.</li>
+          <li><strong>Program Organization & Maintainability</strong> — Consider a program with 2,000 continuous lines of code. Reading such a program linearly is difficult. If you divide those 2,000 lines into distinct, modular functions (for example, 10 focused functions) and give each a descriptive name, the entire program becomes organized and clear.</li>
+          <li><strong>Easy Debugging</strong> — Test and refine isolated logic without scanning the whole script.</li>
+          <li><strong>Future Portability</strong> — Well-designed functions can easily be transferred and integrated into future programs without re-engineering the logic from scratch.</li>
+        </ul>
+
+        <h2>3. Function Definition vs. Function Execution (Calling)</h2>
+        <p>A fundamental rule when working with functions is the distinction between defining a function and calling it:</p>
+        <ul>
+          <li><strong>Function Definition:</strong> When you define a function, you are merely providing a template or blueprint for the instructions. At the time of definition, the function does not run or execute.</li>
+          <li><strong>Function Call:</strong> A function executes only when you explicitly call it by name.</li>
+          <li><strong>Define Once, Call Many:</strong> A function is defined only once in your program, but it can be called and executed hundreds or thousands of times whenever needed.</li>
+        </ul>
+
+        <h2>4. Python Function Syntax: The def Keyword</h2>
+        <p>To create a function in Python, follow these syntax rules:</p>
+        <ol>
+          <li>The <code>def</code> keyword tells the Python interpreter that you are about to define a new function.</li>
+          <li>Use a descriptive name that clearly describes what the function does.</li>
+          <li>Parentheses <code>()</code> follow the name (they can hold parameters), followed by a colon <code>:</code> to start the function body.</li>
+          <li>The lines of code that perform the task must be indented beneath the <code>def</code> statement.</li>
+        </ol>
+
+        <h2>5. Code Walkthroughs & Examples</h2>
+
+        <h3>Example 1: Defining and Calling a Basic Greeting Function</h3>
+        <p>This example packages a greeting message inside a function:</p>
+        <pre><code># 1. Defining the function (the template)
+def greet():
+    print("Hello, World!")
+
+# 2. Calling the function to execute it
+greet()
+
+# 3. Calling the function a second time
+greet()</code></pre>
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Writing the first two lines creates and stores the <code>greet</code> function template, but nothing prints to the screen yet.</li>
+          <li>When the script calls <code>greet()</code>, Python enters the function body and prints <code>Hello, World!</code>.</li>
+          <li>Calling <code>greet()</code> again runs the block a second time.</li>
+        </ul>
+        <p><strong>Output:</strong></p>
+        <pre><code>Hello, World!
+Hello, World!</code></pre>
+
+        <h3>Example 2: Making Functions Dynamic with Parameters</h3>
+        <p>Functions become significantly more versatile when you pass values into them. This allows the same function logic to process different data each time it is called:</p>
+        <pre><code># 1. Defining a function with a parameter variable 'name'
+def greet(name):
+    print("Hello", name)
+
+# 2. Calling the function with different input values
+greet("Ali")
+greet("Sara")</code></pre>
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>The parameter <code>name</code> is placed inside the parentheses to receive incoming values.</li>
+          <li>When <code>greet("Ali")</code> is called, the string <code>"Ali"</code> is assigned to <code>name</code>, producing <code>Hello Ali</code>.</li>
+          <li>When <code>greet("Sara")</code> is called, <code>"Sara"</code> is passed into <code>name</code>, producing <code>Hello Sara</code>.</li>
+        </ul>
+        <p><strong>Output:</strong></p>
+        <pre><code>Hello Ali
+Hello Sara</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a function in Python, and why is using functions considered good programming practice?</button>
+          <div class="accordion-body"><p>A function is a reusable, self-contained block of code designed to perform a specific task. Using functions is considered good programming practice because it promotes code reusability—allowing you to write, test, and debug code once and call it multiple times without duplicating lines. It also drastically improves program organization; instead of reading a confusing 2,000-line script from top to bottom, functions break the codebase into modular, descriptively named components that are easy to understand, debug, and reuse in future projects.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Does a function run automatically when it is defined? Explain the difference between defining and calling a function.</button>
+          <div class="accordion-body"><p>No, a function does not execute when it is defined. Defining a function (using the <code>def</code> keyword) merely provides a template or blueprint that Python stores in memory. The function executes only when it is explicitly called by its name followed by parentheses (e.g., <code>greet()</code>). While a function is defined only once, it can be called and executed hundreds or thousands of times throughout a program.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do parameters make functions dynamic, and how do they work in practice?</button>
+          <div class="accordion-body"><p>Parameters allow functions to receive dynamic inputs rather than producing fixed, static outputs. By placing a variable name inside the function's definition parentheses (such as <code>def greet(name):</code>), the function can accept different data values each time it is executed. For instance, calling <code>greet("Ali")</code> outputs <code>Hello Ali</code>, while calling <code>greet("Sara")</code> outputs <code>Hello Sara</code>, allowing the same core logic to process diverse inputs dynamically.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/arduino-electronics-course-shinjuku-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/digital-art-canva-opentoonz-chiba.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-23');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-23');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '23') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Pattern recognition and abstraction</li><li>Problem decomposition</li><li>Algorithm design with Scratch</li><li>Interactive logic puzzles</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
