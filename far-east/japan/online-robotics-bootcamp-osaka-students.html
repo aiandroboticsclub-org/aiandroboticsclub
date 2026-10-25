@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics and Coding Bootcamp Osaka Students | AI &amp; Robotics Club</title>
+  <title>Online Robotics and Coding Bootcamp Osaka Students | AI & Robotics Club</title>
   <meta name="description" content="Online robotics and coding bootcamp for Osaka students—flexible modules, sensors, motors and project practice.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/online-robotics-bootcamp-osaka-students.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,178 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Osaka · Japan</span><h1>Online Robotics and Coding Bootcamp for Osaka Students</h1>
     <p>An online robotics and coding bootcamp for Osaka students combines sensors, motors and programming in flexible multi-week modules so learners practise end-to-end engineering thinking.</p></div>
     <div><img src="../../../images/70.webp" alt="Bootcamp Osaka" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-26">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-26">Lesson</label>
+        <select id="lesson-select-26" class="lesson-select" aria-label="Select lesson">
+          <option value="26" selected>026: Python Lambda Functions Explained with Simple Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Is a Lambda Function?</h2>
+        <p>In Python, writing a standard function using the <code>def</code> keyword requires naming the function, specifying its parameter list, and structuring an indented block. However, programs frequently require a function to execute only a single line of code to complete a small or trivial task.</p>
+        <p>Defining a full function with <code>def</code> and assigning it an explicit name for a single line of logic introduces unnecessary overhead. To solve this, Python provides <strong>lambda functions</strong>.</p>
+        <ul>
+          <li><strong>Definition:</strong> A lambda function is a small, anonymous function (a function without a name) that is written entirely within a single line of code.</li>
+          <li><strong>Primary Use Case:</strong> Designed for quick, trivial operations where declaring a full <code>def</code> block is redundant.</li>
+          <li><strong>Higher-Order Integration:</strong> Commonly paired with built-in Python functional tools like <code>map()</code> and <code>filter()</code> to process lists and collections efficiently.</li>
+        </ul>
+
+        <h2>2. Syntax of a Lambda Function</h2>
+        <p>A lambda function is constructed on one line using the <code>lambda</code> keyword:</p>
+        <pre><code>lambda parameters: expression</code></pre>
+        <ul>
+          <li><code>lambda</code> — The keyword signaling an anonymous, single-line function.</li>
+          <li><strong>Parameters</strong> — One or more input variables separated by commas.</li>
+          <li><strong>Colon (:)</strong> — Separates the parameter list from the operation.</li>
+          <li><strong>Expression</strong> — The single operation evaluated and automatically returned without writing an explicit <code>return</code> keyword.</li>
+        </ul>
+
+        <h2>3. Practical Code Examples</h2>
+
+        <h3>Example 1: Adding Two Numbers (Multiple Parameters)</h3>
+        <p>In this example, a lambda function accepts two parameters (<code>a</code> and <code>b</code>), adds them together, and stores the callable function inside a variable named <code>add</code>:</p>
+        <pre><code># 1. Defining a single-line lambda function with two parameters
+add = lambda a, b: a + b
+
+# 2. Calling the lambda function and printing the result
+print(add(3, 5))</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>8</code></pre>
+        <ul>
+          <li>The parameters <code>a</code> and <code>b</code> receive 3 and 5.</li>
+          <li>The expression adds them together and returns 8.</li>
+        </ul>
+
+        <h3>Example 2: Doubling a Single Number (Single Parameter)</h3>
+        <p>A lambda function can also accept a single input to perform quick calculations, such as doubling a value:</p>
+        <pre><code># 1. Defining a lambda function to double a value
+double = lambda x: x * 2
+
+# 2. Passing 5 into the lambda function
+print(double(5))</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>10</code></pre>
+        <p>Passing 5 into the parameter <code>x</code> multiplies it by 2, outputting 10.</p>
+
+        <h2>4. Using Lambda with Built-in Functions: map() and filter()</h2>
+
+        <h3>Example 3: Transforming Lists with map()</h3>
+        <p>The <code>map()</code> function applies a specified function across every element in an iterable collection. If you have a list of numbers and need to compute the square of each item, you can pass a lambda function directly into <code>map()</code>:</p>
+        <pre><code># 1. Define a list of numbers
+numbers = [1, 2, 3, 4]
+
+# 2. Use map() with a lambda function to square each number
+squared_numbers = list(map(lambda x: x * x, numbers))
+
+# 3. Print the transformed list
+print(squared_numbers)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>[1, 4, 9, 16]</code></pre>
+        <p>The lambda function multiplies each number by itself (<code>x * x</code>). Applying it across <code>[1, 2, 3, 4]</code> produces <code>[1, 4, 9, 16]</code>.</p>
+
+        <h3>Example 4: Filtering Collections with filter()</h3>
+        <p>The <code>filter()</code> function extracts elements from an iterable based on whether they satisfy a specific condition. Consider a list of numbers from 1 to 8. To extract only the odd numbers, a lambda function provides the filtering criteria using the modulus operator (<code>%</code>):</p>
+        <ul>
+          <li>Even numbers divided by 2 yield a remainder of 0.</li>
+          <li>Odd numbers divided by 2 yield a non-zero remainder (<code>x % 2 != 0</code>).</li>
+        </ul>
+        <pre><code># 1. Original list from 1 to 8
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# 2. Filter list for odd numbers using a lambda condition
+odd_numbers = list(filter(lambda x: x % 2 != 0, numbers))
+
+# 3. Print the filtered result
+print(odd_numbers)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>[1, 3, 5, 7]</code></pre>
+        <p>The lambda function checks each element against the condition. Elements yielding a non-zero remainder are collected into <code>odd_numbers</code>.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a lambda function in Python, and why is it used instead of a standard def function?</button>
+          <div class="accordion-body"><p>A lambda function is a small, anonymous function written entirely on a single line of code. It is used for small, trivial tasks where defining a full function with <code>def</code>, naming it, and writing an indented block creates unnecessary coding overhead. A lambda function allows developers to write and execute a short, inline operation cleanly without formally naming or declaring a standard function block.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the syntax of a Python lambda function, and how does it return values?</button>
+          <div class="accordion-body"><p>The syntax of a lambda function is <code>lambda parameters: expression</code>. It begins with the <code>lambda</code> keyword, followed by comma-separated input parameters, a colon (<code>:</code>), and a single expression. Unlike standard functions, a lambda function does not use the <code>return</code> keyword; it automatically evaluates the expression and returns the resulting value implicitly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do lambda functions work alongside built-in functions like map() and filter()?</button>
+          <div class="accordion-body"><p>Lambda functions are frequently passed as inline arguments into higher-order built-in functions. With <code>map()</code>, the lambda operation is applied to every item in a list (for example, squaring every element). With <code>filter()</code>, a boolean lambda condition is used to keep or discard elements from a collection (for example, testing <code>x % 2 != 0</code> to keep only odd numbers).</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/mblock-bot-building-yokohama-japan.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/online-robotics-classes-kids-minato-tokyo.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-26');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-26');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '26') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control practice</li><li>Coding challenges and debugging</li><li>Flexible multi-week modules</li><li>Project demonstration habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
