@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock Robot Building Sensor Coding Yokohama | AI &amp; Robotics Club</title>
+  <title>mBlock Robot Building Sensor Coding Yokohama | AI & Robotics Club</title>
   <meta name="description" content="mBlock robot building and sensor coding in Yokohama—visual algorithms to motors and line-following ideas.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/mblock-bot-building-yokohama-japan.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,164 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Yokohama · Japan</span><h1>mBlock Robot Building and Sensor Coding in Yokohama</h1>
     <p>mBlock robot building and sensor coding for Yokohama lets students write visual algorithms that control motor drives, line-following ideas and light indicators—on screen first, optional hardware later.</p></div>
     <div><img src="../../../images/67.webp" alt="mBlock Yokohama" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-25">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-25">Lesson</label>
+        <select id="lesson-select-25" class="lesson-select" aria-label="Select lesson">
+          <option value="25" selected>025: Python Variable Scope Explained: Local and Global Variables</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: The Concept of Variable Scope</h2>
+        <p>In Python programming, functions are reusable blocks of code created to execute specific instructions whenever called. When writing functions, programs inevitably declare and manipulate variables.</p>
+        <p>However, where a variable is created determines where it can be seen and used across the rest of the application. This boundary of visibility and accessibility is known as <strong>variable scope</strong>.</p>
+        <p>In Python, variable scope is divided into two primary categories:</p>
+        <ol>
+          <li><strong>Local Variables:</strong> Variables defined inside a function.</li>
+          <li><strong>Global Variables:</strong> Variables defined at the main program level, outside of any function.</li>
+        </ol>
+
+        <h2>2. Local vs. Global Variables Explained</h2>
+        <ul>
+          <li><strong>Global Variables:</strong> When you create a variable at the root level of your script, it belongs to the global scope. It is visible and accessible by default across functions in the program.</li>
+          <li><strong>Local Variables:</strong> When you create a variable inside the indented body of a function, it is private to that function. Its existence begins when the function executes and ends when the function finishes. It cannot be referenced or accessed outside that function.</li>
+        </ul>
+
+        <h2>3. Why Global Variables Are Discouraged (Best Practices)</h2>
+        <p>While Python technically allows functions to read global variables directly, relying on global variables across multiple functions is considered poor programming practice.</p>
+        <ul>
+          <li><strong>Tracking Difficulties:</strong> If a global variable is modified by several different functions, it becomes difficult to track down which function introduced a change or bug into that variable.</li>
+        </ul>
+        <p><strong>The Recommended Approach:</strong></p>
+        <ol>
+          <li>Rely on local variables inside functions.</li>
+          <li>Pass program-level data into functions cleanly as input parameters.</li>
+          <li>If the main program needs a result produced inside a function, send it out using the <code>return</code> keyword and capture it into a global-scope variable.</li>
+        </ol>
+
+        <h2>4. Code Walkthrough: Precedence and Scope</h2>
+
+        <h3>Step 1: Defining a Function with a Local Variable</h3>
+        <p>In this code, a function named <code>show()</code> defines a local variable <code>x</code> with the value 5 and prints it:</p>
+        <pre><code># Defining the function with a local variable x
+def show():
+    x = 5
+    print(x)</code></pre>
+        <p>Running this definition creates the function blueprint in memory without producing immediate screen output.</p>
+
+        <h3>Step 2: Defining a Global Variable and Testing Function Precedence</h3>
+        <p>Next, define a global variable with the same name <code>x</code> at the program level, set its value to 10, and execute <code>show()</code>:</p>
+        <pre><code># Defining a global variable at program level
+x = 10
+
+# Calling the function
+show()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>5</code></pre>
+        <p><strong>How Python Evaluates This:</strong></p>
+        <ul>
+          <li>The program has two variables named <code>x</code>: a global <code>x</code> equal to 10 and a local <code>x</code> inside <code>show()</code> equal to 5.</li>
+          <li>When <code>show()</code> executes, Python gives precedence (priority) to the local variable over the global variable.</li>
+          <li>As a result, the function accesses its own local <code>x</code> and prints 5 rather than the outer value 10.</li>
+        </ul>
+
+        <h3>Step 3: Accessing Variables Outside the Function</h3>
+        <p>If you execute a <code>print(x)</code> statement outside the function in the global scope:</p>
+        <pre><code># Printing x in the global program scope
+print(x)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>10</code></pre>
+        <p><strong>How Python Evaluates This:</strong></p>
+        <ul>
+          <li>Because this <code>print(x)</code> statement sits outside the function, the local variable inside <code>show()</code> (<code>x = 5</code>) is completely inaccessible.</li>
+          <li>Python retrieves the global variable <code>x</code>, printing 10.</li>
+          <li>If you need to access values calculated inside a function in the outer program, the function must <code>return</code> that value so it can be captured in a variable at the global level.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a local variable and a global variable in Python?</button>
+          <div class="accordion-body"><p>A <strong>local variable</strong> is declared inside a function's body and is accessible only within that specific function. It cannot be viewed or accessed from the outside program. A <strong>global variable</strong> is declared at the main program level outside of any function and is accessible throughout the program and across functions.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens when a local variable and a global variable share the exact same name?</button>
+          <div class="accordion-body"><p>When a function contains a local variable with the same name as a global variable (such as a local <code>x = 5</code> and a global <code>x = 10</code>), the local variable takes precedence inside the function. When called, the function will access and print its local value (5). Outside the function, however, the local variable is inaccessible, and referencing that variable name accesses the global value (10).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is overusing global variables considered poor programming practice, and what should be used instead?</button>
+          <div class="accordion-body"><p>Relying on global variables makes programs difficult to maintain because when multiple functions interact with the same global data, it becomes hard to track which function modified the variable when bugs occur. Good programming practice recommends using local variables, passing needed data into functions as input parameters, and using the <code>return</code> statement to send computed results back to the global scope to be stored in variables.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/digital-art-canva-opentoonz-chiba.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/online-robotics-bootcamp-osaka-students.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-25');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-25');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '25') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual blocks linked to robot motion</li><li>Line-following and light indicator ideas</li><li>Virtual lab simulation before hardware</li><li>Gentle bridge toward text code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
