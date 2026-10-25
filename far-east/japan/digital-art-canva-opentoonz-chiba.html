@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Art Animation OpenToonz Course Chiba Children | AI &amp; Robotics Club</title>
+  <title>Digital Art Animation OpenToonz Course Chiba Children | AI & Robotics Club</title>
   <meta name="description" content="Digital art and OpenToonz animation course for children in Chiba—Canva layouts and frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/digital-art-canva-opentoonz-chiba.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,165 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Chiba · Japan</span><h1>Digital Art Animation OpenToonz Course for Children in Chiba</h1>
     <p>A digital art and OpenToonz animation course for children in Chiba covers Canva layout skills and frame-by-frame 2D animation—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/68.webp" alt="Digital art Chiba" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-24">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-24">Lesson</label>
+        <select id="lesson-select-24" class="lesson-select" aria-label="Select lesson">
+          <option value="24" selected>024: Python Function Inputs and Outputs: Parameters and Return Values</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Beyond Static Functions</h2>
+        <p>In previous topics, a function was defined as a reusable code segment created to perform a designated task under a clear, descriptive name.</p>
+        <p>However, useful real-world functions should rarely perform fixed, static operations (such as only calculating 2 + 3). Instead, a versatile function should be capable of operating on any arbitrary values provided to it.</p>
+        <p>To make functions dynamic and communicative with the rest of your program, Python implements two fundamental mechanisms:</p>
+        <ol>
+          <li><strong>Inputs (Parameters & Arguments):</strong> Variables and values sent into a function so it has data to process.</li>
+          <li><strong>Outputs (Return Values):</strong> The computed result sent back from the function to the calling code.</li>
+        </ol>
+
+        <h2>2. Function Inputs: Parameters vs. Arguments</h2>
+        <p>When you define a function, you place placeholder variables inside the parentheses. These are called <strong>parameters</strong>. When you later call the function, the actual values you pass into those placeholders are the <strong>arguments</strong>.</p>
+        <ul>
+          <li><strong>Function Definition Phase:</strong> Defining a function registers the template in memory but does not execute it. At definition time, no screen output or computation is generated.</li>
+          <li><strong>Function Calling Phase:</strong> You call the function by its name, supplying the values needed to populate its parameters.</li>
+        </ul>
+
+        <h2>3. Function Outputs: The return Keyword</h2>
+        <p>After completing its calculations, a function can send the final outcome back to the caller. This result is known as the <strong>return value</strong>.</p>
+        <ul>
+          <li><strong>Capturing the Return Value:</strong> When a function finishes evaluating a <code>return</code> statement, the function call itself evaluates to the returned value. You can capture this result by assigning it to a variable using the assignment operator (<code>=</code>).</li>
+          <li><strong>Reusability of Results:</strong> Unlike a direct <code>print()</code> statement inside a function—which simply displays text on the screen—a return value hands the actual data back to your program so it can be stored, passed to other functions, or printed.</li>
+        </ul>
+
+        <h2>4. Practical Code Walkthroughs</h2>
+
+        <h3>Example 1: The add() Function (Multiple Parameters)</h3>
+        <p>In this example, an addition function accepts two numerical values, calculates their sum, and returns the result:</p>
+        <pre><code># 1. Defining the function with two parameters: 'a' and 'b'
+def add(a, b):
+    return a + b
+
+# 2. Calling the function with arguments (3, 5) and storing the return value
+result = add(3, 5)
+
+# 3. Printing the stored result
+print(result)</code></pre>
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li><strong>Definition:</strong> Defining <code>def add(a, b):</code> produces no output because definition only sets the blueprint.</li>
+          <li><strong>Calling:</strong> When <code>add(3, 5)</code> is executed, the values 3 and 5 are bound to parameters <code>a</code> and <code>b</code>.</li>
+          <li><strong>Calculation & Return:</strong> The expression <code>a + b</code> evaluates to 8, which is returned by the function.</li>
+          <li><strong>Assignment:</strong> The equality operator (<code>=</code>) stores the returned value 8 inside the variable <code>result</code>.</li>
+        </ol>
+        <p><strong>Output:</strong></p>
+        <pre><code>8</code></pre>
+
+        <h3>Example 2: The square() Function (Single Parameter)</h3>
+        <p>A function can also accept a single input to compute and return a transformation, such as squaring a number:</p>
+        <pre><code># 1. Defining the square function
+def square(number):
+    return number * number
+
+# 2. Calling the function with 5 as the argument
+result = square(5)
+
+# 3. Printing the squared result
+print(result)</code></pre>
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li>When the cell defining <code>def square(number):</code> is run, no immediate output appears.</li>
+          <li>When the function is called with <code>square(5)</code>, 5 is passed into the <code>number</code> parameter.</li>
+          <li>The function calculates <code>5 * 5</code> and returns the resulting value.</li>
+          <li>The return value is stored in <code>result</code> and printed:</li>
+        </ol>
+        <p><strong>Output:</strong></p>
+        <pre><code>25</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why do functions use parameters instead of hardcoded numbers?</button>
+          <div class="accordion-body"><p>If a function hardcoded specific numbers—such as an addition function that only ever calculated 2 + 3—it would have limited usefulness. Parameters act as flexible placeholder variables, allowing the same function to accept and process any values passed to it whenever it is called throughout a program.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Does Python generate an output when you define a function that contains a return statement?</button>
+          <div class="accordion-body"><p>No, defining a function never produces output or executes calculations, regardless of whether it includes a <code>return</code> statement. Defining a function merely establishes its blueprint in memory. The code inside the function executes only when the function is explicitly called by name with the required arguments.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a return value in Python, and how is it captured in code?</button>
+          <div class="accordion-body"><p>A return value is the data or result that a function sends back to the main program after executing its calculations. You capture a return value by using the assignment operator (<code>=</code>) when calling the function (e.g., <code>result = add(3, 5)</code>), which stores the returned output directly into a variable so it can be used in subsequent operations or printed.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/computational-thinking-expats-kobe.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/mblock-bot-building-yokohama-japan.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-24');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-24');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '24') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
