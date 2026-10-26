@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2D Digital Animation Story Design Course Davao City | AI &amp; Robotics Club</title>
+  <title>2D Digital Animation Story Design Course Davao City | AI & Robotics Club</title>
   <meta name="description" content="2D digital animation and story design course in Davao City—Canva layouts and OpenToonz frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/2d-animation-canva-opentoonz-davao-city.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,183 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Davao City · Philippines</span><h1>2D Digital Animation and Story Design Course in Davao City</h1>
     <p>A 2D digital animation and story design course in Davao City covers Canva layout skills and frame-by-frame animation in OpenToonz—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/88.webp" alt="Animation Davao" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-43">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-43">Lesson</label>
+        <select id="lesson-select-43" class="lesson-select" aria-label="Select lesson">
+          <option value="43" selected>043: How to Handle Errors When Reading and Writing Files in Python</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Handle Errors When Reading and Writing Files in Python" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Why File Operations Cause Runtime Errors</h2>
+        <p>In Python file handling, the files your code interacts with do not reside inside the Python script itself; they are stored separately on the hard disk. Because file operations depend on external storage, several common issues can arise:</p>
+        <ul>
+          <li>The file you are attempting to open does not exist.</li>
+          <li>The file exists but is located in a different path or directory.</li>
+          <li>The file is not being opened in the correct file mode.</li>
+        </ul>
+        <p>When any of these issues occur during execution, Python raises an error and crashes your program immediately, halting further execution.</p>
+
+        <h2>2. What Is an Exception?</h2>
+        <p>An exception is a runtime error that occurs while your code is actively running.</p>
+        <ul>
+          <li><strong>Without exception handling:</strong> Python stops execution, displays a long error message, and terminates the program abruptly.</li>
+          <li><strong>With exception handling:</strong> You intercept the error and tell Python what action to take, allowing the application to recover smoothly and continue running without crashing.</li>
+        </ul>
+
+        <h2>3. The try and except Blocks</h2>
+        <p>To prevent crashes, Python provides the <code>try</code> and <code>except</code> keywords:</p>
+        <ul>
+          <li><strong>The try block:</strong> Encloses code that is suspected of potentially throwing an exception. (Analogy: Just like taking a "try ball" when playing cricket to test the pitch, you tell Python to "try" running this block of code first).</li>
+          <li><strong>The except block:</strong> Specifies the exact error type to catch and instructs Python on what corrective action to perform if that error occurs.</li>
+        </ul>
+
+        <h2>4. Example 1: Catching FileNotFoundError Gracefully</h2>
+
+        <h3>The Unhandled Crash</h3>
+        <p>Attempting to open a non-existent file (<code>missing.txt</code>) in read mode causes Python to halt:</p>
+        <pre><code># Attempting to read a non-existent file without handling
+with open("missing.txt", "r") as file:
+    content = file.read()
+    print(content)</code></pre>
+        <p>Because <code>missing.txt</code> does not exist on the hard disk at that path, Python raises a <code>FileNotFoundError</code> and terminates the program.</p>
+
+        <h3>Handling the Error with try...except</h3>
+        <p>By wrapping the operation inside a <code>try</code> block and catching <code>FileNotFoundError</code>, the program handles the situation cleanly:</p>
+        <pre><code># 1. Try attempting the file operation
+try:
+    with open("missing.txt", "r") as file:
+        content = file.read()
+        print(content)
+
+# 2. Intercepting FileNotFoundError if the file is missing
+except FileNotFoundError:
+    print("File not found")</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Python attempts to open <code>missing.txt</code> in read mode inside the <code>try</code> block.</li>
+          <li>When it discovers that the file does not exist at that path, it routes execution straight to the <code>except FileNotFoundError:</code> block.</li>
+          <li>Instead of displaying a lengthy crash traceback, it displays a clean, readable message: "File not found".</li>
+          <li>Program execution continues normally with any subsequent lines of code.</li>
+        </ul>
+
+        <h2>5. Example 2: Automatic Recovery (Creating the Missing File)</h2>
+        <p>Exception handling is not limited to displaying error messages; you can also take corrective recovery actions, such as automatically creating a missing file and writing required data into it.</p>
+        <pre><code># Target file that does not yet exist on disk
+filename = "my_info.txt"
+
+# 1. Attempting to open and read the file
+try:
+    with open(filename, "r") as file:
+        content = file.read()
+        print(content)
+
+# 2. If the file is missing, automatically create it and write data
+except FileNotFoundError:
+    print(f"'{filename}' not found. Creating file and writing data...")
+
+    # Open in write mode ('w') to create the file and store records
+    with open(filename, "w") as f_out:
+        f_out.write("Name: GitHub Copilot\nAge: 1\n")
+
+    # Read and print the newly written contents
+    with open(filename, "r") as f_in:
+        content = f_in.read()
+        print("File created successfully! Contents:")
+        print(content)</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li>Python attempts to open <code>my_info.txt</code> in read mode.</li>
+          <li>Because the file does not exist, a <code>FileNotFoundError</code> is triggered.</li>
+          <li>The <code>except</code> block catches the error and opens <code>my_info.txt</code> in write mode (<code>'w'</code>), which creates the file on disk.</li>
+          <li>It writes default data into the file (Name: GitHub Copilot, Age: 1).</li>
+          <li>It then reopens the newly created file in read mode and displays its contents.</li>
+          <li>This pattern handles runtime failures gracefully and produces clean, predictable application behavior.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why do file handling operations frequently cause runtime errors in Python?</button>
+          <div class="accordion-body"><p>Unlike hardcoded variables, files reside externally on the hard disk. File handling operations often encounter real-world storage issues—such as the target file not existing, being located in a different directory path, or being opened in an incorrect mode. If these external issues are unhandled, Python raises a runtime exception and immediately crashes the program.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of the try and except blocks in Python error handling?</button>
+          <div class="accordion-body"><p>The <code>try</code> block wraps code that might potentially raise an error or exception during execution. The <code>except</code> block specifies the error type to listen for (such as <code>FileNotFoundError</code>) and defines the specific recovery action Python should take if that error occurs. Using <code>try...except</code> prevents the program from terminating with a crash traceback, allowing it to recover cleanly and continue executing.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What corrective action can a program take inside an except FileNotFoundError block besides printing an error message?</button>
+          <div class="accordion-body"><p>Beyond printing a user-friendly error message, an <code>except</code> block can perform automatic recovery actions—such as creating the missing file on the spot. When catching <code>FileNotFoundError</code>, the program can open the filename in write mode (<code>'w'</code>), write necessary initial records or configuration data into it, and then proceed with reading or processing that data smoothly.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/weekend-robotics-league-cheras-kuala-lumpur.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/ai-course-for-beginners-alabang-muntinlupa.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-43');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-43');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '43') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
