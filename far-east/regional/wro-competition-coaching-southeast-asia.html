@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Robot Olympiad Online Coaching Southeast Asia Students | AI &amp; Robotics Club</title>
+  <title>World Robot Olympiad Online Coaching Southeast Asia Students | AI & Robotics Club</title>
   <meta name="description" content="World Robot Olympiad online coaching for Southeast Asia and East Asia students—sensors, navigation and timed practice.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/regional/wro-competition-coaching-southeast-asia.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,179 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Southeast Asia · Competition track</span><h1>World Robot Olympiad Online Coaching for Southeast Asia Students</h1>
     <p>World Robot Olympiad online coaching for Southeast Asia and East Asia students focuses on autonomous navigation ideas, sensor calibration, chassis thinking and algorithmic troubleshooting under timed scenarios—for learners with intermediate coding or robotics background.</p></div>
     <div><img src="../../../images/94.webp" alt="WRO Coaching Southeast Asia" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-55">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-55">Lesson</label>
+        <select id="lesson-select-55" class="lesson-select" aria-label="Select lesson">
+          <option value="55" selected>055: Pandas DataFrames for Beginners: Create and Inspect Tables</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Pandas DataFrames for Beginners: Create and Inspect Tables" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: The Most Popular Data Structure in Pandas</h2>
+        <p>Building on the one-dimensional Pandas Series from the previous module, this lecture covers the central and most widely used structure in Pandas: the <strong>DataFrame</strong>.</p>
+        <p>In AI and machine learning, datasets rarely arrive as isolated lists of numbers; they come as multi-attribute tables from clients and databases. The DataFrame is designed to import, store, manipulate, and prepare these datasets for AI and ML workflows.</p>
+
+        <h2>2. What Is a DataFrame?</h2>
+        <p>A DataFrame is a two-dimensional (2D) labeled data structure:</p>
+        <ul>
+          <li><strong>Tabular arrangement:</strong> Data is organized in rows and columns, like a spreadsheet or an SQL table.</li>
+          <li><strong>Mixed data types:</strong> Unlike homogeneous numerical matrices, each column can have its own type (text, integers, decimals, etc.).</li>
+          <li><strong>Real-world suitability:</strong> Names, dates, quantities, and monetary values can live side by side, which matches how real datasets are structured.</li>
+        </ul>
+
+        <h2>3. Creating a DataFrame from Scratch in Jupyter Notebook</h2>
+        <p>Import Pandas as <code>pd</code>, put the data in a dictionary, and pass it to <code>pd.DataFrame()</code>:</p>
+        <pre><code>import pandas as pd
+
+# 1. Defining a dictionary containing data for 3 individuals
+data = {
+    "Name": ["Ali", "Sara", "Ahmed"],
+    "Age": [25, 30, 22],
+    "City": ["Lahore", "Karachi", "Islamabad"]
+}
+
+# 2. Converting the dictionary into a Pandas DataFrame
+df = pd.DataFrame(data)
+
+# 3. Displaying the resulting table
+print(df)</code></pre>
+        <p><strong>Resulting structure:</strong></p>
+        <ul>
+          <li><strong>Column labels</strong> come from the dictionary keys: Name, Age, City.</li>
+          <li><strong>Row labels (index)</strong> default to 0, 1, 2 when no custom index is given.</li>
+        </ul>
+        <pre><code>    Name  Age       City
+0    Ali   25     Lahore
+1   Sara   30    Karachi
+2  Ahmed   22  Islamabad</code></pre>
+
+        <h2>4. Loading Real-World Datasets from Disk (pd.read_csv)</h2>
+        <p>DataFrames can load large files from disk. CSV (Comma-Separated Values) is a common format. <code>pd.read_csv()</code> reads a CSV into a DataFrame in memory:</p>
+        <pre><code># Loading a large CSV dataset from disk
+df_sales = pd.read_csv("retail_sales.csv")</code></pre>
+        <p>In a sample file such as <code>retail_sales.csv</code>, Pandas can load on the order of 1,825 rows across six columns—for example Date, Category, Sales, Quantity, Profit, and Region. In AI and machine learning these columns are called <strong>features</strong>.</p>
+
+        <h2>5. Essential Inspection Methods and Attributes</h2>
+        <p>Once data is in a DataFrame, built-in tools reveal structure, size, and distributions:</p>
+
+        <h3>A. Checking Dataset Architecture: df.info()</h3>
+        <pre><code># Displaying a structural overview of the dataset
+df_sales.info()</code></pre>
+        <ul>
+          <li>Confirms column count and indices (e.g. 0–5 for six columns).</li>
+          <li>Reports non-null counts per column.</li>
+          <li>Identifies types: e.g. Date and Category as object (text), Sales and Profit as floats, Quantity as integers, Region as object.</li>
+        </ul>
+
+        <h3>B. Checking Dimensions & Types: df.shape and df.dtypes</h3>
+        <pre><code># 1. Checking the exact dimensions of the dataset
+print("Shape (Rows, Columns):", df_sales.shape)
+
+# 2. Inspecting the data types of all feature columns
+print("\nData Types:")
+print(df_sales.dtypes)</code></pre>
+        <ul>
+          <li><code>df.shape</code> returns a tuple such as <code>(1825, 6)</code> — 1,825 rows and 6 columns.</li>
+          <li><code>df.dtypes</code> lists the type of each column (e.g. float64, int64, object).</li>
+        </ul>
+
+        <h3>C. Statistical Summaries of Numerical Features: df.describe()</h3>
+        <pre><code># Generating descriptive statistics for numerical features
+print(df_sales.describe())</code></pre>
+        <p><code>.describe()</code> summarizes numerical columns (e.g. Sales, Quantity, Profit) and skips non-numeric text columns. For each numerical feature it reports:</p>
+        <ol>
+          <li><strong>count</strong> — number of valid observations</li>
+          <li><strong>mean</strong> — arithmetic average</li>
+          <li><strong>std</strong> — standard deviation (spread)</li>
+          <li><strong>min</strong> — minimum value</li>
+          <li><strong>25%</strong> — first quartile</li>
+          <li><strong>50%</strong> — median</li>
+          <li><strong>75%</strong> — third quartile</li>
+          <li><strong>max</strong> — maximum value</li>
+        </ol>
+        <p>This gives a fast view of ranges and distributions for numerical data.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a Pandas DataFrame, and why is it preferred over basic arrays for real-world AI datasets?</button>
+          <div class="accordion-body"><p>A DataFrame is a 2D labeled structure of rows and columns, like a spreadsheet or SQL table. Unlike homogeneous arrays, each column can hold a different type (text, integers, decimals). Real client data mixes names, dates, prices, and quantities, so DataFrames are the natural format for ingesting and preparing data for AI and ML.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In machine learning and data science, what are the columns of a DataFrame called, and how are they inspected?</button>
+          <div class="accordion-body"><p>Columns are called <strong>features</strong>. Inspect them with <code>df.shape</code> (e.g. <code>(1825, 6)</code> for rows and columns), <code>df.dtypes</code> (type of each feature), and <code>df.info()</code> (labels, non-null counts, and a structural summary).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does the df.describe() method do, and what specific statistics does it calculate?</button>
+          <div class="accordion-body"><p><code>df.describe()</code> summarizes numerical columns and ignores non-numeric ones. For each numerical column it reports count, mean, std, min, 25%, 50% (median), 75%, and max—useful for quick checks of range and distribution.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/regional/online-steam-and-ai-bootcamp-asia-pacific.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/ai-course-for-young-learners-tampines-singapore.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-55');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-55');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '55') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Autonomous navigation concepts</li><li>Sensor calibration and chassis ideas</li><li>Algorithmic troubleshooting under time pressure</li><li>Competition-style project practice</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
