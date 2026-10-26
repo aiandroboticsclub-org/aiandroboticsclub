@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEAM AI and Robotics Bootcamp Asia Pacific Kids | AI &amp; Robotics Club</title>
+  <title>Online STEAM AI and Robotics Bootcamp Asia Pacific Kids | AI & Robotics Club</title>
   <meta name="description" content="Online STEAM, AI and robotics bootcamp for Asia-Pacific kids—multi-week project-based English learning.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/regional/online-steam-and-ai-bootcamp-asia-pacific.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,192 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Asia-Pacific · Bootcamp</span><h1>Online STEAM, AI and Robotics Bootcamp for Asia-Pacific Kids</h1>
     <p>An online STEAM, AI and robotics bootcamp for Asia-Pacific kids integrates visual programming, microcontroller ideas, Python scripting, 2D animation design and introductory machine learning into a unified project-based learning experience.</p></div>
     <div><img src="../../../images/95.webp" alt="STEAM AI Bootcamp Asia Pacific" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-54">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-54">Lesson</label>
+        <select id="lesson-select-54" class="lesson-select" aria-label="Select lesson">
+          <option value="54" selected>054: Pandas Series Explained: Your First Step in Python Data Analysis</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Pandas Series Explained: Your First Step in Python Data Analysis" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Transitioning to the Pandas Ecosystem</h2>
+        <p>In data science, machine learning, and artificial intelligence, algorithms require specialized data structures designed for processing, transforming, and analyzing large volumes of structured data.</p>
+        <p>While NumPy focuses on low-level numerical arrays and mathematical computations, the Pandas library provides high-level data structures that make data manipulation intuitive and robust. Pandas supports arrays, series, and matrices so that data science and machine learning algorithms can operate efficiently. The foundational one-dimensional data structure in Pandas is the <strong>Series</strong>.</p>
+
+        <h2>2. What Is a Pandas Series?</h2>
+        <p>A Pandas Series is a one-dimensional (1D) labeled array.</p>
+        <ul>
+          <li><strong>Index–value pairs:</strong> Every value stored in a Series is associated with an identifying label called an index.</li>
+          <li><strong>Spreadsheet & database analogy:</strong> A Series is like a labeled column in Microsoft Excel or a single attribute column in an SQL table.</li>
+          <li><strong>Automatic type inference:</strong> When you pass data into a Series, Pandas evaluates the elements and infers their data type (such as 64-bit integers) without manual type declarations.</li>
+        </ul>
+
+        <h2>3. Setting Up the Environment in Jupyter Notebook</h2>
+        <h3>Step 1: Installing and Verifying Pandas</h3>
+        <p>To install or verify Pandas in a Jupyter Notebook, run pip with an exclamation mark:</p>
+        <pre><code># Installing or checking Pandas inside a Jupyter Notebook cell
+!pip install pandas</code></pre>
+        <p>This installs Pandas (e.g. version 2.2.3) and its dependencies, including NumPy. If Pandas is already present, it confirms the active version.</p>
+
+        <h3>Step 2: Importing Pandas with the Industry-Standard Alias</h3>
+        <p>The established convention is to import Pandas as <code>pd</code>:</p>
+        <pre><code># Industry-standard import alias for Pandas
+import pandas as pd</code></pre>
+
+        <h2>4. Creating a Pandas Series with Custom Labels</h2>
+        <p>Use the <code>pd.Series()</code> constructor. By default, positions are 0, 1, 2…, but you can define custom labels with the <code>index</code> parameter:</p>
+        <pre><code>import pandas as pd
+
+# Creating a 5-element Series with custom index labels
+s = pd.Series([10, 20, 20, 30, 40], index=['a', 'b', 'c', 'd', 'e'])
+
+# Displaying the Series
+print(s)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>a    10
+b    20
+c    20
+d    30
+e    40
+dtype: int64</code></pre>
+        <ul>
+          <li>Index labels appear on the left; stored values on the right.</li>
+          <li>10 is labeled <code>'a'</code>, 20 labeled <code>'b'</code> and <code>'c'</code>, and so on.</li>
+          <li>Pandas reports the Series as 64-bit integers (<code>int64</code>).</li>
+        </ul>
+
+        <h2>5. Essential Series Attributes: .values, .index, and .dtype</h2>
+        <p>Dedicated attributes unpack the components of a Series:</p>
+        <pre><code># 1. Extracting only the underlying numerical values
+print("Values: ", s.values)
+
+# 2. Extracting only the index labels
+print("Index:  ", s.index)
+
+# 3. Inspecting the data type
+print("Data Type:", s.dtype)</code></pre>
+        <p><strong>Example output:</strong></p>
+        <pre><code>Values:  [10 20 20 30 40]
+Index:   Index(['a', 'b', 'c', 'd', 'e'], dtype='object')
+Data Type: int64</code></pre>
+        <ul>
+          <li><code>s.values</code> — the stored numbers without labels</li>
+          <li><code>s.index</code> — the labels (<code>'a'</code> through <code>'e'</code>), as an Index object</li>
+          <li><code>s.dtype</code> — internal type of the values (<code>int64</code>)</li>
+        </ul>
+
+        <h2>6. Common Series Inspection Methods</h2>
+
+        <h3>A. Inspecting Initial and Final Rows: .head() and .tail()</h3>
+        <p>On large datasets, printing everything is impractical. Use <code>.head()</code> and <code>.tail()</code> to sample quickly:</p>
+        <pre><code># Inspecting the beginning rows of the Series
+print("Head:")
+print(s.head())
+
+# Inspecting the concluding rows of the Series
+print("\nTail:")
+print(s.tail())</code></pre>
+        <ul>
+          <li><code>s.head()</code> shows the first rows.</li>
+          <li><code>s.tail()</code> shows the last rows.</li>
+          <li>On a five-row sample Series, both methods show all rows; on large data they give a fast structure check.</li>
+        </ul>
+
+        <h3>B. Frequency Distribution: .value_counts()</h3>
+        <p>To count how often each unique value appears, use <code>.value_counts()</code>:</p>
+        <pre><code># Counting occurrences of each unique value
+counts = s.value_counts()
+print("Value Counts:")
+print(counts)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>20    2
+10    1
+30    1
+40    1
+Name: count, dtype: int64</code></pre>
+        <p>The method counts each unique value and sorts by frequency: 20 appears twice; 10, 30, and 40 once each. It is a core tool in exploratory data analysis (EDA) for spotting patterns.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a Pandas Series, and how does it compare to an Excel column or SQL database?</button>
+          <div class="accordion-body"><p>A Pandas Series is a one-dimensional labeled array where each value is paired with an index label. It is like a labeled column in Excel or a single attribute column in an SQL table. Unlike plain Python lists, a Series stores explicit index–value pairs and automatically infers the data type (e.g. <code>int64</code>) of its elements.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between the .values and .index attributes of a Pandas Series?</button>
+          <div class="accordion-body"><p><code>.values</code> returns only the stored data (e.g. <code>[10, 20, 20, 30, 40]</code>) without labels. <code>.index</code> returns only the labels (e.g. <code>Index(['a', 'b', 'c', 'd', 'e'])</code>). Separating them lets you inspect or work with the data array and the row labels independently.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does the .value_counts() method do in a Pandas Series, and why is it useful?</button>
+          <div class="accordion-body"><p><code>.value_counts()</code> counts how often each unique value appears and sorts by frequency. For a Series containing 10, 20, 20, 30, 40, it reports that 20 occurs twice and the others once. It is essential for summarizing categorical distributions and spotting patterns in exploratory analysis.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/regional/international-school-robotics-club-far-east.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/regional/wro-competition-coaching-southeast-asia.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-54');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-54');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '54') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual programming and microcontrollers</li><li>Python scripting foundations</li><li>2D animation and design thinking</li><li>Introductory machine learning concepts</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
