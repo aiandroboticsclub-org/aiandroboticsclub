@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beginner Python Programming Classes TTDI KL | AI &amp; Robotics Club</title>
+  <title>Beginner Python Programming Classes TTDI KL | AI & Robotics Club</title>
   <meta name="description" content="Beginner Python programming classes for students in TTDI, Kuala Lumpur—clean syntax after Scratch.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/python-programming-for-students-ttdi-kl.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,201 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · TTDI · KL</span><h1>Beginner Python Programming Classes for Students in TTDI, Kuala Lumpur</h1>
     <p>Beginner Python programming classes for students in TTDI, Kuala Lumpur smooth the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/96.webp" alt="Python TTDI" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-38">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-38">Lesson</label>
+        <select id="lesson-select-38" class="lesson-select" aria-label="Select lesson">
+          <option value="38" selected>038: Python Polymorphism Explained: Overriding and Overloading</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Polymorphism Explained: Overriding and Overloading" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Is Polymorphism?</h2>
+        <p>In Object-Oriented Programming (OOP), polymorphism is an advanced core concept that describes how entities can take on multiple forms.</p>
+        <ul>
+          <li><strong>Etymology:</strong> The word is derived from two roots—"Poly", meaning multiple, and "morph", meaning form. Therefore, polymorphism literally translates to "multiple forms".</li>
+          <li><strong>Real-world analogy:</strong> In the physical world, an object category can take on diverse forms. For instance, consider an Animal. An animal's form can be a Dog, a Cat, a Fish, or a Pigeon. While all of these entities belong to the animal category, their specific behaviors differ significantly.</li>
+          <li><strong>OOP definition:</strong> Polymorphism allows classes that inherit from other classes—or distinct classes sharing similar interfaces—to define and execute behaviors differently, enabling a single object reference to take different forms and actions.</li>
+        </ul>
+
+        <h2>2. Polymorphism Across Different Classes (Common Interface)</h2>
+        <p>Polymorphism allows you to treat different classes uniformly by calling the same method name across distinct objects.</p>
+
+        <h3>Code Walkthrough: The Dog and Cat Classes</h3>
+        <p>In this example, both the Dog class and the Cat class define a method named <code>speak()</code>, but each prints a sound specific to that animal:</p>
+        <pre><code># 1. Defining the Dog class with a speak method
+class Dog:
+    def speak(self):
+        print("woof")
+
+# 2. Defining the Cat class with a speak method
+class Cat:
+    def speak(self):
+        print("meow")
+
+# 3. Storing instances of both classes in a single list
+pets = [Dog(), Cat()]
+
+# 4. Iterating through the list and executing speak() polymorphically
+for pet in pets:
+    pet.speak()</code></pre>
+        <p><strong>Execution and Output:</strong></p>
+        <pre><code>woof
+meow</code></pre>
+
+        <h3>How It Works</h3>
+        <ul>
+          <li>The list <code>pets</code> contains two distinct objects: the first belongs to <code>Dog</code> and the second belongs to <code>Cat</code>.</li>
+          <li>When the <code>for</code> loop iterates over <code>pets</code>, it executes <code>pet.speak()</code> on each element.</li>
+          <li>Python dynamically calls <code>Dog.speak()</code> on the first pass (printing "woof") and <code>Cat.speak()</code> on the second pass (printing "meow").</li>
+          <li>This demonstrates how different classes can be grouped together and executed through a shared interface.</li>
+        </ul>
+
+        <h2>3. Method Overriding in Polymorphism</h2>
+        <p>Method overriding occurs within an inheritance hierarchy when a child (derived) class rewrites or redefines a method that already exists in its parent (base) class.</p>
+
+        <h3>Code Walkthrough: The Vehicle and Car Hierarchy</h3>
+        <p>Consider a base class <code>Vehicle</code> with a general <code>move()</code> method, and a subclass <code>Car</code> that inherits from <code>Vehicle</code> and overrides <code>move()</code>:</p>
+        <pre><code># 1. Base (Parent) Class
+class Vehicle:
+    def move(self):
+        print("vehicle is moving")
+
+# 2. Derived (Child) Class overriding the move method
+class Car(Vehicle):
+    def move(self):
+        print("car is driving")
+
+# 3. Instantiating a Car object and invoking move()
+car1 = Car()
+car1.move()</code></pre>
+        <p><strong>Execution and Output:</strong></p>
+        <pre><code>car is driving</code></pre>
+
+        <h3>How Python Evaluates This</h3>
+        <ul>
+          <li>Even though <code>Car</code> inherits from <code>Vehicle</code>, calling <code>car1.move()</code> executes the overridden version inside <code>Car</code>.</li>
+          <li>The program outputs "car is driving" rather than "vehicle is moving" because the parent class's implementation has been overridden by the child class.</li>
+        </ul>
+
+        <h2>4. Method Overloading in Python (Using Default Arguments)</h2>
+        <p>Method overloading refers to using a single method across multiple scenarios by altering the number of input arguments it accepts.</p>
+        <ul>
+          <li><strong>The problem:</strong> Suppose a program needs an <code>add</code> method capable of adding one number, two numbers, or three numbers. Creating three distinct functions (<code>add_one_number</code>, <code>add_two_numbers</code>, <code>add_three_numbers</code>) creates redundant code.</li>
+          <li><strong>The Python solution:</strong> Python achieves method overloading within a single method by assigning default values to input parameters, making those arguments optional.</li>
+        </ul>
+
+        <h3>Code Walkthrough: The Calculator Class</h3>
+        <p>We define an <code>add</code> method where parameter <code>a</code> is compulsory, while parameters <code>b</code> and <code>c</code> are given default values of 0:</p>
+        <pre><code>class Calculator:
+    # Defining method with default arguments for overloading
+    def add(self, a, b=0, c=0):
+        return a + b + c
+
+# Instantiating the calculator object
+calc1 = Calculator()
+
+# Calling add() with a single argument
+print("One Argument:", calc1.add(5))
+
+# Calling add() with two arguments
+print("Two Arguments:", calc1.add(5, 10))
+
+# Calling add() with three arguments
+print("Three Arguments:", calc1.add(5, 10, 15))</code></pre>
+        <p><strong>Execution and Output:</strong></p>
+        <pre><code>One Argument: 5
+Two Arguments: 15
+Three Arguments: 30</code></pre>
+
+        <h3>Step-by-Step Execution Analysis</h3>
+        <ol>
+          <li><strong>Single argument</strong> (<code>calc1.add(5)</code>): Because <code>b</code> and <code>c</code> are omitted, Python defaults them to 0. The calculation evaluates to 5 + 0 + 0 = 5.</li>
+          <li><strong>Two arguments</strong> (<code>calc1.add(5, 10)</code>): The value 10 is bound to <code>b</code>, while <code>c</code> defaults to 0. The calculation evaluates to 5 + 10 + 0 = 15.</li>
+          <li><strong>Three arguments</strong> (<code>calc1.add(5, 10, 15)</code>): All three values are supplied, overriding the defaults. The calculation evaluates to 5 + 10 + 15 = 30.</li>
+        </ol>
+        <p>By defining optional parameters, a single method dynamically adapts to different numbers of arguments without rewriting multiple function variants.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does Polymorphism mean in Python OOP, and how does the animal analogy illustrate it?</button>
+          <div class="accordion-body"><p>The word Polymorphism comes from "Poly" (meaning multiple) and "morph" (meaning form), translating literally to "multiple forms". In programming, it refers to the ability of different classes or objects to take on different forms and define unique behaviors through a shared method interface. This is illustrated by the animal analogy: an animal can take different forms—such as a Dog, a Cat, a Fish, or a Pigeon. Although they all belong to the animal category, their specific behaviors differ (e.g., a dog barks while a cat meows). Polymorphism allows programs to manage diverse objects together while executing their individual behaviors cleanly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is method overriding in Python, and what happens when the method is invoked on a child object?</button>
+          <div class="accordion-body"><p>Method overriding occurs in an inheritance relationship when a child class redefines or rewrites a method that was already defined in its parent class. When the method is invoked on an object of the child class (such as calling <code>car1.move()</code> on an object of class <code>Car</code> that inherits from <code>Vehicle</code>), Python executes the child class's overridden version. As a result, the parent class implementation ("vehicle is moving") is bypassed and the child's implementation ("car is driving") runs instead.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Python achieve method overloading without writing multiple separate functions?</button>
+          <div class="accordion-body"><p>Rather than writing multiple distinct functions with different names to handle varying numbers of inputs, Python implements method overloading by using default arguments. By assigning default values (such as <code>def add(self, a, b=0, c=0):</code>), parameters <code>b</code> and <code>c</code> become optional. If the caller provides only one argument (<code>add(5)</code>), the remaining parameters default to 0; if two or three arguments are passed (<code>add(5, 10)</code> or <code>add(5, 10, 15)</code>), Python uses the provided values. This allows a single function to adapt dynamically to varying argument counts.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/online-robotics-club-ampang-expats-kl.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/robotics-engineering-bootcamp-kids-cyberjaya.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-38');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-38');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '38') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Functions and basic data structures</li><li>Text games and utility scripts</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
