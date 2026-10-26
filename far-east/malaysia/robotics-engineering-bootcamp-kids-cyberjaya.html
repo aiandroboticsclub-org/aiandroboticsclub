@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Robotics Engineering Bootcamp Kids Cyberjaya | AI &amp; Robotics Club</title>
+  <title>Robotics Engineering Bootcamp Kids Cyberjaya | AI & Robotics Club</title>
   <meta name="description" content="Hands-on robotics engineering bootcamp for kids in Cyberjaya—structure, motors, sensors and code online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/robotics-engineering-bootcamp-kids-cyberjaya.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,223 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Cyberjaya · Selangor</span><h1>Hands-On Robotics Engineering Bootcamp for Kids in Cyberjaya</h1>
     <p>A hands-on robotics engineering bootcamp for kids near Cyberjaya combines mechanical structure ideas, motor control and sensor logic in flexible online modules inspired by Malaysia’s technology corridor.</p></div>
     <div><img src="../../../images/95.webp" alt="Cyberjaya bootcamp" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-39">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-39">Lesson</label>
+        <select id="lesson-select-39" class="lesson-select" aria-label="Select lesson">
+          <option value="39" selected>039: Python Special Methods Explained: What Double-Underscore Methods Do</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Special Methods Explained: What Double-Underscore Methods Do" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Functions vs. Methods</h2>
+        <p>In Python programming, the terms function and method are often used interchangeably, but they have a distinct technical difference:</p>
+        <ul>
+          <li><strong>Function:</strong> A reusable block of code defined in the global context that can be called anywhere in a program.</li>
+          <li><strong>Method:</strong> A function that is defined inside a class. A method is fundamentally a function whose defining characteristic is its encapsulation within a class structure.</li>
+        </ul>
+        <p>In previous modules, we created user-defined methods to implement custom behaviors. In this module, we explore Python's built-in special methods—commonly known as double-underscore methods.</p>
+
+        <h2>2. Why Do We Need Special Methods?</h2>
+        <p>Standard built-in Python variables come with default behaviors pre-programmed: you can print any basic variable, check its length using <code>len()</code>, or add numbers together using <code>+</code>.</p>
+        <p>However, when you create your own custom classes, Python does not inherently know how to handle these operations:</p>
+        <ul>
+          <li>A custom class can contain multiple diverse data attributes.</li>
+          <li>Python does not know which attributes should be printed, how to calculate the class's "length," or how two objects of that class should be added together.</li>
+          <li>Special methods allow developers to define and customize these default behaviors for their own classes.</li>
+        </ul>
+
+        <h3>The Double-Underscore Syntax (__)</h3>
+        <p>To create a special method, Python requires prefixing and suffixing the method name with two underscores (e.g., <code>__str__</code>, <code>__len__</code>, <code>__add__</code>). These double underscores signal to the Python interpreter that you are redefining or extending a default, built-in system behavior for your class.</p>
+
+        <h2>3. Example 1: Customizing Object Printing with __str__ (The Book Class)</h2>
+        <p>When you pass an object to <code>print()</code>, Python checks whether a string representation function is available. By defining the <code>__str__</code> special method, you dictate exactly how your object should be formatted and displayed as text.</p>
+
+        <h3>Implementation: Formatting Title and Author</h3>
+        <p>Consider a Book class where we want printed books to appear in the format: <code>'Title' by Author</code>.</p>
+        <pre><code>class Book:
+    # Constructor initializing title and author
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    # Special method defining string representation
+    def __str__(self):
+        return f"'{self.title}' by {self.author}"
+
+# Instantiating a book object
+book1 = Book("1984", "George Orwell")
+
+# Printing the object directly
+print(book1)</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>When <code>print(book1)</code> executes, Python looks for a string method to represent the object.</li>
+          <li>Because <code>__str__</code> is defined, Python uses it to present the book's details.</li>
+        </ul>
+        <p><strong>Output:</strong></p>
+        <pre><code>'1984' by George Orwell</code></pre>
+        <p>This allows even complex objects to be converted cleanly into text for display and logging.</p>
+
+        <h2>4. Example 2: Implementing __len__ and __add__ (The Playlist Class)</h2>
+        <p>Special methods can also handle measurements and arithmetic operations. Consider a Playlist class that contains a collection of songs:</p>
+        <ul>
+          <li><code>__len__</code>: Defines what <code>len(playlist)</code> returns—specifically, the total count of songs inside that playlist.</li>
+          <li><code>__add__</code>: Defines what happens when two playlists are combined using the addition operator (<code>+</code>).</li>
+        </ul>
+
+        <h3>The other Parameter in Operator Methods</h3>
+        <p>When overloading the addition operator (<code>+</code>), addition requires two operands. Inside <code>__add__(self, other)</code>:</p>
+        <ul>
+          <li><code>self</code>: Refers to the first playlist object (on the left side of <code>+</code>).</li>
+          <li><code>other</code>: Refers to the second playlist object being added (on the right side of <code>+</code>).</li>
+        </ul>
+        <pre><code>class Playlist:
+    def __init__(self, songs_count):
+        self.songs_count = songs_count
+
+    # Special method to return playlist length
+    def __len__(self):
+        return self.songs_count
+
+    # Special method to add two playlists together
+    def __add__(self, other):
+        # Adding song counts from both playlist objects
+        return self.songs_count + other.songs_count
+
+# Creating two distinct playlist objects
+p1 = Playlist(2)  # Playlist 1 with 2 songs
+p2 = Playlist(1)  # Playlist 2 with 1 song
+
+# 1. Calling len() on p1
+print("Length of P1:", len(p1))
+
+# 2. Adding p1 and p2 using '+'
+total_songs = p1 + p2
+print("Combined Songs:", total_songs)</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li>Calling <code>len(p1)</code>: Triggers the custom <code>__len__</code> method, returning the song count (2).</li>
+          <li>Executing <code>p1 + p2</code>: Triggers <code>__add__</code>, where <code>self.songs_count</code> (2) and <code>other.songs_count</code> (1) are summed together, returning 3.</li>
+        </ol>
+        <p><strong>Output:</strong></p>
+        <pre><code>Length of P1: 2
+Combined Songs: 3</code></pre>
+
+        <h2>5. Example 3: Combining __add__ and __str__ (The Point Class)</h2>
+        <p>Special methods can work together seamlessly to handle geometric and mathematical data. Consider a 2D Cartesian coordinate Point class with <code>x</code> and <code>y</code> attributes:</p>
+        <pre><code>class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    # Formatting point coordinates as a string
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+
+    # Defining coordinate-wise addition for two points
+    def __add__(self, other):
+        # Adding x-coordinates and y-coordinates respectively
+        return Point(self.x + other.x, self.y + other.y)
+
+# Instantiating two points
+p1 = Point(2, 3)
+p2 = Point(4, 1)
+
+# Adding both points and printing the resulting object
+p3 = p1 + p2
+print(p3)</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li>Executing <code>p1 + p2</code>: Calls <code>__add__</code>, which adds the respective coordinates (2 + 4 = 6 and 3 + 1 = 4) and returns a new <code>Point(6, 4)</code>.</li>
+          <li>Executing <code>print(p3)</code>: Automatically calls <code>__str__</code> on the new point, outputting the formatted coordinate string.</li>
+        </ol>
+        <p><strong>Output:</strong></p>
+        <pre><code>Point(6, 4)</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a function and a method in Python?</button>
+          <div class="accordion-body"><p>While both contain reusable blocks of code, a function can be defined and called in the global program context. A method, by contrast, is a function that is defined inside a class. A method's defining characteristic is that it belongs to an object or class blueprint and operates directly on that class's data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why are double underscores (__) used in special methods, and why are these methods necessary?</button>
+          <div class="accordion-body"><p>Double underscores placed before and after a method name (such as <code>__str__</code> or <code>__len__</code>) signal to the Python interpreter that you are redefining or customizing a built-in default behavior for your custom class. They are necessary because Python does not automatically know how to print custom objects, calculate their length, or perform arithmetic operations on them. Special methods allow developers to define how operations like <code>print()</code>, <code>len()</code>, and <code>+</code> should behave when applied to instances of custom classes.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the __add__(self, other) method, what does the other parameter represent?</button>
+          <div class="accordion-body"><p>Because addition requires two operands, the <code>other</code> parameter represents the second object being added on the right side of the plus (<code>+</code>) operator, while <code>self</code> represents the calling object on the left side. Both <code>self</code> and <code>other</code> provide access to their respective attributes (such as <code>self.songs_count</code> and <code>other.songs_count</code>), allowing the method to combine data from both instances and return the combined result.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/python-programming-for-students-ttdi-kl.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/scratch-game-development-children-petaling-jaya.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-39');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-39');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '39') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Mechanical structure and craft basics</li><li>Motor drivers and sensor logic</li><li>Algorithm design for robot behaviour</li><li>Flexible multi-week modules</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
