@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Game Development Course Makati City | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Game Development Course Makati City | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding game development course in Makati City—arcade games, stories and visual computer science in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/scratch-coding-game-development-makati.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,194 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Makati · Metro Manila</span><h1>Scratch Coding Game Development Course in Makati City</h1>
     <p>A Scratch coding game development course in Makati City turns passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/82.webp" alt="Scratch Makati" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-50">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-50">Lesson</label>
+        <select id="lesson-select-50" class="lesson-select" aria-label="Select lesson">
+          <option value="50" selected>050: NumPy for Beginners: Set Up Your Environment and Understand Arrays</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="NumPy for Beginners: Set Up Your Environment and Understand Arrays" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Why NumPy Is Essential for Data Science & AI</h2>
+        <p>In previous modules, we explored the foundations of data science and introduced the primary tools in the Python data ecosystem. While Python provides built-in lists for storing collections of items, standard lists become noticeably slow and memory-inefficient when performing intensive mathematical operations on large volumes of data.</p>
+        <p>Scientific computing and machine learning libraries require performing massive numbers of mathematical operations on arrays and matrices. To handle this scale, Python relies on NumPy (Numerical Python), an optimized library designed specifically for fast, memory-efficient array manipulation.</p>
+        <ul>
+          <li><strong>Python standard list:</strong> <code>for x in list: ...</code> — element-by-element iteration (high overhead, slower execution).</li>
+          <li><strong>NumPy ndarray:</strong> <code>array + 5</code> — vectorized manipulation (executes in parallel at C speed).</li>
+        </ul>
+
+        <h2>2. The Core Data Structure: The ndarray</h2>
+        <p>At the heart of NumPy is its core data structure: the <strong>ndarray</strong> (n-dimensional array).</p>
+        <ul>
+          <li><strong>N-dimensional support:</strong> An ndarray can store data across any number of dimensions—including 1D (vectors), 2D (matrices/tables), and 3D or higher-dimensional tensors.</li>
+          <li><strong>Vectorized manipulation:</strong> Instead of using manual loops that iterate through each item one by one, NumPy treats the array as a single vector and executes mathematical operations across the entire vector in parallel. This vectorized approach makes array computations blazing fast and forms the computational foundation for modern machine learning frameworks.</li>
+        </ul>
+
+        <h2>3. Setting Up the Environment in Jupyter Notebook</h2>
+        <h3>Step 1: Installing and Verifying NumPy</h3>
+        <p>Before using NumPy, verify that it is installed in your Python environment. In a Jupyter Notebook cell, you can install or check NumPy by prefixing the pip command with an exclamation mark (<code>!</code>):</p>
+        <pre><code># Installing or verifying NumPy inside a Jupyter Notebook cell
+!pip install numpy</code></pre>
+        <p>When run, Python confirms whether NumPy is already installed and displays the active version (such as version 2.3.5).</p>
+
+        <h3>Step 2: Importing NumPy with the Industry Standard Alias</h3>
+        <p>It has become a standard convention across the software and data science industry to import NumPy using the alias <code>np</code>:</p>
+        <pre><code># Standard industry import convention
+import numpy as np
+import time  # Standard library used for benchmarking performance</code></pre>
+
+        <h2>4. Creating and Inspecting a 2D Array</h2>
+        <h3>Creating an ndarray</h3>
+        <p>To create an ndarray, pass a nested list of values into the <code>np.array()</code> constructor. In this example, we define a 2D matrix with two rows and three columns:</p>
+        <pre><code>import numpy as np
+
+# Creating a 2-row, 3-column NumPy array
+arr = np.array([
+    [1, 2, 3],  # Row 1
+    [4, 5, 6]   # Row 2
+])
+
+print("Array Contents:\n", arr)</code></pre>
+
+        <h3>Key Array Properties: shape, ndim, and dtype</h3>
+        <p>NumPy provides three essential attributes to inspect the structure and data types of an array:</p>
+        <pre><code># 1. Inspecting dimensions in terms of (rows, columns)
+print("Shape:", arr.shape)
+
+# 2. Inspecting the number of dimensions
+print("Number of Dimensions (ndim):", arr.ndim)
+
+# 3. Inspecting the data type of the elements
+print("Data Type (dtype):", arr.dtype)</code></pre>
+        <p><strong>Output analysis:</strong></p>
+        <pre><code>Shape: (2, 3)
+Number of Dimensions (ndim): 2
+Data Type (dtype): int64</code></pre>
+        <ul>
+          <li><code>arr.shape</code>: Returns <code>(2, 3)</code>, confirming that the array consists of 2 rows and 3 columns.</li>
+          <li><code>arr.ndim</code>: Returns <code>2</code>, indicating that the array is two-dimensional. (Real-world client datasets often arrive with multiple dimensions.)</li>
+          <li><code>arr.dtype</code>: Returns <code>int64</code>, meaning each element is stored as a 64-bit integer. This indicates that a 64-bit Python build is running on a 64-bit operating system.</li>
+        </ul>
+
+        <h2>5. Performance Benchmark: Standard Python List vs. NumPy ndarray</h2>
+        <p>To verify the performance advantage of NumPy, we compare the execution time of performing an arithmetic operation (<code>+ 5</code>) on 1 million elements using a standard Python list versus a NumPy array.</p>
+
+        <h3>Approach 1: Using a Standard Python List and a for Loop</h3>
+        <pre><code>import time
+
+# Creating a standard Python list with 1,000,000 numbers
+huge_list = list(range(1000000))
+result_list = []
+
+# Starting timer
+start_time = time.time()
+
+# Iterating and appending +5 to each element
+for item in huge_list:
+    result_list.append(item + 5)
+
+end_time = time.time()
+print(f"Standard List Time: {end_time - start_time:.4f} seconds")</code></pre>
+        <p><strong>Measured duration:</strong> Approximately 0.1177 seconds.</p>
+
+        <h3>Approach 2: Using a NumPy ndarray with Vectorization</h3>
+        <pre><code># Creating a NumPy ndarray with 1,000,000 numbers
+huge_array = np.arange(1000000)
+
+# Starting timer
+start_time = time.time()
+
+# Vectorized operation: applied across the entire array in parallel without a loop
+result_array = huge_array + 5
+
+end_time = time.time()
+print(f"NumPy ndarray Time: {end_time - start_time:.4f} seconds")</code></pre>
+        <p><strong>Measured duration:</strong> Approximately 0.0028 seconds.</p>
+
+        <h3>Why NumPy Wins</h3>
+        <p>Do not write manual <code>for</code> loops over NumPy arrays when applying arithmetic operations, because a loop forces Python to process each element individually. Delegating the calculation directly to the ndarray (<code>huge_array + 5</code>) allows NumPy's underlying C engine to execute the operation across all elements in parallel via vectorization. This produces a dramatic performance speedup, making NumPy the clear choice whenever handling large datasets.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is an ndarray in NumPy, and why is it faster than a standard Python list?</button>
+          <div class="accordion-body"><p>An <strong>ndarray</strong> (n-dimensional array) is the core data structure in NumPy designed for storing and manipulating data across one, two, three, or more dimensions. Unlike standard Python lists—which iterate through items element-by-element using slow, memory-heavy interpreted loops—an ndarray uses <strong>vectorized manipulation</strong>. This treats the data as a vector and executes operations across elements in parallel at low-level machine speed, delivering fast mathematical calculations on large datasets.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What do the .shape, .ndim, and .dtype attributes tell you about a NumPy array?</button>
+          <div class="accordion-body"><p><code>.shape</code> describes structural dimensions as a tuple of (rows, columns)—for example, <code>(2, 3)</code> means 2 rows and 3 columns. <code>.ndim</code> reports the total number of dimensions (axes)—such as 1 for a 1D vector or 2 for a 2D matrix. <code>.dtype</code> indicates the exact data type of the elements (such as <code>int64</code> or <code>float</code>), reflecting memory allocation and the system’s bit architecture.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why should you avoid using a for loop to perform arithmetic on a NumPy array?</button>
+          <div class="accordion-body"><p>A Python <code>for</code> loop forces element-by-element processing and bypasses NumPy’s hardware-level optimizations. Apply operations directly to the array (e.g., <code>arr + 5</code>) so vectorization can compute the entire array in parallel. Benchmarks on 1 million elements show vectorized operations finishing in a fraction of the time of a standard loop.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/python-programming-for-students-pasig.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/steam-model-crafting-paranaque.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-50');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-50');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '50') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
