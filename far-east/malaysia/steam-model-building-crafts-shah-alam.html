@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Model Building Maker Craft Workshop Shah Alam | AI &amp; Robotics Club</title>
+  <title>STEAM Model Building Maker Craft Workshop Shah Alam | AI & Robotics Club</title>
   <meta name="description" content="STEAM miniature model building and maker craft workshop for Shah Alam—foam, cardboard, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/steam-model-building-crafts-shah-alam.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,202 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Shah Alam · Selangor</span><h1>STEAM Miniature Model Building and Maker Craft Workshop Shah Alam</h1>
     <p>A STEAM miniature model building and maker craft workshop for Shah Alam introduces safe materials—EVA foam, cardboard, basic gears and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/97.webp" alt="STEAM Shah Alam" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-41">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-41">Lesson</label>
+        <select id="lesson-select-41" class="lesson-select" aria-label="Select lesson">
+          <option value="41" selected>041: Python File Modes Explained: Read, Write, and Append</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python File Modes Explained: Read, Write, and Append" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Operating Across Different File Modes</h2>
+        <p>After mastering the fundamentals of opening, reading, writing, and closing files in Python, the next essential step is controlling how a file is opened and operated on.</p>
+        <p>When opening a file using Python's built-in <code>open()</code> function, you can pass a mode flag as a second argument. This flag explicitly informs the Python interpreter of your operational intent—whether you plan to read existing contents, write fresh data, or append new information to the end of the file.</p>
+
+        <h2>2. Mode 1: Read Mode ('r')</h2>
+        <p>To read data from an existing file, specify the <code>'r'</code> flag when calling <code>open()</code>.</p>
+        <ul>
+          <li><strong>Behavior:</strong> Informs Python that the target file is being accessed strictly for reading.</li>
+          <li><strong>File pointer & safety:</strong> The file is opened safely without modifying or deleting its existing contents.</li>
+        </ul>
+        <pre><code># 1. Opening demo.txt in Read mode using the 'r' flag
+file = open("demo.txt", "r")
+
+# 2. Reading and printing the contents
+content = file.read()
+print(content)
+
+# 3. Safely closing the file
+file.close()</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Executing this script reads the stored text from <code>demo.txt</code>.</li>
+          <li>In our example, <code>demo.txt</code> contains the initial text lines: "This is a text" and "New line".</li>
+          <li>Python reads and prints these contents to the screen, after which the file is properly closed.</li>
+        </ul>
+
+        <h2>3. Mode 2: Write Mode ('w') & The Overwrite Behavior</h2>
+        <p>To write data into a file, open it using the <code>'w'</code> flag.</p>
+        <ul>
+          <li><strong>Behavior:</strong> Informs Python that you intend to write data into the target file.</li>
+          <li><strong>Confirmation of written data:</strong> When you call <code>file.write()</code>, Python evaluates the string and confirms the exact number of characters written into the file (for example, confirming 21 characters written for a sentence).</li>
+          <li><strong>The overwrite effect:</strong> When an existing file is opened in <code>'w'</code> mode, all previous data is completely overwritten and replaced by the newly written content.</li>
+        </ul>
+        <pre><code># 1. Opening demo.txt in Write mode using the 'w' flag
+file = open("demo.txt", "w")
+
+# 2. Writing new text into the file
+file.write("This is another text")
+
+# 3. Closing the file
+file.close()</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Writing "This is another text" writes 21 characters into the file.</li>
+          <li>Once the file is closed and <code>demo.txt</code> is reloaded on disk, the original contents ("This is a text" and "New line") are gone.</li>
+          <li>The file now contains only the new string: "This is another text".</li>
+        </ul>
+
+        <h2>4. Mode 3: Append Mode ('a') — Preserving Historical Data</h2>
+        <p>In many real-world scenarios—such as logging events, recording transaction histories, or appending user entries—you do not want previous data to be overwritten. Instead, you need incoming information added cleanly to the end of the existing content.</p>
+        <p>For this purpose, Python provides Append Mode, designated by the <code>'a'</code> flag.</p>
+        <ul>
+          <li><strong>Behavior:</strong> Python opens the file for writing, but instead of truncating or wiping the old content, it places new data directly after the old data.</li>
+          <li><strong>Combining with newline characters (\n):</strong> To ensure that the appended text begins on a fresh line rather than attaching to the end of the previous sentence, prepend a backslash-n (<code>\n</code>) escape character before the text string.</li>
+        </ul>
+        <pre><code># 1. Opening demo.txt in Append mode using the 'a' flag
+file = open("demo.txt", "a")
+
+# 2. Appending new text on a new line using '\n'
+file.write("\nNew line added")
+
+# 3. Closing the file
+file.close()</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Python appends "\nNew line added", confirming that 16 characters have been written into the file.</li>
+          <li>Calling <code>file.close()</code> ensures the appended changes are saved to disk.</li>
+          <li>When <code>demo.txt</code> is reloaded, the previous text remains fully intact, and the new line is successfully added underneath it:</li>
+        </ul>
+        <pre><code>This is another text
+New line added</code></pre>
+
+        <h2>5. Summary: Choosing the Right File Mode</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mode Flag</th>
+              <th>Name</th>
+              <th>Primary Function</th>
+              <th>Effect on Existing Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>'r'</code></td>
+              <td>Read</td>
+              <td>Opens file for reading</td>
+              <td>Content is preserved unchanged</td>
+            </tr>
+            <tr>
+              <td><code>'w'</code></td>
+              <td>Write</td>
+              <td>Opens file for writing fresh data</td>
+              <td>Overwrites / erases all previous content</td>
+            </tr>
+            <tr>
+              <td><code>'a'</code></td>
+              <td>Append</td>
+              <td>Opens file for writing at the end</td>
+              <td>Preserves old data and appends new content</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the main difference between opening a file in Write mode ('w') versus Append mode ('a') in Python?</button>
+          <div class="accordion-body"><p>In Write mode (<code>'w'</code>), Python opens the file for writing but completely overwrites and replaces all existing data with the new text. In Append mode (<code>'a'</code>), Python opens the file for writing while preserving all previous data, adding the new text directly to the end of the file without overwriting anything.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why should you use the escape character \n when writing data in Append mode ('a')?</button>
+          <div class="accordion-body"><p>When writing data in append mode, Python writes new text directly from the current end of the file. If the previous line did not terminate with a line break, the new string would attach directly to the last character of the previous text. Prepending <code>\n</code> (backslash-n) forces Python to insert a line break, ensuring that the newly appended content starts cleanly on a fresh new line.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens when Python executes a file.write() operation, and why is closing the file necessary?</button>
+          <div class="accordion-body"><p>When Python executes <code>file.write()</code>, it writes the specified string into the file and confirms the exact number of characters written (such as confirming 21 characters or 16 characters in console feedback). Calling <code>file.close()</code> afterward is necessary to commit and flush those written changes safely to the disk and properly release the file resource.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/scratch-game-development-children-petaling-jaya.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/weekend-robotics-league-cheras-kuala-lumpur.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-41');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-41');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '41') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature structures and robot mascots</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
