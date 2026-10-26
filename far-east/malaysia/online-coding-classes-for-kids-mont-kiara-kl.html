@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Coding Classes for Kids Mont Kiara KL | AI &amp; Robotics Club</title>
+  <title>Online Coding Classes for Kids Mont Kiara KL | AI & Robotics Club</title>
   <meta name="description" content="Online coding and robotics classes for kids in Mont Kiara, Kuala Lumpur—live English STEM, flexible after school.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/online-coding-classes-for-kids-mont-kiara-kl.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,187 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Mont Kiara · KL</span><h1>Online Coding and Robotics Classes for Kids in Mont Kiara, Kuala Lumpur</h1>
     <p>Online coding and robotics classes for kids in Mont Kiara, Kuala Lumpur help international-school families explore visual programming, circuits and AI logic through live English sessions—without inventing a private Mont Kiara campus.</p></div>
     <div><img src="../../../images/91.webp" alt="Coding Mont Kiara" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-36">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-36">Lesson</label>
+        <select id="lesson-select-36" class="lesson-select" aria-label="Select lesson">
+          <option value="36" selected>036: Python Inheritance Explained: Parent and Child Classes</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Inheritance Explained: Parent and Child Classes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Advanced Code Reusability via Inheritance</h2>
+        <p>Throughout earlier modules, our primary focus has centered on writing modular code and maximizing reusability. In Object-Oriented Programming (OOP), the most advanced and central mechanism for code reusability is <strong>Inheritance</strong>.</p>
+        <p>The word inheritance translates conceptually to "heritage" or "legacy". In programming:</p>
+        <ul>
+          <li>Once you design a well-structured class complete with its own data attributes and methods, you do not need to rewrite that logic from scratch when building new, related classes.</li>
+          <li>Instead, newer classes can directly inherit the data and behaviors of that existing class, creating a natural hierarchy between <strong>Parent (Base)</strong> classes and <strong>Child (Derived)</strong> classes.</li>
+        </ul>
+
+        <h2>2. The Real-World Analogy: The Animal Kingdom</h2>
+        <p>Consider modeling the animal world in software:</p>
+        <ul>
+          <li>Every animal shares fundamental characteristics and behaviors—such as the ability to speak/produce sounds, move around, eat, drink, and reproduce.</li>
+          <li>When creating classes for specific animals—such as a Lion, a Dog, or a Cat—each of these is essentially an animal.</li>
+          <li>Consequently, all specific animals should automatically possess standard default animal behaviors, while retaining their own unique actions.</li>
+          <li>It makes architectural sense to define general animal behaviors inside a common <code>Animal</code> parent class, and then allow specific animal classes to inherit from it.</li>
+        </ul>
+
+        <h2>3. Python Inheritance Syntax: Parent in Parentheses</h2>
+        <p>To establish inheritance in Python, declare the child class using the <code>class</code> keyword, specify the child class name, and place the parent class name inside parentheses <code>()</code> directly after the child class name:</p>
+        <pre><code>class ChildClassName(ParentClassName):</code></pre>
+        <p>Passing the parent class inside parentheses instructs Python to automatically make all data attributes and methods from the parent class accessible within the child class.</p>
+
+        <h2>4. Example 1: Basic Inheritance and the pass Keyword</h2>
+        <p>In this first example, an <code>Animal</code> parent class defines a general <code>speak()</code> method that prints "some sound". The <code>Dog</code> child class inherits from <code>Animal</code> without defining any new methods of its own yet:</p>
+        <pre><code># 1. Defining the Parent (Base) Class
+class Animal:
+    def speak(self):
+        print("some sound")
+
+# 2. Defining the Child Class inheriting from Animal
+class Dog(Animal):
+    pass</code></pre>
+
+        <h3>Understanding the pass Keyword</h3>
+        <ul>
+          <li>When defining a class or function where you do not wish to add additional code or custom behaviors yet, Python requires a non-empty indented body.</li>
+          <li>The <code>pass</code> keyword acts as a syntactical placeholder. It executes no operation and causes no effect, allowing the template to compile cleanly while signaling that no further instructions are written yet.</li>
+        </ul>
+
+        <h3>Testing the Inherited Method in Jupyter Notebook</h3>
+        <pre><code># Instantiating an object of the child class
+dog1 = Dog()
+
+# Calling the speak() method on the child object
+dog1.speak()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>some sound</code></pre>
+
+        <h3>How Python Evaluates This</h3>
+        <ol>
+          <li>Notice that <code>speak()</code> was never defined inside the <code>Dog</code> class.</li>
+          <li>Because <code>Dog</code> inherits from <code>Animal</code>, Python looks inside <code>Dog</code> and, upon finding no local <code>speak()</code> method, ascends the hierarchy to the parent <code>Animal</code> class.</li>
+          <li>It finds and executes <code>Animal.speak()</code>, outputting "some sound".</li>
+        </ol>
+
+        <h2>5. Example 2: Extending the Child Class with Custom Behaviors</h2>
+        <p>Child classes are rarely just empty duplicates; they inherit shared functionality while introducing their own specialized methods.</p>
+        <p>Here, we extend <code>Dog</code> by adding a child-specific <code>bark()</code> method:</p>
+        <pre><code># 1. Parent Class with general functionality
+class Animal:
+    def speak(self):
+        print("some sound")
+
+# 2. Child Class inheriting from Animal and defining unique behaviors
+class Dog(Animal):
+    def bark(self):
+        print("woof")</code></pre>
+
+        <h3>Testing Both Inherited and Child-Specific Methods</h3>
+        <pre><code># Creating an instance of the modified Dog child class
+dog1 = Dog()
+
+# 1. Calling the child's own specific method
+dog1.bark()
+
+# 2. Calling the inherited parent method
+dog1.speak()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>woof
+some sound</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>The <code>Dog</code> class now possesses two distinct methods: its own specialized <code>bark()</code> method and the inherited <code>speak()</code> method from <code>Animal</code>.</li>
+          <li>Calling <code>dog1.bark()</code> executes the method defined inside <code>Dog</code>, printing "woof".</li>
+          <li>Calling <code>dog1.speak()</code> accesses the method inherited from <code>Animal</code>, printing "some sound".</li>
+          <li>This design eliminates redundant code while allowing subclasses to expand their capabilities cleanly.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is inheritance in Python OOP, and why is it considered an advanced reusability concept?</button>
+          <div class="accordion-body"><p>Inheritance is an Object-Oriented Programming mechanism where a new class (a Child class) inherits the data attributes and methods of an existing class (a Parent class). It represents an advanced form of code reusability because once you build and test a parent class (such as an Animal class containing common behaviors like movement, eating, and sound), you can create specialized child classes (such as Dog, Cat, or Lion) that automatically inherit those behaviors without rewriting identical code from scratch.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the syntax for creating a child class from a parent class in Python?</button>
+          <div class="accordion-body"><p>To inherit from a parent class, specify the parent class name inside parentheses <code>()</code> immediately following the child class name during definition:</p><pre><code>class Dog(Animal):
+    pass</code></pre><p>By placing <code>Animal</code> inside parentheses, Python makes all functions and data defined in the Animal parent class immediately available to the Dog child class and any objects instantiated from it.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of the pass keyword in Python class definitions?</button>
+          <div class="accordion-body"><p>In Python, the <code>pass</code> keyword serves as a syntactical placeholder. When creating a child class that inherits all behaviors from a parent class without adding any immediate new methods or attributes, Python still requires a valid, indented code block. Inserting <code>pass</code> allows the class definition to execute without error while indicating that no further custom code is being written inside that block yet.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/mblock-ai-courses-for-children-puchong.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/online-robotics-club-ampang-expats-kl.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-36');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-36');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '36') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual drag-and-drop coding foundations</li><li>Arduino circuit ideas and Python scripts for older learners</li><li>Project-based weekly challenges</li><li>Live online English mentorship</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online coding and robotics classes for kids mont kiara kuala lumpur</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
