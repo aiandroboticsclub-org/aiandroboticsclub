@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hands-On STEM Robotics Workshops for Kids Cebu City | AI &amp; Robotics Club</title>
+  <title>Hands-On STEM Robotics Workshops for Kids Cebu City | AI & Robotics Club</title>
   <meta name="description" content="Hands-on STEM robotics workshops for kids in Cebu City—sensors, motors and coding in live online English sessions.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/stem-robotics-workshops-cebu-city.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,189 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Cebu City · Philippines</span><h1>Hands-On STEM Robotics Workshops for Kids in Cebu City</h1>
     <p>Hands-on STEM robotics workshops for kids in Cebu City combine sensors, motors and programming so learners practise end-to-end engineering thinking—fully online in English.</p></div>
     <div><img src="../../../images/86.webp" alt="STEM Cebu" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-52">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-52">Lesson</label>
+        <select id="lesson-select-52" class="lesson-select" aria-label="Select lesson">
+          <option value="52" selected>052: NumPy Indexing and Slicing Explained: Select Parts of an Array</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="NumPy Indexing and Slicing Explained: Select Parts of an Array" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Accessing and Manipulating Array Subsets</h2>
+        <p>In Python data analysis, working with NumPy requires not just creating arrays, but also extracting, slicing, and modifying specific portions of them. NumPy provides specialized techniques—including zero-based indexing, negative indexing, slicing, and strides—to access individual elements or entire blocks of a multidimensional matrix without unnecessary loops.</p>
+        <p>Example 3×3 matrix layout used throughout this lesson:</p>
+        <pre><code>           Col 0   Col 1   Col 2
+Row 0  →    10      20      30
+Row 1  →    40      50      60
+Row 2  →    70      80      90</code></pre>
+
+        <h2>2. Setup and Basic Indexing in a 2D Array</h2>
+        <p>NumPy is conventionally imported as <code>np</code>. A two-dimensional array with 3 rows and 3 columns can be defined using <code>np.array()</code>:</p>
+        <pre><code>import numpy as np
+
+# Creating a 3x3 two-dimensional NumPy array
+arr = np.array([
+    [10, 20, 30],  # Row 0
+    [40, 50, 60],  # Row 1
+    [70, 80, 90]   # Row 2
+])</code></pre>
+
+        <h3>Zero-Based Indexing</h3>
+        <p>Like standard Python data structures, NumPy indexing starts at index 0. To access a specific element in a 2D array, specify its coordinate as <code>[row_index, column_index]</code>:</p>
+        <pre><code># Accessing specific elements
+print("Element at Row 0, Column 1:", arr[0, 1])  # Output: 20
+print("Element at Row 2, Column 2:", arr[2, 2])  # Output: 90</code></pre>
+        <ul>
+          <li><code>arr[0, 1]</code>: row 0, column 1 → 20</li>
+          <li><code>arr[2, 2]</code>: last row and last column → 90</li>
+        </ul>
+
+        <h2>3. Negative Indexing: Navigating from the End</h2>
+        <p>NumPy supports negative indexing, allowing elements to be referenced relative to the end of the matrix:</p>
+        <pre><code># Negative indexing examples
+print("Element at [-1, -2]:", arr[-1, -2])  # Output: 80
+print("Element at [-3, -3]:", arr[-3, -3])  # Output: 10</code></pre>
+        <ul>
+          <li><code>arr[-1, -1]</code>: bottom-right element (last row, last column)</li>
+          <li><code>arr[-1, -2]</code>: last row, second-to-last column → 80</li>
+          <li><code>arr[-3, -3]</code>: maps to top-left at row 0, column 0 → 10</li>
+        </ul>
+
+        <h2>4. Slicing Subsets of an Array (start:stop)</h2>
+        <p>Slicing extracts a rectangular sub-matrix using the syntax <code>[row_start:row_stop, col_start:col_stop]</code>.</p>
+        <h3>Inclusion and Exclusion Rules</h3>
+        <p>In slicing ranges, the <strong>start index is included</strong>, but the <strong>stop index is excluded</strong>:</p>
+        <ul>
+          <li><code>0:2</code> selects rows 0 and 1 (index 2 excluded)</li>
+          <li><code>1:3</code> selects columns 1 and 2 (index 3 excluded)</li>
+          <li><code>arr[0:2, 1:3]</code> extracts a 2×2 sub-array: 20, 30, 50, 60</li>
+        </ul>
+        <pre><code># Slicing rows 0 to 1 and columns 1 to 2
+sub_array = arr[0:2, 1:3]
+print("Sliced 2x2 Sub-array:\n", sub_array)
+# Output:
+# [[20 30]
+#  [50 60]]</code></pre>
+
+        <h2>5. Strides: Skipping Elements with Step Sizes (::step)</h2>
+        <p>Strides allow skipping rows and columns using a step value. Using <code>::2</code> instructs NumPy to jump two steps forward each time.</p>
+        <pre><code># Extracting every second row and every second column
+strided_arr = arr[::2, ::2]
+print("Strided Sub-array (Corners):\n", strided_arr)
+# Output:
+# [[10 30]
+#  [70 90]]</code></pre>
+        <p><code>arr[::2, ::2]</code> selects every second row and every second column, yielding the four outer corner elements: 10, 30, 70, and 90.</p>
+
+        <h2>6. Critical Concept: Views vs. Independent Copies</h2>
+
+        <h3>Standard Slices Are Views (References)</h3>
+        <p>When creating a slice in NumPy, it does not create a new independent array in memory. Instead, it creates a <strong>view</strong> (reference) pointing to the original array. Modifying an element in a sliced view directly modifies the original array:</p>
+        <pre><code># Creating a slice view
+slice_arr = arr[0:2, 0:2]
+
+# Modifying the first element of the slice
+slice_arr[0, 0] = 999
+
+# Inspecting the original array
+print("Original Array after modifying slice:")
+print(arr)
+# Element at row 0, column 0 of the original array is now 999</code></pre>
+
+        <h3>Preventing Unintended Modifications with .copy()</h3>
+        <p>If modifications to a slice must not alter the original data, create an independent copy with the <code>.copy()</code> method:</p>
+        <pre><code># Resetting and creating an explicit independent copy
+arr[0, 0] = 10
+slice_copy = arr[0:2, 0:2].copy()
+
+# Modifying an element inside the independent copy
+slice_copy[0, 0] = 555
+
+print("Slice Copy:\n", slice_copy)
+print("Original Array (unaltered):\n", arr)
+# 555 appears only in slice_copy; original remains 10</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does 2D indexing work in NumPy, and what values are retrieved by arr[0, 1] and arr[-1, -2]?</button>
+          <div class="accordion-body"><p>2D arrays use zero-based indexing formatted as <code>[row_index, column_index]</code>. In a 3×3 matrix of numbers 10–90, <code>arr[0, 1]</code> accesses row 0 and column 1 → <strong>20</strong>. <code>arr[-1, -2]</code> uses negative indexing for the last row and second-to-last column → <strong>80</strong>.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In NumPy slicing, what does arr[0:2, 1:3] do, and why does it select four elements?</button>
+          <div class="accordion-body"><p>In <code>start:stop</code> syntax, start is included and stop is excluded. <code>0:2</code> selects rows 0 and 1; <code>1:3</code> selects columns 1 and 2. Their intersection is a 2×2 sub-matrix of four elements: 20, 30, 50, and 60.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a slice view and an array copy created with .copy()?</button>
+          <div class="accordion-body"><p>A standard slice is a <strong>view</strong> (reference) to the original array—modifying the slice changes the original data. Calling <code>.copy()</code> allocates separate memory for an independent copy, so changes (e.g. setting an element to 555) stay confined to the copy and leave the original unchanged.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/steam-model-crafting-paranaque.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/regional/international-school-robotics-club-far-east.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-52');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-52');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '52') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control practice</li><li>Coding challenges and debugging</li><li>Age-appropriate beginner to intermediate tracks</li><li>Project demonstration habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
