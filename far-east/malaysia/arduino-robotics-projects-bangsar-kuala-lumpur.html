@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Robotics Projects Course Bangsar KL | AI &amp; Robotics Club</title>
+  <title>Arduino Robotics Projects Course Bangsar KL | AI & Robotics Club</title>
   <meta name="description" content="Arduino microcontroller robotics projects course in Bangsar, KL—breadboards, sensors and C++ logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/arduino-robotics-projects-bangsar-kuala-lumpur.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,167 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bangsar · KL</span><h1>Arduino Microcontroller Robotics Projects Course in Bangsar, KL</h1>
     <p>An Arduino microcontroller robotics projects course for Bangsar, Kuala Lumpur guides students through breadboard wiring, LED control, ultrasonic sensors and introductory control logic—using simulators first, with optional kits at home.</p></div>
     <div><img src="../../../images/92.webp" alt="Arduino Bangsar" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-34">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-34">Lesson</label>
+        <select id="lesson-select-34" class="lesson-select" aria-label="Select lesson">
+          <option value="34" selected>034: Python Encapsulation Explained: Public and Private Attributes</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Encapsulation Explained: Public and Private Attributes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Is Encapsulation?</h2>
+        <p>In Object-Oriented Programming (OOP), encapsulation is one of the most critical foundational concepts.</p>
+        <p>Encapsulation means bundling all of an object's data attributes and the methods that operate on those attributes together inside the object itself. Instead of exposing internal variables directly to the outside world, encapsulation provides external users and programs with dedicated methods to interact with and manipulate those attributes safely.</p>
+
+        <h2>2. The Concept of Data Hiding (The Laptop Analogy)</h2>
+        <p>A core component of encapsulation is <strong>data hiding</strong>—deliberately concealing internal implementation details and raw data structures from the user.</p>
+        <p>Consider a modern computer or laptop:</p>
+        <ul>
+          <li>Inside a laptop lies complex electronic circuitry, chips, motherboards, and wiring.</li>
+          <li>Manufacturers do not expose these delicate internal circuits to the user. Instead, they enclose the circuitry inside a protective outer casing and provide simple external interfaces: a screen, a keyboard, and a mouse.</li>
+          <li>A user operates the entire computer using only these exposed interfaces without ever needing to touch or inspect the internal wiring.</li>
+        </ul>
+        <p>In Python OOP, the same design principle applies: we hide internal variables inside the class and expose only specific methods to the outside world.</p>
+
+        <h2>3. Public vs. Private Attributes</h2>
+        <p>In earlier topics, variables defined inside classes were <strong>public attributes</strong>, meaning they could be read and modified directly from the global scope outside the class.</p>
+        <p>However, good software architecture requires that certain attributes remain private:</p>
+        <ul>
+          <li><strong>Private attributes:</strong> Data attributes that can only be accessed and utilized by methods inside their own class. They cannot be referenced, modified, or called directly from the global program scope.</li>
+          <li><strong>The double-underscore rule (<code>__</code>):</strong> In Python, you declare an attribute as private by prefixing its name with two leading underscores (<code>__</code>).
+            <ul>
+              <li><code>self.name</code> → Public attribute (accessible from outside).</li>
+              <li><code>self.__grade</code> → Private attribute (strictly restricted to internal class methods).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h2>4. Practical Jupyter Notebook Implementation: The Student Class</h2>
+        <p>Let's implement a Student class where a student's name is public, but their grade is kept private using double underscores:</p>
+        <pre><code>class Student:
+    # Constructor initializing public and private attributes
+    def __init__(self, name, grade):
+        self.name = name            # Public attribute
+        self.__grade = grade        # Private attribute (prefixed with double underscores)
+
+    # Public method exposed to safely access the private attribute
+    def get_grade(self):
+        return self.__grade</code></pre>
+
+        <h2>5. Attempting Direct Access: The AttributeError</h2>
+        <p>If you instantiate an object from the Student class and attempt to access <code>__grade</code> directly from outside the class:</p>
+        <pre><code># 1. Instantiating student1 with name "Ali" and grade 90
+student1 = Student("Ali", 90)
+
+# 2. Accessing the public attribute
+print("Student Name:", student1.name)
+
+# 3. Attempting to directly access the private attribute
+print(student1.__grade)</code></pre>
+        <p><strong>Execution and Output:</strong></p>
+        <pre><code>Student Name: Ali
+---------------------------------------------------------------------------
+AttributeError: 'Student' object has no attribute '__grade'</code></pre>
+
+        <h3>Why Does Python Say the Attribute Doesn't Exist?</h3>
+        <p>Although <code>__grade</code> exists in memory as a private variable, Python raises an <code>AttributeError</code> stating that <code>'Student' object has no attribute '__grade'</code>.</p>
+        <p>Python deliberately masks the existence of private attributes from the outside world rather than displaying an error message about permissions. For the outside program, the attribute simply does not exist directly.</p>
+
+        <h2>6. Accessing Private Data Through Class Methods</h2>
+        <p>Because private attributes cannot be reached directly, the outside program must call an exposed class method (such as <code>get_grade()</code>) to retrieve or interact with that data:</p>
+        <pre><code># Instantiating student objects
+student1 = Student("Ali", 90)
+student2 = Student("Sara", 95)
+
+# Accessing private grade data safely via the public get_grade() method
+print(f"{student1.name}'s Grade:", student1.get_grade())
+print(f"{student2.name}'s Grade:", student2.get_grade())</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Ali's Grade: 90
+Sara's Grade: 95</code></pre>
+        <p>By calling <code>student1.get_grade()</code>, the program accesses the internal <code>__grade</code> attribute from within the class's own method, returning the value 90 cleanly without raising an error. Similarly, calling it on <code>student2</code> retrieves 95.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is encapsulation in Python, and how does the laptop analogy explain data hiding?</button>
+          <div class="accordion-body"><p>Encapsulation is an OOP principle where an object's data attributes and the methods that operate on them are bundled together inside the class, restricting direct outside manipulation. This is illustrated by the laptop analogy: a computer contains intricate internal electronic circuitry that is concealed inside an outer casing. Users are not exposed to the raw wiring; instead, they operate the machine through clean external interfaces like the keyboard and mouse. In Python, encapsulation hides the internal state of an object and exposes only designated methods for the outside world to interact with safely.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you declare a private attribute in Python, and where can it be accessed?</button>
+          <div class="accordion-body"><p>In Python, you declare a private attribute by prefixing its name with two leading underscores (<code>__</code>), such as <code>self.__grade</code>. A private attribute can only be accessed and used by functions/methods defined inside that specific class. It cannot be viewed, accessed, or modified directly from the global program scope or from outside the class.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens if you try to access a private attribute directly from outside the class, and how should it be accessed instead?</button>
+          <div class="accordion-body"><p>If you attempt to access a private attribute directly from outside the class (for example, <code>print(student1.__grade)</code>), Python raises an <code>AttributeError</code> stating that the object has no such attribute. Python intentionally masks the variable so that, to the outside world, it appears not to exist at all. To access private data, you must define and call a public class method (such as <code>get_grade(self)</code>) that reads and returns the private attribute from inside the class.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/ai-and-stem-workshops-subang-jaya.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/mblock-ai-courses-for-children-puchong.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-34');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-34');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '34') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard wiring and LED control</li><li>Ultrasonic sensors and motor ideas</li><li>Introductory C++-style control logic</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
