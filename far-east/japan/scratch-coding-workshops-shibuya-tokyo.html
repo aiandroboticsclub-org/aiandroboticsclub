@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Block Coding Workshops Children Shibuya Tokyo | AI &amp; Robotics Club</title>
+  <title>Scratch Block Coding Workshops Children Shibuya Tokyo | AI & Robotics Club</title>
   <meta name="description" content="Scratch block coding workshops for children in Shibuya, Tokyo—arcade games, stories and visual computer science.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/scratch-coding-workshops-shibuya-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,169 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Shibuya · Tokyo</span><h1>Scratch Block Coding Workshops for Children in Shibuya, Tokyo</h1>
     <p>Scratch block coding workshops for children in Shibuya, Tokyo turn passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic.</p></div>
     <div><img src="../../../images/62.webp" alt="Scratch Shibuya" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-29">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-29">Lesson</label>
+        <select id="lesson-select-29" class="lesson-select" aria-label="Select lesson">
+          <option value="29" selected>029: Python OOP Basics: Classes, Objects, Methods, and Attributes Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python OOP Basics: Classes, Objects, Methods, and Attributes Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: From OOP Theory to Practice</h2>
+        <p>In the previous module, we explored the foundations, necessity, and advantages of Object-Oriented Programming (OOP). Now, we examine how to implement OOP directly in Python code: understanding the core concepts of Classes, Objects, Attributes, and Methods, and seeing how objects are constructed and utilized.</p>
+        <p>Before creating an object in code, you must first define a <strong>Class</strong>.</p>
+
+        <h2>2. Class vs. Object: The Blueprint Analogy</h2>
+        <p>Understanding the distinction between a class and an object is fundamental to OOP:</p>
+        <h3>What is a Class?</h3>
+        <ul>
+          <li>A class is a blueprint, design, or template.</li>
+          <li><strong>The Car Analogy:</strong> Before manufacturing an automobile, engineers create an architectural design or blueprint. That blueprint itself is not a physical, drivable car. However, from that single blueprint, a factory can manufacture hundreds or thousands of cars.</li>
+          <li><strong>The House Analogy:</strong> Before building a house, an architect creates a blueprint or floor plan. Using that one blueprint, you can build as many houses as you wish.</li>
+          <li>A class defines how much data (attributes) an object will hold and what actions (methods) it can perform.</li>
+        </ul>
+        <h3>What is an Object?</h3>
+        <ul>
+          <li>An object is a real-world instance of a class.</li>
+          <li>While a class is an abstract concept, an object is a concrete, real instance created from that class.</li>
+        </ul>
+
+        <h2>3. Anatomy of a Class: Attributes and Methods</h2>
+        <p>Every class definition packages two core components:</p>
+        <ol>
+          <li><strong>Attributes (Data Elements):</strong> The variables defined inside a class that store the data of an object. Example: In a Student class, attributes include name, age, roll_number, and grade. In a Car class, an attribute can be color.</li>
+          <li><strong>Methods (Behaviors / Actions):</strong> The functions defined inside a class that specify the actions an object can perform. Example: In a Student class, methods might include <code>speak()</code>, <code>run()</code>, or <code>study()</code>. In a Car class, a method can be <code>start()</code>. Methods placed inside a class belong specifically to that class and are not global functions.</li>
+        </ol>
+
+        <h2>4. Python Class Syntax: The class Keyword & self</h2>
+        <p>To build a class in Python, use the <code>class</code> keyword followed by the class name (conventionally capitalized):</p>
+        <pre><code>class Car:
+    def __init__(self, color):
+        self.color = color
+
+    def start(self):
+        print(f"{self.color} car started.")</code></pre>
+
+        <h3>Understanding the __init__ Method and self</h3>
+        <ul>
+          <li><strong>The <code>class Car:</code> declaration</strong> signals to Python that we are defining a blueprint for car objects.</li>
+          <li><strong>The <code>__init__</code> method</strong> configures and assigns the starting data (such as color) to the newly created car.</li>
+          <li><strong>What is <code>self</code>?</strong> <code>self</code> refers to “myself”—the specific object instance being created or operated upon. Whenever a method inside a class is called, its first parameter is always <code>self</code>, representing the object itself. This allows Python to know precisely which object’s attributes are being modified or referenced.</li>
+          <li><code>self.color = color</code> binds the incoming argument value <code>color</code> to the object’s own internal attribute <code>self.color</code>.</li>
+          <li><strong>The <code>start(self)</code> method</strong> is defined using <code>def start(self):</code>. Because it requires no additional external inputs, it accepts only <code>self</code>. When executed, it prints that the car of that specific color has started (e.g., “white car started”).</li>
+        </ul>
+
+        <h2>5. Instantiating Objects and Calling Methods</h2>
+        <p>Once the class template is defined, you can instantiate multiple independent objects from it:</p>
+        <pre><code># 1. Creating the first car object named 'my_car' with the color "red"
+my_car = Car("red")
+
+# 2. Creating a second car object named 'my_brothers_car' with the color "white"
+my_brothers_car = Car("white")
+
+# 3. Calling the start() method on the specific objects
+my_car.start()
+my_brothers_car.start()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>red car started.
+white car started.</code></pre>
+
+        <h3>Key Rules of Method Invocation</h3>
+        <ul>
+          <li><strong>Targeting the Object:</strong> When invoking <code>my_car.start()</code>, Python executes the start method specifically for <code>my_car</code>, using its stored red color.</li>
+          <li><strong>Templates Cannot Execute Actions Directly:</strong> You cannot execute <code>Car.start()</code> directly because a class is merely an abstract blueprint. A blueprint cannot start or drive—only an actual object instance instantiated from that blueprint can perform actions.</li>
+          <li>Each individual object maintains its own independent attributes (e.g., its own unique color) and its own method executions.</li>
+        </ul>
+
+        <h2>6. Why OOP Matters in Modern Software Development</h2>
+        <ol>
+          <li><strong>Simplifies Complex Problems:</strong> Breaks large, complex software challenges into manageable, self-contained objects.</li>
+          <li><strong>Improves Teamwork & Code Readability:</strong> Code organized into classes and objects is far easier for team members and colleagues to read, understand, and collaborate on.</li>
+          <li><strong>Reusability and Scalability:</strong> Classes can be reused across different programs, and existing classes can easily be extended and scaled as program requirements grow.</li>
+          <li><strong>Foundation of Modern Languages:</strong> OOP is not unique to Python; it forms the core foundation of modern enterprise programming languages, including Java and C++.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a class and an object in Python?</button>
+          <div class="accordion-body"><p>A class is an abstract blueprint, template, or design that defines what data attributes and methods an entity will possess. For example, a car's architectural design or a house's floor plan is a blueprint, but not an actual car or house. An object is a real-world, concrete instance created from that class blueprint. From a single Car class blueprint, you can instantiate multiple distinct objects (such as <code>my_car</code> and <code>my_brothers_car</code>), each maintaining its own independent data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of self in Python class methods?</button>
+          <div class="accordion-body"><p>In Python, <code>self</code> refers to the specific instance of the object itself. Whenever a method is defined inside a class, its first parameter is always <code>self</code>. When you call an object's method (e.g., <code>my_car.start()</code>), Python uses <code>self</code> to identify which object is calling the method, allowing the code to access and update that specific object's internal attributes (such as <code>self.color</code>).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are attributes and methods, and why can't a class blueprint execute methods directly?</button>
+          <div class="accordion-body"><p><strong>Attributes</strong> are variables defined inside a class that store an object's data (such as a student's name, age, and grade, or a car's color). <strong>Methods</strong> are functions defined inside a class that represent the actions or behaviors an object can perform (such as <code>start()</code>, <code>speak()</code>, or <code>run()</code>). A class template cannot execute methods directly because it is merely an abstract definition of data and behaviors. Actions can only be performed by actual object instances created from that class blueprint.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/python-programming-students-meguro-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/steam-model-building-azabu-tokyo.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-29');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-29');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '29') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
