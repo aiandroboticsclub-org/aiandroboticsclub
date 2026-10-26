@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Miniature Model Building Azabu Tokyo | AI &amp; Robotics Club</title>
+  <title>STEAM Miniature Model Building Azabu Tokyo | AI & Robotics Club</title>
   <meta name="description" content="STEAM miniature model building and prototyping in Azabu, Tokyo—foam, gears, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/steam-model-building-azabu-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,194 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Azabu · Tokyo</span><h1>STEAM Miniature Model Building and Prototyping in Azabu, Tokyo</h1>
     <p>A STEAM miniature model building and prototyping workshop for Azabu introduces safe maker materials—foam board, gears, LEDs and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/65.webp" alt="STEAM Azabu" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-30">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-30">Lesson</label>
+        <select id="lesson-select-30" class="lesson-select" aria-label="Select lesson">
+          <option value="30" selected>030: Python Classes and Objects: Create Your First Custom Object</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Classes and Objects: Create Your First Custom Object" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Implementing OOP in Python</h2>
+        <p>In previous modules, we examined the theoretical concepts, benefits, and foundations of Object-Oriented Programming (OOP). In this topic, we transition from theoretical concepts to practical implementation in Python using Jupyter Notebook by creating and practicing with our first custom Class and Object.</p>
+        <p>Before generating any physical instance or object, Python requires the creation of a Class blueprint.</p>
+
+        <h2>2. Step 1: Building a Minimal Class Template</h2>
+        <p>To define a new class, use the <code>class</code> keyword, followed by the class name, and terminate the header with a colon (<code>:</code>). Indented underneath with a tab or four spaces, define its first method using the <code>def</code> keyword:</p>
+        <pre><code># 1. Defining the Car class blueprint
+class Car:
+    def drive(self):
+        print("The car is moving")</code></pre>
+
+        <h3>How Python Interprets the Blueprint</h3>
+        <ul>
+          <li>The <code>class</code> keyword informs Python that a new class template is being defined.</li>
+          <li><code>Car</code> names the template.</li>
+          <li><code>def drive(self):</code> declares a method named <code>drive</code> inside the class.</li>
+          <li><strong>The <code>self</code> parameter</strong> serves as the object reference, allowing Python to know which specific object instance called the method.</li>
+          <li>The method body contains an executable statement, <code>print("The car is moving")</code>.</li>
+        </ul>
+        <p>When you execute this code cell in Jupyter Notebook, no output is displayed. This occurs because you have only constructed the blueprint or design. An architectural design cannot drive on the road; output and actions only occur once an actual object is instantiated from the template.</p>
+
+        <h2>3. Step 2: Instantiating an Object and Calling Methods</h2>
+        <p>To create a real object based on the Car template, assign the class constructor call to a variable:</p>
+        <pre><code># 1. Creating the first car object instance
+car1 = Car()
+
+# 2. Calling the drive method on car1
+car1.drive()</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Writing <code>car1 = Car()</code> instructs Python to construct an object named <code>car1</code> using the Car template.</li>
+          <li>As a result, all data attributes and methods defined inside <code>Car</code> become available inside <code>car1</code>.</li>
+          <li>Calling <code>car1.drive()</code> uses parentheses to invoke the method.</li>
+        </ul>
+
+        <h3>Why We Do Not Manually Pass self</h3>
+        <p>Notice that when calling <code>car1.drive()</code>, no argument is placed inside the parentheses. <code>self</code> is an automatic input parameter. When you write <code>car1.drive()</code>, Python automatically passes the calling object (<code>car1</code>) into the <code>self</code> parameter behind the scenes. Therefore, you do not pass <code>self</code> manually.</p>
+        <p><strong>Output:</strong></p>
+        <pre><code>The car is moving</code></pre>
+
+        <h2>4. Step 3: Adding Data Attributes to the Class</h2>
+        <p>A complete object contains both functions (methods) and variables (data attributes). We can expand the Car class by adding a data attribute named <code>color</code> with a default value of <code>"red"</code>, and updating the <code>drive</code> method to reference that attribute:</p>
+        <pre><code>class Car:
+    # Adding a data attribute with a default value
+    color = "red"
+
+    def drive(self):
+        print(f"{self.color} car is moving")</code></pre>
+
+        <h3>Testing the Updated Blueprint</h3>
+        <pre><code>car1 = Car()
+car1.drive()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>red car is moving</code></pre>
+        <ul>
+          <li>By accessing <code>self.color</code>, the <code>drive</code> method prints the specific color associated with that object.</li>
+          <li>If the car's color is red, it outputs "red car is moving"; if green, it outputs "green car is moving".</li>
+        </ul>
+
+        <h2>5. Step 4: Modifying Attributes with Setter Methods</h2>
+        <p>In Object-Oriented Programming, objects contain data attributes and methods designed to operate on or modify those attributes. To change the default color of a car, we can add a method called <code>set_color</code>:</p>
+        <pre><code>class Car:
+    color = "red"
+
+    def drive(self):
+        print(f"{self.color} car is moving")
+
+    # Setter method to update the car's color
+    def set_color(self, new_color):
+        self.color = new_color</code></pre>
+
+        <h3>Understanding the Setter Method</h3>
+        <ul>
+          <li>The <code>set_color</code> method accepts <code>self</code> (passed automatically) along with a second parameter: <code>new_color</code>.</li>
+          <li>Inside the method body, <code>self.color = new_color</code> reassigns the object's color attribute to the new value.</li>
+          <li>Methods dedicated to updating or assigning values to attributes are commonly called <strong>setters</strong>.</li>
+        </ul>
+
+        <h2>6. Step 5: Instantiating Multiple Independent Objects</h2>
+        <p>One of the core strengths of OOP is that you can instantiate as many independent objects as needed from a single class template, each maintaining its own distinct attributes:</p>
+        <pre><code># 1. Instantiate a second, distinct car object
+car2 = Car()
+
+# 2. Modify the color of car2 using our setter method
+car2.set_color("green")
+
+# 3. Call the drive method on car2
+car2.drive()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>green car is moving</code></pre>
+
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Calling <code>car2.set_color("green")</code> updates the internal color of <code>car2</code> to "green".</li>
+          <li>When <code>car2.drive()</code> executes, it prints "green car is moving" instead of "red car is moving".</li>
+          <li>The template remains reusable and scalable: developers can add more attributes and methods, building up complexity while creating distinct objects with unique data states.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why does executing a Python class definition cell in Jupyter Notebook produce no output?</button>
+          <div class="accordion-body"><p>Executing a class definition produces no screen output because a class is merely an abstract blueprint or template, not a concrete object. Defining the class simply teaches Python what attributes and methods that type of entity will have. Actions and output occur only after you instantiate an actual object from that class (such as <code>car1 = Car()</code>) and explicitly call its methods.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why don't you need to pass an argument for the self parameter when calling an object method like car1.drive()?</button>
+          <div class="accordion-body"><p>In Python, <code>self</code> is an automatic input parameter. When you call an object's method using dot notation—such as <code>car1.drive()</code>—Python automatically passes the calling object (<code>car1</code>) into the <code>self</code> parameter behind the scenes. This allows the method to know precisely which object instance called it and access that specific object's attributes without requiring you to pass it explicitly in code.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a setter method in Python OOP, and how does it modify an object's state?</button>
+          <div class="accordion-body"><p>A setter method (such as <code>set_color(self, new_color)</code>) is a method defined inside a class specifically to update or assign a new value to an object's data attribute. By passing a new value into the setter (e.g., <code>car2.set_color("green")</code>), the method reassigns the internal attribute (<code>self.color = new_color</code>). When other methods like <code>drive()</code> are subsequently called, they reflect the updated attribute value.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/scratch-coding-workshops-shibuya-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/macau/online-stem-and-robotics-club-macau-peninsula.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-30');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-30');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '30') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature robots, bridges and smart-house ideas</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
