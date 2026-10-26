@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock AI Courses for Children Puchong | AI &amp; Robotics Club</title>
+  <title>mBlock AI Courses for Children Puchong | AI & Robotics Club</title>
   <meta name="description" content="mBlock artificial intelligence courses for children in Puchong—visual AI extensions, face tracking and optional robots.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/mblock-ai-courses-for-children-puchong.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,173 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Puchong · Selangor</span><h1>mBlock Artificial Intelligence Courses for Children in Puchong</h1>
     <p>mBlock artificial intelligence courses for children in Puchong use visual blocks and AI extensions so students explore face tracking, voice-style controls and simple models—optionally linked to robot hardware later.</p></div>
     <div><img src="../../../images/99.webp" alt="mBlock AI Puchong" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-35">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-35">Lesson</label>
+        <select id="lesson-select-35" class="lesson-select" aria-label="Select lesson">
+          <option value="35" selected>035: Python Getters and Setters Explained with Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Getters and Setters Explained with Examples" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Connecting Encapsulation to Access Methods</h2>
+        <p>In the study of data encapsulation, an object's internal data is hidden from the outside world by declaring variables as private using double underscores (<code>__</code>). Because the outside program cannot directly read or modify private variables, the class provides dedicated public methods through which external code can safely interact with that private data.</p>
+        <p>In object-oriented programming, these specialized access methods are known as <strong>Getters</strong> and <strong>Setters</strong>:</p>
+        <ul>
+          <li><strong>Getters:</strong> Functions designed to retrieve (get) the value of a class's internal data attributes.</li>
+          <li><strong>Setters:</strong> Functions designed to assign or update (set) the value of a class's internal data attributes.</li>
+        </ul>
+        <p>Whenever a private data member is declared in a class, best practice is to pair it with corresponding getter and setter methods to control external access.</p>
+
+        <h2>2. Why Setters Are Essential: Sanity Checks & Data Validation</h2>
+        <p>The true value of a setter method becomes clear when inspecting its body. If users could modify attributes directly, invalid or illogical data could enter the system.</p>
+        <p>A setter introduces validation logic (sanity checks) before assigning values to private members:</p>
+        <ul>
+          <li><strong>Logical boundaries:</strong> A student's grade must fall between 0 and 100. Even if a student claims to have given 110% effort, the maximum allowable grade remains 100.</li>
+          <li><strong>Preventing negative values:</strong> If a user enters a negative grade (such as -20 or -95), whether accidentally or intentionally, the setter rejects it because a negative grade is invalid.</li>
+          <li><strong>Protecting class ownership and quality:</strong> One of OOP's primary goals is code reusability. When you publish a class for other developers to instantiate and use in their applications, your class represents your work. If your class allowed an object to store -5 as a grade, the class design itself would appear flawed. Setters protect the class from accepting illogical values.</li>
+        </ul>
+
+        <h2>3. Implementation Walkthrough in Jupyter Notebook: The Student Class</h2>
+        <p>The following implementation defines a Student class with a private <code>__grade</code> attribute, a getter (<code>get_grade</code>), and a setter with validation (<code>set_grade</code>):</p>
+        <pre><code>class Student:
+    # 1. Constructor initializing name and private grade
+    def __init__(self, name, grade):
+        self.name = name
+        self.__grade = grade  # Private data member prefixed with '__'
+
+    # 2. Getter method to retrieve the private grade
+    def get_grade(self):
+        return self.__grade
+
+    # 3. Setter method with validation (sanity check)
+    def set_grade(self, new_grade):
+        if 0 <= new_grade <= 100:
+            self.__grade = new_grade
+        else:
+            print(f"Invalid grade: {new_grade}. Grade must be between 0 and 100.")</code></pre>
+
+        <h2>4. Testing Valid Updates and Retrievals</h2>
+        <p>When an object is instantiated and updated with valid data:</p>
+        <pre><code># 1. Initializing student1 with name "Ali" and initial grade 90
+student1 = Student("Ali", 90)
+
+# 2. Modifying grade to 95 using the setter method
+student1.set_grade(95)
+
+# 3. Retrieving and printing the updated grade via the getter
+print("Updated Grade:", student1.get_grade())</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>The constructor initializes <code>student1</code> with a grade of 90.</li>
+          <li>Calling <code>student1.set_grade(95)</code> passes 95 to the setter. Because 95 is between 0 and 100, the validation check passes, and <code>self.__grade</code> updates to 95.</li>
+          <li>Calling <code>student1.get_grade()</code> returns the updated value.</li>
+        </ul>
+        <p><strong>Output:</strong></p>
+        <pre><code>Updated Grade: 95</code></pre>
+
+        <h2>5. Testing Invalid Inputs and Data Protection</h2>
+        <p>If an external user attempts to pass an invalid value, such as a negative grade:</p>
+        <pre><code># Attempting to assign an invalid grade of -95
+student1.set_grade(-95)
+
+# Checking the grade value using the getter
+print("Current Stored Grade:", student1.get_grade())</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>When <code>set_grade(-95)</code> runs, the sanity check identifies -95 as outside the 0 to 100 range.</li>
+          <li>The setter displays an error notification and refuses to update the private attribute.</li>
+          <li>Calling <code>student1.get_grade()</code> confirms that the private variable retained its previously valid value (95) rather than being corrupted by the invalid input.</li>
+        </ul>
+        <p><strong>Output:</strong></p>
+        <pre><code>Invalid grade: -95. Grade must be between 0 and 100.
+Current Stored Grade: 95</code></pre>
+
+        <h2>6. Formatting Output Inside Getters</h2>
+        <p>Getters are not limited to returning raw stored values. A getter can also transform internal data into user-friendly formats before returning it—for example, converting numerical marks into letter grades such as A, B, C, or D.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are getters and setters in Python, and why are they used with private variables?</button>
+          <div class="accordion-body"><p>In Python Object-Oriented Programming, getters are methods designed to retrieve or read private data attributes, while setters are methods designed to assign or update values to those attributes. Because encapsulation keeps private variables (prefixed with <code>__</code>) hidden from direct outside access, getters and setters act as a controlled public interface. They allow external programs to access and modify an object's internal data safely without exposing the raw variables directly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do setter methods protect a class from invalid or illogical data?</button>
+          <div class="accordion-body"><p>A setter method acts as a gatekeeper by applying validation checks (sanity checks) to incoming values before updating an attribute. For example, in a Student class, a student's grade should fall between 0 and 100. If an external user attempts to set an invalid value (such as -20 or -95), the setter intercepts the input, rejects the update, and displays an error message. This preserves the integrity of the object's data and protects the class from being corrupted by improper inputs.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens to a private variable when a setter rejects an invalid value?</button>
+          <div class="accordion-body"><p>When a setter rejects an invalid value, the private attribute is not updated. Instead, the private variable safely retains its previously established valid value (such as the initial value assigned during constructor initialization). Calling the getter method afterward confirms that the internal state remained unchanged and protected.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/arduino-robotics-projects-bangsar-kuala-lumpur.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/online-coding-classes-for-kids-mont-kiara-kl.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-35');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-35');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '35') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>mBlock AI extension modules</li><li>Face-tracking and classification demos</li><li>Optional link to mBot or Arduino</li><li>Safe, supervised AI experimentation</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
