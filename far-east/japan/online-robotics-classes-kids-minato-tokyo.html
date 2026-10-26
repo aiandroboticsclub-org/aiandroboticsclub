@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Expat Kids Minato Tokyo | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Expat Kids Minato Tokyo | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for expat kids in Minato-ku, Tokyo—live English STEM in JST-friendly slots.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/online-robotics-classes-kids-minato-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,18 +21,183 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Minato · Tokyo</span><h1>Online Robotics Classes for Expat Kids in Minato-ku, Tokyo</h1>
     <p>Online robotics classes for expat kids in Minato-ku, Tokyo help international-school households explore sensors, motors and control logic through live English sessions—without inventing a private Minato campus.</p></div>
     <div><img src="../../../images/61.webp" alt="Robotics Minato" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-27">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-27">Lesson</label>
+        <select id="lesson-select-27" class="lesson-select" aria-label="Select lesson">
+          <option value="27" selected>027: Python Modules Explained: How to Import and Reuse Code</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: From Functions to Modules</h2>
+        <p>In previous topics, functions were introduced as modular units of code designed to perform specific tasks. While functions organize small segments of logic, real-world software and artificial intelligence applications require structuring much larger portions of code.</p>
+        <p>In Python, larger code collections are organized into <strong>modules</strong>:</p>
+        <ul>
+          <li><strong>Function:</strong> Packages a small segment of logic for reuse within a program.</li>
+          <li><strong>Module:</strong> A dedicated file containing tested, well-designed Python code (functions, variables, and classes) that can be imported and utilized across multiple programs.</li>
+        </ul>
+        <p>One of Python’s greatest advantages over older programming languages is its massive ecosystem of pre-built modules and libraries. Especially in Artificial Intelligence (AI), Python provides extensive built-in and open-source modules that eliminate the need to write complex algorithms from scratch.</p>
+
+        <h2>2. Common Built-In Python Modules</h2>
+        <p>Python comes bundled with a standard library of pre-installed modules, including:</p>
+        <ul>
+          <li><code>math</code> — Provides comprehensive mathematical functions (such as square roots and trigonometry).</li>
+          <li><code>random</code> — Generates pseudo-random numbers and random selections.</li>
+          <li><code>os</code> — Facilitates direct interaction with the operating system and file system paths.</li>
+        </ul>
+        <p>To use any module, Python provides the <code>import</code> keyword.</p>
+
+        <h2>3. Method 1: Importing an Entire Module</h2>
+        <p>To make an entire module and all of its functions accessible within your file, use the <code>import</code> keyword followed by the module name:</p>
+        <pre><code>import math</code></pre>
+
+        <h3>Calling Module Functions: The Dot Operator (.)</h3>
+        <p>When an entire module is imported, you access its functions by writing the module name, followed by the dot operator (<code>.</code>), followed by the function name:</p>
+        <pre><code>import math
+
+# Calculating the square root of 16
+result = math.sqrt(16)
+print(result)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>4.0</code></pre>
+
+        <h3>Why the Dot Operator Matters (Namespace Protection)</h3>
+        <ul>
+          <li><strong>Avoiding Naming Collisions:</strong> You could write your own custom function named <code>sqrt()</code> inside your script.</li>
+          <li>If you call <code>sqrt(16)</code>, Python executes your locally defined function.</li>
+          <li>If you write <code>math.sqrt(16)</code>, Python explicitly calls the optimized function from the imported <code>math</code> module.</li>
+          <li>The return value is a floating-point number (<code>4.0</code>) because roots frequently evaluate to decimal values.</li>
+        </ul>
+
+        <h2>4. Method 2: Importing Specific Functions (from ... import ...)</h2>
+        <p>If your script only requires a specific tool rather than an entire library, importing the entire module is unnecessary. You can selectively import individual functions using the <code>from</code> and <code>import</code> keywords:</p>
+        <pre><code>from math import sqrt</code></pre>
+
+        <h3>Direct Invocation Without Module Prefixes</h3>
+        <p>When a function is imported individually, it enters your local namespace directly, allowing you to call it without prefixing the module name:</p>
+        <pre><code>from math import sqrt
+
+# Calling the function directly without 'math.'
+print(sqrt(25))</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>5.0</code></pre>
+        <p>Python calculates the square root of 25 and directly prints 5.0.</p>
+        <ul>
+          <li><strong>Entire module:</strong> <code>import math</code> then <code>math.sqrt(25)</code> — requires the <code>math.</code> prefix.</li>
+          <li><strong>Specific function:</strong> <code>from math import sqrt</code> then <code>sqrt(25)</code> — direct call, no prefix.</li>
+        </ul>
+
+        <h2>5. Creating and Using Custom Modules</h2>
+        <p>Beyond utilizing built-in libraries, Python allows developers to create their own custom modules to share code across projects.</p>
+
+        <h3>Step 1: Create a Python File (.py)</h3>
+        <p>In your project directory, create a standard Python file with a <code>.py</code> extension (for example, <code>mymodule.py</code>). Inside this file, define one or more reusable functions:</p>
+        <pre><code># Content saved inside mymodule.py
+def greet():
+    print("Hello I am the modules file")</code></pre>
+
+        <h3>Step 2: Import the Custom Module in Your Main Script</h3>
+        <p>In your Jupyter Notebook or working script located in the same directory, import the file using its filename without the <code>.py</code> extension:</p>
+        <pre><code>import mymodule
+
+# Calling the function defined inside mymodule.py
+mymodule.greet()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Hello I am the modules file</code></pre>
+
+        <h3>How Python Resolves Module Names</h3>
+        <p>When <code>import mymodule</code> executes:</p>
+        <ol>
+          <li>Python searches its built-in and globally installed system libraries to check if a module with that name exists.</li>
+          <li>If no system library matches, Python checks the local working directory/path and loads your local <code>mymodule.py</code> file.</li>
+          <li>You can define multiple functions within a single custom module and call each using <code>mymodule.function_name()</code>.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a module in Python, and how does it differ from a function?</button>
+          <div class="accordion-body"><p>While a function is a small, reusable block of code written to perform a specific task within a program, a module is a separate file (ending in <code>.py</code>) that contains multiple functions, variables, and logic. Modules allow developers to organize large codebases into reusable packages that can be imported and shared across different programs, saving development time and avoiding duplicate code.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between import math and from math import sqrt?</button>
+          <div class="accordion-body"><p><code>import math</code> imports the entire math library into your script. To call any function, you must use the dot operator with the module name as a prefix (e.g., <code>math.sqrt(16)</code>), which prevents naming conflicts with local functions. <code>from math import sqrt</code> selectively imports only the <code>sqrt</code> function into your program. Because the function is imported directly, you can call it without the module prefix (e.g., <code>sqrt(25)</code>).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you create and import a custom Python module?</button>
+          <div class="accordion-body"><p>To create a custom module: (1) Create a Python script saved with a <code>.py</code> extension (such as <code>mymodule.py</code>) and define your functions inside it. (2) In your working script or Jupyter Notebook in the same folder, write <code>import mymodule</code> (omitting the <code>.py</code> extension). (3) Python will locate your local file and allow you to call its functions using dot notation (e.g., <code>mymodule.greet()</code>).</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/online-robotics-bootcamp-osaka-students.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/python-programming-students-meguro-tokyo.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-27');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-27');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '27') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control basics</li><li>Control logic and debugging habits</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship in JST-friendly windows</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
