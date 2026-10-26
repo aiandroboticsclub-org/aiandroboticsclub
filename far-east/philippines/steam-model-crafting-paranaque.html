@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Miniature Model Crafting Prototyping Parañaque | AI &amp; Robotics Club</title>
+  <title>STEAM Miniature Model Crafting Prototyping Parañaque | AI & Robotics Club</title>
   <meta name="description" content="STEAM miniature model crafting and prototyping in Parañaque—foam, gears, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/steam-model-crafting-paranaque.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,201 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Parañaque · Metro Manila</span><h1>STEAM Miniature Model Crafting and Prototyping in Parañaque</h1>
     <p>STEAM miniature model crafting and prototyping for Parañaque introduces safe maker materials—foam board, cardboard, gears, LEDs and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/89.webp" alt="STEAM Paranaque" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-51">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-51">Lesson</label>
+        <select id="lesson-select-51" class="lesson-select" aria-label="Select lesson">
+          <option value="51" selected>051: How to Create NumPy Arrays in Python</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Create NumPy Arrays in Python" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Efficient Array Creation in NumPy</h2>
+        <p>In Python data analysis and machine learning, NumPy provides the core foundation for creating and manipulating arrays and matrices with high performance and efficiency.</p>
+        <p>In modern development, the industry-wide convention is to import NumPy using the alias <code>np</code>:</p>
+        <pre><code>import numpy as np</code></pre>
+        <p>While creating an array directly from custom values is the default approach, scientific computing often demands generating arrays pre-filled with specific default values, ranges, steps, identity matrices, or explicit data types.</p>
+        <ul>
+          <li><code>np.array()</code> — custom elements / explicit dtype</li>
+          <li><code>np.zeros()</code> — filled with 0s (additive identity)</li>
+          <li><code>np.ones()</code> — filled with 1s (multiplicative identity)</li>
+          <li><code>np.full()</code> — filled with any constant custom value</li>
+          <li><code>np.arange()</code> — evenly spaced values with fixed step</li>
+          <li><code>np.linspace()</code> — fixed count of equal divisions</li>
+          <li><code>np.eye()</code> — identity matrix (1s on diagonal)</li>
+          <li><code>np.diag()</code> — custom diagonal matrix</li>
+        </ul>
+
+        <h2>2. Creating Basic Arrays from Elements (np.array)</h2>
+        <p>The standard method to create a NumPy array is passing a list of values inside square brackets into the <code>np.array()</code> function.</p>
+        <pre><code># Creating a 1D array with three elements
+arr = np.array([1, 2, 3])
+print("1D Array:", arr)</code></pre>
+        <p>This creates a NumPy array holding one row and three columns with elements 1, 2, and 3.</p>
+
+        <h2>3. Initializing Constant Arrays: np.zeros, np.ones, and np.full</h2>
+
+        <h3>A. Initializing with Zeros (np.zeros)</h3>
+        <p>To initialize an array of any required dimensions filled entirely with zeros, use <code>np.zeros()</code>.</p>
+        <pre><code># Creating a 2-row, 3-column matrix filled with zeros
+zero_arr = np.zeros((2, 3))
+print("Zeros Matrix:\n", zero_arr)</code></pre>
+        <ul>
+          <li>The first argument <code>2</code> specifies the number of rows; the second argument <code>3</code> specifies the number of columns.</li>
+          <li>Every element is initialized to 0.</li>
+        </ul>
+
+        <h3>B. Initializing with Ones (np.ones)</h3>
+        <p>In many linear algebra and data operations—especially multiplication—initializing with zero is impractical because multiplying any number by zero results in zero. For these cases, initialize arrays with ones using <code>np.ones()</code>:</p>
+        <pre><code># Creating a 2-row, 3-column matrix initialized to 1
+ones_arr = np.ones((2, 3))
+print("Ones Matrix:\n", ones_arr)</code></pre>
+        <p>Generates a 2D matrix of shape <code>(2, 3)</code> where every element is initialized to 1.</p>
+
+        <h3>C. Initializing with a Constant Value (np.full)</h3>
+        <p>To fill an entire array with a specific custom number other than 0 or 1, use <code>np.full()</code>. It takes two arguments: the array shape/size and the initialization value:</p>
+        <pre><code># Creating a 2x3 matrix filled entirely with the number 7
+full_arr = np.full((2, 3), 7)
+print("Full Matrix (Filled with 7):\n", full_arr)</code></pre>
+        <p>Generates an array with two rows and three columns where all elements are set to 7.</p>
+
+        <h2>4. Numerical Sequences: np.arange vs. np.linspace</h2>
+
+        <h3>A. Step-Based Ranges (np.arange)</h3>
+        <p>Similar to Python's built-in <code>range()</code>, <code>np.arange()</code> generates values starting from a start point up to an endpoint with a designated step size:</p>
+        <pre><code># Range from 0 to 10 with a step size of 2
+range_arr = np.arange(0, 10, 2)
+print("arange Array:", range_arr)</code></pre>
+        <p><strong>Output:</strong> <code>[0 2 4 6 8]</code></p>
+        <ul>
+          <li><strong>Start included, stop excluded:</strong> The sequence starts at 0 and adds +2 repeatedly (0, 2, 4, 6, 8). The stop parameter (10) is not included.</li>
+        </ul>
+
+        <h3>B. Division-Based Intervals (np.linspace)</h3>
+        <p>When you need a range divided into a specific number of equal parts rather than defining a step size, use <code>np.linspace()</code>. NumPy calculates the step size automatically:</p>
+        <pre><code># Dividing the interval between 0 and 1 into 5 equal parts
+linear_arr = np.linspace(0, 1, 5)
+print("linspace Array:", linear_arr)</code></pre>
+        <p><strong>Output:</strong> <code>[0. 0.25 0.5 0.75 1.]</code></p>
+        <ul>
+          <li><strong>Endpoint included:</strong> Unlike <code>np.arange()</code>, <code>np.linspace()</code> includes the stop value (1.0) as the final element.</li>
+        </ul>
+
+        <h2>5. Matrix Structures: Identity Matrix and Custom Diagonals</h2>
+
+        <h3>A. Identity Matrix (np.eye)</h3>
+        <p>An identity matrix is a square matrix where all diagonal values equal 1 and all non-diagonal values equal 0. It is generated using <code>np.eye()</code>, which requires only a single dimension argument:</p>
+        <pre><code># Creating a 3x3 identity matrix
+identity_matrix = np.eye(3)
+print("Identity Matrix (3x3):\n", identity_matrix)</code></pre>
+        <p>Generates a 3×3 matrix with 1s across the main diagonal and 0s everywhere else.</p>
+
+        <h3>B. Custom Diagonal Matrix (np.diag)</h3>
+        <p>To specify custom values along the diagonal of a square matrix, pass a list of diagonal numbers to <code>np.diag()</code>:</p>
+        <pre><code># Creating a 3x3 matrix with custom diagonal elements
+diag_matrix = np.diag([1, 2, 3])
+print("Custom Diagonal Matrix:\n", diag_matrix)</code></pre>
+        <p>Generates a 3×3 matrix where the diagonal elements are 1, 2, and 3, while all non-diagonal entries are set to 0.</p>
+
+        <h2>6. Managing Data Types: Enforcing and Converting (dtype & astype)</h2>
+
+        <h3>A. Enforcing Data Types During Creation (dtype)</h3>
+        <p>When creating an array, pass the <code>dtype</code> argument into <code>np.array()</code> to force elements into a specific type, such as floating-point numbers:</p>
+        <pre><code># Forcing integer inputs into float representation
+float_arr = np.array([1, 2, 3], dtype=float)
+print("Float Enforced Array:", float_arr)</code></pre>
+        <p><strong>Output:</strong> <code>[1. 2. 3.]</code> — even though the inputs were integers, <code>dtype=float</code> stores them as floating-point decimals.</p>
+
+        <h3>B. Converting Types on Existing Arrays (astype)</h3>
+        <p>If an array already exists with decimal values and you need them converted into integers, use the <code>astype()</code> method:</p>
+        <pre><code># Array containing floating-point decimals
+decimal_arr = np.array([1.5, 2.7, 3.9])
+
+# Converting to integers upon return
+int_arr = decimal_arr.astype(int)
+print("Converted Integer Array:", int_arr)</code></pre>
+        <p><strong>Output:</strong> <code>[1 2 3]</code> — <code>.astype(int)</code> truncates the fractional portion and keeps only the integer parts.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is np.ones() often preferred over np.zeros() when initializing matrices for mathematical operations?</button>
+          <div class="accordion-body"><p>While <code>np.zeros()</code> initializes every matrix element to 0, multiplying any number by zero yields zero. In workflows involving multiplication, initializing with zeros causes computations to collapse to zero. Initializing with <code>np.ones()</code> assigns every element to 1, preserving values during matrix multiplication and scaling calculations.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the two key operational differences between np.arange() and np.linspace()?</button>
+          <div class="accordion-body"><p><strong>1. Step size vs. step count:</strong> With <code>np.arange(start, stop, step)</code> you specify the exact step size; with <code>np.linspace(start, stop, num)</code> you specify the total count of equal divisions and NumPy calculates the step. <strong>2. Endpoint inclusion:</strong> In <code>np.arange()</code> the stop value is excluded (e.g. <code>np.arange(0, 10, 2)</code> ends at 8). In <code>np.linspace()</code> the stop value is included (e.g. <code>np.linspace(0, 1, 5)</code> includes 1.0).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you enforce a specific data type when creating an array versus converting an existing array's types?</button>
+          <div class="accordion-body"><p><strong>During creation:</strong> use the <code>dtype</code> argument inside <code>np.array()</code> (e.g. <code>np.array([1, 2, 3], dtype=float)</code>) to cast inputs immediately. <strong>On an existing array:</strong> use the <code>.astype()</code> method (e.g. <code>decimal_arr.astype(int)</code>), which converts stored elements and truncates decimals when casting floats to integers.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/scratch-coding-game-development-makati.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/stem-robotics-workshops-cebu-city.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-51');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-51');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '51') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature robots and scaled engineering projects</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
