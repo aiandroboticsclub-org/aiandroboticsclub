@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM and Robotics Club Macau Peninsula | AI &amp; Robotics Club</title>
+  <title>Online STEM and Robotics Club Macau Peninsula | AI & Robotics Club</title>
   <meta name="description" content="Online STEM and robotics club for Macau Peninsula students—100% English live labs and project pathways.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/macau/online-stem-and-robotics-club-macau-peninsula.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,175 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Macau Peninsula</span><h1>Online STEM and Robotics Club for Macau Peninsula Students</h1>
     <p>An online STEM and robotics club for Macau Peninsula students delivers live English labs on coding, sensors and projects—ideal for international and bilingual school households without inventing a local clubhouse.</p></div>
     <div><img src="../../../images/79.webp" alt="STEM Macau Peninsula" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-31">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-31">Lesson</label>
+        <select id="lesson-select-31" class="lesson-select" aria-label="Select lesson">
+          <option value="31" selected>031: Python __init__ Constructor Explained for Beginners</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python __init__ Constructor Explained for Beginners" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Initializing Object Data Attributes</h2>
+        <p>When you define a class template, its objects need data attributes to hold their information. If you do not assign initial values to an object's data attributes when it is created, those values might either remain unset or take arbitrary system defaults.</p>
+        <p>To avoid unpredictability, it is best practice to explicitly define default or initial values for an object’s attributes right at the moment of creation. If the user wants to update those values later during execution, they can easily modify them.</p>
+        <p>In Python, this initialization process is handled automatically by a special method known as the <strong>constructor</strong>.</p>
+
+        <h2>2. What Is a Constructor and Why Is It Called __init__?</h2>
+        <ul>
+          <li><strong>The <code>__init__</code> keyword:</strong> In Python, the constructor is written as <code>__init__</code> with two leading underscores and two trailing underscores.</li>
+          <li><strong>The first method called:</strong> The constructor is called a “constructor” because its job is to construct and initialize the object. Whenever a new object instance is created from a class, the constructor is always the very first method that executes.</li>
+          <li><strong>Automatic execution:</strong> You never need to call <code>obj.__init__()</code> explicitly. When you type the class name followed by parentheses (e.g., <code>Dog()</code> or <code>Car()</code>), those parentheses represent the constructor call. Python automatically identifies the class name with parentheses and executes the <code>__init__</code> method behind the scenes.</li>
+        </ul>
+
+        <h2>3. Example 1: Constructor with Built-In Default Values (The Dog Class)</h2>
+        <p>In this pattern, the constructor assigns fixed default values directly inside its body without requiring external inputs at creation time:</p>
+        <pre><code>class Dog:
+    def __init__(self):
+        # Setting a default attribute value during construction
+        self.name = "Buddy"
+
+    def bark(self):
+        print(f"{self.name} says woof")</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <pre><code># Instantiating the dog object
+my_dog = Dog()
+
+# Calling the bark method
+my_dog.bark()</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Buddy says woof</code></pre>
+        <ul>
+          <li>Writing <code>my_dog = Dog()</code> runs the <code>__init__</code> method automatically.</li>
+          <li>The constructor initializes <code>self.name</code> with the default string <code>"Buddy"</code>.</li>
+          <li>When <code>my_dog.bark()</code> is called, it outputs "Buddy says woof" using the value initialized during construction.</li>
+          <li>If needed, the user can change this attribute value later.</li>
+        </ul>
+
+        <h2>4. Example 2: Parameterized Constructor with Input Arguments (The Car Class)</h2>
+        <p>Rather than hardcoding default values for every object, you can pass input arguments directly into the <code>__init__</code> constructor. This allows each object to be created with its own custom attribute values from the start:</p>
+        <pre><code>class Car:
+    # Constructor accepting input arguments for brand and color
+    def __init__(self, brand, color):
+        self.brand = brand
+        self.color = color</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <p>You pass the specific arguments inside the parentheses when instantiating the object:</p>
+        <pre><code># 1. Creating car1 with brand "Toyota" and color "red"
+car1 = Car("Toyota", "red")
+
+# Printing car1 attributes
+print("Car 1 Brand:", car1.brand)
+print("Car 1 Color:", car1.color)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Car 1 Brand: Toyota
+Car 1 Color: red</code></pre>
+        <ul>
+          <li>When <code>Car("Toyota", "red")</code> runs, Python routes <code>"Toyota"</code> and <code>"red"</code> directly into the <code>__init__</code> constructor’s parameters.</li>
+          <li>The constructor assigns them internally (<code>self.brand = brand</code> and <code>self.color = color</code>), establishing those attributes for <code>car1</code>.</li>
+        </ul>
+
+        <h2>5. Modifying Attributes and Managing Multiple Instances</h2>
+        <p>Attributes configured during construction remain fully mutable, and different instances maintain completely independent states:</p>
+        <pre><code># Modifying an attribute on car1
+car1.color = "blue"
+
+# 2. Creating an independent second object: car2
+car2 = Car("Honda", "white")
+
+# Inspecting both objects
+print("Car 2:", car2.brand, car2.color)
+print("Car 1 updated color:", car1.color)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Car 2: Honda white
+Car 1 updated color: blue</code></pre>
+        <ul>
+          <li><code>car2</code> is instantiated with its own unique data ("Honda" and "white").</li>
+          <li>Modifying <code>car1.color</code> to "blue" updates only <code>car1</code>, leaving <code>car2</code> unaffected.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the __init__ method in Python, and why is it called a constructor?</button>
+          <div class="accordion-body"><p>In Python, <code>__init__</code> (written with double underscores before and after) is a special method known as the constructor. It is called a constructor because it is used to construct and initialize the object when an instance of a class is created. It is always the very first method that executes automatically upon object creation, ensuring that the object's data attributes receive proper default or initial values.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How is the __init__ constructor called in code, and do you need to invoke it explicitly?</button>
+          <div class="accordion-body"><p>You do not call <code>__init__</code> explicitly in your code. Instead, when you instantiate an object by writing the class name followed by parentheses—such as <code>my_dog = Dog()</code> or <code>car1 = Car("Toyota", "red")</code>—those parentheses represent the constructor call. Python automatically recognizes the class name and parentheses and invokes the <code>__init__</code> method behind the scenes.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do parameterized constructors allow different objects to have unique attributes at creation time?</button>
+          <div class="accordion-body"><p>By defining parameters inside <code>__init__</code> (e.g., <code>def __init__(self, brand, color):</code>), the constructor can accept input arguments when the object is instantiated. When you pass specific values upon creation (such as <code>Car("Toyota", "red")</code> and <code>Car("Honda", "white")</code>), the constructor binds those incoming values to the respective object’s internal attributes (<code>self.brand</code> and <code>self.color</code>). This allows multiple independent objects created from the same class template to start with completely different initial states.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/steam-model-building-azabu-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/macau/scratch-game-design-classes-taipa-macau.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-31');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-31');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '31') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Weekly live interactive labs in English</li><li>Coding and robotics project pathways</li><li>Community practice and project recognition</li><li>Optional self-paced Udemy reinforcement</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
