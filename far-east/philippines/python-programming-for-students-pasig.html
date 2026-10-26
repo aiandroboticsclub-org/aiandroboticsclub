@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Programming Online Classes Ortigas Pasig Students | AI &amp; Robotics Club</title>
+  <title>Python Programming Online Classes Ortigas Pasig Students | AI & Robotics Club</title>
   <meta name="description" content="Python programming online classes for students in Ortigas, Pasig—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/python-programming-for-students-pasig.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,164 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Pasig · Metro Manila</span><h1>Python Programming Online Classes for Students in Ortigas, Pasig</h1>
     <p>Python programming online classes for students in Ortigas, Pasig smooth the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/85.webp" alt="Python Pasig" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-49">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-49">Lesson</label>
+        <select id="lesson-select-49" class="lesson-select" aria-label="Select lesson">
+          <option value="49" selected>049: Python Data Analysis Tools Explained: NumPy, Pandas, Matplotlib, and Seaborn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Data Analysis Tools Explained: NumPy, Pandas, Matplotlib, and Seaborn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Transitioning to Data Science</h2>
+        <p>With the core programming modules completed, we begin a new chapter: Data Science. Data science is a foundational paradigm within Artificial Intelligence where we study data, transform it, and build predictive machine learning models.</p>
+        <p>To build any intelligent system, we must first understand what data actually is, how it is classified, and why it is the defining factor in artificial intelligence applications.</p>
+
+        <h2>2. Data vs. Information: The Core Distinction</h2>
+        <p>Understanding the transition from raw inputs to intelligent outputs requires distinguishing between data and information:</p>
+        <ul>
+          <li><strong>What is Data?</strong> Data refers to raw facts, figures, and observations collected from various sources. In its raw form, data has not yet been processed or organized.</li>
+          <li><strong>What is Information / Knowledge?</strong> Information (or knowledge) is data that has been transformed and made meaningful. Transforming raw data allows us to extract insights and build predictive algorithms and automated systems.</li>
+        </ul>
+        <p>When beginning any client engagement or engineering project, the workflow begins with domain understanding—learning the client's business context—followed immediately by extracting enough data to successfully train the target AI model.</p>
+
+        <h2>3. The Three Types of Data</h2>
+        <p>When collecting data from clients or external systems, the data arrives in three distinct forms:</p>
+
+        <h3>1. Structured Data</h3>
+        <ul>
+          <li><strong>Characteristics:</strong> Highly organized data structured in well-defined tables with a fixed number of rows and columns.</li>
+          <li><strong>Common formats:</strong> Relational databases, CSV files (Comma Separated Values), and Microsoft Excel spreadsheets.</li>
+          <li><strong>Trade-off:</strong> It is the easiest data to visualize, clean, and process with algorithms. However, it is often the most difficult format for clients to prepare and provide.</li>
+        </ul>
+
+        <h3>2. Unstructured Data</h3>
+        <ul>
+          <li><strong>Characteristics:</strong> Data in the natural formats that humans process every day, lacking a predefined tabular layout.</li>
+          <li><strong>Common formats:</strong> Text documents, images, audio recordings, and videos.</li>
+          <li><strong>Trade-off:</strong> It is abundant and easy to collect from nature and everyday environments, but processing it with AI models is significantly more complex.</li>
+        </ul>
+
+        <h3>3. Semi-Structured Data</h3>
+        <ul>
+          <li><strong>Characteristics:</strong> Bridges the gap between structured and unstructured formats. It does not have fixed rows and columns like a spreadsheet, but its elements are clearly tagged and organized.</li>
+          <li><strong>Common formats:</strong> JSON (JavaScript Object Notation) and XML.</li>
+          <li><strong>Industry standard:</strong> JSON has become an industry standard for web services and APIs, outputting tagged records that can scale to extensive lengths while preserving structural clarity.</li>
+        </ul>
+
+        <h2>4. Why Data Matters in AI: "Garbage In, Garbage Out"</h2>
+        <p>Data serves as the basic fuel for machine learning and AI models. The quality of your data directly dictates the quality and reliability of the resulting system:</p>
+        <ul>
+          <li><strong>Garbage In, Garbage Out (GIGO):</strong> If an AI model is fed flawed, noisy, or low-quality data, it will inevitably produce poor, inaccurate outputs.</li>
+          <li><strong>Model limits:</strong> Even the most mathematically sophisticated and advanced AI model will fail if it is trained on poor data.</li>
+          <li>Collecting high-quality data and formatting it properly is therefore the single most critical step in determining model accuracy and dependability.</li>
+        </ul>
+
+        <h2>5. The Four Pillars of High-Quality Data</h2>
+        <p>To ensure an AI model trains effectively, the dataset must satisfy four fundamental criteria:</p>
+        <ol>
+          <li><strong>Relevance:</strong> The collected data must directly align with the specific problem being addressed. Clients often possess massive volumes of varied data across different departments, but software solutions address discrete problems one at a time. You must filter and gather only the data relevant to the active problem.</li>
+          <li><strong>Accuracy:</strong> The data must be reliable and free from errors. While obtaining 100% clean data in real-world scenarios is virtually impossible, developers should target datasets that minimize errors (such as aiming for approximately 99% accuracy).</li>
+          <li><strong>Diversity:</strong> The dataset must capture multiple variations, scenarios, and distinct use cases. If a dataset lacks variation, the model will overlook key requirements and fail when exposed to real-world edge cases.</li>
+          <li><strong>Sufficiency:</strong> There must be enough data volume across every variation to properly train the AI architecture. Sufficient data ensures that the resulting model is robust and capable of generalizing accurately to unseen future examples.</li>
+        </ol>
+
+        <h2>6. The End-to-End Machine Learning Pipeline</h2>
+        <p>Transforming client data into a functional AI application follows a structured, multi-stage engineering pipeline:</p>
+        <ol>
+          <li><strong>Data Collection:</strong> Gathering raw datasets from the client after acquiring an understanding of their domain.</li>
+          <li><strong>Data Pre-processing:</strong>
+            <ul>
+              <li><strong>Cleaning:</strong> Removing corrupt values, missing records, and anomalies.</li>
+              <li><strong>Transformation:</strong> Converting the cleaned data into numerical and mathematical formats accepted by machine learning models.</li>
+            </ul>
+          </li>
+          <li><strong>Feature Engineering:</strong> Inspecting attributes and dropping irrelevant variables to keep the dataset precise and efficient.</li>
+          <li><strong>Model Training:</strong> Iteratively training the machine learning model on the pre-processed data.</li>
+          <li><strong>Model Evaluation:</strong> Testing the model against independent test data to evaluate performance, accuracy, and generalization before client deployment.</li>
+          <li><strong>Deployment:</strong> Deploy the completed AI model to production.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between raw data and information?</button>
+          <div class="accordion-body"><p>Data consists of raw, unorganized facts, figures, and observations gathered from various sources that have not yet been processed. Information (or knowledge) is data that has been cleaned, structured, and transformed into a meaningful format. While raw data alone cannot guide decision-making, transformed information provides the actionable insights necessary to train predictive models and build artificial intelligence systems.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are structured, unstructured, and semi-structured data, and what are their trade-offs in AI?</button>
+          <div class="accordion-body"><p><strong>Structured data</strong> is arranged in strict tables with fixed rows and columns (e.g., CSV, Excel, SQL). It is easiest to visualize and process, but often hardest for clients to provide. <strong>Unstructured data</strong> includes text, images, audio, and video—easy to gather but complex for AI to parse. <strong>Semi-structured data</strong> (JSON, XML) has tagged hierarchy without rigid grids; JSON is an industry standard for web APIs.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does "Garbage In, Garbage Out" mean in Machine Learning, and what are the four requirements of good data?</button>
+          <div class="accordion-body"><p>"Garbage In, Garbage Out" (GIGO) means that if an AI model is trained on poor, erroneous, or noisy data, it will produce inaccurate and unreliable outputs. Even the most advanced algorithm cannot function effectively without high-quality training data. Good data must satisfy four pillars: <strong>Relevance</strong> (related to the problem), <strong>Accuracy</strong> (minimal errors, ~99%), <strong>Diversity</strong> (broad variations and edge cases), and <strong>Sufficiency</strong> (enough volume for reliable generalization).</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/online-robotics-classes-kids-bgc-taguig.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/scratch-coding-game-development-makati.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-49');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-49');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '49') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
