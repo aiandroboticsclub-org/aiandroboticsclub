@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Logic and STEM Workshops Subang Jaya | AI &amp; Robotics Club</title>
+  <title>AI Logic and STEM Workshops Subang Jaya | AI & Robotics Club</title>
   <meta name="description" content="AI logic and STEM creative workshops for Subang Jaya students—visual ML demos, patterns and maker thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/ai-and-stem-workshops-subang-jaya.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,193 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Subang Jaya · Selangor</span><h1>AI Logic and STEM Creative Workshops for Subang Jaya Students</h1>
     <p>AI logic and STEM creative workshops for Subang Jaya students introduce computer vision, pattern recognition and machine-learning ideas through kid-friendly visual tools—plus responsible AI habits.</p></div>
     <div><img src="../../../images/94.webp" alt="AI STEM Subang Jaya" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-33">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-33">Lesson</label>
+        <select id="lesson-select-33" class="lesson-select" aria-label="Select lesson">
+          <option value="33" selected>033: How to Access Python Object Attributes and Methods</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Access Python Object Attributes and Methods" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: From Definition to Access</h2>
+        <p>In previous topics, we learned that when defining a class, we use the <code>self</code> keyword to create instance variables and instance methods. Instance methods can access and manipulate those specific instance variables.</p>
+        <p>Once a class blueprint is compiled and objects are instantiated, the next critical step is knowing how to access those instance variables and invoke their instance methods from outside the class.</p>
+
+        <h2>2. Reviewing the Student Class Architecture</h2>
+        <p>To demonstrate accessing attributes and methods, we utilize the Student class. This blueprint packages three instance variables and three instance methods:</p>
+        <ul>
+          <li><strong>Three instance variables:</strong> <code>self.name</code>, <code>self.age</code>, <code>self.grade</code> (identified as instance variables because each is prefixed with <code>self.</code> inside the constructor).</li>
+          <li><strong>Three instance methods:</strong>
+            <ul>
+              <li><code>__init__(self, name, age, grade)</code> — the constructor</li>
+              <li><code>display_info(self)</code> — displays all three instance variables</li>
+              <li><code>is_eligible(self)</code> — uses an if-else condition to evaluate whether the student's age is greater than 15</li>
+            </ul>
+          </li>
+        </ul>
+        <p>We identify them as instance methods because each accepts <code>self</code>—the object on which the method is called—as its first parameter.</p>
+        <pre><code>class Student:
+    # 1. Constructor initializing instance attributes
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+    # 2. Instance method to display all details
+    def display_info(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+        print("Grade:", self.grade)
+
+    # 3. Instance method evaluating admission eligibility
+    def is_eligible(self):
+        if self.age > 15:
+            print(f"{self.name} is eligible for admission.")
+        else:
+            print(f"{self.name} is not eligible for admission.")</code></pre>
+        <p>When this class cell is executed in Jupyter Notebook, Python registers the template into memory.</p>
+
+        <h2>3. Instantiating Multiple Distinct Objects</h2>
+        <p>From this single template, we instantiate two independent student objects: <code>student1</code> and <code>student2</code>:</p>
+        <pre><code># Instantiating student1: Name Ali, Age 16, Grade 10th
+student1 = Student("Ali", 16, "10th")
+
+# Instantiating student2: Name Sara, Age 14, Grade 8th
+student2 = Student("Sara", 14, "8th")</code></pre>
+        <p>Both objects now exist in memory with their respective attributes configured.</p>
+
+        <h2>4. Accessing Instance Variables Directly</h2>
+        <p>To read an object's instance variable directly from outside the class, use the dot operator (<code>.</code>) by writing the object name, followed by a dot, followed by the attribute name:</p>
+        <pre><code># Accessing student1's name attribute
+print("Student 1 Name:", student1.name)
+
+# Accessing student2's grade attribute
+print("Student 2 Grade:", student2.grade)</code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>Student 1 Name: Ali
+Student 2 Grade: 8th</code></pre>
+        <ul>
+          <li>Referencing <code>student1.name</code> retrieves "Ali", the specific name assigned to <code>student1</code>.</li>
+          <li>Referencing <code>student2.grade</code> retrieves "8th", the grade belonging specifically to <code>student2</code>.</li>
+        </ul>
+
+        <h2>5. Invoking Instance Methods</h2>
+        <p>Just like attributes, instance methods are called using the dot operator (<code>.</code>) followed by parentheses <code>()</code>.</p>
+
+        <h3>Example 1: Calling Methods on student1</h3>
+        <pre><code># Calling display_info() to output all instance variables
+student1.display_info()
+
+# Calling is_eligible() to evaluate admission eligibility
+student1.is_eligible()</code></pre>
+        <p><strong>Execution & Output:</strong></p>
+        <pre><code>Name: Ali
+Age: 16
+Grade: 10th
+Ali is eligible for admission.</code></pre>
+        <ul>
+          <li><code>student1.display_info()</code> prints all three instance variables: Ali's name, age (16), and grade (10th).</li>
+          <li><code>student1.is_eligible()</code> inspects <code>self.age</code>. Because Ali's age is 16 (which is greater than 15), the if condition evaluates to True, printing that Ali is eligible for admission.</li>
+        </ul>
+
+        <h3>Example 2: Calling Methods on student2</h3>
+        <pre><code># Calling both methods on student2
+student2.display_info()
+student2.is_eligible()</code></pre>
+        <p><strong>Execution & Output:</strong></p>
+        <pre><code>Name: Sara
+Age: 14
+Grade: 8th
+Sara is not eligible for admission.</code></pre>
+        <ul>
+          <li><code>student2.display_info()</code> displays Sara's information: Name Sara, Age 14, and Grade 8th.</li>
+          <li><code>student2.is_eligible()</code> checks whether Sara's age is greater than 15. Because her age is 14 (less than 15), the condition fails, printing that Sara is not eligible for admission.</li>
+        </ul>
+
+        <h2>6. Why This Pattern Represents Good Programming Practice</h2>
+        <p>Instance variables and methods are bound directly to their respective objects. This encapsulation ensures that each object's data remains completely independent and isolated. Interacting with <code>student1</code> never alters or interferes with <code>student2</code>, maintaining clean data separation across complex software systems.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you access an object's instance variables in Python, and how do you know which variable gets called?</button>
+          <div class="accordion-body"><p>You access an object's instance variable by writing the object name, followed by the dot operator (<code>.</code>), followed by the attribute name (for example, <code>student1.name</code> or <code>student2.grade</code>). When you access an attribute this way, Python retrieves the specific instance variable bound to that particular object. Accessing <code>student1.name</code> returns "Ali" because that was the value initialized for <code>student1</code>, while accessing <code>student2.grade</code> retrieves "8th".</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you call an instance method on an object, and what does the self parameter represent during execution?</button>
+          <div class="accordion-body"><p>You call an instance method by writing the object name, followed by a dot, the method name, and parentheses <code>()</code> (for example, <code>student1.display_info()</code> or <code>student1.is_eligible()</code>). The <code>self</code> parameter represents the specific object upon which the method was called. When <code>student1.display_info()</code> executes, <code>self</code> represents <code>student1</code>, allowing the method to print that specific object's name, age, and grade.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the Student class example, why is student1 declared eligible for admission while student2 is declared not eligible?</button>
+          <div class="accordion-body"><p>The <code>is_eligible()</code> instance method uses an if-else condition that checks whether <code>self.age > 15</code>. For <code>student1</code> (Ali), the stored age is 16. Because 16 > 15 evaluates to True, the program declares that Ali is eligible for admission. For <code>student2</code> (Sara), the stored age is 14. Because 14 is less than 15, the condition evaluates to False, declaring that Sara is not eligible for admission.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/macau/scratch-game-design-classes-taipa-macau.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/arduino-robotics-projects-bangsar-kuala-lumpur.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-33');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-33');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '33') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Maker-style STEM challenges</li><li>Responsible and supervised AI use</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
