@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Club Ampang Expats KL | AI &amp; Robotics Club</title>
+  <title>Online Robotics Club Ampang Expats KL | AI & Robotics Club</title>
   <meta name="description" content="Online robotics and coding club for Ampang expat families—100% English live labs near ISKL corridor.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/online-robotics-club-ampang-expats-kl.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,150 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Ampang · KL</span><h1>Online Robotics and Coding Club for Ampang Expat Families</h1>
     <p>An online robotics and coding club for Ampang expat families delivers live English labs on coding, sensors and projects—convenient for households near international schools without inventing a local clubhouse.</p></div>
     <div><img src="../../../images/98.webp" alt="Ampang robotics club" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-37">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-37">Lesson</label>
+        <select id="lesson-select-37" class="lesson-select" aria-label="Select lesson">
+          <option value="37" selected>037: Python Method Overriding Explained with Simple Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Method Overriding Explained with Simple Examples" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Beyond Basic Inheritance</h2>
+        <p>In the study of Object-Oriented Programming (OOP), inheritance allows a child class to inherit and reuse all data attributes and methods defined in a parent (base) class. In previous examples, an <code>Animal</code> parent class defined a default <code>speak()</code> method, and a <code>Dog</code> child class inherited that method directly.</p>
+        <p>While inheriting general behaviors saves time, real-world objects often require specialized behaviors rather than generic defaults. Python provides a mechanism that allows an inherited class to redefine an existing method from its parent class with a new definition tailored to the child class. This capability is known as <strong>Method Overriding</strong>.</p>
+
+        <h2>2. What Is Method Overriding?</h2>
+        <p>Method Overriding is an OOP feature where a child (derived) class provides its own specific implementation of a method that is already defined in its parent class.</p>
+        <ul>
+          <li><strong>The parent method:</strong> Defines a generic or default behavior (for example, general animals producing "some sound").</li>
+          <li><strong>The overriding method:</strong> Maintains the exact same method name (<code>speak</code>) inside the child class, but provides a new block of code tailored specifically to that entity (such as a dog producing "woof woof").</li>
+          <li>When the method is invoked on an object of the child class, Python executes the child's redefined version, completely overriding the parent class implementation.</li>
+        </ul>
+
+        <h2>3. Why Override Instead of Creating a New Method?</h2>
+        <p>A common question arises when designing subclasses: Why not simply create a brand-new method with a different name (such as <code>bark()</code>) to print "woof woof"?</p>
+        <ul>
+          <li><strong>Avoiding redundant methods:</strong> If you define an additional method like <code>bark()</code>, the child class ends up with two separate sound-producing functions: the inherited <code>speak()</code> from <code>Animal</code> and the new <code>bark()</code> in <code>Dog</code>.</li>
+          <li><strong>Clean class interfaces:</strong> In software design, a dog does not need two separate functions to produce sounds. The goal is for the <code>Dog</code> class to have a single, unified <code>speak()</code> function that produces the correct dog sound, cleanly overriding the generic parent implementation.</li>
+        </ul>
+
+        <h2>4. Step-by-Step Code Implementation in Jupyter Notebook</h2>
+
+        <h3>Step 1: Defining the Parent Class (Animal)</h3>
+        <p>First, define the <code>Animal</code> base class containing a generic <code>speak()</code> method:</p>
+        <pre><code># Parent (Base) Class
+class Animal:
+    def speak(self):
+        print("some sound")</code></pre>
+        <p>When executed, this establishes the parent class template in memory.</p>
+
+        <h3>Step 2: Defining the Child Class with Method Overriding (Dog)</h3>
+        <p>Next, define the <code>Dog</code> class, inherit from <code>Animal</code> by placing it inside parentheses, and redefine the <code>speak()</code> method with dog-specific behavior:</p>
+        <pre><code># Child (Derived) Class inheriting from Animal
+class Dog(Animal):
+    # Overriding the parent's speak() method with a new definition
+    def speak(self):
+        print("woof woof")</code></pre>
+        <p>Both class templates are now compiled and ready for instantiation.</p>
+
+        <h2>5. Instantiating Objects and Verifying Execution</h2>
+        <p>To observe method overriding in action, instantiate an object from the <code>Dog</code> class and call <code>speak()</code>:</p>
+        <pre><code># 1. Instantiating an object of the child class
+dog1 = Dog()
+
+# 2. Invoking the overridden speak method
+dog1.speak()</code></pre>
+        <p><strong>Execution Output:</strong></p>
+        <pre><code>woof woof</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>Even though <code>Dog</code> inherits from <code>Animal</code>, calling <code>dog1.speak()</code> does not execute the parent class's <code>speak()</code> method (which outputs "some sound").</li>
+          <li>Instead, Python identifies that <code>Dog</code> provides its own local definition of <code>speak()</code>, executing it directly and outputting "woof woof".</li>
+          <li>The parent class method is successfully overridden inside the inherited class.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is method overriding in Python, and how does it work in inheritance?</button>
+          <div class="accordion-body"><p>Method overriding is an Object-Oriented Programming capability where a child (inherited) class redefines a method that was already declared in its parent class. By creating a method in the child class with the exact same name as the parent class method, the child class supplies its own specific behavior. When an object of the child class calls that method, Python executes the child's implementation rather than the parent's default implementation.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why should you override an existing method instead of simply creating a new method with a different name?</button>
+          <div class="accordion-body"><p>If you create a brand-new method with a different name (such as creating a <code>bark()</code> method instead of overriding <code>speak()</code>), the child class will retain two separate sound-producing functions: the inherited <code>speak()</code> method from the parent class and the new <code>bark()</code> method. Overriding allows you to replace the generic parent behavior entirely, ensuring that only the specialized, child-appropriate method remains active on that object.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What output is produced when calling dog1.speak() in the Animal and Dog class hierarchy, and why?</button>
+          <div class="accordion-body"><p>Calling <code>dog1.speak()</code> outputs "woof woof". Even though the parent <code>Animal</code> class contains a <code>speak()</code> method that prints "some sound", the <code>Dog</code> class redefines <code>speak()</code> with its own implementation. Because the method is overridden, Python executes the child's version and bypasses the parent method entirely.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/online-coding-classes-for-kids-mont-kiara-kl.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/python-programming-for-students-ttdi-kl.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-37');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-37');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '37') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Weekly live interactive labs in English</li><li>Coding and robotics project pathways</li><li>Community practice and badges</li><li>Optional self-paced Udemy reinforcement</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
