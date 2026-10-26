@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Programming International Students Meguro Tokyo | AI &amp; Robotics Club</title>
+  <title>Python Programming International Students Meguro Tokyo | AI & Robotics Club</title>
   <meta name="description" content="Python programming for international students in Meguro, Tokyo—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/japan/python-programming-students-meguro-tokyo.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,184 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Meguro · Tokyo</span><h1>Python Programming for International Students in Meguro, Tokyo</h1>
     <p>Python programming for international students in Meguro, Tokyo smooths the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/66.webp" alt="Python Meguro" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-28">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-28">Lesson</label>
+        <select id="lesson-select-28" class="lesson-select" aria-label="Select lesson">
+          <option value="28" selected>028: Object-Oriented Programming in Python: Why Do We Need OOP?</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper video-coming-soon">
+        <div class="video-placeholder">
+          <p><strong>Video coming soon</strong></p>
+          <p>Lesson notes and Q&A below are available now. The video will appear here when published.</p>
+        </div>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: The Limits of Traditional Programming</h2>
+        <p>Up to this point in Python programming, development has relied on traditional programming constructs: functions, loops, and conditional statements. Using these foundational tools, a developer can build virtually any type of program.</p>
+        <p>However, a serious challenge arises when software projects scale:</p>
+        <ul>
+          <li><strong>Scaling Bottlenecks:</strong> As programs expand to thousands or hundreds of thousands of lines of code, tracking their logic and understanding how different parts interact becomes increasingly difficult.</li>
+          <li><strong>The Fragility of Interdependent Functions:</strong> In massive procedural codebases with numerous standalone functions, modifying a single function can inadvertently break another; attempting to repair the second function often breaks a third.</li>
+          <li><strong>Debugging Complexity:</strong> Once non-object-oriented programs surpass a few thousand lines, maintaining, deciphering, and debugging the codebase becomes overwhelming.</li>
+        </ul>
+        <p>To solve these problems and bring structure to large amounts of code, the programming paradigm known as <strong>Object-Oriented Programming (OOP)</strong> was created.</p>
+
+        <h2>2. Bringing the Real World into Code</h2>
+        <p>In everyday life, human beings perceive and interact with the world through objects. Everything around us—such as a student, a car, or a computer—is recognized as an identifiable entity with its own distinct properties and actions.</p>
+        <p>OOP takes this fundamental real-world concept and applies it directly to programming. By establishing a direct one-to-one relationship between real-world entities and programming structures, understanding and designing complex systems becomes intuitive.</p>
+        <ul>
+          <li><strong>Real-world entity (e.g. a car):</strong> Properties (color, brand, horsepower) and actions (start, stop, accelerate, brake).</li>
+          <li><strong>Programming object:</strong> Attributes (variables storing data) and methods (functions operating on those variables).</li>
+        </ul>
+
+        <h2>3. Core Principle 1: Encapsulation</h2>
+        <p>The first foundational pillar of OOP is <strong>encapsulation</strong>.</p>
+        <ul>
+          <li><strong>Bundling Related Data:</strong> Instead of scattering isolated variables across a script, encapsulation bundles all data related to a specific entity into a single unified object. For example, every piece of information describing a student is packaged together.</li>
+          <li><strong>Combining Variables and Functions:</strong> Encapsulation groups related variables along with the specific functions that operate on them into a single cohesive entity called an Object.</li>
+        </ul>
+        <p><strong>Attributes vs. Methods:</strong></p>
+        <ul>
+          <li><strong>Attributes:</strong> The variables contained inside an object that store its data.</li>
+          <li><strong>Methods:</strong> The functions defined within an object that act upon its attributes.</li>
+        </ul>
+        <h3>Eliminating Global Variable Clutter</h3>
+        <p>In procedural programming, performing operations on global data requires passing multiple global variables into every function as input parameters. Under OOP, because an object's methods and attributes reside in the same entity, the methods access the object's variables internally. You simply call the method without passing those variables as external parameters.</p>
+
+        <h2>4. Core Principle 2: Data Abstraction</h2>
+        <p>The second essential pillar is <strong>data abstraction</strong>.</p>
+        <ul>
+          <li><strong>Hiding Internal Complexity:</strong> Data abstraction ensures that an object’s complex internal mechanics and data structures are hidden from the outside world. A program only exposes the specific methods and interfaces that external components actually need.</li>
+        </ul>
+        <h3>The Laptop Analogy</h3>
+        <ul>
+          <li>A modern computer or laptop houses complex internal circuitry, motherboards, processors, and wiring.</li>
+          <li>A user does not need to see, understand, or manipulate this internal circuitry to operate the computer.</li>
+          <li>Instead, the system abstracts this complexity behind an outer shell, providing simple external interfaces: a screen, a keyboard, and a mouse.</li>
+        </ul>
+        <p>In code, abstraction drastically reduces the number of elements an outside developer needs to understand to use an object, making objects far simpler to interact with.</p>
+
+        <h2>5. A Practical Real-World Example: The Car Object</h2>
+        <p>Consider modeling an everyday vehicle:</p>
+        <pre><code># Conceptual structure of an OOP Car object
+class Car:
+    def __init__(self, brand, make, color, max_speed, horsepower, engine_cc):
+        # Attributes (related variables)
+        self.brand = brand
+        self.make = make
+        self.color = color
+        self.max_speed = max_speed
+        self.horsepower = horsepower
+        self.engine_cc = engine_cc
+
+    # Methods (related functions)
+    def start(self):
+        print(f"{self.brand} engine started.")
+
+    def stop(self):
+        print(f"{self.brand} engine stopped.")
+
+    def accelerate(self):
+        print(f"{self.brand} is accelerating.")
+
+    def brake(self):
+        print(f"{self.brand} applied brakes.")</code></pre>
+
+        <h3>How Encapsulation Works in This Example</h3>
+        <ul>
+          <li><strong>Attributes:</strong> Features such as brand, make, color, max_speed, horsepower, and engine_cc belong together as properties of a single entity.</li>
+          <li><strong>Methods:</strong> Actions such as <code>start()</code>, <code>stop()</code>, <code>accelerate()</code>, and <code>brake()</code> are functions directly tied to operating a car.</li>
+          <li>Packaging these attributes and behaviors inside a <code>Car</code> object makes much more structural sense than scattering them as disconnected global variables and standalone functions across an application.</li>
+        </ul>
+
+        <h2>6. Major Advantages of OOP Over Procedural Code</h2>
+        <ol>
+          <li><strong>Higher Reusability:</strong> Because objects hide internal complexity and expose clean interfaces, reusing tested objects across different parts of a project or across entirely new projects becomes straightforward.</li>
+          <li><strong>Improved Modularity:</strong> Programs are composed of distinct, self-contained objects, allowing teams to manage and develop discrete components independently.</li>
+          <li><strong>Long-Term Maintainability:</strong> Code written today often remains in enterprise production for years. When the original authors depart, new programmers can read, understand, and update modular objects without risking system-wide breakage.</li>
+          <li><strong>Intuitive Real-World Modeling:</strong> Because the physical world is made of objects, software architectures based on objects mirror real-world problems directly.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why does procedural programming break down in large projects, and how does OOP solve this?</button>
+          <div class="accordion-body"><p>While basic programming constructs like loops, conditionals, and standalone functions are sufficient for small scripts, they become fragile as programs expand to thousands or hundreds of thousands of lines of code. In large procedural codebases, modifying one function often inadvertently breaks another, leading to severe debugging and tracking difficulties. Object-Oriented Programming (OOP) solves this by organizing massive amounts of code into self-contained, modular objects, preventing unintended side effects across the broader application.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Encapsulation in OOP, and what are attributes and methods?</button>
+          <div class="accordion-body"><p>Encapsulation is the practice of bundling related data (variables) and the functions that operate on that data together into a single unified entity called an Object. <strong>Attributes</strong> are the variables stored inside an object that hold its data (such as a car's color, brand, or horsepower). <strong>Methods</strong> are the functions defined within the object that operate directly on its attributes (such as starting, accelerating, or braking). Encapsulation eliminates the need to constantly pass numerous global variables as function arguments, because the object's methods have direct internal access to its own attributes.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Data Abstraction, and how does the computer or laptop analogy illustrate it?</button>
+          <div class="accordion-body"><p>Data Abstraction means hiding complex internal implementations and data structures from the outside world, exposing only the essential features required to interact with an object. This is analogous to a laptop or computer: the intricate internal electronic circuitry and wiring are concealed inside a protective shell. The user does not need to understand or inspect this internal wiring to operate the computer; they simply interact with external interfaces like the keyboard, mouse, and screen. In programming, abstraction enhances code reusability and makes systems far easier to learn and use.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/japan/online-robotics-classes-kids-minato-tokyo.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/japan/scratch-coding-workshops-shibuya-tokyo.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-28');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-28');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '28') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
