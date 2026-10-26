@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Game Development Course Children Petaling Jaya | AI &amp; Robotics Club</title>
+  <title>Scratch Game Development Course Children Petaling Jaya | AI & Robotics Club</title>
   <meta name="description" content="Scratch game development course for children in Petaling Jaya—arcade games, stories and visual computer science.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/malaysia/scratch-game-development-children-petaling-jaya.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,177 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Petaling Jaya · Selangor</span><h1>Scratch Game Development Course for Children in Petaling Jaya</h1>
     <p>A Scratch game development course for children in Petaling Jaya turns passive screen time into creative coding—arcade games, maze puzzles and interactive stories built with visual blocks.</p></div>
     <div><img src="../../../images/93.webp" alt="Scratch Petaling Jaya" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-40">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-40">Lesson</label>
+        <select id="lesson-select-40" class="lesson-select" aria-label="Select lesson">
+          <option value="40" selected>040: Python File Handling: How to Read and Write Files</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python File Handling: How to Read and Write Files" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Why Do We Need File Handling?</h2>
+        <p>In earlier programming lessons, all data used in programs was written directly inside the code itself. However, as programs scale and begin handling large volumes of information, it becomes impossible to keep all data embedded inside the code.</p>
+        <p>In real-world development and data-driven projects:</p>
+        <ul>
+          <li>Large datasets are stored externally across different files.</li>
+          <li>Data received from clients or external sources arrives in the form of files rather than hardcoded variables.</li>
+          <li>File handling enables a Python program to open external files, read their contents, process the information, and write or update new data back into storage.</li>
+        </ul>
+
+        <h2>2. Common Data File Formats</h2>
+        <p>External client data commonly arrives in several distinct formats:</p>
+        <ul>
+          <li><strong>Text files (.txt):</strong> Files containing simple, plain human-readable text data.</li>
+          <li><strong>CSV files (.csv):</strong> Stands for Comma Separated Values, structured for tabular records.</li>
+          <li><strong>JSON files (.json):</strong> Widely used in web applications and has become an established standard for sharing data across web protocols.</li>
+        </ul>
+
+        <h2>3. The File Handling Lifecycle</h2>
+        <p>Interacting with a file in Python follows three mandatory stages:</p>
+        <ol>
+          <li><strong>Open the file:</strong> Creates a file object and establishes a connection between Python and the disk file.</li>
+          <li><strong>Read or write data:</strong> Executes operations via file object methods.</li>
+          <li><strong>Close the file:</strong> Releases the file back to the operating system and saves changes safely.</li>
+        </ol>
+
+        <h2>4. Reading a Text File (Mode 'r')</h2>
+        <p>To read an existing file, use Python's built-in <code>open()</code> function. The function takes two primary arguments:</p>
+        <ol>
+          <li><strong>File name:</strong> The path or name of the target file (e.g., <code>"demo.txt"</code>).</li>
+          <li><strong>File mode:</strong> The string <code>'r'</code>, indicating that the file is being opened strictly for reading.</li>
+        </ol>
+        <pre><code># 1. Open the file in read mode and store the file object
+file = open("demo.txt", "r")
+
+# 2. Read the entire content of the file
+content = file.read()
+
+# 3. Print the extracted content
+print(content)
+
+# 4. Close the file after use
+file.close()</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ul>
+          <li>When <code>open("demo.txt", "r")</code> executes, Python checks whether <code>demo.txt</code> exists in the current working directory.
+            <ul>
+              <li>If the file does not exist, Python throws an error at this stage.</li>
+              <li>If the file is found, Python opens it, wraps it in a file object, and assigns it to the <code>file</code> variable.</li>
+            </ul>
+          </li>
+          <li>Calling <code>file.read()</code> extracts the stored text from the file. In our example file (<code>demo.txt</code>), the file contains two sentences: "This is a test" and "New line added".</li>
+          <li>Executing <code>print(content)</code> prints those two sentences to the console.</li>
+          <li>Finally, <code>file.close()</code> closes the file connection.</li>
+        </ul>
+
+        <h2>5. The Critical Importance of Closing Files</h2>
+        <p>Opening a file leaves it in an active, open state inside your program.</p>
+        <ul>
+          <li><strong>Why closing is mandatory:</strong> Once you finish reading or writing, you must call <code>file.close()</code> so the file returns to a closed state on the hard disk.</li>
+          <li><strong>Risks of omitting close():</strong> If you fail to close the file, it remains open in memory. Once your program terminates, the file may become corrupted or damaged.</li>
+          <li>As a matter of good programming practice, always ensure every opened file is closed immediately after its operations are complete.</li>
+        </ul>
+
+        <h2>6. Writing to a Text File (Mode 'w')</h2>
+        <p>To write data into a file, call <code>open()</code> with the mode argument set to <code>'w'</code> instead of <code>'r'</code>. This explicitly informs Python that the file is opened for writing.</p>
+        <pre><code># 1. Open the file in write mode
+file = open("demo.txt", "w")
+
+# 2. Write a new sentence into the file
+file.write("This is another test")
+
+# 3. Close the file as good programming practice
+file.close()</code></pre>
+
+        <h3>Execution Walkthrough & Overwriting Behavior</h3>
+        <ul>
+          <li>When <code>file.write("This is another test")</code> executes under write mode (<code>'w'</code>), Python overwrites the entire file.</li>
+          <li>The previous contents (the two original sentences) are replaced by the single new sentence: "This is another test".</li>
+          <li>Inspecting <code>demo.txt</code> on the disk confirms that the old text is gone and the file now contains only the new string.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is file handling necessary in Python instead of storing all data directly in code?</button>
+          <div class="accordion-body"><p>While small scripts can store data directly in variables, programs that scale to handle large volumes of data cannot embed all that information inside the source code. In real-world projects and client engagements, data arrives externally across various file types (such as text, CSV, and JSON files). File handling enables a Python application to open external storage files, read client datasets, process information, and save results without cluttering the program's codebase.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is it critical to close a file using .close() after opening it in Python?</button>
+          <div class="accordion-body"><p>When a file is opened, it remains held in an active, open state in memory. If you finish using the file without explicitly calling <code>file.close()</code>, the file remains open while the program terminates, which can lead to data corruption or damaged files. Closing the file safely flushes and saves the file back to the hard disk, making it a mandatory good programming practice.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens to the existing data in a text file when it is opened in 'w' (write) mode?</button>
+          <div class="accordion-body"><p>When an existing file is opened in write mode (<code>open("file.txt", "w")</code>), Python overwrites the entire file. Any existing sentences or previous data stored in the file are replaced by the new text passed into <code>file.write()</code>, leaving only the newly written content in the file.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/malaysia/robotics-engineering-bootcamp-kids-cyberjaya.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/steam-model-building-crafts-shah-alam.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-40');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-40');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '40') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Loops, variables and conditional logic</li><li>2D arcade and maze game design</li><li>Interactive animated stories</li><li>Publish-and-share style projects</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
