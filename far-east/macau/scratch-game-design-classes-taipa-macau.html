@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Game Design Classes Taipa Macau | AI &amp; Robotics Club</title>
+  <title>Scratch Game Design Classes Taipa Macau | AI & Robotics Club</title>
   <meta name="description" content="Scratch game design and logic coding classes in Taipa, Macau—collision, scores and multi-level games.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/macau/scratch-game-design-classes-taipa-macau.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,194 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Taipa · Macau</span><h1>Scratch Game Design and Logic Coding Classes in Taipa, Macau</h1>
     <p>Scratch game design and logic coding classes for Taipa, Macau teach collision detection, score variables, multi-level maps and character animation so children build fully playable 2D games.</p></div>
     <div><img src="../../../images/80.webp" alt="Scratch Taipa" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-32">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-32">Lesson</label>
+        <select id="lesson-select-32" class="lesson-select" aria-label="Select lesson">
+          <option value="32" selected>032: Python Instance Variables and Methods Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Instance Variables and Methods Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: What Does "Instance" Mean in OOP?</h2>
+        <p>In previous modules, we established that in Object-Oriented Programming (OOP), we organize our code around objects. Before creating objects, we first design an abstract blueprint or template known as a Class, from which we can instantiate as many objects as desired.</p>
+        <p>In Python OOP, the term <strong>"instance"</strong> simply means an object created from a class.</p>
+        <ul>
+          <li>The <strong>Class</strong> serves as the abstract template.</li>
+          <li>The <strong>Instance</strong> is the concrete, individual object instantiated from that template.</li>
+        </ul>
+        <p>The core purpose of instantiating multiple objects from a single class is that each individual object possesses its own distinct data attributes and its own methods.</p>
+
+        <h3>The Real-World Analogy: Automobiles</h3>
+        <p>Consider a Car class. When manufacturing multiple cars from that blueprint, each individual car object has its own distinct brand, color, size, and engine specifications. When an acceleration method is called on a specific car, the resulting speed depends directly on that specific car's own horsepower and engine capacity (CC).</p>
+        <p>In the real world, entities interact through their own independent properties. OOP mirrors this reality: every object accesses its own internal data and its own methods, making software systems behave like real-world entities.</p>
+
+        <h2>2. Instance Variables: Defined via self.</h2>
+        <p>Instance variables are variables that belong specifically to a particular object instance.</p>
+        <ul>
+          <li><strong>How to identify an instance variable:</strong> Every instance variable is prefixed with the keyword <code>self.</code> (e.g., <code>self.name</code>, <code>self.age</code>, <code>self.grade</code>).</li>
+          <li><strong>Initialization in the constructor:</strong> Instance variables are typically initialized inside the <code>__init__</code> constructor method by binding incoming input arguments to the instance using <code>self.</code>:</li>
+        </ul>
+        <pre><code>self.name = name
+self.age = age
+self.grade = grade</code></pre>
+        <p><strong>Why <code>self</code> is essential:</strong> A class is merely an abstract template with no physical existence in memory. Physical existence belongs solely to the created object instances. The <code>self</code> keyword ensures Python knows which specific object's data attribute is being created, modified, or retrieved.</p>
+
+        <h2>3. Instance Methods: Defined with the self Parameter</h2>
+        <p>Instance methods are functions defined inside a class that operate directly on that specific object's instance variables.</p>
+        <ul>
+          <li><strong>How to identify an instance method:</strong> Any method that includes <code>self</code> as its first parameter is an instance method.</li>
+          <li><strong>The role of <code>self</code>:</strong> When an instance method is called, <code>self</code> represents the specific object on which the function was invoked, allowing the method to access that object's instance variables directly (e.g., reading <code>self.name</code> or <code>self.age</code>).</li>
+          <li><strong>Omitting <code>self</code>:</strong> If you do not include the <code>self</code> parameter, the method or attribute will not belong to that particular object instance.</li>
+          <li><strong>Full programming logic inside methods:</strong> Just like standard procedural programming, you can embed any control flow inside instance methods—including <code>if</code> conditional statements, loops, and calculations.</li>
+        </ul>
+
+        <h2>4. Practical Jupyter Notebook Implementation: The Student Class</h2>
+        <p>Below is the complete implementation of the Student class demonstrating both instance variables and instance methods:</p>
+        <pre><code>class Student:
+    # 1. Constructor initializing instance variables
+    def __init__(self, name, age, grade):
+        self.name = name          # Instance variable for student's name
+        self.age = age            # Instance variable for student's age
+        self.grade = grade        # Instance variable for student's grade
+
+    # 2. Instance method to display the student's attributes
+    def display_info(self):
+        # Accessing instance variables via self.
+        print("Name:", self.name)
+        print("Age:", self.age)
+        print("Grade:", self.grade)
+
+    # 3. Instance method with conditional logic checking admission eligibility
+    def is_eligible(self):
+        if self.age > 15:
+            print(f"{self.name} is eligible for admission.")
+        else:
+            print(f"{self.name} is not eligible for admission.")</code></pre>
+
+        <h2>5. Instantiating Objects and Calling Instance Methods</h2>
+        <p>Once the class template is defined, we can instantiate multiple student objects with distinct data:</p>
+        <pre><code># Creating student1 (Age 16 — greater than 15)
+student1 = Student("Ali", 16, "A")
+
+# Creating student2 (Age 14 — less than 15)
+student2 = Student("Sara", 14, "B")
+
+# Calling instance methods on student1
+print("--- Student 1 Details ---")
+student1.display_info()
+student1.is_eligible()
+
+# Calling instance methods on student2
+print("\n--- Student 2 Details ---")
+student2.display_info()
+student2.is_eligible()</code></pre>
+
+        <p><strong>Execution Output:</strong></p>
+        <pre><code>--- Student 1 Details ---
+Name: Ali
+Age: 16
+Grade: A
+Ali is eligible for admission.
+
+--- Student 2 Details ---
+Name: Sara
+Age: 14
+Grade: B
+Sara is not eligible for admission.</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li><strong>Targeted data access:</strong> When <code>student1.display_info()</code> executes, <code>self</code> points to <code>student1</code>, correctly printing "Ali", 16, and "A".</li>
+          <li><strong>Dynamic decision making:</strong> In the <code>is_eligible()</code> method:
+            <ul>
+              <li>For <code>student1</code>, <code>self.age</code> is 16. Because 16 > 15 evaluates to True, it outputs that Ali is eligible for admission.</li>
+              <li>For <code>student2</code>, <code>self.age</code> is 14. Because 14 > 15 is False, it outputs that Sara is not eligible for admission.</li>
+            </ul>
+          </li>
+          <li>Each object maintains its own data state and behaves independently.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is an instance in Python, and how do instance variables differ between objects?</button>
+          <div class="accordion-body"><p>In Python Object-Oriented Programming, an instance refers to a concrete object created from a class template. Instance variables are variables that belong specifically to a given object instance. When multiple objects are created from the same class blueprint (such as two different Car or Student objects), each instance maintains its own independent variables and values (for example, each car has its own distinct color, brand, and engine size). One object accessing or updating its instance variables has no effect on any other object's data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you identify an instance variable and an instance method in Python code?</button>
+          <div class="accordion-body"><p><strong>Instance variables</strong> are identified by the <code>self.</code> keyword preceding the variable name (e.g., <code>self.name</code>, <code>self.age</code>, <code>self.grade</code>). This binds the data attribute directly to the specific object instance. <strong>Instance methods</strong> are identified by having <code>self</code> as their first parameter (e.g., <code>def display_info(self):</code> or <code>def is_eligible(self):</code>). This parameter allows the method to identify which object called it and access that object's internal attributes. If <code>self</code> is omitted, the method or attribute does not belong to that particular object instance.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What role does self play when instance methods evaluate conditional statements like if conditions?</button>
+          <div class="accordion-body"><p>Because a class template is an abstract structure that has no physical memory of its own, <code>self</code> identifies the exact physical object calling the method. When an instance method contains conditional logic—such as checking whether a student is eligible for admission (<code>if self.age > 15:</code>)—<code>self.age</code> dynamically pulls the age attribute belonging to the calling object. If called by an object with age 16, the condition evaluates to True; if called by an object with age 14, the condition evaluates to False, allowing the same method template to produce object-specific decisions.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/macau/online-stem-and-robotics-club-macau-peninsula.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/malaysia/ai-and-stem-workshops-subang-jaya.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-32');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-32');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '32') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Collision detection and score variables</li><li>Multi-level map design ideas</li><li>Character animation algorithms</li><li>Computational logic through play</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
