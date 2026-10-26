@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Robotics Electronic Sensors Course Quezon City | AI &amp; Robotics Club</title>
+  <title>Arduino Robotics Electronic Sensors Course Quezon City | AI & Robotics Club</title>
   <meta name="description" content="Arduino robotics and electronic sensors course in Quezon City—breadboards, motors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/arduino-robotics-projects-quezon-city.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,213 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Quezon City · Metro Manila</span><h1>Arduino Robotics and Electronic Sensors Course in Quezon City</h1>
     <p>An Arduino robotics and electronic sensors course for Quezon City guides students through breadboard wiring, ultrasonic sensing, servo drivers and introductory control code—simulators first, optional kits under supervision.</p></div>
     <div><img src="../../../images/83.webp" alt="Arduino QC" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-45">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-45">Lesson</label>
+        <select id="lesson-select-45" class="lesson-select" aria-label="Select lesson">
+          <option value="45" selected>045: Python Try, Except, Else, and Finally Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Try, Except, Else, and Finally Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: From Concept to Practice in Exception Handling</h2>
+        <p>In programming, unexpected user inputs or runtime conditions can easily cause an application to fail. Without error handling, Python halts execution and outputs system tracebacks that can disrupt the user experience.</p>
+        <p>To make programs resilient, Python provides a four-part exception-handling architecture:</p>
+        <ol>
+          <li><strong>try:</strong> Wraps the suspect code block you want Python to attempt running.</li>
+          <li><strong>except:</strong> Catches and intercepts specific runtime errors, executing recovery steps rather than crashing.</li>
+          <li><strong>else:</strong> Runs code only if no exceptions occurred inside the try block.</li>
+          <li><strong>finally:</strong> A cleanup block that always executes, regardless of whether an exception occurred or not.</li>
+        </ol>
+
+        <h2>2. Examining Common Runtime Failures</h2>
+        <p>Consider a simple script that asks a user for a number, converts that input into an integer, and calculates the division 10 / number:</p>
+        <pre><code># Suspect code vulnerable to user input errors
+user_input = input("Enter a number: ")
+number = int(user_input)
+result = 10 / number
+print("Result:", result)</code></pre>
+        <p>Testing this code across different user inputs demonstrates how unhandled errors arise:</p>
+        <ul>
+          <li><strong>Valid input (e.g., 7):</strong> 10 / 7 computes successfully and prints the answer cleanly.</li>
+          <li><strong>Zero input (0):</strong> Because division by zero is mathematically undefined, Python raises a <code>ZeroDivisionError</code> and terminates execution.</li>
+          <li><strong>Invalid characters (e.g., 'k'):</strong> Passing a letter instead of a digit causes <code>int()</code> to fail, raising a <code>ValueError</code> because non-numeric characters cannot be parsed into integers.</li>
+        </ul>
+
+        <h2>3. Intercepting Errors with try and Targeted except Blocks</h2>
+        <p>To prevent crashes, place suspect operations inside a <code>try</code> block and attach targeted <code>except</code> blocks for each anticipated error type. You can also include a generalized fallback block using <code>except Exception as e:</code> to catch unforeseen errors as an object <code>e</code> without breaking the program:</p>
+        <pre><code>try:
+    # Attempting the input conversion and division
+    user_input = input("Enter a number: ")
+    number = int(user_input)
+    result = 10 / number
+    print("Result:", result)
+
+# 1. Handling division by zero
+except ZeroDivisionError:
+    print("You cannot divide a number by zero.")
+
+# 2. Handling non-numeric inputs
+except ValueError:
+    print("That is not a number.")
+
+# 3. Catch-all for any other unanticipated exceptions
+except Exception as e:
+    print("An unexpected error occurred:", e)</code></pre>
+
+        <h3>How Python Evaluates This</h3>
+        <ul>
+          <li>If the user enters 0, Python bypasses the standard traceback and prints: "You cannot divide a number by zero.".</li>
+          <li>If the user enters a letter like k, Python intercepts the conversion failure and displays: "That is not a number.".</li>
+          <li>Any unexpected runtime problem is captured by <code>except Exception as e:</code>, printing a controlled error message rather than crashing.</li>
+        </ul>
+
+        <h2>4. Adding the else and finally Blocks</h2>
+        <p>To build complete control flow into your error handling, Python allows pairing <code>try</code> and <code>except</code> with <code>else</code> and <code>finally</code>:</p>
+        <pre><code>try:
+    print("Running code...")
+    # Clean calculation that does not raise any exception
+    number = 5
+    result = 10 / number
+    print("Calculation successful:", result)
+
+except Exception:
+    print("An error occurred.")
+
+else:
+    # Executes ONLY if the try block completed with zero errors
+    print("No errors found.")
+
+finally:
+    # ALWAYS executes in all scenarios
+    print("Done.")</code></pre>
+
+        <h3>Execution Walkthrough</h3>
+        <ol>
+          <li><strong>try execution:</strong> "Running code..." prints, and 10 / 5 evaluates cleanly to 2.0.</li>
+          <li><strong>except skipped:</strong> Because no exception was raised, all except handlers are bypassed.</li>
+          <li><strong>else triggered:</strong> Because the try block ran without error, Python executes the else block, printing "No errors found.".</li>
+          <li><strong>finally runs:</strong> Regardless of what happened above, Python executes the finally block, outputting "Done.".</li>
+        </ol>
+        <p><strong>Console Output:</strong></p>
+        <pre><code>Running code...
+Calculation successful: 2.0
+No errors found.
+Done.</code></pre>
+
+        <h2>5. Summary: Roles of All Four Keywords</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Keyword</th>
+              <th>Execution Condition</th>
+              <th>Typical Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>try</code></td>
+              <td>Always executed first</td>
+              <td>Encloses suspect code that could potentially fail at runtime.</td>
+            </tr>
+            <tr>
+              <td><code>except</code></td>
+              <td>Runs only if an error occurs inside try</td>
+              <td>Catches specific exception types and performs graceful recovery.</td>
+            </tr>
+            <tr>
+              <td><code>else</code></td>
+              <td>Executes only if NO error occurs inside try</td>
+              <td>Runs follow-up operations that depend on the try block succeeding.</td>
+            </tr>
+            <tr>
+              <td><code>finally</code></td>
+              <td>Always executes in every case</td>
+              <td>Performs mandatory cleanup actions (e.g., closing files, releasing resources).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the distinct roles of the try, except, else, and finally blocks in Python?</button>
+          <div class="accordion-body"><p><code>try</code> contains the suspect code block that you want Python to attempt running. <code>except</code> executes only if an exception is raised inside the try block, catching the error and displaying a controlled recovery message rather than crashing. <code>else</code> executes only when the try block runs successfully with zero errors. <code>finally</code> executes unconditionally in all scenarios, regardless of whether an exception occurred, was handled, or the code ran cleanly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens when user inputs cause ZeroDivisionError or ValueError in a division program?</button>
+          <div class="accordion-body"><p>If a user inputs 0, dividing any number by zero is mathematically undefined, causing Python to raise a <code>ZeroDivisionError</code>. If a user inputs a non-numeric letter (such as 'k'), the <code>int()</code> function cannot convert the string into an integer, raising a <code>ValueError</code>. Wrapping these operations in targeted <code>except ZeroDivisionError:</code> and <code>except ValueError:</code> blocks intercepts each specific failure and displays a friendly notice (e.g., "You cannot divide a number by zero" or "That is not a number") without halting the program.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is the finally block useful, and when does it execute?</button>
+          <div class="accordion-body"><p>The <code>finally</code> block always executes in every situation—whether the try block succeeded, an exception occurred and was caught, or an unanticipated error arose. It is used for mandatory concluding operations and resource cleanup, ensuring that tasks such as releasing system locks, closing open database connections, or finalizing file states run reliably before the program moves forward.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/ai-course-for-beginners-alabang-muntinlupa.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/mblock-robotics-coding-mandaluyong.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-45');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-45');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '45') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and servo motor drivers</li><li>Introductory control code logic</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
