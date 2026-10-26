@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artificial Intelligence Course for Beginners Alabang Kids | AI &amp; Robotics Club</title>
+  <title>Artificial Intelligence Course for Beginners Alabang Kids | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence course for beginners in Alabang, Muntinlupa—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/philippines/ai-course-for-beginners-alabang-muntinlupa.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,142 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Alabang · Muntinlupa</span><h1>Artificial Intelligence Course for Beginners in Alabang, Muntinlupa</h1>
     <p>An artificial intelligence course for beginners in Alabang, Muntinlupa introduces how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/84.webp" alt="AI Alabang" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-44">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-44">Lesson</label>
+        <select id="lesson-select-44" class="lesson-select" aria-label="Select lesson">
+          <option value="44" selected>044: Python Exceptions Explained: Understanding Errors in Your Code</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Exceptions Explained: Understanding Errors in Your Code" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Why Good Code Still Breaks</h2>
+        <p>No matter how carefully or thoroughly you write your Python code, real-world execution introduces factors that developers cannot fully predict. Most notably, user inputs or unexpected runtime conditions can break your code.</p>
+        <p>When an unexpected error occurs, Python stops program execution and displays an error message. Python halts because it does not know what impact that specific error will have downstream. Allowing faulty data or an erroneous input to propagate into subsequent operations can cause severe system malfunctions or security risks. Therefore, Python’s default safeguard is to terminate execution immediately and crash the program.</p>
+        <p>However, minor errors occur naturally during routine use. Modern programming languages—including Python—provide mechanisms to intercept these issues, handle them smoothly, and allow the application to continue running without crashing.</p>
+
+        <h2>2. What Is an Exception?</h2>
+        <p>An exception is a runtime event or error that disrupts the normal flow of an application’s instructions.</p>
+        <ul>
+          <li><strong>The mechanism:</strong> When an unhandled error arises, Python generates a specific error keyword or exception type.</li>
+          <li><strong>The consequence of neglecting errors:</strong> If your application does not catch and handle that error keyword, Python halts execution.</li>
+          <li><strong>Real-world impact:</strong> An application that crashes unexpectedly leaves a poor impression on users or clients. For example, if a user downloads an app from an app store and it crashes upon first launch, most users immediately uninstall it. Robust software proactively anticipates potential points of failure and incorporates error handling to keep the user experience stable.</li>
+        </ul>
+
+        <h2>3. Three Common Exception Scenarios in Python</h2>
+        <p>Python alerts developers to different types of errors by raising specific built-in exception keywords.</p>
+
+        <h3>Scenario 1: Mathematical Errors (ZeroDivisionError)</h3>
+        <p>In mathematics, division by zero is undefined. If a user input or calculation results in dividing any number by zero, Python halts execution and raises a <code>ZeroDivisionError</code>:</p>
+        <pre><code># Unhandled division by zero causes a crash
+numerator = 10
+denominator = 0  # e.g., received from user input
+
+result = numerator / denominator  # Raises ZeroDivisionError!</code></pre>
+        <p>If you anticipate this calculation error and handle the <code>ZeroDivisionError</code> keyword in code, Python will execute your precautionary steps instead of crashing.</p>
+
+        <h3>Scenario 2: Missing Storage Files (FileNotFoundError)</h3>
+        <p>When working with external files on a disk, a script may attempt to open a file that does not exist or has been moved to another path.</p>
+        <pre><code># Opening a non-existent file causes a crash
+with open("student_records.txt", "r") as file:
+    data = file.read()  # Raises FileNotFoundError if missing!</code></pre>
+        <p>Python cannot guess how to proceed without the file, so it raises <code>FileNotFoundError</code>. By catching and handling this keyword, your program can handle the missing file gracefully—such as logging a clean notification or automatically creating the file—without terminating abruptly.</p>
+
+        <h3>Scenario 3: Invalid Input Types and Values (ValueError)</h3>
+        <p>When an application prompts a user for numeric information (such as age) and the user supplies an invalid string or negative value, standard operations fail:</p>
+        <pre><code># If the user enters "twenty" instead of 20:
+user_input = "twenty"
+age = int(user_input)  # Raises ValueError!</code></pre>
+        <p>Because the text "twenty" cannot be converted into an integer, Python raises a <code>ValueError</code>. Catching <code>ValueError</code> allows the program to prompt the user again or supply a default value rather than crashing.</p>
+
+        <h2>4. The Core Philosophy of Exception Handling</h2>
+        <p>The central concept behind exception handling is communication between your program and the Python interpreter:</p>
+        <ol>
+          <li>You identify operations where unexpected inputs or environment errors could reasonably happen.</li>
+          <li>You inform Python: "We anticipate that this error may occur, and we have written instructions to handle it".</li>
+          <li>When Python encounters the anticipated exception, it delegates execution to your handling logic rather than terminating the program.</li>
+        </ol>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why does Python crash and stop program execution when an unhandled error occurs?</button>
+          <div class="accordion-body"><p>When an unexpected error or erroneous data input appears, Python halts execution because it cannot determine what downstream impact that error will have on the rest of the application. Continuing execution with corrupted data or faulty inputs can lead to severe miscalculations or security risks. To prevent these issues, Python’s default behavior is to stop execution immediately and display an error message unless explicit error-handling instructions are provided.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is an exception in Python, and why is handling exceptions crucial for client applications?</button>
+          <div class="accordion-body"><p>An exception is a runtime error or event that disrupts the normal operational flow of a program. Handling exceptions is crucial because an application that crashes unexpectedly creates a negative impression on users and clients. For example, if a newly downloaded app crashes upon initial use, most users will immediately uninstall it. Exception handling ensures that unexpected inputs are caught and managed gracefully, keeping the application stable and reliable.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are three common built-in error types in Python, and what causes them?</button>
+          <div class="accordion-body"><p>Three of the most common built-in error types include: <code>ZeroDivisionError</code> (raised when a calculation attempts to divide a number by zero), <code>FileNotFoundError</code> (raised during file operations when Python cannot locate the specified file on the disk), and <code>ValueError</code> (raised when a function receives an argument with an inappropriate value, such as passing non-numeric text to <code>int()</code> when requesting a user's age).</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/philippines/2d-animation-canva-opentoonz-davao-city.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/philippines/arduino-robotics-projects-quezon-city.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-44');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-44');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '44') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
