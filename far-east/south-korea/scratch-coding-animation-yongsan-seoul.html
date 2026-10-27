@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Game Design Yongsan Expat Kids Seoul | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Game Design Yongsan Expat Kids Seoul | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and game design for Yongsan expat kids in Seoul—English instruction for SFS, YISS and Itaewon families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/scratch-coding-animation-yongsan-seoul.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,166 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Yongsan · Seoul</span><h1>Scratch Coding and Game Design for Yongsan Expat Kids, Seoul</h1>
     <p>Scratch coding and game design for Yongsan expat kids in Seoul turns passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/72.webp" alt="Scratch Yongsan" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-74">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-74">Lesson</label>
+        <select id="lesson-select-74" class="lesson-select" aria-label="Select lesson">
+          <option value="74" selected>074: Matplotlib Subplots Explained: Show Multiple Charts in One Figure</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Matplotlib Subplots Explained: Show Multiple Charts in One Figure" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Subplots</h2>
+        <p>Subplots put several related charts on one figure so stakeholders see distribution, trend, and comparisons together instead of separate windows.</p>
+
+        <h2>2. Grid Basics</h2>
+        <p><code>plt.subplots(nrows, ncols, figsize=...)</code> returns a figure and a 2D axes array. For a 2×2 grid:</p>
+        <ul>
+          <li><code>ax[0, 0]</code> — top-left</li>
+          <li><code>ax[0, 1]</code> — top-right</li>
+          <li><code>ax[1, 0]</code> — bottom-left</li>
+          <li><code>ax[1, 1]</code> — bottom-right</li>
+        </ul>
+
+        <h2>3. Synthetic 2×2 Demo</h2>
+        <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+fig, ax = plt.subplots(2, 2, figsize=(8, 6))
+
+ax[0, 0].plot(x, y, color="b")
+ax[0, 0].set_title("Line Plot")
+
+ax[0, 1].scatter(x, y, color="r")
+ax[0, 1].set_title("Scatter Plot")
+
+random_data = np.random.randn(200)
+ax[1, 0].hist(random_data, bins=20, color="g")
+ax[1, 0].set_title("Histogram")
+
+categories = ["A", "B", "C"]
+values = [5, 7, 3]
+ax[1, 1].bar(categories, values, color="m")
+ax[1, 1].set_title("Bar Chart")
+
+plt.tight_layout()
+plt.show()</code></pre>
+        <p><code>plt.tight_layout()</code> reduces label collisions between adjacent cells.</p>
+
+        <h2>4. E-Commerce 2×2 Dashboard</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv", parse_dates=["Order Date"])
+fig, ax = plt.subplots(2, 2, figsize=(10, 8))
+
+ax[0, 0].hist(df["Revenue"], bins=30, color="g")
+ax[0, 0].set_title("Revenue Distribution")
+
+monthly = df.set_index("Order Date")["Revenue"].resample("ME").sum()
+ax[0, 1].plot(monthly.index, monthly.values, color="r")
+ax[0, 1].set_title("Monthly Revenue Trend")
+
+ax[1, 0].hist(df["Delivery Days"], bins=10, color="m")
+ax[1, 0].set_title("Delivery Days Distribution")
+
+ax[1, 1].hist(df["Customer Rating"], bins=10, color="b")
+ax[1, 1].set_title("Customer Rating Distribution")
+
+plt.tight_layout()
+plt.show()</code></pre>
+
+        <h2>5. sharey</h2>
+        <p><code>sharey=True</code> aligns y-scales across columns and shows tick labels only on the leftmost subplot; <code>sharey=False</code> (default) gives each panel its own scale.</p>
+        <pre><code>fig, ax = plt.subplots(1, 2, sharey=True, figsize=(8, 4))
+ax[0].plot([1, 2, 3], [0.2, 0.5, 0.8])
+ax[0].set_title("First Subplot (Y-Labels Shown)")
+ax[1].plot([1, 2, 3], [0.3, 0.4, 0.9])
+ax[1].set_title("Second Subplot (Y-Labels Shared)")
+plt.show()</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are subplots in Matplotlib, and how does plt.subplots(2, 2) structure the plotting area?</button>
+          <div class="accordion-body"><p>Subplots are smaller charts inside one figure. <code>plt.subplots(2, 2)</code> builds a 2×2 grid; axes are addressed as <code>ax[0, 0]</code> (top-left) through <code>ax[1, 1]</code> (bottom-right).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of plt.tight_layout(), and why is it essential when building multi-chart figures?</button>
+          <div class="accordion-body"><p>It tightens margins so titles and labels of neighboring subplots do not overlap, keeping a multi-panel figure readable.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the sharey parameter work in plt.subplots(), and what visual difference does sharey=True introduce?</button>
+          <div class="accordion-body"><p><code>sharey=True</code> forces a common y-scale and shows numeric ticks mainly on the first column; <code>sharey=False</code> lets each subplot keep its own range and labels.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/python-fast-track-coding-pangyo-seongnam.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/steam-maker-craft-bundang-seoul.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-74');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-74');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '74') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
