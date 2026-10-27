@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Course for Young Learners Tampines Singapore | AI &amp; Robotics Club</title>
+  <title>AI Course for Young Learners Tampines Singapore | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence course for young learners in Tampines, Singapore—visual ML demos, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/ai-course-for-young-learners-tampines-singapore.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,214 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Tampines · Singapore</span><h1>Artificial Intelligence Course for Young Learners in Tampines, Singapore</h1>
     <p>An artificial intelligence course for young learners in Tampines, Singapore introduces how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/84.webp" alt="AI course Tampines" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-56">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-56">Lesson</label>
+        <select id="lesson-select-56" class="lesson-select" aria-label="Select lesson">
+          <option value="56" selected>056: Pandas loc vs iloc Explained: Select Rows and Columns</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Pandas loc vs iloc Explained: Select Rows and Columns" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Accessing and Modifying DataFrame Subsets</h2>
+        <p>Once a dataset is loaded into a DataFrame, data scientists rarely process the entire table at once. Machine learning preprocessing, exploratory analysis, and data cleaning require accessing, filtering, and modifying specific subsets of data.</p>
+        <p>Pandas provides two primary methods for subset selection:</p>
+        <ol>
+          <li><strong>loc</strong> (Location) — label-based selection</li>
+          <li><strong>iloc</strong> (Index Location) — integer position-based selection</li>
+        </ol>
+        <ul>
+          <li><code>df.loc[row_labels, col_labels]</code> — label-based; slicing includes both start and end boundaries</li>
+          <li><code>df.iloc[row_positions, col_positions]</code> — integer positions; slicing excludes the end boundary</li>
+          <li>Boolean indexing: <code>df[df['Column'] > value]</code></li>
+          <li>Conditional assignment: <code>df.loc[condition, col] = value</code></li>
+        </ul>
+
+        <h2>2. Environment Setup: Creating the Sample DataFrame</h2>
+        <p>Import Pandas as <code>pd</code> and build a DataFrame with four features (Name, Age, City, Salary) and four records:</p>
+        <pre><code>import pandas as pd
+
+# Creating a DataFrame with 4 features and 4 records
+data = {
+    "Name": ["Alice", "Bob", "Charlie", "David"],
+    "Age": [25, 35, 28, 42],
+    "City": ["New York", "London", "Paris", "Tokyo"],
+    "Salary": [70000, 85000, 62000, 95000]
+}
+
+df = pd.DataFrame(data)
+print(df)</code></pre>
+        <p><strong>Output structure</strong> (default row indices 0–3):</p>
+        <pre><code>      Name  Age      City  Salary
+0    Alice   25  New York   70000
+1      Bob   35    London   85000
+2  Charlie   28     Paris   62000
+3    David   42     Tokyo   95000</code></pre>
+
+        <h2>3. Label-Based Selection: df.loc</h2>
+        <p>The <code>df.loc</code> indexer selects data using row and column labels.</p>
+        <p>Syntax: <code>df.loc[row_selection, column_selection]</code>.</p>
+        <pre><code># Selecting rows with labels 1 to 3, and columns 'Name' and 'Salary'
+subset_loc = df.loc[1:3, ["Name", "Salary"]]
+print(subset_loc)</code></pre>
+        <pre><code>      Name  Salary
+1      Bob   85000
+2  Charlie   62000
+3    David   95000</code></pre>
+        <ul>
+          <li>Row labels here match default indices (0, 1, 2, 3).</li>
+          <li>Columns are selected by name: <code>"Name"</code> and <code>"Salary"</code>.</li>
+          <li><strong>Critical rule for loc:</strong> both endpoints are included — <code>1:3</code> returns labels 1, 2, and 3 (three rows).</li>
+        </ul>
+
+        <h2>4. Position-Based Selection: df.iloc</h2>
+        <p>The <code>df.iloc</code> (Integer Location) indexer selects strictly by zero-based integer positions for rows and columns.</p>
+        <p>Syntax: <code>df.iloc[row_positions, column_positions]</code>.</p>
+        <pre><code># Selecting row indices 0:2 and column indices 1:3
+subset_iloc = df.iloc[0:2, 1:3]
+print(subset_iloc)</code></pre>
+        <pre><code>   Age      City
+0   25  New York
+1   35    London</code></pre>
+        <ul>
+          <li>Rows <code>0:2</code> → indices 0 and 1 (stop 2 excluded).</li>
+          <li>Columns <code>1:3</code> → Age and City (column 3 Salary excluded).</li>
+        </ul>
+
+        <h2>5. Key Difference: Boundary Inclusivity (loc vs. iloc)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Indexer</th>
+              <th>Based On</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Example (1:3)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>df.loc</td>
+              <td>Labels / names</td>
+              <td>Included</td>
+              <td>Included</td>
+              <td>Labels 1, 2, 3 (3 records)</td>
+            </tr>
+            <tr>
+              <td>df.iloc</td>
+              <td>Integer positions</td>
+              <td>Included</td>
+              <td>Excluded</td>
+              <td>Positions 1 and 2 (2 records)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>In <code>iloc</code>, the endpoint is excluded (standard Python slicing). In <code>loc</code>, both endpoints are included because labels are identifiers, not offsets.</p>
+
+        <h2>6. Boolean Indexing: Filtering Rows with Conditions</h2>
+        <pre><code># Filtering records where Salary is greater than 75,000
+high_salary = df[df["Salary"] > 75000]
+print(high_salary)</code></pre>
+        <pre><code>    Name  Age    City  Salary
+1    Bob   35  London   85000
+3  David   42   Tokyo   95000</code></pre>
+        <p>Only Bob (85,000) and David (95,000) satisfy the condition.</p>
+
+        <h2>7. Modifying Data Subsets Using df.loc</h2>
+        <p>Using column labels with <code>loc</code> is preferred over integer positions: large tables make counting columns error-prone, and reordering or adding columns would break positional code.</p>
+        <p>Example — set salary to 65,000 for employees under age 30:</p>
+        <pre><code># Targeting rows where Age < 30 and updating the 'Salary' column
+df.loc[df["Age"] < 30, "Salary"] = 65000
+
+# Inspecting records where Age < 30 to verify the change
+print(df[df["Age"] < 30])</code></pre>
+        <pre><code>      Name  Age      City  Salary
+0    Alice   25  New York   65000
+2  Charlie   28     Paris   65000</code></pre>
+        <p>Alice and Charlie are updated; the filtered print confirms both now show 65000.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between df.loc and df.iloc in Pandas?</button>
+          <div class="accordion-body"><p><code>df.loc</code> is <strong>label-based</strong>: it selects by row/column names or labels (e.g. <code>df.loc[1:3, ['Name', 'Salary']]</code>). <code>df.iloc</code> is <strong>integer position-based</strong>: it selects by zero-based numerical positions regardless of labels (e.g. <code>df.iloc[0:2, 1:3]</code>).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does boundary slicing differ between df.loc[1:3] and df.iloc[1:3]?</button>
+          <div class="accordion-body"><p>With <code>df.loc</code>, both start and end are included — <code>df.loc[1:3]</code> returns labels 1, 2, and 3 (three rows). With <code>df.iloc</code>, the end is excluded — <code>df.iloc[1:3]</code> returns positions 1 and 2 only (two rows).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is using column labels with df.loc preferred over index numbers when updating large datasets?</button>
+          <div class="accordion-body"><p>Counting column positions by hand is error-prone on wide tables. If columns are inserted or reordered, positional indices shift and <code>iloc</code> can hit the wrong field. Labels with <code>df.loc</code> (e.g. <code>df.loc[df['Age'] < 30, 'Salary'] = 65000</code>) target the correct feature reliably and keep the code readable.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/regional/wro-competition-coaching-southeast-asia.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/arduino-electronics-course-expats-bukit-timah.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-56');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-56');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '56') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>How data trains simple recognition models</li><li>Visual machine learning demos</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about artificial intelligence course for young learners tampines singapore</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy — a structured option families can explore alongside live mentoring.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
@@ -59,7 +254,7 @@
     <div class="related-links">
       <a href="../../../programs/online-ai-and-online-robotics-courses.html">Online Courses</a>
       <a href="../../../best-students-projects/100-mission-hero-journey.html">100 Mission Hero Journey</a>
-      <a href="../../../programs/competitions-events.html">Competitions &amp; Events</a>
+      <a href="../../../programs/competitions-events.html">Competitions & Events</a>
       <a href="../../../index.html">Home</a>
     </div>
   </main>
