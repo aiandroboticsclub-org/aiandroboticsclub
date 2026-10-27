@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Bootcamp for Kids Jurong East Singapore | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Bootcamp for Kids Jurong East Singapore | AI & Robotics Club</title>
   <meta name="description" content="Weekend STEM robotics bootcamp for kids in Jurong East—modeling, motors and Scratch logic in flexible online modules.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/stem-robotics-bootcamp-kids-jurong-east.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,149 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Jurong East · Singapore</span><h1>Weekend STEM Robotics Bootcamp for Kids in Jurong East, Singapore</h1>
     <p>A weekend STEM robotics bootcamp for kids near Jurong East combines miniature modeling ideas, motor electronics and Scratch programming so learners practise end-to-end engineering thinking online.</p></div>
     <div><img src="../../../images/85.webp" alt="STEM Jurong East" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-64">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-64">Lesson</label>
+        <select id="lesson-select-64" class="lesson-select" aria-label="Select lesson">
+          <option value="64" selected>064: Exploratory Data Analysis (EDA): The Key Questions to Ask About Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Exploratory Data Analysis (EDA): The Key Questions to Ask About Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Exploratory Data Analysis (EDA) Matters</h2>
+        <p>Raw client data is rarely clean. EDA is the structured process of exploring, visualizing, and summarizing a dataset before modeling—to assess quality, spot patterns and anomalies, and build domain intuition.</p>
+        <p>EDA also supports client communication: findings and hypotheses in an EDA report can be checked against real business knowledge so modeling assumptions stay realistic.</p>
+
+        <h2>2. Primary Goals of EDA</h2>
+        <ol>
+          <li><strong>Identify patterns and trends</strong> — relationships between business variables</li>
+          <li><strong>Detect anomalies and outliers</strong> — extreme values that may be real events or errors</li>
+          <li><strong>Assess data quality</strong> — missing values, duplicates, remediation plans</li>
+          <li><strong>Classify feature types</strong> — numeric, categorical, datetime, text</li>
+          <li><strong>Formulate and validate hypotheses</strong> — ask why trends exist and review with the client</li>
+        </ol>
+
+        <h2>3. Essential Pandas Diagnostics</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("customer_transactions.csv")
+
+print("Dimensions (Shape):", df.shape)
+print("\nColumn Data Types:")
+print(df.dtypes)
+print("\nMissing Values per Column:")
+print(df.isna().sum())
+print("\nDescriptive Summary:")
+print(df.describe())
+print("\nCategory Distribution:")
+print(df["Category"].value_counts())</code></pre>
+        <ul>
+          <li><code>df.shape</code> — rows and columns</li>
+          <li><code>df.dtypes</code> — type mismatches (e.g. Sales as object → text mixed in)</li>
+          <li><code>df.isna().sum()</code> — missing counts per column</li>
+          <li><code>df.describe()</code> — mean, spread, min/max for numeric columns</li>
+          <li><code>value_counts()</code> — frequency of categorical classes</li>
+        </ul>
+
+        <h2>4. Key Questions to Ask</h2>
+        <ol>
+          <li>How many missing values exist in each column?</li>
+          <li>What is the primary target variable (e.g. Revenue)?</li>
+          <li>Which features are numerical vs categorical?</li>
+          <li>What is the distribution across product categories?</li>
+          <li>Which products drive the highest sales volume?</li>
+          <li>Are extreme transaction amounts legitimate or errors?</li>
+          <li>How do purchases vary by region and season?</li>
+        </ol>
+
+        <h2>5. Structuring an EDA Report</h2>
+        <ul>
+          <li>Define goals upfront</li>
+          <li>Identify target and predictor features with stakeholders</li>
+          <li>Anchor tables and charts to specific questions</li>
+          <li>Document assumptions, anomalies, and quality fixes for client review before modeling</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Exploratory Data Analysis (EDA), and why is client communication essential during this phase?</button>
+          <div class="accordion-body"><p>EDA is exploring, visualizing, and summarizing data to understand structure, patterns, anomalies, and quality before training models. Clients know the domain; sharing findings and assumptions in an EDA report keeps interpretations aligned with real operations.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Which core Pandas functions are used to diagnose data health during EDA, and what does a numerical column showing an object data type signify?</button>
+          <div class="accordion-body"><p>Use <code>df.shape</code>, <code>df.dtypes</code>, <code>df.isna().sum()</code>, <code>df.describe()</code>, and <code>value_counts()</code>. If a sales/price column is object type, text or formatting errors likely forced Pandas to treat it as text instead of numbers.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What key questions should guide an exploratory data analysis workflow on transaction data?</button>
+          <div class="accordion-body"><p>Ask about missing values, the target metric (e.g. Revenue), feature types and category balance, whether extreme amounts are real or errors, and how patterns change by region and season.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/scratch-coding-workshops-children-tanglin-singapore.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/wro-robotics-competition-prep-pasir-ris.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-64');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-64');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '64') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Miniature modeling and creative structures</li><li>Motor and sensor basics</li><li>Scratch programming for control logic</li><li>Flexible module-based progression</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
