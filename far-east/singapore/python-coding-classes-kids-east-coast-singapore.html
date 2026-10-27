@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Coding Classes for Kids East Coast Singapore | AI & Robotics Club</title>
+  <meta name="description" content="Python coding classes for kids on the East Coast of Singapore—live online English sessions covering fundamentals through data analysis.">
+  <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/python-coding-classes-kids-east-coast-singapore.html">
+  <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../seo-dark.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="../../../header.js" defer></script>
+  <script src="../../../prefooter.js" defer></script>
+  <script src="../../../footer.js" defer></script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="seo-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a> &rsaquo; Far East &rsaquo; Singapore &rsaquo; Python Coding Classes for Kids East Coast Singapore</nav>
+    <div class="seo-intro"><div><span class="seo-badge">Online · East Coast · Singapore</span><h1>Python Coding Classes for Kids East Coast Singapore</h1>
+    <p>Python coding classes for kids on Singapore’s East Coast teach core syntax, data structures and introductory data analysis through live English mentorship—suitable for Bedok, Tampines and nearby families learning from home.</p></div>
+    <div><img src="../../../images/86.webp" alt="Python East Coast Singapore" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-62">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-62">Lesson</label>
+        <select id="lesson-select-62" class="lesson-select" aria-label="Select lesson">
+          <option value="62" selected>062: Pandas Merge and Join Explained: Combine Data from Multiple Tables</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Pandas Merge and Join Explained: Combine Data from Multiple Tables" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Combining Multiple DataFrames</h2>
+        <p>Real datasets are often split across tables (e.g. customers and orders). Pandas can combine them with:</p>
+        <ul>
+          <li><strong>Merge / join</strong> — match on a shared key (like SQL joins)</li>
+          <li><strong>Concatenation</strong> — stack tables when no key match is needed</li>
+        </ul>
+        <ul>
+          <li><strong>Inner</strong> — only matching keys</li>
+          <li><strong>Left</strong> — all left rows, fill from right</li>
+          <li><strong>Right</strong> — all right rows, fill from left</li>
+          <li><strong>Outer</strong> — all rows from both sides</li>
+        </ul>
+
+        <h2>2. The Four Join Types</h2>
+        <ol>
+          <li><strong>Inner join</strong> — keep only rows whose key exists in both frames</li>
+          <li><strong>Left join</strong> — keep every left row; match right where possible</li>
+          <li><strong>Right join</strong> — keep every right row; match left where possible</li>
+          <li><strong>Outer join</strong> — keep every row from both sides</li>
+        </ol>
+
+        <h2>3. Sample Tables: customers and orders</h2>
+        <pre><code>import pandas as pd
+
+customers = pd.DataFrame({
+    "customer_id": [1, 2, 3],
+    "name": ["Alice", "Bob", "Charlie"]
+})
+
+orders = pd.DataFrame({
+    "order_id": [101, 102, 103, 104],
+    "customer_id": [1, 2, 2, 3],
+    "amount": [250, 150, 300, 450]
+})</code></pre>
+        <p>Customers has three people; orders has four rows (Bob ordered twice).</p>
+
+        <h2>4. Inner Join</h2>
+        <pre><code>merged_inner = pd.merge(customers, orders, on="customer_id", how="inner")
+print(merged_inner)</code></pre>
+        <p>IDs 1, 2, and 3 match both tables. Bob (id 2) appears twice because he has two orders. Result: four rows with names and amounts.</p>
+
+        <h2>5. Left Join</h2>
+        <pre><code>merged_left = pd.merge(customers, orders, on="customer_id", how="left")
+print(merged_left)</code></pre>
+        <p>All customers are kept; order columns are filled where a match exists. Customers with no orders would still appear with null order fields.</p>
+
+        <h2>6. Concatenation (pd.concat)</h2>
+        <p>When you only need to stack rows and columns match, use concat:</p>
+        <pre><code>concatenated_df = pd.concat([customers, customers], ignore_index=True)
+print(concatenated_df)</code></pre>
+        <p>This appends the second frame under the first (here, the same three customers twice). Column names and counts must match for a clean stack.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between inner, left, right, and outer joins in Pandas?</button>
+          <div class="accordion-body"><p><strong>Inner</strong> keeps only matching keys. <strong>Left</strong> keeps all left rows and fills from the right. <strong>Right</strong> keeps all right rows and fills from the left. <strong>Outer</strong> keeps every row from both tables.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In an inner join between customers and orders, why does customer Bob appear twice in the merged table?</button>
+          <div class="accordion-body"><p>Bob has one row in customers but two rows in orders (same <code>customer_id</code>). The inner join matches both order rows, so Bob’s name is repeated once per order.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is concatenation in Pandas, and what condition must be met before concatenating DataFrames?</button>
+          <div class="accordion-body"><p><code>pd.concat</code> stacks tables without joining on a key. Both frames should have the same number of columns and the same column labels for a clean vertical append.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/online-robotics-classes-for-kids-orchard-singapore.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/scratch-coding-workshops-children-tanglin-singapore.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-62');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-62');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '62') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
+    <h2>What children can learn</h2>
+    <ul><li>Python syntax and data structures</li><li>Introductory data analysis with Pandas</li><li>Problem-solving with live mentor feedback</li><li>Projects suited for East Coast / Singapore home learners</li></ul>
+    <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
+    <section class="article-box" style="margin:1.5rem 0;">
+      <h2>Recommended self-paced course for parents & educators</h2>
+      <p><a href="https://www.udemy.com/course/python-for-kids-beginners/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">Python for Kids Beginners</a> on Udemy (or related Python kids course).</p>
+      <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page may contain affiliate links. We may earn from qualifying purchases at no extra cost to you.</em></p>
+    </section>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><strong>Who are these East Coast Python classes for?</strong><p>Kids and teens learning from home in Bedok, Tampines, and nearby East Coast areas, via live online English sessions.</p></div>
+    <div class="faq-item"><strong>Do students need prior coding experience?</strong><p>No. Beginners start with core Python; later modules introduce Pandas and simple data projects.</p></div>
+    <div class="faq-item"><strong>How do we book a trial?</strong><p>Message WhatsApp +92 322 421 7059 with your child’s age and preferred times.</p></div>
+  </main>
+  <div id="site-prefooter"></div>
+  <div id="site-footer"></div>
+</body>
+</html>
