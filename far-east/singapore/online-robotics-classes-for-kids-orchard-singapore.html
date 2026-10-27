@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids Orchard Road Singapore | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids Orchard Road Singapore | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids near Orchard Road, Singapore—live English mentorship on sensors, motors and logic from home.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/online-robotics-classes-for-kids-orchard-singapore.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,138 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Orchard · Singapore</span><h1>Online Robotics Classes for Kids in Orchard Road, Singapore</h1>
     <p>Online robotics classes for kids near Orchard Road, Singapore help central-area and expat families explore sensors, motors and control logic through live English sessions—without inventing a private campus on Orchard Road.</p></div>
     <div><img src="../../../images/81.webp" alt="Online robotics Orchard" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-61">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-61">Lesson</label>
+        <select id="lesson-select-61" class="lesson-select" aria-label="Select lesson">
+          <option value="61" selected>061: How to Sort and Rank Data in Pandas</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Sort and Rank Data in Pandas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Ordering and Ranking Structured Data</h2>
+        <p>Tables rarely arrive in the order you need for analysis. Pandas can sort by one or more columns and assign ranks so you can surface top performers, lowest costs, or tiered groups.</p>
+        <ul>
+          <li><strong>Single-column sort</strong> — ascending or descending</li>
+          <li><strong>Multi-column sort</strong> — primary key, then secondary to break ties (independent ascending flags)</li>
+          <li><strong>Grouped ranking</strong> — e.g. dense ranks within each group</li>
+        </ul>
+
+        <h2>2. Sorting Single and Multiple Columns (sort_values)</h2>
+        <p>Sorting is usually done on numeric columns. When many rows share the same value (e.g. Quantity = 10), a single-column sort leaves those ties in arbitrary order. Pass a second column so ties are ordered by that secondary field.</p>
+
+        <h2>3. Hierarchical Sorting in Practice</h2>
+        <p>Pass a list of columns to <code>sort_values()</code>. Example: sort by Quantity (descending), then by Sales (ascending) when Quantity ties:</p>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("retail_sales.csv")
+
+sorted_df = df.sort_values(
+    by=["Quantity", "Sales"],
+    ascending=[False, True]
+)
+
+print(sorted_df[["Quantity", "Sales"]].head(10))</code></pre>
+        <p>Highest quantities (e.g. 19) rise to the top; within that quantity, Sales runs from low to high (e.g. 0, then 227, 361, 368).</p>
+
+        <h2>4. Ranking Data in Pandas</h2>
+        <p>Ranking assigns relative positions. Group by a primary column, then rank a secondary column inside each group.</p>
+        <p><strong>Dense ranking</strong> (example within Quantity = 19): highest Sales → rank 1, next → rank 2, and so on, without skipping ranks on ties.</p>
+        <pre><code>df["Sales_Rank_Within_Qty"] = (
+    df.groupby("Quantity")["Sales"]
+    .rank(method="dense", ascending=False)
+)
+
+ranked_df = df.sort_values(
+    by=["Quantity", "Sales_Rank_Within_Qty"],
+    ascending=[False, True]
+)
+
+print(ranked_df[["Quantity", "Sales", "Sales_Rank_Within_Qty"]].head(10))</code></pre>
+        <p>Each Quantity tier gets its own rank set; top sales inside that tier receive rank 1 when <code>ascending=False</code>.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you resolve ties when sorting a column with many repeated values in Pandas?</button>
+          <div class="accordion-body"><p>Pass a list of columns to <code>sort_values()</code>. Pandas sorts by the first column, then breaks ties using the second (e.g. <code>by=['Quantity', 'Sales']</code>) so duplicate primary values are ordered systematically by the secondary column.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the ascending parameter handle directional sorting across multiple columns?</button>
+          <div class="accordion-body"><p><code>ascending</code> can be a list of booleans matching the <code>by</code> columns. <code>ascending=[False, True]</code> sorts the first column descending and the second ascending—e.g. highest Quantity first, and within ties, Sales from lowest to highest.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is ranking in Pandas, and what role does the dense ranking method play?</button>
+          <div class="accordion-body"><p>Ranking assigns ordered positions to values, often within groups. <code>method='dense'</code> gives consecutive ranks without skipping numbers on ties. With <code>ascending=False</code>, the largest values get rank 1.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/mblock-robotics-starter-kit-bedok-singapore.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/python-coding-classes-kids-east-coast-singapore.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-61');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-61');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '61') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor input and motor control basics</li><li>Control logic loops and debugging</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids orchard road singapore</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
