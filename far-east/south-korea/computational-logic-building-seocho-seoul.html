@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Logic Building Problem Solving Seocho | AI &amp; Robotics Club</title>
+  <title>Computational Logic Building Problem Solving Seocho | AI & Robotics Club</title>
   <meta name="description" content="Computational logic building and problem solving for Seocho—patterns, decomposition and algorithms online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/computational-logic-building-seocho-seoul.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,132 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Seocho · Seoul</span><h1>Computational Logic Building and Problem Solving in Seocho</h1>
     <p>Computational logic building and problem solving for Seocho teach pattern recognition, decomposition and algorithmic design through puzzles, visual coding challenges and mentor feedback—in English.</p></div>
     <div><img src="../../../images/79.webp" alt="Logic Seocho" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-68">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-68">Lesson</label>
+        <select id="lesson-select-68" class="lesson-select" aria-label="Select lesson">
+          <option value="68" selected>068: Correlation and Covariance Explained with Data Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Correlation and Covariance Explained with Data Examples" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Relationships Between Variables</h2>
+        <p>Covariance and correlation describe how pairs of numeric variables move together:</p>
+        <ul>
+          <li><strong>Positive</strong> — both rise or both fall together</li>
+          <li><strong>Negative</strong> — one rises while the other falls</li>
+          <li><strong>Near zero</strong> — little linear association</li>
+        </ul>
+        <p>Both measures require numerical columns only—not categories or free text.</p>
+
+        <h2>2. Covariance vs Correlation</h2>
+        <ul>
+          <li><code>.cov()</code> — direction in raw units; scale depends on feature units (−∞ to +∞), hard to compare strength across pairs</li>
+          <li><code>.corr()</code> — standardized to −1…+1; strength is easier to read; captures linear relationships only</li>
+        </ul>
+
+        <h2>3. Dataset Setup</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv")
+numerical_cols = ["Quantity", "Unit Price", "Discount", "Delivery Days", "Revenue"]
+df_num = df[numerical_cols]
+print(df_num.shape)</code></pre>
+
+        <h2>4. Covariance Matrix</h2>
+        <pre><code>cov_matrix = df_num.cov()
+print(cov_matrix)</code></pre>
+        <p>Diagonal entries are variances. Example patterns: Quantity–Revenue and Unit Price–Revenue positive; Discount–Revenue negative.</p>
+
+        <h2>5. Correlation Matrix</h2>
+        <pre><code>corr_matrix = df_num.corr()
+print(corr_matrix)
+print(corr_matrix["Revenue"].sort_values(ascending=False))</code></pre>
+        <p>Illustrative correlations with Revenue: Unit Price ≈ +0.67, Quantity ≈ +0.62, Discount ≈ −0.13, Delivery Days ≈ 0.005 (essentially uncorrelated).</p>
+
+        <h2>6. Correlation ≠ Causation</h2>
+        <p>Moving together is an association, not proof that one variable causes the other. Report relationships carefully without claiming causal effects unless experiments or domain evidence support them.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between Covariance and Correlation in Python?</button>
+          <div class="accordion-body"><p><code>.cov()</code> uses raw units and an unbounded scale. <code>.corr()</code> rescales to −1…+1 so strength is comparable. Both need numeric columns and (for correlation) describe linear links.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the 5,000-order retail dataset, which features showed the strongest and weakest correlations with Revenue?</button>
+          <div class="accordion-body"><p>Strongest positives: Unit Price (~0.67) and Quantity (~0.62). Discount was negative (~−0.13). Delivery Days was near zero (~0.005).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does the statistical principle "Correlation Does Not Imply Causation" mean, and why is it critical in data analysis?</button>
+          <div class="accordion-body"><p>Correlation shows joint movement, not that one variable causes the other. Analysts should describe associations without overstating causal claims.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/arduino-circuit-design-songdo-incheon.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/digital-animation-opentoonz-jeju-global-city.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-68');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-68');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '68') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Pattern recognition and abstraction</li><li>Problem decomposition</li><li>Algorithm design with visual coding</li><li>Interactive logic puzzles</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
