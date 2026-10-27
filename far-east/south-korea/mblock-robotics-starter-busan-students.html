@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock STEM Robotics Starter Program Busan Students | AI &amp; Robotics Club</title>
+  <title>mBlock STEM Robotics Starter Program Busan Students | AI & Robotics Club</title>
   <meta name="description" content="mBlock STEM robotics starter program for Busan students—visual algorithms to motors and sensors online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/mblock-robotics-starter-busan-students.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,124 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Busan · Korea</span><h1>mBlock STEM Robotics Starter Program for Busan Students</h1>
     <p>An mBlock STEM robotics starter program for Busan students lets learners write visual algorithms that control motor drives, distance sensing and light indicators—on screen first, optional hardware later.</p></div>
     <div><img src="../../../images/76.webp" alt="mBlock Busan" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-70">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-70">Lesson</label>
+        <select id="lesson-select-70" class="lesson-select" aria-label="Select lesson">
+          <option value="70" selected>070: Matplotlib Explained: Figures, Axes, and a Practical Visualization Workflow</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Matplotlib Explained: Figures, Axes, and a Practical Visualization Workflow" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Visualize?</h2>
+        <p>Tables and summary stats alone hide patterns. Charts make trends and anomalies easier to see and to share with stakeholders. Matplotlib is Python’s core plotting library for that work.</p>
+
+        <h2>2. Figure vs Axes</h2>
+        <ul>
+          <li><strong>Figure (<code>fig</code>)</strong> — the full canvas/window; can hold one or many plots</li>
+          <li><strong>Axes (<code>ax</code>)</strong> — the plot region inside the figure (title, x/y labels, data)</li>
+        </ul>
+        <p><code>fig, ax = plt.subplots()</code> creates both at once.</p>
+
+        <h2>3. Stateful + Object-Oriented Style</h2>
+        <p>Matplotlib is stateful (commands update the active plot). Prefer the OO interface—call methods on <code>fig</code> and <code>ax</code>—for clearer, reusable code, especially with multiple subplots.</p>
+
+        <h2>4. Practical Workflow</h2>
+        <pre><code>import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+ax.set_title("Blank Figure Example")
+ax.set_xlabel("x-axis label")
+ax.set_ylabel("y-axis label")
+fig.savefig("blank_plot.png", dpi=100)
+plt.show()</code></pre>
+        <ul>
+          <li><code>set_title</code> / <code>set_xlabel</code> / <code>set_ylabel</code> — annotate the chart</li>
+          <li><code>fig.savefig(..., dpi=100)</code> — export resolution for reports/print</li>
+          <li><code>plt.show()</code> — display on screen</li>
+        </ul>
+        <p>With no data, axes default to 0–1. When data is plotted, scales adjust to the data range.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between a Figure and an Axes in Matplotlib?</button>
+          <div class="accordion-body"><p>A Figure is the overall canvas; an Axes is the plot area inside it. <code>plt.subplots()</code> returns both so you can label and draw on <code>ax</code> while saving via <code>fig</code>.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is the Object-Oriented (OO) style preferred over simple stateful script commands when building plots?</button>
+          <div class="accordion-body"><p>OO methods on explicit <code>fig</code>/<code>ax</code> objects stay modular and clear when several subplots exist, avoiding ambiguity about which plot is “active.”</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What purpose does the dpi parameter serve in fig.savefig(), and what happens to a plot if no data is provided?</button>
+          <div class="accordion-body"><p>DPI sets pixel density of the exported image. Empty plots default to 0–1 on both axes; real data triggers automatic rescaling.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/digital-animation-opentoonz-jeju-global-city.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/online-robotics-classes-gangnam-seoul.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-70');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-70');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '70') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual blocks linked to robot motion</li><li>Distance sensing and light indicator ideas</li><li>Virtual lab simulation before hardware</li><li>Gentle bridge toward text code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
