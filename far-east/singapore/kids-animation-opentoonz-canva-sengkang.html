@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Animation and Graphic Design Course Kids Sengkang | AI &amp; Robotics Club</title>
+  <title>Digital Animation and Graphic Design Course Kids Sengkang | AI & Robotics Club</title>
   <meta name="description" content="Digital animation and graphic design course for kids in Sengkang—Canva layouts and OpenToonz frame animation online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/kids-animation-opentoonz-canva-sengkang.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,162 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Sengkang · Singapore</span><h1>Digital Animation and Graphic Design Course for Kids in Sengkang, Singapore</h1>
     <p>A digital animation and graphic design course for kids in Sengkang covers Canva layout skills and OpenToonz-style 2D frame animation—building spatial reasoning that also supports robotics and interface thinking.</p></div>
     <div><img src="../../../images/88.webp" alt="Animation Sengkang" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-59">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-59">Lesson</label>
+        <select id="lesson-select-59" class="lesson-select" aria-label="Select lesson">
+          <option value="59" selected>059: How to Find and Handle Missing Data in Pandas</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Find and Handle Missing Data in Pandas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: The Reality of Real-World Data</h2>
+        <p>Client and system data often arrive with missing or null values from recording failures, corruption, or uncollected fields. Models and stats break or give wrong results if nulls are ignored, so finding and fixing missing data is a core preprocessing step.</p>
+        <ul>
+          <li><strong>Detect:</strong> <code>df.info()</code>, <code>df.isna().sum()</code></li>
+          <li><strong>Impute (preferred):</strong> numeric → mean/median; categorical → mode</li>
+          <li><strong>Drop when needed:</strong> <code>df.dropna(subset=[...], inplace=True)</code></li>
+        </ul>
+
+        <h2>2. Dataset Overview: retail_sales.csv</h2>
+        <p>Six features: Date, Category, Sales, Quantity, Profit, Region. Ideal would be 1,825 fully filled rows; in practice several columns have nulls that must be resolved systematically.</p>
+
+        <h2>3. Detecting Missing Data in Pandas</h2>
+
+        <h3>A. Non-null counts with df.info()</h3>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("retail_sales.csv")
+df.info()</code></pre>
+        <p>Example: total 1,825 rows; Sales might show 1,823 non-null (2 missing); Region 1,821 non-null (4 missing).</p>
+
+        <h3>B. Exact null counts with df.isna().sum()</h3>
+        <pre><code>missing_counts = df.isna().sum()
+print("Missing values per column:")
+print(missing_counts)</code></pre>
+        <p><code>isna()</code> marks nulls as True; <code>.sum()</code> counts them per column. Typical pattern: Date/Category often complete; Sales, Quantity, and Region may have a few nulls.</p>
+
+        <h2>4. Two Strategies for Handling Missing Values</h2>
+        <ol>
+          <li><strong>Drop rows</strong> that contain nulls</li>
+          <li><strong>Impute</strong> (fill) with estimated values — preferred when a reliable fill is possible</li>
+        </ol>
+        <p>Imputation keeps other columns in the same row and preserves training volume; dropping shrinks the dataset.</p>
+
+        <h2>5. Strategy 1: Imputation with Basic Statistics</h2>
+        <ul>
+          <li><strong>Numeric</strong> (Sales, Profit): mean or median — e.g. <code>df['Sales'].fillna(df['Sales'].median())</code></li>
+          <li><strong>Categorical</strong> (Category, Region): mode — e.g. <code>df['Category'].fillna(df['Category'].mode()[0])</code></li>
+        </ul>
+
+        <h3>A. Quantity with mode</h3>
+        <pre><code>df["Quantity"] = pd.to_numeric(df["Quantity"])
+quantity_mode = df["Quantity"].mode()[0]
+df["Quantity"] = df["Quantity"].fillna(quantity_mode)</code></pre>
+        <p><code>.mode()</code> returns a Series; use index 0 for the most frequent value.</p>
+
+        <h3>B. Sales with median</h3>
+        <pre><code>sales_median = df["Sales"].median()
+df["Sales"] = df["Sales"].fillna(sales_median)</code></pre>
+        <p>Median is robust to outliers in continuous financial columns.</p>
+
+        <h3>C. Category with mode</h3>
+        <pre><code>category_mode = df["Category"].mode()[0]
+df["Category"] = df["Category"].fillna(category_mode)</code></pre>
+        <p>After filling, <code>df.info()</code> and <code>df.isna().sum()</code> should show full non-null counts for those columns.</p>
+
+        <h2>6. Strategy 2: Dropping Rows with dropna()</h2>
+        <p>When a field cannot be imputed reliably (e.g. critical Region values), drop those rows:</p>
+        <pre><code>df.dropna(subset=["Region"], inplace=True)
+
+print("Final Missing Counts Across All Columns:")
+print(df.isna().sum())</code></pre>
+        <ul>
+          <li><code>subset=['Region']</code> — only rows with null Region are removed</li>
+          <li><code>inplace=True</code> — updates the DataFrame in place</li>
+        </ul>
+        <p>A final <code>isna().sum()</code> of zeros means the table is ready for EDA and modeling.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the two primary ways to detect missing values in a Pandas DataFrame?</button>
+          <div class="accordion-body"><p><code>df.info()</code> shows non-null counts per column against the total row count. <code>df.isna().sum()</code> counts nulls exactly by treating True as 1 for each missing cell.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is imputing missing values generally preferred over dropping rows, and which statistical metrics should you use?</button>
+          <div class="accordion-body"><p>Imputation keeps the rest of each row and preserves sample size. Use mean or median for numeric columns (Sales, Profit) and mode for categorical columns (Category). Take <code>.mode()[0]</code> because mode returns a Series.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">When should dropna() be used, and what is the role of the inplace=True parameter?</button>
+          <div class="accordion-body"><p>Use <code>dropna()</code> when values cannot be estimated reliably (e.g. missing Region). <code>subset=['Region']</code> limits drops to that column. <code>inplace=True</code> applies the change on the original DataFrame so later steps use the cleaned data.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/computational-thinking-classes-novena-singapore.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/mblock-robotics-starter-kit-bedok-singapore.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-59');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-59');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '59') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts, posters and character design</li><li>Frame-by-frame 2D animation ideas</li><li>Sequential storytelling and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/canva-for-kids-ai/?referralCode=B7F6DA95F1AE3F405E94" target="_blank" rel="noopener noreferrer sponsored">Canva for Kids AI</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
