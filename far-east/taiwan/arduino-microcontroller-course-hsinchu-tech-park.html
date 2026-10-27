@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Microcontroller Prototyping Course Hsinchu Science Park | AI &amp; Robotics Club</title>
+  <title>Arduino Microcontroller Prototyping Course Hsinchu Science Park | AI & Robotics Club</title>
   <meta name="description" content="Arduino microcontroller prototyping course near Hsinchu Science Park—breadboards, sensors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/taiwan/arduino-microcontroller-course-hsinchu-tech-park.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,146 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Hsinchu · Taiwan</span><h1>Arduino Microcontroller Prototyping Course for Hsinchu Science Park Families</h1>
     <p>An Arduino microcontroller prototyping course for Hsinchu Science Park families guides students through breadboard wiring, ultrasonic sensing, motor control and introductory C++ logic—simulators first, optional kits under supervision.</p></div>
     <div><img src="../../../images/88.webp" alt="Arduino Hsinchu" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-77">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-77">Lesson</label>
+        <select id="lesson-select-77" class="lesson-select" aria-label="Select lesson">
+          <option value="77" selected>077: Seaborn for Beginners: Create Clear and Attractive Data Visualizations</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Seaborn for Beginners: Create Clear and Attractive Data Visualizations" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Is Seaborn?</h2>
+        <p>Seaborn is a high-level statistical visualization library built on Matplotlib. It targets clean EDA charts with less boilerplate, built-in themes, and direct Pandas integration.</p>
+
+        <h2>2. Strengths</h2>
+        <ul>
+          <li>Reads DataFrame columns for axes and legends</li>
+          <li>Themes: darkgrid, whitegrid, dark, white, ticks</li>
+          <li>Distribution, categorical, relational, and matrix plot families</li>
+        </ul>
+
+        <h2>3. Figure-Level vs Axes-Level</h2>
+        <ul>
+          <li><strong>Figure-level</strong> (<code>relplot</code>, <code>catplot</code>, <code>displot</code>): own the whole figure; support faceting with <code>col</code>/<code>row</code></li>
+          <li><strong>Axes-level</strong> (<code>scatterplot</code>, <code>boxplot</code>, <code>histplot</code>): draw on one Matplotlib <code>ax</code> inside custom layouts</li>
+        </ul>
+
+        <h2>4. Healthcare Sample + Scatter</h2>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set_theme(style="whitegrid")
+
+df = pd.read_csv("healthcare_patient_analytics_seaborn.csv")
+sample_df = df.sample(n=500, random_state=42)
+
+plt.figure(figsize=(9, 6))
+sns.scatterplot(
+    data=sample_df,
+    x="Treatment Cost",
+    y="Recovery Score",
+    hue="Visit Type"
+)
+plt.title("Treatment Cost vs. Recovery Score by Visit Type")
+plt.show()</code></pre>
+        <p><code>hue</code> auto-colors Emergency vs Routine and builds the legend.</p>
+
+        <h2>5. Faceting with relplot</h2>
+        <pre><code>sns.relplot(
+    data=sample_df,
+    x="Treatment Cost",
+    y="Recovery Score",
+    hue="Visit Type",
+    col="Gender"
+)
+plt.show()</code></pre>
+        <p>One call splits Female/Male into side-by-side panels with shared scales.</p>
+
+        <h2>6. vs Matplotlib</h2>
+        <p>Seaborn often needs one call where Matplotlib needs scatter + labels + title separately, and default markers/themes tend to be clearer for dense EDA samples.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Seaborn, and why is it preferred over Matplotlib for Exploratory Data Analysis (EDA)?</button>
+          <div class="accordion-body"><p>It is a high-level layer on Matplotlib for statistical plots. EDA benefits from shorter code, native DataFrame mapping, and themes/palettes that look publication-ready with less manual styling.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between Figure-Level and Axes-Level functions in Seaborn?</button>
+          <div class="accordion-body"><p>Figure-level APIs (<code>relplot</code>, <code>catplot</code>, <code>displot</code>) manage the whole figure and facet grids. Axes-level APIs (<code>scatterplot</code>, <code>boxplot</code>, <code>histplot</code>) draw on a single Axes for custom subplot layouts.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the healthcare case study, how did sns.scatterplot visualize Treatment Cost, Recovery Score, and Visit Type?</button>
+          <div class="accordion-body"><p>x = Treatment Cost ($0–$12,000), y = Recovery Score (30%–100%), <code>hue="Visit Type"</code> colored Emergency vs Routine and auto-built a legend on a 500-row sample.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/taiwan/ai-courses-for-children-taichung.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/taiwan/online-robotics-classes-daan-taipei.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-77');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-77');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '77') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and motor control</li><li>Introductory microcontroller code</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
