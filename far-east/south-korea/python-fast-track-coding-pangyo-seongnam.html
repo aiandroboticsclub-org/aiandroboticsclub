@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Fast Track Coding Tech Families Pangyo Seongnam | AI &amp; Robotics Club</title>
+  <title>Python Fast Track Coding Tech Families Pangyo Seongnam | AI & Robotics Club</title>
   <meta name="description" content="Python fast track coding for tech families in Pangyo, Seongnam—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/python-fast-track-coding-pangyo-seongnam.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,142 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Pangyo · Seongnam</span><h1>Python Fast Track Coding for Tech Families in Pangyo, Seongnam</h1>
     <p>Python fast track coding for tech families in Pangyo, Seongnam smooths the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/75.webp" alt="Python Pangyo" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-73">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-73">Lesson</label>
+        <select id="lesson-select-73" class="lesson-select" aria-label="Select lesson">
+          <option value="73" selected>073: How to Create Histograms and Density Plots in Python</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Create Histograms and Density Plots in Python" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What a Histogram Shows</h2>
+        <p>A histogram bins one continuous numeric series and counts how many values fall in each bin. Use raw counts for frequency, or <code>density=True</code> so the area under the bars acts like a probability density.</p>
+
+        <h2>2. Synthetic Normals with NumPy</h2>
+        <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+group_a = np.random.normal(loc=70, scale=10, size=1000)
+group_b = np.random.normal(loc=80, scale=12, size=1000)
+
+plt.hist(group_a, bins=30, density=True, alpha=0.6, label="Group A")
+plt.hist(group_b, bins=30, density=True, alpha=0.6, label="Group B")
+plt.xlabel("Value")
+plt.ylabel("Probability Density")
+plt.title("Comparative Normal Distributions")
+plt.legend()
+plt.show()</code></pre>
+        <p><code>alpha</code> keeps overlapping curves readable.</p>
+
+        <h2>3. Revenue Frequency on Sampled Orders</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv")
+sample_df = df.sample(n=1000)
+
+fig, ax = plt.subplots(figsize=(12, 4))
+ax.hist(sample_df["Revenue"], bins=30, edgecolor="black")
+ax.set_title("Revenue Distribution (Raw Frequency)")
+ax.set_xlabel("Revenue ($)")
+ax.set_ylabel("Frequency Count")
+plt.show()</code></pre>
+        <p>Lower revenue bins often dominate; high-ticket bins stay sparse.</p>
+
+        <h2>4. Density + Original vs Discounted</h2>
+        <pre><code>fig, ax = plt.subplots(figsize=(12, 4))
+ax.hist(sample_df["Revenue"], bins=30, density=True, alpha=0.6, edgecolor="black")
+ax.set_ylabel("Density")
+plt.show()
+
+discounted = sample_df["Revenue"] * (1 - sample_df["Discount"])
+fig, ax = plt.subplots(figsize=(12, 5))
+ax.hist(sample_df["Revenue"], bins=30, alpha=0.6, color="orange", label="Original")
+ax.hist(discounted, bins=30, alpha=0.6, color="blue", label="Discounted")
+ax.legend()
+plt.show()</code></pre>
+        <p>Discounts typically shift mass toward lower order values.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a histogram in Python, and how does the bins parameter control data visualization?</button>
+          <div class="accordion-body"><p>It shows how often values fall in equal intervals of one continuous variable. <code>bins=N</code> sets how many intervals to use (e.g. 30).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens when you set density=True in plt.hist(), and why is the alpha parameter critical when plotting multiple distributions?</button>
+          <div class="accordion-body"><p><code>density=True</code> normalizes so the plotted area is a PDF (y becomes density, not counts). <code>alpha</code> adds transparency so overlapping histograms stay visible.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What business insight did the comparative histogram of Original vs. Discounted Revenue reveal?</button>
+          <div class="accordion-body"><p>Discounted revenue concentrated more in smaller order sizes, while original revenue retained more mass at higher tiers—discounts compress values downward.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/online-stem-club-daegu-international-school.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/scratch-coding-animation-yongsan-seoul.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-73');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-73');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '73') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
