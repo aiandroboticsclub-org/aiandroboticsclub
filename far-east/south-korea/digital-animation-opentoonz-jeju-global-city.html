@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Animation OpenToonz Classes Jeju Global Education City | AI &amp; Robotics Club</title>
+  <title>Digital Animation OpenToonz Classes Jeju Global Education City | AI & Robotics Club</title>
   <meta name="description" content="Digital animation OpenToonz classes for Jeju Global Education City—Canva layouts and frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/digital-animation-opentoonz-jeju-global-city.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,131 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Jeju · Korea</span><h1>Digital Animation OpenToonz Classes for Jeju Global Education City</h1>
     <p>Digital animation OpenToonz classes for Jeju Global Education City cover Canva layout skills and frame-by-frame 2D animation—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/78.webp" alt="Animation Jeju" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-69">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-69">Lesson</label>
+        <select id="lesson-select-69" class="lesson-select" aria-label="Select lesson">
+          <option value="69" selected>069: How to Create an Exploratory Data Analysis Report</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Create an Exploratory Data Analysis Report" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Purpose of an EDA Report</h2>
+        <p>After cleaning, summarizing, detecting outliers, and measuring correlations, findings are packaged into a short EDA report for stakeholders. It turns raw tables into actionable insights and lets the client (domain SME) validate interpretation before modeling decisions are locked in.</p>
+
+        <h2>2. Narrative + Visual Evidence</h2>
+        <p>A strong report mixes concise bullets with charts/tables: quality issues, distributions, relationships, and recommended fixes. Keep it short—typically a focused 6–8 bullet executive summary—rather than dozens of pages.</p>
+
+        <h2>3. Six Summary Dimensions</h2>
+        <ol>
+          <li><strong>Data quality & missingness</strong> — rates and proposed remedies (e.g. median impute or drop)</li>
+          <li><strong>Feature distributions</strong> — skewness and transforms (e.g. log1p for right-skewed Revenue)</li>
+          <li><strong>Attribute relationships</strong> — correlation strengths that match (or challenge) business intuition</li>
+          <li><strong>Categorical concentration</strong> — share of orders/revenue in top categories</li>
+          <li><strong>Outliers & anomalies</strong> — extreme records to keep or remove with client input</li>
+          <li><strong>Temporal / seasonal trends</strong> — cycles such as Q4 holiday spikes</li>
+        </ol>
+
+        <h2>4. Practical Snippets</h2>
+        <pre><code>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("retail_dataset.csv")
+
+missing_rate = df["Customer_Rating"].isna().mean() * 100
+print(f"Missing Customer_Rating: {missing_rate:.1f}%")
+
+print("Revenue skew:", df["Revenue"].skew())
+df["Revenue_Log"] = np.log1p(df["Revenue"])
+
+print("Qty–Revenue corr:", df["Quantity"].corr(df["Revenue"]))
+print("Top-3 category share:", df["Category"].value_counts(normalize=True).head(3).sum())</code></pre>
+        <p>Pair metrics with simple plots (e.g. raw vs log Revenue histograms) so stakeholders see the problem and the proposed fix.</p>
+
+        <h2>5. Bridge to Modeling</h2>
+        <p>Share the remediation checklist with the client before dropping rows, imputing, or filtering outliers. Agreement “freezes” preprocessing choices and anchors the modeling pipeline in domain-approved assumptions.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is an Exploratory Data Analysis (EDA) report, and why does it serve as a bridge to machine learning?</button>
+          <div class="accordion-body"><p>A concise narrative of structure, quality, and patterns—backed by tables and charts. It aligns cleaning and transforms with the client before data is permanently changed or used for models.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must an EDA report combine both textual narratives and visual evidence, and what common pitfall should be avoided?</button>
+          <div class="accordion-body"><p>Text states issues and actions; plots make claims tangible. Avoid encyclopedic length—prefer a tight 6–8 bullet summary stakeholders can finish quickly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What six core areas should be documented in an executive EDA summary?</button>
+          <div class="accordion-body"><p>Missingness/quality, distributions (skew), correlations, categorical concentration, outliers, and temporal/seasonal patterns—with clear remediation proposals for each.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/computational-logic-building-seocho-seoul.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/mblock-robotics-starter-busan-students.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-69');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-69');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '69') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
