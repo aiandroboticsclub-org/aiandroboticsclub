@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM Robotics Club Daegu International Students | AI &amp; Robotics Club</title>
+  <title>Online STEM Robotics Club Daegu International Students | AI & Robotics Club</title>
   <meta name="description" content="Online STEM and robotics club for Daegu international students—English sessions, sensors, motors and projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/online-stem-club-daegu-international-school.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,131 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Daegu · Korea</span><h1>Online STEM and Robotics Club for Daegu International Students</h1>
     <p>An online STEM and robotics club for Daegu international students combines sensors, motors and programming so learners practise end-to-end engineering thinking—fully in English.</p></div>
     <div><img src="../../../images/80.webp" alt="STEM Club Daegu" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-72">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-72">Lesson</label>
+        <select id="lesson-select-72" class="lesson-select" aria-label="Select lesson">
+          <option value="72" selected>072: Python Bar Charts Tutorial: Simple, Grouped, and Stacked Bar Graphs</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Bar Charts Tutorial: Simple, Grouped, and Stacked Bar Graphs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Bar Charts?</h2>
+        <p>Bars compare categories after aggregation. On large tables (e.g. 5,000 rows), group first so a few bars represent totals by product line, region, etc.—not one bar per row.</p>
+
+        <h2>2. Simple Bar Chart</h2>
+        <pre><code>import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv")
+category_revenue = df.groupby("Product Category")["Revenue"].sum()
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.bar(category_revenue.index, category_revenue.values)
+ax.set_title("Total Revenue by Product Category")
+ax.set_xlabel("Product Category")
+ax.set_ylabel("Revenue ($)")
+plt.show()</code></pre>
+        <p>Thousands of rows collapse into one bar per category (e.g. Electronics highest in a sample).</p>
+
+        <h2>3. Grouped Bars (.unstack())</h2>
+        <pre><code>grouped = df.groupby(["Product Category", "Region"])["Revenue"].sum()
+unstacked = grouped.unstack()
+unstacked.plot(kind="bar", figsize=(10, 4))
+plt.title("Revenue by Category Across Regions")
+plt.xlabel("Product Category")
+plt.ylabel("Revenue ($)")
+plt.show()</code></pre>
+        <p><code>.unstack()</code> pivots the inner index (Region) into columns so each category shows side-by-side regional bars and a legend.</p>
+
+        <h2>4. Stacked Bars</h2>
+        <pre><code>unstacked.plot(kind="bar", stacked=True, figsize=(10, 5))
+plt.title("Stacked Revenue by Category and Region")
+plt.xlabel("Product Category")
+plt.ylabel("Total Accumulated Revenue ($)")
+plt.show()</code></pre>
+        <p>Stacking shows category total (bar height) and each region’s share within that total. Grouped bars are better for direct region-to-region comparison; stacked bars emphasize composition.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why are raw datasets grouped before generating bar charts, and how are simple bar charts constructed in Python?</button>
+          <div class="accordion-body"><p>Raw rows would flood the chart. Group (e.g. sum Revenue by Product Category), then pass category labels and values to <code>ax.bar()</code> for a readable summary.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of .unstack() when creating a grouped bar chart with two categories?</button>
+          <div class="accordion-body"><p>After a multi-index groupby, <code>.unstack()</code> turns the inner level (e.g. Region) into columns so Pandas can draw side-by-side bars per category with a color legend.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the primary difference between a grouped bar chart and a stacked bar chart (stacked=True)?</button>
+          <div class="accordion-body"><p>Grouped: bars side-by-side for easy cross-region comparison. Stacked: segments piled in one bar to show totals and each segment’s share of that total.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/online-robotics-classes-gangnam-seoul.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/python-fast-track-coding-pangyo-seongnam.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-72');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-72');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '72') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control practice</li><li>Coding challenges and debugging</li><li>Project demonstration habits</li><li>English live sessions for international school students</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
