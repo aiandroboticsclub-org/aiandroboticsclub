@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Logic Introduction Machine Learning Mapo Seoul | AI &amp; Robotics Club</title>
+  <title>AI Logic Introduction Machine Learning Mapo Seoul | AI & Robotics Club</title>
   <meta name="description" content="AI logic and introduction to machine learning for Mapo, Seoul—visual tools, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/ai-ethics-and-logic-course-mapo-seoul.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,131 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Mapo · Seoul</span><h1>AI Logic and Introduction to Machine Learning in Mapo, Seoul</h1>
     <p>An AI logic and introduction to machine learning course for Mapo, Seoul introduces how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/74.webp" alt="AI Mapo Seoul" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-66">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-66">Lesson</label>
+        <select id="lesson-select-66" class="lesson-select" aria-label="Select lesson">
+          <option value="66" selected>066: Python Date and Time Data: Working with Dates and Time Series</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Date and Time Data: Working with Dates and Time Series" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Understanding Time Series Data</h2>
+        <p>Time series data records events in chronological order. Date columns need proper parsing—not treatment as plain strings—so you can resample, trend, and compare periods.</p>
+
+        <h2>2. Setting a Datetime Index</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv", parse_dates=["Order Date"])
+df = df.set_index("Order Date")
+
+print("Dataset Shape:", df.shape)
+print("Index Type:", type(df.index))
+print(df.head(3))</code></pre>
+        <p>With Order Date as the index, rows become chronological records of when orders arrived.</p>
+
+        <h2>3. Monotonicity Check</h2>
+        <pre><code>is_ordered = df.index.is_monotonic_increasing
+print("Datetime Index is Monotonically Increasing:", is_ordered)</code></pre>
+        <p>If this is True, timestamps do not jump backward—useful before aggregations.</p>
+
+        <h2>4. Monthly Resampling with 'ME'</h2>
+        <p>Modern Pandas uses <code>'ME'</code> (Month End) instead of the older <code>'M'</code> alias:</p>
+        <pre><code>monthly_revenue = df["Revenue"].resample("ME").sum()
+print(monthly_revenue.head())</code></pre>
+        <p>Illustrative totals: Jan 2022 ≈ 35,624; Feb 2022 ≈ 29,998 (indexed to each month’s last calendar day).</p>
+
+        <h2>5. Month-over-Month Growth (.pct_change)</h2>
+        <pre><code>monthly_growth = monthly_revenue.pct_change()
+print(monthly_growth.head())</code></pre>
+        <p>First period is NaN (no prior month). Example: Feb ≈ −16% (shorter month); Mar ≈ +1.3%; Apr ≈ +1.5%. Positive values mean growth; negative values mean contraction.</p>
+
+        <h2>6. Aggregation Sanity Check</h2>
+        <pre><code>raw_revenue_sum = df["Revenue"].sum()
+resampled_revenue_sum = monthly_revenue.sum()
+print("Match:", resampled_revenue_sum == raw_revenue_sum)</code></pre>
+        <p>If both sums match, resampling did not drop or double-count rows.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is setting a DatetimeIndex important, and how do you verify its monotonicity in Pandas?</button>
+          <div class="accordion-body"><p>Setting a date column as the index enables resampling, range slicing, and period analysis. Check <code>df.index.is_monotonic_increasing</code>; True means time moves forward without backward jumps.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between 'M' and 'ME' in .resample(), and how was it used to aggregate monthly revenue?</button>
+          <div class="accordion-body"><p>Older code used <code>'M'</code>; current Pandas prefers <code>'ME'</code> (Month End). <code>.resample("ME").sum()</code> totals revenue to each month’s last day (e.g. Jan end 35,624; Feb end 29,998 in the sample).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What insights did .pct_change() provide regarding monthly revenue, and how was aggregation accuracy verified?</button>
+          <div class="accordion-body"><p><code>.pct_change()</code> shows relative period growth (e.g. Feb −16%, Mar +1.3%). Confirming <code>monthly_revenue.sum() == df["Revenue"].sum()</code> proves totals stayed consistent after resampling.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/wro-robotics-competition-prep-pasir-ris.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/arduino-circuit-design-songdo-incheon.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-66');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-66');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '66') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
