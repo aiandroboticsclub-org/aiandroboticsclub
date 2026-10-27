@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics and STEM Classes Gangnam Seoul | AI &amp; Robotics Club</title>
+  <title>Online Robotics and STEM Classes Gangnam Seoul | AI & Robotics Club</title>
   <meta name="description" content="Online robotics and STEM classes for Gangnam, Seoul—live English enrichment around Hagwon schedules in KST.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/south-korea/online-robotics-classes-gangnam-seoul.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,18 +21,149 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Gangnam · Seoul</span><h1>Online Robotics and STEM Classes for Gangnam, Seoul</h1>
     <p>Online robotics and STEM classes for Gangnam, Seoul help busy students explore sensors, motors and control logic in live English sessions timed for Korea Standard Time—without inventing a private Gangnam campus.</p></div>
     <div><img src="../../../images/71.webp" alt="Robotics Gangnam" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-71">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-71">Lesson</label>
+        <select id="lesson-select-71" class="lesson-select" aria-label="Select lesson">
+          <option value="71" selected>071: How to Make Line Charts and Scatter Plots in Python</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Make Line Charts and Scatter Plots in Python" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Line vs Scatter</h2>
+        <ul>
+          <li><strong>Line plot</strong> — points connected in sequence; good for smaller series and trends over time</li>
+          <li><strong>Scatter plot</strong> — isolated markers; good for larger sets and non-linear pairwise relationships</li>
+        </ul>
+
+        <h2>2. Basic Line Plot</h2>
+        <pre><code>import matplotlib.pyplot as plt
+
+days = [1, 2, 3, 4, 5, 6, 7]
+sales = [120, 150, 90, 200, 180, 220, 160]
+
+plt.plot(days, sales, marker="o", linewidth=2, alpha=0.8, label="Daily Sales")
+plt.xlabel("Days")
+plt.ylabel("Sales ($)")
+plt.title("Sales Trend Over a Week")
+plt.legend()
+plt.show()</code></pre>
+        <p><code>marker</code>, <code>linewidth</code>, and <code>alpha</code> control shape, line thickness, and transparency.</p>
+
+        <h2>3. Basic Scatter Plot</h2>
+        <pre><code>temperature = [18, 22, 25, 28, 30, 32]
+ice_cream_sales = [40, 55, 70, 95, 110, 130]
+
+plt.scatter(temperature, ice_cream_sales, marker="x", alpha=0.7, label="Sales vs Temperature")
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Ice Cream Sales ($)")
+plt.title("Relationship Between Temperature and Sales")
+plt.legend()
+plt.show()</code></pre>
+
+        <h2>4. Real Data: Sample + Monthly Revenue</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv", parse_dates=["Order Date"])
+sample_df = df.sample(n=100)  # reduce clutter
+
+monthly_revenue = df.set_index("Order Date")["Revenue"].resample("ME").sum()
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.plot(monthly_revenue.index, monthly_revenue.values, linewidth=2)
+ax.set_xlabel("Month")
+ax.set_ylabel("Monthly Revenue ($)")
+ax.set_title("Monthly Revenue Trend")
+plt.show()
+
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.scatter(sample_df["Unit Price"], sample_df["Revenue"], alpha=0.5)
+ax.set_xlabel("Unit Price ($)")
+ax.set_ylabel("Revenue ($)")
+ax.set_title("Unit Price vs. Revenue")
+plt.show()</code></pre>
+        <p>Use a line for ordered time series; use scatter when points do not form a single continuous path (e.g. Unit Price vs Revenue).</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between a Line Plot and a Scatter Plot in Matplotlib?</button>
+          <div class="accordion-body"><p>Line plots connect sequential points (trends/time series, smaller n). Scatter plots leave markers unconnected (larger n, non-linear pairs).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What do the marker, linewidth, and alpha parameters control in Matplotlib plots?</button>
+          <div class="accordion-body"><p><code>marker</code> sets point shape; <code>linewidth</code> sets line thickness; <code>alpha</code> (0–1) sets transparency so overlaps stay readable.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the 5,000-row e-commerce dataset, why was df.sample(n=100) used, and why was Unit Price vs. Revenue displayed as a scatter plot rather than a line plot?</button>
+          <div class="accordion-body"><p>Sampling reduces overplotting. Unit Price vs Revenue is dispersed without a single ordered path—a connecting line would be misleading, so scatter is appropriate.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/mblock-robotics-starter-busan-students.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/online-stem-club-daegu-international-school.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-71');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-71');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '71') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control basics</li><li>Control logic and debugging habits</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship in KST-friendly windows</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
