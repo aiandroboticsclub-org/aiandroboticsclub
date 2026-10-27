@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Workshops for Children Tanglin Singapore | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Workshops for Children Tanglin Singapore | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and animation workshops for children in Tanglin, Singapore—visual block coding, games and stories in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/scratch-coding-workshops-children-tanglin-singapore.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,167 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Tanglin · Singapore</span><h1>Scratch Coding and Animation Workshops for Children in Tanglin, Singapore</h1>
     <p>Scratch coding and animation workshops for children in Tanglin, Singapore introduce drag-and-drop logic so young creators build games and animated stories—ideal for international school students starting computational thinking.</p></div>
     <div><img src="../../../images/82.webp" alt="Scratch Tanglin" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-63">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-63">Lesson</label>
+        <select id="lesson-select-63" class="lesson-select" aria-label="Select lesson">
+          <option value="63" selected>063: Pandas apply, map, and pipe Explained with Practical Examples</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Pandas apply, map, and pipe Explained with Practical Examples" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Column and Table Transformations</h2>
+        <p>Pandas offers three main tools for transforming features:</p>
+        <ul>
+          <li><code>map()</code> — fast transforms on a single Series</li>
+          <li><code>apply()</code> — custom logic, often with if/else or multi-column needs</li>
+          <li><code>pipe()</code> — chain whole-DataFrame steps into a readable pipeline</li>
+        </ul>
+
+        <h2>2. Dataset Overview</h2>
+        <p>Example context: an e-commerce table with identifiers, categories, quantity, price, payment method, delivery days, rating, and revenue—mix of numbers, dates, and text.</p>
+
+        <h2>3. map(): Fast Single-Column Transforms</h2>
+        <p><code>map()</code> works on one Series. Ideal for dictionary lookups and category recoding.</p>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv")
+
+payment_mapping = {
+    "Card": "Digital",
+    "Wallet": "Digital",
+    "Cash on Delivery": "Cash"
+}
+
+df["Payment Type"] = df["Payment Method"].map(payment_mapping)
+print(df[["Payment Method", "Payment Type"]].head())</code></pre>
+        <p>Card and Wallet become Digital; Cash on Delivery becomes Cash.</p>
+
+        <h2>4. apply(): Custom Logic</h2>
+        <p><code>apply()</code> can take a function with branching. Example: bin revenue into High / Medium / Low:</p>
+        <pre><code>def categorize_revenue(val):
+    if val > 500:
+        return "High"
+    elif val >= 200:
+        return "Medium"
+    else:
+        return "Low"
+
+df["Revenue Category"] = df["Revenue"].apply(categorize_revenue)
+print(df["Revenue Category"].value_counts())</code></pre>
+        <p>Illustrative counts on a 5,000-row sample: High ~3,252, Medium ~1,298, Low ~650.</p>
+
+        <h2>5. pipe(): Sequential Pipelines</h2>
+        <p>Chain DataFrame-level functions in order:</p>
+        <pre><code>def add_profit(data):
+    data["Profit"] = data["Revenue"] * 0.20
+    return data
+
+def add_net_revenue(data):
+    data["Net Revenue"] = data["Revenue"] - data["Profit"]
+    return data
+
+df_processed = (
+    df
+    .pipe(add_profit)
+    .pipe(add_net_revenue)
+)
+
+print(df_processed[["Revenue", "Profit", "Net Revenue"]].head())</code></pre>
+        <p>First step adds Profit (20% of revenue); second adds Net Revenue (Revenue − Profit).</p>
+
+        <h2>6. map vs apply vs pipe</h2>
+        <table>
+          <thead>
+            <tr><th>Function</th><th>Level</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>map()</td><td>Single Series</td><td>Fast dict/function mapping of categories</td></tr>
+            <tr><td>apply()</td><td>Series or DataFrame</td><td>Custom functions, if/else, multi-column logic</td></tr>
+            <tr><td>pipe()</td><td>Whole DataFrame</td><td>Ordered multi-step ETL pipelines</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the main difference between map() and apply() in Pandas, and when should each be used?</button>
+          <div class="accordion-body"><p><code>map()</code> is for a single Series and is fastest for dictionary-style replacements (e.g. payment labels → Digital/Cash). <code>apply()</code> is more flexible for custom functions and if/else logic (e.g. revenue tiers) and can be slightly slower.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the 5,000-record e-commerce example, how did apply() categorize orders based on revenue?</button>
+          <div class="accordion-body"><p>A function returned High if revenue > 500, Medium if ≥ 200, else Low. Applied via <code>df["Revenue"].apply(...)</code>, it filled a Revenue Category column (example counts: High 3,252, Medium 1,298, Low 650).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of the pipe() function in Pandas, and how does it improve data science workflows?</button>
+          <div class="accordion-body"><p><code>pipe()</code> runs functions on the whole DataFrame in sequence, e.g. <code>df.pipe(add_profit).pipe(add_net_revenue)</code>. That keeps multi-step cleaning readable and avoids messy nested calls or many temporary variables.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/python-coding-classes-kids-east-coast-singapore.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/stem-robotics-bootcamp-kids-jurong-east.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-63');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-63');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '63') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade-style mini-games and stories</li><li>Event-driven logic and loops</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
