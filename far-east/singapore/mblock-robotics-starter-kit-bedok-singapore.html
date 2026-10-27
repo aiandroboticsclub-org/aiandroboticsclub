@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock Coding and Robotics Starter Classes Bedok Singapore | AI &amp; Robotics Club</title>
+  <title>mBlock Coding and Robotics Starter Classes Bedok Singapore | AI & Robotics Club</title>
   <meta name="description" content="mBlock coding and robotics starter classes in Bedok, Singapore—visual code to motors and sensors, simulators first.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/mblock-robotics-starter-kit-bedok-singapore.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,152 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bedok · Singapore</span><h1>mBlock Coding and Robotics Starter Classes in Bedok, Singapore</h1>
     <p>mBlock coding and robotics starter classes for Bedok, Singapore let young learners program motor movements, distance sensing and LEDs visually—on screen first, with optional physical robots later under supervision.</p></div>
     <div><img src="../../../images/87.webp" alt="mBlock Bedok" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-60">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-60">Lesson</label>
+        <select id="lesson-select-60" class="lesson-select" aria-label="Select lesson">
+          <option value="60" selected>060: Python Text Cleaning: Clean Strings and Text Data with Pandas</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Text Cleaning: Clean Strings and Text Data with Pandas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Introduction: Why String Cleaning Is Critical</h2>
+        <p>Client text rarely arrives standardized. Common problems:</p>
+        <ul>
+          <li><strong>Inconsistent casing</strong> — "ELECTRONICS" vs "electronics" (Python is case-sensitive)</li>
+          <li><strong>Leading/trailing spaces</strong> — e.g. " Shoes " breaks grouping and filters</li>
+          <li><strong>Unwanted separators</strong> — hyphens and symbols used inconsistently</li>
+        </ul>
+        <p>Pandas string tools live under the <code>.str</code> accessor. A typical pipeline:</p>
+        <pre><code>"  HOME-APPLIANCES  "
+  → .str.strip()    → "HOME-APPLIANCES"
+  → .str.lower()    → "home-appliances"
+  → .str.replace()  → "home appliances"</code></pre>
+
+        <h2>2. Setup: Dirty Text in a DataFrame</h2>
+        <pre><code>import pandas as pd
+
+data = {
+    "Product_ID": [101, 102, 103, 104],
+    "Category": [
+        "  ELECTRONICS  ",          # whitespace + uppercase
+        "home-appliances",         # hyphen
+        "CLOTHING-ACCESSORIES  ",  # uppercase, hyphen, trailing space
+        "  electronics"            # leading space + lowercase
+    ]
+}
+
+df = pd.DataFrame(data)
+print(df)</code></pre>
+        <p>Rows 0 and 3 are the same category but do not match until cleaned. Rows 1 and 2 need hyphens turned into spaces.</p>
+
+        <h2>3. Case and Whitespace: .str.lower() and .str.strip()</h2>
+        <ul>
+          <li><code>.str.lower()</code> — all letters lowercase for uniform matching</li>
+          <li><code>.str.strip()</code> — remove leading and trailing spaces</li>
+        </ul>
+        <p>Chain them and store in a new column:</p>
+        <pre><code>df["Category_Clean"] = df["Category"].str.strip().str.lower()
+print(df[["Category", "Category_Clean"]])</code></pre>
+        <p>Result: whitespace gone and every entry lowercase (e.g. both electronics rows align).</p>
+
+        <h2>4. Replacing Characters with .str.replace()</h2>
+        <pre><code>df["Category_Clean"] = df["Category_Clean"].str.replace("-", " ")
+print(df[["Category", "Category_Clean"]])</code></pre>
+        <p>"home-appliances" → "home appliances"; "clothing-accessories" → "clothing accessories". Text is then lowercase, trimmed, and free of hyphens.</p>
+
+        <h2>5. Essential Methods at a Glance</h2>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Syntax</th><th>What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>lower()</td><td><code>df[col].str.lower()</code></td><td>All letters lowercase — fixes case-sensitive mismatches</td></tr>
+            <tr><td>strip()</td><td><code>df[col].str.strip()</code></td><td>Trims leading/trailing spaces — clean grouping and filters</td></tr>
+            <tr><td>replace()</td><td><code>df[col].str.replace(old, new)</code></td><td>Swap characters (e.g. hyphens → spaces)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is converting text columns to lowercase using .str.lower() important in data cleaning?</button>
+          <div class="accordion-body"><p>Python string matching is case-sensitive. Mixed or all-caps values like "ELECTRONICS" and "electronics" are treated as different. <code>.str.lower()</code> standardizes the column so comparison, grouping, and category matching work reliably.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of .str.strip(), and how can it be combined with other string methods in Pandas?</button>
+          <div class="accordion-body"><p><code>.str.strip()</code> removes leading and trailing whitespace. You can chain methods in one line, e.g. <code>df['Category'].str.strip().str.lower()</code>, to trim and lower-case in a single step.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does .str.replace() handle unwanted characters like hyphens in text columns?</button>
+          <div class="accordion-body"><p><code>.str.replace(old, new)</code> finds the old substring and swaps it for the new one. For example, <code>df['Category'].str.replace('-', ' ')</code> turns "home-appliances" into "home appliances".</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/kids-animation-opentoonz-canva-sengkang.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/singapore/online-robotics-classes-for-kids-orchard-singapore.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-60');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-60');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '60') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual blocks linked to robot motion</li><li>Ultrasonic distance and LED control ideas</li><li>Virtual lab simulation before hardware</li><li>Gentle bridge toward text code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
