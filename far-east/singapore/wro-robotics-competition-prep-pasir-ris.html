@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Robot Olympiad Competition Prep Pasir Ris Singapore | AI &amp; Robotics Club</title>
+  <title>World Robot Olympiad Competition Prep Pasir Ris Singapore | AI & Robotics Club</title>
   <meta name="description" content="World Robot Olympiad competition preparation coaching in Pasir Ris—foundations and advanced tracks, online English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/singapore/wro-robotics-competition-prep-pasir-ris.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,149 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Pasir Ris · Singapore</span><h1>World Robot Olympiad Competition Preparation Coaching in Pasir Ris</h1>
     <p>World Robot Olympiad-style preparation coaching for Pasir Ris supports students who want structured building and coding practice—from foundations to more advanced challenge tracks—delivered online in English.</p></div>
     <div><img src="../../../images/90.webp" alt="WRO Pasir Ris" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-65">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-65">Lesson</label>
+        <select id="lesson-select-65" class="lesson-select" aria-label="Select lesson">
+          <option value="65" selected>065: Descriptive Statistics Explained: Averages, Spread, and Data Distributions</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Descriptive Statistics Explained: Averages, Spread, and Data Distributions" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Making Sense of Data with Descriptive Statistics</h2>
+        <p>Descriptive statistics summarize structure and check that values make sense before modeling. Useful tools include:</p>
+        <ul>
+          <li><code>df.describe()</code> — multi-row summary across numeric features</li>
+          <li><code>value_counts()</code> — frequency of distinct values</li>
+          <li><code>quantile()</code> — split distributions into probability portions</li>
+          <li><code>skew()</code> — whether the curve leans left or right</li>
+        </ul>
+        <p>Core ideas: central tendency (mean, median), dispersion (std, quartiles, IQR), shape (skewness), and simple validity checks (e.g. Q3 > Q1).</p>
+
+        <h2>2. Quantiles and the Interquartile Range (IQR)</h2>
+        <p>Quartiles each cover about 25% of observations:</p>
+        <ul>
+          <li><strong>Q1 (25%)</strong> — lower quarter boundary</li>
+          <li><strong>Q2 (50% / median)</strong> — middle of the data</li>
+          <li><strong>Q3 (75%)</strong> — upper quarter boundary</li>
+        </ul>
+        <p>IQR = Q3 − Q1 measures spread of the middle 50% of values.</p>
+
+        <h2>3. Skewness</h2>
+        <ul>
+          <li><strong>Right-skewed (positive)</strong> — long right tail; mean > median; <code>.skew()</code> > 0</li>
+          <li><strong>Left-skewed (negative)</strong> — long left tail; mean < median; <code>.skew()</code> < 0</li>
+        </ul>
+
+        <h2>4. Practical Example: E-Commerce Revenue</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("ecommerce_orders.csv", parse_dates=["Order Date"])
+print("Dataset Shape:", df.shape)
+
+stats = df[["Unit Price", "Revenue"]].describe()
+print(stats)
+
+q1 = df["Revenue"].quantile(0.25)
+q2 = df["Revenue"].quantile(0.50)
+q3 = df["Revenue"].quantile(0.75)
+print(f"Q1: {q1}, Median: {q2}, Q3: {q3}")
+
+print("Mean:", df["Revenue"].mean())
+print("Median:", df["Revenue"].median())
+print("Skew:", df["Revenue"].skew())
+
+print(df.groupby("Product Category")["Revenue"].mean())
+
+iqr = q3 - q1
+print("IQR:", iqr)
+print("Q3 > Q1:", q3 > q1)
+print("IQR > 0:", iqr > 0)</code></pre>
+        <p>Illustrative results on a 5,000-row sample: Q1 ≈ 354, median ≈ 796, Q3 ≈ 1,515; mean ≈ 1,021 (above median → right skew ≈ 1.017); IQR ≈ 1,161.</p>
+
+        <h2>5. Group Means and Validation</h2>
+        <p><code>groupby(...).mean()</code> compares average revenue by product category. Checking Q3 > Q1 and IQR > 0 confirms the quartile order is sensible.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are quantiles in Pandas, and what portion of data does the Interquartile Range (IQR) capture?</button>
+          <div class="accordion-body"><p>Quantiles split data into equal probability portions. Quartiles (Q1, Q2/median, Q3) each cover about 25%. IQR = Q3 − Q1 is the spread of the middle 50% of the data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you determine whether a distribution is right-skewed or left-skewed using the Mean, Median, and .skew()?</button>
+          <div class="accordion-body"><p>Right-skewed: mean > median and <code>.skew()</code> is positive (example: revenue mean ~1,021 vs median ~796, skew ~1.017). Left-skewed: mean < median and <code>.skew()</code> is negative.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What did the Revenue column analysis reveal regarding quartiles, IQR, and logical validation checks?</button>
+          <div class="accordion-body"><p>Example values: Q1 354, median 796, Q3 1,515; IQR = 1,161. Confirming Q3 > Q1 and IQR > 0 shows the distribution boundaries are ordered as expected.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/singapore/stem-robotics-bootcamp-kids-jurong-east.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/south-korea/ai-ethics-and-logic-course-mapo-seoul.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-65');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-65');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '65') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Engineering design and iteration habits</li><li>Coding for autonomous behaviour</li><li>Team problem-solving practice</li><li>Beginner and advanced coaching tracks</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
