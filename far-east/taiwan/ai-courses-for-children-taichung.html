@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artificial Intelligence Basics for Children Taichung City | AI &amp; Robotics Club</title>
+  <title>Artificial Intelligence Basics for Children Taichung City | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence basics for children in Taichung City—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/taiwan/ai-courses-for-children-taichung.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,154 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Taichung · Taiwan</span><h1>Artificial Intelligence Basics for Children in Taichung City</h1>
     <p>Artificial intelligence basics for children in Taichung City introduce how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/89.webp" alt="AI Taichung" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-76">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-76">Lesson</label>
+        <select id="lesson-select-76" class="lesson-select" aria-label="Select lesson">
+          <option value="76" selected>076: Error Bars and Confidence Intervals Explained in Data Charts</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Error Bars and Confidence Intervals Explained in Data Charts" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Beyond Averages</h2>
+        <p>Means alone hide spread. Error bars on bars and confidence bands on lines show how much values vary around a central estimate.</p>
+
+        <h2>2. Error Bars on Category Means</h2>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("ecommerce_orders.csv")
+stats = df.groupby("Product Category")["Revenue"].agg(["mean", "std"])
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.bar(
+    stats.index,
+    stats["mean"],
+    yerr=stats["std"],
+    capsize=5,
+    color="skyblue",
+    edgecolor="black"
+)
+ax.set_title("Mean Revenue by Product Category with Error Bars (Std Dev)")
+ax.set_xlabel("Product Category")
+ax.set_ylabel("Mean Revenue ($)")
+plt.tight_layout()
+plt.show()</code></pre>
+        <p><code>yerr</code> draws vertical whiskers; <code>capsize</code> sets the width of the end caps.</p>
+
+        <h2>3. Confidence Band on Monthly Revenue</h2>
+        <pre><code>df_sample = df.head(500).copy()
+df_sample["Order Date"] = pd.to_datetime(df_sample["Order Date"])
+df_sample = df_sample.set_index("Order Date")
+monthly = df_sample["Revenue"].resample("ME").agg(["mean", "std"])
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(monthly.index, monthly["mean"], color="blue", label="Mean Revenue")
+ax.fill_between(
+    monthly.index,
+    monthly["mean"] - monthly["std"],
+    monthly["mean"] + monthly["std"],
+    color="blue",
+    alpha=0.3,
+    label="±1 Std Dev Confidence Band"
+)
+ax.tick_params(axis="x", labelrotation=45)
+ax.set_title("Monthly Mean Revenue with Confidence Band (±1 Std Dev)")
+ax.legend()
+plt.tight_layout()
+plt.show()</code></pre>
+        <p><code>fill_between</code> shades mean±std; <code>alpha=0.3</code> keeps the line readable.</p>
+
+        <h2>4. Parameter Cheat Sheet</h2>
+        <table>
+          <tr><th>Parameter</th><th>Role</th></tr>
+          <tr><td><code>yerr</code></td><td>Error whiskers on bars</td></tr>
+          <tr><td><code>capsize</code></td><td>Horizontal cap width</td></tr>
+          <tr><td><code>fill_between</code></td><td>Shaded band between bounds</td></tr>
+          <tr><td><code>alpha</code></td><td>Band transparency</td></tr>
+          <tr><td><code>labelrotation</code></td><td>Angle x labels (e.g. 45°)</td></tr>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why should error bars be included on categorical bar charts instead of showing only the mean?</button>
+          <div class="accordion-body"><p>The mean alone hides spread. With <code>yerr=std</code>, viewers see both the average and how far individual observations typically sit above or below it (e.g. Beauty mean ~1000 with range roughly 250–2000).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of capsize=5 when configuring error bars in Matplotlib?</button>
+          <div class="accordion-body"><p>It sets the width of the small horizontal caps at the ends of each error whisker so the upper and lower limits are easier to read.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does ax.fill_between() create a confidence band, and what role do the upper/lower bounds and alpha parameter play?</button>
+          <div class="accordion-body"><p>It fills between a lower series (mean−std) and upper series (mean+std) along a shared x index. <code>alpha=0.3</code> makes the band translucent so the central line and grid stay visible.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/south-korea/steam-maker-craft-bundang-seoul.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/taiwan/arduino-microcontroller-course-hsinchu-tech-park.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-76');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-76');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '76') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
