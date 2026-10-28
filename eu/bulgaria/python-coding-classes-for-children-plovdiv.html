@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Plovdiv | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Plovdiv | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Plovdiv—clean syntax, text adventures and math quizzes in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/bulgaria/python-coding-classes-for-children-plovdiv.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,193 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Plovdiv · Bulgaria</span><h1>Python Coding Classes for Children in Plovdiv</h1>
     <p>Python coding classes for children in Plovdiv introduce clean, readable syntax so students focus on problem-solving logic—through text adventures, quizzes and interactive tools—rather than complex punctuation.</p></div>
     <div><img src="../../../images/62.webp" alt="Python Plovdiv" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-107">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-107">Lesson</label>
+        <select id="lesson-select-107" class="lesson-select" aria-label="Select lesson">
+          <option value="107" selected>107: Decision Tree Pruning Explained: Make Models Simpler and More Reliable</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Decision Tree Pruning Explained: Make Models Simpler and More Reliable" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 107 – Decision Tree Pruning Explained</h2>
+
+        <h3>1. What Is Pruning?</h3>
+        <p>Unrestricted trees grow until leaves are pure, often memorizing noise and overfitting. Pruning cuts weak branches so the tree stays smaller, simpler, and more reliable on unseen data. Two main approaches: <strong>pre-pruning</strong> and <strong>post-pruning</strong>.</p>
+
+        <h3>2. Pre-Pruning (Early Stopping)</h3>
+        <p>Stops growth during construction using limits such as:</p>
+        <ul>
+          <li><strong>max_depth</strong> — maximum vertical levels</li>
+          <li><strong>min_samples_split</strong> — minimum samples required to split a node</li>
+          <li><strong>min_samples_leaf</strong> — minimum samples in a leaf (e.g. 5)</li>
+          <li>Statistical thresholds — stop if Information Gain or Gini improvement is too small</li>
+        </ul>
+        <p><strong>Pros:</strong> fast, memory-efficient, simpler trees from the start.<br>
+        <strong>Cons:</strong> greedy “horizon effect”—may cut a branch that looks weak now but would become useful deeper down.</p>
+
+        <h3>3. Post-Pruning (Cost-Complexity / CCP)</h3>
+        <p>Grow a full tree, then trim weak sub-trees using a complexity penalty:</p>
+        <p>Cost-Complexity = Sub-tree Error + (α × Tree Complexity)</p>
+        <ul>
+          <li>Small α — light pruning, most structure kept</li>
+          <li>Large α — aggressive pruning; too large can drop accuracy toward ~50%</li>
+        </ul>
+        <p><strong>Pros:</strong> considers the whole tree, avoids the horizon effect, faster inference on the final small tree.<br>
+        <strong>Cons:</strong> higher training cost (full tree first).</p>
+
+        <h3>4. Pre-Pruning vs Post-Pruning</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Pre-Pruning</th>
+              <th>Post-Pruning (CCP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Timing</td>
+              <td>During growth</td>
+              <td>After full tree</td>
+            </tr>
+            <tr>
+              <td>Mechanism</td>
+              <td>max_depth, min_samples_*</td>
+              <td>ccp_alpha (α)</td>
+            </tr>
+            <tr>
+              <td>Training speed</td>
+              <td>Faster</td>
+              <td>Slower</td>
+            </tr>
+            <tr>
+              <td>Search</td>
+              <td>Greedy (horizon effect)</td>
+              <td>Exhaustive over sub-trees</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>5. Python with Scikit-Learn</h3>
+        <p><strong>Data:</strong> 600-sample make_moons, noise=0.25, 70/30 split.</p>
+        <pre><code>from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+X, y = make_moons(n_samples=600, noise=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)</code></pre>
+
+        <p><strong>Pre-pruning loop</strong> (max_depth + min_samples_leaf=5):</p>
+        <pre><code>for d in range(1, 16):
+    clf = DecisionTreeClassifier(
+        max_depth=d, min_samples_leaf=5, random_state=42
+    )
+    clf.fit(X_train, y_train)
+    # record train/test accuracy</code></pre>
+        <p>In this setup, depth ~4 often balances accuracy (~90%) without clear overfitting.</p>
+
+        <p><strong>Post-pruning with CCP:</strong></p>
+        <pre><code>full_tree = DecisionTreeClassifier(random_state=42)
+full_tree.fit(X_train, y_train)
+path = full_tree.cost_complexity_pruning_path(X_train, y_train)
+ccp_alphas = path.ccp_alphas
+
+for alpha in ccp_alphas:
+    clf = DecisionTreeClassifier(ccp_alpha=alpha, random_state=42)
+    clf.fit(X_train, y_train)
+    # record train/test accuracy</code></pre>
+        <p>Small α keeps high test accuracy; very large α over-prunes and accuracy can fall toward ~50%. A useful range is often around 0.01–0.02.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is pruning, and what are the two main approaches?</button>
+          <div class="accordion-body">
+            <p>Pruning reduces tree size by removing weak branches so the model generalizes better. Pre-pruning stops growth early with limits (max_depth, min_samples_leaf). Post-pruning grows fully then trims using a complexity penalty (α / ccp_alpha).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the Horizon Effect, and how does post-pruning avoid it?</button>
+          <div class="accordion-body">
+            <p>Pre-pruning is greedy: it may stop a branch that looks weak now but would improve deeper. Post-pruning builds the full tree first, evaluates sub-trees in context, and avoids cutting promising paths too early.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does CCP work in Scikit-Learn, and how does ccp_alpha affect accuracy?</button>
+          <div class="accordion-body">
+            <p>cost_complexity_pruning_path extracts candidate α values. DecisionTreeClassifier(ccp_alpha=α) applies the penalty. Small α removes noisy leaves while keeping high test accuracy; too large α over-prunes and accuracy can collapse toward ~50%.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/bulgaria/online-robotics-classes-for-kids-sofia.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/croatia/online-robotics-classes-for-kids-zagreb.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-107');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-107');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '107') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax</li><li>Text adventure games</li><li>Math quiz engines</li><li>Interactive data tools</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
