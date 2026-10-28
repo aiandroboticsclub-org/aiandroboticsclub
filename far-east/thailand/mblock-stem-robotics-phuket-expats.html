@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mBlock STEM Robotics Starter Course Phuket Expat Kids | AI &amp; Robotics Club</title>
+  <title>mBlock STEM Robotics Starter Course Phuket Expat Kids | AI & Robotics Club</title>
   <meta name="description" content="mBlock STEM robotics starter course for Phuket expat kids—visual algorithms to motors and sensors online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/mblock-stem-robotics-phuket-expats.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,137 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Phuket · Thailand</span><h1>mBlock STEM Robotics Starter Course for Phuket Expat Kids</h1>
     <p>An mBlock STEM robotics starter course for Phuket expat kids lets learners write visual algorithms that control motor drives, distance sensing and light indicators—on screen first, optional hardware later.</p></div>
     <div><img src="../../../images/96.webp" alt="mBlock Phuket" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-85">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-85">Lesson</label>
+        <select id="lesson-select-85" class="lesson-select" aria-label="Select lesson">
+          <option value="85" selected>085: How to Detect, Understand, and Handle Outliers in Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Detect, Understand, and Handle Outliers in Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Outliers Are</h2>
+        <p>Outliers sit far from the main body of the data. Left alone, they skew summaries, pull regression lines, and confuse models. Detecting and handling them is a standard preprocessing step.</p>
+
+        <h2>2. Three Handling Strategies</h2>
+        <ul>
+          <li><strong>Clipping</strong> — Cap values at a fixed threshold (e.g. 1,000).</li>
+          <li><strong>Winsorization</strong> — Pull extreme percentiles (e.g. top 20%) to boundary values; keep every row.</li>
+          <li><strong>Removal</strong> — Drop rows or set extreme values to null; largest reduction in sample size.</li>
+        </ul>
+
+        <h2>3. Detection</h2>
+        <p><strong>Summary stats:</strong> Compare Q3 (75%) to the max with <code>.describe()</code>. A large gap (e.g. Q3 = 1,300, max = 5,000) flags upper outliers.</p>
+        <p><strong>Box plots:</strong> The box and whiskers show the bulk of the data; points beyond the whiskers (e.g. 3,000 and 5,000) are visual outliers.</p>
+
+        <h2>4. Python: Three Methods</h2>
+        <pre><code>import pandas as pd
+import numpy as np
+from scipy.stats.mstats import winsorize
+
+sales = pd.Series([200, 400, 800, 1000, 1100, 1200, 1300, 1500, 3000, 5000])
+df = pd.DataFrame({"Original": sales})
+print(df.describe())  # Q3 vs max gap
+
+# Clipping
+df["Clipped"] = df["Original"].clip(upper=1000)
+
+# Winsorization (top 20%)
+df["Winsorized"] = winsorize(df["Original"], limits=[0.0, 0.20])
+
+# Removal
+df["Removed"] = df["Original"].apply(lambda x: x if x <= 1000 else np.nan)
+df_dropped = df.dropna(subset=["Removed"])</code></pre>
+
+        <h2>5. When to Use Which</h2>
+        <table>
+          <tr><th>Method</th><th>Mechanism</th><th>Best when</th></tr>
+          <tr><td>Clipping</td><td>Cap at a threshold</td><td>Few outliers</td></tr>
+          <tr><td>Winsorize</td><td>Pull percentiles inward; keep rows</td><td>Many outliers; preserve sample size</td></tr>
+          <tr><td>Removal</td><td>Drop rows or set null</td><td>Corrupt / unsalvageable points</td></tr>
+        </table>
+        <p>Compare side by side with a multi-column box plot before choosing a final policy for the pipeline.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are outliers in a dataset, and how can you detect them using summary statistics and box plots?</button>
+          <div class="accordion-body"><p>Outliers are extreme points far from the main distribution. Use <code>.describe()</code> to compare Q3 with the max, and box plots to see points beyond the whiskers (e.g. 3,000 and 5,000).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between Clipping, Winsorization, and Removal when handling outliers?</button>
+          <div class="accordion-body"><p>Clipping caps values at a threshold. Winsorization pulls extreme percentiles to boundary values without dropping rows. Removal discards those rows or sets them to null and reduces dataset size the most.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">When should a data scientist choose Winsorization over Clipping or Removal?</button>
+          <div class="accordion-body"><p>Prefer winsorization when many outliers exist and you need to keep sample size. Clipping suits a few isolated extremes; removal is for clear data errors you are willing to drop.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/digital-art-animation-silom-bangkok.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/online-robotics-classes-sukhumvit-bangkok.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-85');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-85');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '85') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual blocks linked to robot motion</li><li>Distance sensing and light indicator ideas</li><li>Virtual lab simulation before hardware</li><li>Gentle bridge toward text code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-fast-track-for-beginners/?referralCode=8DD3468CE6C0600DD6D1" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding Fast Track for Beginners</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
