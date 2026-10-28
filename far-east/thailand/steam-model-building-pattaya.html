@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Prototyping Model Building Crafts Pattaya | AI &amp; Robotics Club</title>
+  <title>STEAM Prototyping Model Building Crafts Pattaya | AI & Robotics Club</title>
   <meta name="description" content="STEAM prototyping and model building crafts in Pattaya—foam, gears, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/steam-model-building-pattaya.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,148 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Pattaya · Thailand</span><h1>STEAM Prototyping and Model Building Crafts in Pattaya</h1>
     <p>STEAM prototyping and model building crafts for Pattaya introduce safe maker materials—foam board, gears, LEDs and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/97.webp" alt="STEAM Pattaya" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-90">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-90">Lesson</label>
+        <select id="lesson-select-90" class="lesson-select" aria-label="Select lesson">
+          <option value="90" selected>090: Flask Templates Tutorial: Display Dynamic Pages with Jinja2</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Flask Templates Tutorial: Display Dynamic Pages with Jinja2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. From Raw HTML Strings to Jinja2</h2>
+        <p>Returning multi-line HTML from Python views becomes hard to maintain. Flask uses the <strong>Jinja2</strong> template engine so HTML lives in separate files and Python only prepares data and calls <code>render_template</code>.</p>
+
+        <h2>2. Why Jinja2 Helps</h2>
+        <ul>
+          <li>Render external <code>.html</code> files instead of hardcoded strings</li>
+          <li>Pass dynamic variables from Python into templates</li>
+          <li>Reuse layouts with template inheritance</li>
+        </ul>
+
+        <h2>3. Jinja2 Syntax</h2>
+        <ul>
+          <li><code>{{ variable }}</code> — expression / placeholder for values from Python</li>
+          <li><code>{% block content %} ... {% endblock %}</code> — editable section in a layout</li>
+          <li><code>{% extends "base.html" %}</code> — inherit a parent template</li>
+        </ul>
+
+        <h2>4. DRY Principle</h2>
+        <p><strong>Don't Repeat Yourself</strong>: put shared structure (headers, nav) in a base template once and extend it from child pages instead of copying HTML on every view.</p>
+
+        <h2>5. Dynamic Data with render_template</h2>
+        <pre><code>from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("home.html", name="Abdullah")
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+        <p>In <code>home.html</code>:</p>
+        <pre><code><h2>Welcome, {{ name }}</h2></code></pre>
+        <p>Browser shows: <strong>Welcome, Abdullah</strong>.</p>
+
+        <h2>6. Template Inheritance</h2>
+        <p><strong>base.html</strong> (parent):</p>
+        <pre><code><h1>My Flask App</h1>
+{% block content %}
+{% endblock %}</code></pre>
+        <p><strong>about.html</strong> (child):</p>
+        <pre><code>{% extends "base.html" %}
+{% block content %}
+<p>This is the about page</p>
+{% endblock %}</code></pre>
+        <pre><code>@app.route("/about")
+def about():
+    return render_template("about.html")</code></pre>
+        <p>Visiting <code>/about</code> shows the base heading plus the about paragraph.</p>
+
+        <h2>7. Stopping the Server</h2>
+        <p>Press <code>Ctrl + C</code> in the terminal to stop the development server before restarting with new routes or templates.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is returning raw HTML strings from Python functions considered messy, and how does Jinja2 solve this problem?</button>
+          <div class="accordion-body"><p>Long HTML strings inside views are hard to edit and scale. Jinja2 keeps HTML in template files, lets you pass variables with <code>{{ }}</code>, and supports inheritance so layouts stay consistent without duplication.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the DRY principle, and how is it implemented in Flask using {% extends %} and {% block %} tags?</button>
+          <div class="accordion-body"><p>DRY means Don't Repeat Yourself. A parent template defines shared markup and empty <code>{% block %}</code> regions; a child uses <code>{% extends "base.html" %}</code> and fills those blocks so structure is written once and reused.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the home.html tutorial example, how was dynamic data passed from Python and displayed in the browser?</button>
+          <div class="accordion-body"><p>The view called <code>render_template("home.html", name="Abdullah")</code>. The template used <code><h2>Welcome, {{ name }}</h2></code>, so the browser rendered the heading with the value from Python.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/scratch-coding-animation-bangna-bangkok.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/ai-for-beginners-cau-giay-hanoi.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-90');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-90');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '90') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature robots, bridges and automated prototypes</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
