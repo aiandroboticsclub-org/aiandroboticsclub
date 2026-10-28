@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEAM Miniature Prototyping and Craft Workshop Haiphong | AI &amp; Robotics Club</title>
+  <title>STEAM Miniature Prototyping and Craft Workshop Haiphong | AI & Robotics Club</title>
   <meta name="description" content="STEAM miniature prototyping and craft workshop in Haiphong—foam, gears, motors and design thinking.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/steam-model-prototyping-haiphong.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,133 @@
     <div class="seo-intro"><div><span class="seo-badge">Online guidance · Haiphong · Vietnam</span><h1>STEAM Miniature Prototyping and Craft Workshop in Haiphong</h1>
     <p>A STEAM miniature prototyping and craft workshop for Haiphong introduces safe maker materials—foam board, thermocol, gears, LEDs and small motors—so children learn spatial design before or alongside coding.</p></div>
     <div><img src="../../../images/82.webp" alt="STEAM Haiphong" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-100">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-100">Lesson</label>
+        <select id="lesson-select-100" class="lesson-select" aria-label="Select lesson">
+          <option value="100" selected>100: Linear Regression Optimization Explained: How to Improve Model Training</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Linear Regression Optimization Explained: How to Improve Model Training" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Optimize Gradient Descent?</h2>
+        <p>Plain step-by-step descent can be slow and costly. Production training uses techniques that speed convergence, stop cleanly, and avoid bad starts.</p>
+        <ul>
+          <li>Adaptive (or well-chosen fixed) learning rates</li>
+          <li>Clear stopping criteria</li>
+          <li>Feature scaling and random restarts</li>
+        </ul>
+
+        <h2>2. Learning Rate Adjustment & Adaptive Learning</h2>
+        <p><strong>Large rate</strong> → fast but may overshoot. <strong>Small rate</strong> → careful but very slow.</p>
+        <p><strong>Adaptive schedule:</strong> start larger for the steep part of the error surface, then shrink (e.g. cut to 10% after the halfway mark) for fine steps near the minimum. Experienced teams often pick one balanced fixed rate when they already know a good value.</p>
+
+        <h2>3. Stopping Criteria (Avoid Infinite Loops)</h2>
+        <ol>
+          <li><strong>Target accuracy / error tolerance</strong> — stop when a negotiated threshold is met (e.g. 80–85% non-critical; 90–95%+ medical/safety). Unrealistic targets can loop forever.</li>
+          <li><strong>Minimum error change</strong> — stop when step-to-step improvement is near zero (plateau).</li>
+          <li><strong>Fixed max iterations</strong> — hard cap (e.g. 500, 1,000, 5,000) so oscillation cannot run forever.</li>
+        </ol>
+
+        <h2>4. Feature Scaling & Random Restarts</h2>
+        <p><strong>Feature scaling</strong> puts inputs on a common range so the error surface is less elongated and steps are more direct.</p>
+        <p><strong>Random restarts</strong> run optimization from many random (m, b) starts (e.g. 10–20), then keep the run with the lowest final error.</p>
+
+        <h2>5. Summary</h2>
+        <table>
+          <thead>
+            <tr><th>Technique</th><th>Mechanism</th><th>Benefit</th><th>Risk / trade-off</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adaptive LR</td><td>Large then smaller steps</td><td>Speed + precision</td><td>Need a shrink schedule</td></tr>
+            <tr><td>Target accuracy</td><td>Stop at client threshold</td><td>Matches business goals</td><td>Impossible targets → infinite loop</td></tr>
+            <tr><td>Min error change</td><td>Stop near zero improvement</td><td>Detects convergence</td><td>May miss pure oscillation</td></tr>
+            <tr><td>Max iterations</td><td>Hard step limit</td><td>Guaranteed stop</td><td>May stop too early</td></tr>
+            <tr><td>Feature scaling</td><td>Normalize feature ranges</td><td>Faster convergence</td><td>Consistent pipelines needed</td></tr>
+            <tr><td>Random restarts</td><td>Many random starts</td><td>Avoid bad seeds</td><td>More compute</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is an Adaptive Learning Rate, and why is it useful?</button>
+          <div class="accordion-body"><p>The step size changes during training: larger early for fast descent, smaller later for precision near the minimum. That balances speed and accuracy. Teams with experience often use one well-chosen fixed rate instead.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the three primary stopping criteria?</button>
+          <div class="accordion-body"><p>(1) Target accuracy agreed with the client. (2) Minimum step-to-step error change near zero. (3) Fixed maximum iterations so training always ends even if the model oscillates.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do Feature Scaling and Random Restarts help?</button>
+          <div class="accordion-body"><p>Scaling unifies feature ranges so gradient steps are more direct and convergence is faster. Random restarts try many initial parameters and keep the lowest-error run, reducing the chance of a bad random start.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/scratch-coding-animation-thao-dien-hcmc.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/austria/online-robotics-classes-for-kids-vienna.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-100');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-100');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '100') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Safe maker materials and simple tools</li><li>Miniature robots, bridges and automated prototypes</li><li>Spatial and mechanical intuition</li><li>Linking craft to sensors and motors</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
