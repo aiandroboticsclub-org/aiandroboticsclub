@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Graz | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Graz | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Graz—variables, branching, loops and live interactive sessions with transparent curriculum.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/austria/python-coding-classes-for-children-graz.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,137 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Graz · Austria</span><h1>Python Coding Classes for Children in Graz</h1>
     <p>Python coding classes for children in Graz build digital literacy foundations—variables, data types, branching, loops and modular functions—through live interactive sessions and practical assignments, with verified curriculum details and no hidden fees.</p></div>
     <div><img src="../../../images/80.webp" alt="Python Graz" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-102">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-102">Lesson</label>
+        <select id="lesson-select-102" class="lesson-select" aria-label="Select lesson">
+          <option value="102" selected>102: Linear Regression with Scikit-Learn: Train Your First Prediction Model</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Linear Regression with Scikit-Learn: Train Your First Prediction Model" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Manual Code vs Scikit-Learn</h2>
+        <p>Building linear regression by hand teaches derivatives, learning rates, and updates for m and b. In production, engineers use libraries such as Scikit-Learn so training and prediction take only a few clear lines.</p>
+
+        <h2>2. Setup</h2>
+        <p>Install with <code>pip install scikit-learn</code>. Import:</p>
+        <ul>
+          <li><code>from sklearn.linear_model import LinearRegression</code></li>
+          <li>NumPy for arrays; Matplotlib if you plot</li>
+        </ul>
+
+        <h2>3. Data and Scatter View</h2>
+        <p>Define feature matrix X (2D) and target vector y. A scatter plot often shows a linear trend; no single line hits every point. The goal is the line of best fit that minimizes overall squared error.</p>
+
+        <h2>4. Fit and Predict</h2>
+        <ol>
+          <li><code>model = LinearRegression()</code></li>
+          <li><code>model.fit(X, y)</code> — runs optimization (e.g. OLS / gradient-style updates) under the hood</li>
+          <li><code>y_pred = model.predict(X)</code></li>
+        </ol>
+        <p>.fit() finds optimal slope and intercept without hand-written epoch loops.</p>
+
+        <h2>5. Learned Parameters</h2>
+        <ul>
+          <li><code>model.coef_</code> → slope m (example: 1.40)</li>
+          <li><code>model.intercept_</code> → intercept b (example: 1.40)</li>
+        </ul>
+        <p>Equation form: ŷ = 1.40x + 1.40. Example predictions: [2.8, 5.6, 7.0, 8.4, 11.2].</p>
+
+        <h2>6. Manual vs Library</h2>
+        <table>
+          <thead>
+            <tr><th>Aspect</th><th>From-scratch (L101)</th><th>Scikit-Learn (L102)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Goal</td><td>Understand math & loops</td><td>Fast production API</td></tr>
+            <tr><td>Code size</td><td>Many explicit lines</td><td>A few: create, fit, predict</td></tr>
+            <tr><td>Optimization</td><td>You compute dm, db</td><td>Handled inside .fit()</td></tr>
+            <tr><td>Learning rate</td><td>You choose and tune</td><td>Internal defaults</td></tr>
+            <tr><td>Scale</td><td>Hard on large data</td><td>Optimized for real datasets</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Scikit-Learn, and why use it instead of coding from scratch?</button>
+          <div class="accordion-body"><p>It is a standard Python ML library with ready modules for regression, classification, and clustering. Scratch builds understanding; Scikit-Learn replaces long manual loops with .fit() and .predict() for industry work.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does .fit() do under the hood?</button>
+          <div class="accordion-body"><p>It trains on X and y: runs optimization (e.g. least squares / gradient methods), finds slope and intercept, and stores them on the model so you do not write epoch loops yourself.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you read slope and intercept after training?</button>
+          <div class="accordion-body"><p>Use model.coef_ for m and model.intercept_ for b. In the example both were about 1.40, giving ŷ = 1.40x + 1.40 and predictions like [2.8, 5.6, 7.0, 8.4, 11.2].</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/austria/online-robotics-classes-for-kids-vienna.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/belgium/online-robotics-classes-for-kids-brussels.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-102');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-102');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '102') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables and data types</li><li>If-else branching and loops</li><li>Modular functions</li><li>Transparent curriculum, no hidden fees</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
