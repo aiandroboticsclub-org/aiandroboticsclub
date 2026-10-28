@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Microcontroller Robotics Course Sathorn Expats | AI &amp; Robotics Club</title>
+  <title>Arduino Microcontroller Robotics Course Sathorn Expats | AI & Robotics Club</title>
   <meta name="description" content="Arduino microcontroller robotics course for Sathorn expats in Bangkok—breadboards, sensors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/arduino-robotics-courses-sathorn-bangkok.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,144 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Sathorn · Bangkok</span><h1>Arduino Microcontroller Robotics Course for Sathorn Expats, Bangkok</h1>
     <p>An Arduino microcontroller robotics course for Sathorn expats guides students through breadboard wiring, ultrasonic sensing, motor control and introductory C++ logic—simulators first, optional kits under supervision.</p></div>
     <div><img src="../../../images/93.webp" alt="Arduino Sathorn" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-82">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-82">Lesson</label>
+        <select id="lesson-select-82" class="lesson-select" aria-label="Select lesson">
+          <option value="82" selected>082: Feature Scaling and Normalization Explained for Beginners</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Feature Scaling and Normalization Explained for Beginners" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Scales Differ</h2>
+        <p>Features like monthly income (tens of thousands) and monthly bill (hundreds to thousands) live on different ranges. Without scaling, large-magnitude features dominate distances and gradients.</p>
+
+        <h2>2. Who Needs Scaling</h2>
+        <ul>
+          <li><strong>Scale-sensitive:</strong> KNN, SVM, PCA, K-Means (distance / projection math)</li>
+          <li><strong>Scale-insensitive:</strong> Decision trees, random forests (per-feature splits)</li>
+        </ul>
+
+        <h2>3. Two Core Methods</h2>
+        <ul>
+          <li><strong>Z-score standardization:</strong> mean 0, std 1; unbounded</li>
+          <li><strong>Min-max normalization:</strong> map values into [0, 1]</li>
+        </ul>
+
+        <h2>4. Telecom Churn Context</h2>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("telecom_churn.csv")
+print(df[["Monthly Income", "Monthly Bill"]].describe())</code></pre>
+        <p>Income spans roughly $5k–$200k+; bills span about $710–$36k—clear scale imbalance.</p>
+
+        <h2>5. Z-Score Standardization</h2>
+        <p>Formula: \(Z = (x - \mu) / \sigma\)</p>
+        <pre><code>income_mean = df["Monthly Income"].mean()
+income_std = df["Monthly Income"].std()
+df["Income_Zscore"] = (df["Monthly Income"] - income_mean) / income_std
+print(df[["Monthly Income", "Income_Zscore"]].head(3))</code></pre>
+        <p>After transform, mean ≈ 0 and std ≈ 1.</p>
+
+        <h2>6. Min-Max Scaling</h2>
+        <p>Formula: \(X_{\mathrm{scaled}} = (x - x_{\min}) / (x_{\max} - x_{\min})\)</p>
+        <pre><code>bill_min = df["Monthly Bill"].min()
+bill_max = df["Monthly Bill"].max()
+df["Bill_MinMax"] = (df["Monthly Bill"] - bill_min) / (bill_max - bill_min)
+print(df[["Monthly Bill", "Bill_MinMax"]].head(3))</code></pre>
+        <p>Min maps to 0.0, max to 1.0; all values sit in [0, 1].</p>
+
+        <h2>7. Avoid Data Leakage</h2>
+        <p>Split train/test first. Fit mean, std, min, max on training only; transform test with those same training statistics—never scale the full dataset before the split.</p>
+
+        <h2>8. Quick Comparison</h2>
+        <table>
+          <tr><th>Aspect</th><th>Z-Score</th><th>Min-Max</th></tr>
+          <tr><td>Range</td><td>Unbounded</td><td>[0, 1]</td></tr>
+          <tr><td>Target</td><td>Mean 0, std 1</td><td>Min→0, max→1</td></tr>
+          <tr><td>Outliers</td><td>Often more robust</td><td>Can squeeze inliers</td></tr>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is feature scaling necessary, and which machine learning algorithms require it?</button>
+          <div class="accordion-body"><p>Uneven feature ranges let large-scale columns dominate distance and projection math. KNN, SVM, PCA, and clustering need scaling; tree models usually do not.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between Z-Score Standardization and Min-Max Normalization?</button>
+          <div class="accordion-body"><p>Z-score centers at 0 with std 1 and is unbounded. Min-max maps the column into [0, 1] using min and max.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is data leakage during feature scaling, and how is it prevented?</button>
+          <div class="accordion-body"><p>Leakage happens if test stats influence training scale parameters. Split first, fit scaler on train only, then transform test with those train parameters.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/ai-for-kids-workshops-nonthaburi.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/computational-thinking-international-schools-bangkok.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-82');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-82');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '82') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and motor control</li><li>Introductory microcontroller code</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
