@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artificial Intelligence for Beginners Cau Giay Hanoi Students | AI &amp; Robotics Club</title>
+  <title>Artificial Intelligence for Beginners Cau Giay Hanoi Students | AI & Robotics Club</title>
   <meta name="description" content="Artificial intelligence for beginners in Cau Giay, Hanoi—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/ai-for-beginners-cau-giay-hanoi.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,142 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Cau Giay · Hanoi</span><h1>Artificial Intelligence for Beginners in Cau Giay, Hanoi</h1>
     <p>Artificial intelligence for beginners in Cau Giay, Hanoi introduces how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/79.webp" alt="AI Cau Giay" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-91">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-91">Lesson</label>
+        <select id="lesson-select-91" class="lesson-select" aria-label="Select lesson">
+          <option value="91" selected>091: Flask Forms and User Input: Collect Data from Website Visitors</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Flask Forms and User Input: Collect Data from Website Visitors" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Collecting User Data</h2>
+        <p>Interactive apps need two-way flow: visitors submit data and the server processes it. This lesson covers HTML forms, POST handling in Flask, reading form fields, and checking requests in the browser Network tab.</p>
+
+        <h2>2. GET vs POST</h2>
+        <ul>
+          <li><strong>GET</strong> — retrieve data (loading a page)</li>
+          <li><strong>POST</strong> — send data to the server (form submit, credentials, ML payloads)</li>
+        </ul>
+
+        <h2>3. HTML Form (input.html)</h2>
+        <pre><code><form action="/submit" method="POST">
+  <input type="text" name="username" placeholder="Enter your name">
+  <button type="submit">Send</button>
+</form></code></pre>
+        <ul>
+          <li><code>action="/submit"</code> — where data is sent</li>
+          <li><code>method="POST"</code> — how it is sent</li>
+          <li><code>name="username"</code> — key Flask uses to read the value</li>
+        </ul>
+
+        <h2>4. Flask Backend</h2>
+        <pre><code>from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route("/input")
+def input_page():
+    return render_template("input.html")
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    name = request.form["username"]
+    return f"Hello {name}"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+        <h2>5. Test Flow</h2>
+        <ol>
+          <li>Run the app and open <code>/input</code></li>
+          <li>Type a name (e.g. Ahmad) and click Send</li>
+          <li>Browser goes to <code>/submit</code> and shows <strong>Hello Ahmad</strong></li>
+        </ol>
+
+        <h2>6. Network Tab Check</h2>
+        <p>Inspect → Network → submit the form. The <code>/submit</code> entry should show Method <strong>POST</strong>, Status <strong>200 OK</strong>, and response body <code>Hello Ahmad</code>.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between GET and POST methods when handling web requests in Flask?</button>
+          <div class="accordion-body"><p>GET retrieves data from the server (e.g. loading <code>/input</code>). POST sends data to the server (e.g. submitting the form to <code>/submit</code>).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How are the action, method, and name attributes used when building the HTML input form in Flask?</button>
+          <div class="accordion-body"><p><code>action</code> sets the target URL; <code>method="POST"</code> sets the request type; <code>name="username"</code> is the key used on the server as <code>request.form["username"]</code>.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How can you use the browser's developer tools to verify that a form was submitted successfully via POST?</button>
+          <div class="accordion-body"><p>Open Inspect → Network, submit the form, then open the <code>/submit</code> request. Confirm Method is POST, Status is 200 OK, and the Response tab shows the greeting text.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/steam-model-building-pattaya.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/arduino-electronics-course-tay-ho-hanoi.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-91');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-91');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '91') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
