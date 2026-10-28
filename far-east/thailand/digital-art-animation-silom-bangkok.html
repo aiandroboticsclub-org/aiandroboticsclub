@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenToonz Canva Digital Art Animation Silom Bangkok | AI &amp; Robotics Club</title>
+  <title>OpenToonz Canva Digital Art Animation Silom Bangkok | AI & Robotics Club</title>
   <meta name="description" content="OpenToonz and Canva digital art animation in Silom, Bangkok—layouts and frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/digital-art-animation-silom-bangkok.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,135 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Silom · Bangkok</span><h1>OpenToonz and Canva Digital Art Animation in Silom, Bangkok</h1>
     <p>OpenToonz and Canva digital art animation in Silom, Bangkok covers graphic layout skills and frame-by-frame 2D animation—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/98.webp" alt="Animation Silom" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-84">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-84">Lesson</label>
+        <select id="lesson-select-84" class="lesson-select" aria-label="Select lesson">
+          <option value="84" selected>084: Feature Engineering: Create New Data Features from Existing Columns</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Feature Engineering: Create New Data Features from Existing Columns" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Feature Engineering Is</h2>
+        <p>Feature engineering builds new columns from existing ones using domain knowledge and simple math. Well-chosen features often improve accuracy more than swapping algorithms.</p>
+
+        <h2>2. Five Practical Techniques</h2>
+
+        <h3>Date and temporal decomposition</h3>
+        <p>Raw timestamps are hard for many estimators. Split them into year, month, and day of week to expose seasonality and promo cycles.</p>
+        <pre><code>df["Sign-up Date"] = pd.to_datetime(df["Sign-up Date"])
+df["Sign_up_Year"] = df["Sign-up Date"].dt.year
+df["Sign_up_Month"] = df["Sign-up Date"].dt.month
+df["Sign_up_DayOfWeek"] = df["Sign-up Date"].dt.day_name()</code></pre>
+
+        <h3>Ratio features</h3>
+        <p>Absolute bills hide relative burden. Bill-to-income ratio = Monthly Bill / Monthly Income shows whether a charge is heavy for that customer.</p>
+        <pre><code>df["Bill_to_Income_Ratio"] = df["Monthly Bill"] / df["Monthly Income"]</code></pre>
+
+        <h3>Interaction features</h3>
+        <p>Multiply related risk signals. Support tickets × monthly bill spikes when high-paying customers also open many tickets; zero tickets keep the product at zero.</p>
+        <pre><code>df["Support_Bill_Interaction"] = df["Support Tickets"] * df["Monthly Bill"]</code></pre>
+
+        <h3>Text metadata</h3>
+        <p>Character length of free-text feedback is a cheap numeric signal: longer notes often mean more serious issues.</p>
+        <pre><code>df["Feedback_Length"] = df["Customer Feedback"].astype(str).apply(len)</code></pre>
+
+        <h3>Rule-based keyword flags</h3>
+        <p>A binary complaint flag from keywords (slow, poor, expensive, unreliable, drops) alerts the model without full NLP.</p>
+        <pre><code>complaint_keywords = ["slow", "poor", "expensive", "unreliable", "drops"]
+pattern = "|".join(complaint_keywords)
+df["Complaint_Flag"] = df["Customer Feedback"].str.contains(
+    pattern, case=False, na=False
+).astype(int)</code></pre>
+
+        <h2>3. Check the New Columns</h2>
+        <pre><code>engineered_cols = [
+    "Sign_up_Month", "Bill_to_Income_Ratio",
+    "Support_Bill_Interaction", "Feedback_Length", "Complaint_Flag"
+]
+print(df[engineered_cols].head())</code></pre>
+        <p>These columns give direct signals for seasonality, affordability, frustration, complaint detail, and service issues without changing the original raw data.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Feature Engineering, and why is creating new columns often better than trying different ML algorithms?</button>
+          <div class="accordion-body"><p>It means deriving new informative columns from existing raw features with domain knowledge and simple transforms. Targeted features often lift accuracy more than repeatedly swapping model architectures.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the business motivation behind creating a Bill-to-Income Ratio and a Support-Bill Interaction feature?</button>
+          <div class="accordion-body"><p>The ratio measures relative financial burden, not just absolute bill size. The interaction multiplies tickets and bill so high spenders with many support issues stand out, while zero tickets keep the product at zero.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How were customer feedback text strings transformed into numerical features without requiring full Natural Language Processing models?</button>
+          <div class="accordion-body"><p>Two lightweight features: Feedback Length (character count) and a binary Complaint Flag from keywords like slow, poor, expensive, unreliable, and drops—enough to signal dissatisfaction without heavy text models.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/computational-thinking-international-schools-bangkok.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/mblock-stem-robotics-phuket-expats.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-84');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-84');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '84') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
