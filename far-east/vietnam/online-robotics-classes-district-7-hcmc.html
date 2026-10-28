@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids District 7 Ho Chi Minh City | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids District 7 Ho Chi Minh City | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in District 7, HCMC—live English STEM in ICT-friendly slots without city traffic.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/online-robotics-classes-district-7-hcmc.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,18 +21,123 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · District 7 · HCMC</span><h1>Online Robotics Classes for Kids in District 7, Ho Chi Minh City</h1>
     <p>Online robotics classes for kids in District 7, Ho Chi Minh City help families in Phu My Hung and nearby international-school communities explore sensors, motors and control logic through live English sessions—without inventing a private District 7 campus or fighting city traffic.</p></div>
     <div><img src="../../../images/76.webp" alt="Robotics District 7 HCMC" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-96">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-96">Lesson</label>
+        <select id="lesson-select-96" class="lesson-select" aria-label="Select lesson">
+          <option value="96" selected>096: Linear Regression Explained: Finding Relationships Between Variables</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Linear Regression Explained: Finding Relationships Between Variables" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What “Linear” Means</h2>
+        <p>Linear regression applies when the relationship between inputs and outputs is linear. If the relationship is non-linear, this algorithm will not fit well and other methods should be used instead.</p>
+
+        <h2>2. Defining a Linear Relationship</h2>
+        <p>A change in the input produces a proportional change in the output:</p>
+        <ul>
+          <li><strong>Directly proportional:</strong> input up → output up (or both down)</li>
+          <li><strong>Inversely proportional:</strong> input up → output down (or the reverse)</li>
+        </ul>
+        <p>The pattern is consistent rather than random fluctuation.</p>
+
+        <h2>3. Real-World Examples</h2>
+        <ul>
+          <li><strong>Study hours vs grades:</strong> more hours tend to yield proportionally better scores</li>
+          <li><strong>Temperature vs ice cream sales:</strong> warmer days tend to lift sales in proportion</li>
+          <li><strong>Marketing budget vs revenue:</strong> higher spend often tracks higher sales proportionally</li>
+        </ul>
+
+        <h2>4. Check the Data First</h2>
+        <p>Before training, inspect whether a linear pattern exists. If it does, linear regression is appropriate. If not, choose algorithms built for non-linear structure.</p>
+
+        <h2>5. Simple vs Multiple Linear Regression</h2>
+        <p><strong>Simple</strong> (one feature): <strong>y = mx + b</strong></p>
+        <p><strong>Multiple</strong> (many features, typical client tables):</p>
+        <p><strong>y = b + m₁x₁ + m₂x₂ + m₃x₃ + …</strong></p>
+        <p>Each input column is a feature with its own slope; b remains a single intercept. The form scales to any number of features as long as the overall relationship stays linear.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does “linear” mean in Linear Regression, and what happens if data is non-linear?</button>
+          <div class="accordion-body"><p>Linear means a proportional input–output relationship (direct or inverse) with a consistent pattern. If the relationship is non-linear, linear regression will not work well and other algorithms should be used.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What real-world examples illustrate directly proportional linear relationships?</button>
+          <div class="accordion-body"><p>Study hours vs grades, temperature vs ice cream sales, and marketing budget vs revenue—each shows output rising in proportion as the input increases.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the simple linear regression formula expand to handle real-world datasets with multiple features?</button>
+          <div class="accordion-body"><p>Simple form is y = mx + b. With multiple feature columns it becomes y = b + m₁x₁ + m₂x₂ + m₃x₃ + … — one slope per feature and a single intercept, scalable to as many inputs as the table provides.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/mblock-stem-robotics-da-nang.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/online-stem-club-can-tho-students.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-96');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-96');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '96') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control basics</li><li>Control logic and debugging habits</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship in ICT-friendly windows</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
