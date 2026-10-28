@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Fast Track Coding Course Students Kaohsiung | AI &amp; Robotics Club</title>
+  <title>Python Fast Track Coding Course Students Kaohsiung | AI & Robotics Club</title>
   <meta name="description" content="Python fast track coding course for Kaohsiung students—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/taiwan/python-fast-track-coding-kaohsiung.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,153 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Kaohsiung · Taiwan</span><h1>Python Fast Track Coding Course for Students in Kaohsiung</h1>
     <p>A Python fast track coding course for students in Kaohsiung smooths the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/90.webp" alt="Python Kaohsiung" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-79">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-79">Lesson</label>
+        <select id="lesson-select-79" class="lesson-select" aria-label="Select lesson">
+          <option value="79" selected>079: How to Visualize Categories and Compare Groups with Seaborn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Visualize Categories and Compare Groups with Seaborn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Two Families of Categorical Plots</h2>
+        <p>Seaborn splits categorical charts into aggregate summaries and distribution/spread views.</p>
+        <ul>
+          <li><strong>Aggregate:</strong> <code>sns.countplot</code> (frequencies), <code>sns.barplot</code> (means + variation)</li>
+          <li><strong>Distribution:</strong> <code>sns.boxplot</code>, <code>sns.violinplot</code>, <code>sns.stripplot</code>, <code>sns.swarmplot</code></li>
+        </ul>
+
+        <h2>2. Sample for Clarity</h2>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("healthcare_patient_analytics_seaborn.csv")
+sample_df = df.sample(n=500, random_state=42)</code></pre>
+
+        <h2>3. Count and Bar Plots</h2>
+        <pre><code>plt.figure(figsize=(8, 5))
+sns.countplot(data=sample_df, x="Treatment Type")
+plt.title("Patient Count by Treatment Type")
+plt.show()
+
+plt.figure(figsize=(9, 5))
+sns.barplot(data=sample_df, x="Department", y="Treatment Cost")
+plt.xticks(rotation=30)
+plt.title("Average Treatment Cost by Department")
+plt.show()</code></pre>
+        <p>In the sample, Surgery was most frequent; Cardiology had the highest average cost.</p>
+
+        <h2>4. Box and Violin Plots</h2>
+        <pre><code>plt.figure(figsize=(9, 5))
+sns.boxplot(data=sample_df, x="Department", y="Recovery Score")
+plt.xticks(rotation=30)
+plt.title("Recovery Score Distribution Across Departments")
+plt.show()
+
+plt.figure(figsize=(9, 5))
+sns.violinplot(data=sample_df, x="Department", y="Recovery Score")
+plt.xticks(rotation=30)
+plt.title("Recovery Score Kernel Density by Department")
+plt.show()</code></pre>
+        <p>Box: Q1–Q3 box, median line, whiskers, outlier points. Violin: same summary idea plus KDE silhouette width for density.</p>
+
+        <h2>5. Strip Plot and Overlay</h2>
+        <pre><code>plt.figure(figsize=(10, 6))
+sns.boxplot(data=sample_df, x="Department", y="Recovery Score")
+sns.stripplot(
+    data=sample_df,
+    x="Department",
+    y="Recovery Score",
+    color="black",
+    alpha=0.4,
+    jitter=True
+)
+plt.xticks(rotation=30)
+plt.title("Box Plot Overlaid with Strip Plot")
+plt.show()</code></pre>
+        <p>Jittered points show individual cases against quartile boundaries and whisker outliers.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the two main families of categorical plots in Seaborn, and which specific chart types belong to each?</button>
+          <div class="accordion-body"><p><strong>Aggregate:</strong> <code>countplot</code> (frequencies) and <code>barplot</code> (means with variation lines). <strong>Distribution/spread:</strong> <code>boxplot</code>, <code>violinplot</code>, <code>stripplot</code>, and <code>swarmplot</code>.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What do the box, median line, whiskers, and points represent in an sns.boxplot?</button>
+          <div class="accordion-body"><p>The box spans Q1–Q3 (middle 50%). The inner line is the median. Whiskers show overall spread. Points beyond the whiskers are outliers.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What analytical value does a Violin Plot provide compared to a Box Plot, and why was a Strip Plot overlaid on the Box Plot?</button>
+          <div class="accordion-body"><p>A violin adds KDE density shape to the quartile summary. Overlaying a semi-transparent, jittered strip plot shows raw points so you can match clusters and outliers to the box summary.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/taiwan/online-robotics-classes-daan-taipei.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/taiwan/scratch-coding-game-development-tianmu-taipei.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-79');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-79');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '79') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
