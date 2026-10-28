@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Logic Robotics Workshops for Kids Nonthaburi | AI &amp; Robotics Club</title>
+  <title>AI Logic Robotics Workshops for Kids Nonthaburi | AI & Robotics Club</title>
   <meta name="description" content="AI logic and robotics workshops for kids in Nonthaburi—visual ML, patterns and responsible AI use.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/ai-for-kids-workshops-nonthaburi.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,147 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Nonthaburi · Thailand</span><h1>AI Logic and Robotics Workshops for Kids in Nonthaburi</h1>
     <p>AI logic and robotics workshops for kids in Nonthaburi introduce how computers learn from examples—through visual tools, pattern labs and clear talk about responsible AI use.</p></div>
     <div><img src="../../../images/94.webp" alt="AI Nonthaburi" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-81">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-81">Lesson</label>
+        <select id="lesson-select-81" class="lesson-select" aria-label="Select lesson">
+          <option value="81" selected>081: How to Convert Categories into Numbers for Machine Learning</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Convert Categories into Numbers for Machine Learning" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Encode Categories</h2>
+        <p>ML models train on numbers, not raw text. Features such as city, gender, or size must be converted before fitting a model. Encoding choice affects accuracy and interpretability.</p>
+
+        <h2>2. Nominal vs Ordinal</h2>
+        <ul>
+          <li><strong>Nominal (unordered):</strong> City, gender, color → One-Hot Encoding</li>
+          <li><strong>Ordinal (ordered):</strong> Small / Medium / Large, Low / Med / High → Ordinal Encoding</li>
+        </ul>
+        <p>One-hot creates binary columns (exactly one True per row for that feature). Ordinal maps labels to ordered integers in one column.</p>
+
+        <h2>3. Dimensionality and Rare Levels</h2>
+        <p>High cardinality one-hot expands the feature space (curse of dimensionality). Group rare levels into an <code>Others</code> category before encoding, then inspect with <code>.head()</code> / <code>.info()</code>.</p>
+
+        <h2>4. One-Hot with Pandas</h2>
+        <pre><code>import pandas as pd
+
+data = {
+    "City": ["Lahore", "Karachi", "Islamabad", "Lahore", "Karachi"],
+    "Segment": ["A", "B", "C", "A", "B"],
+    "Sales": [1500, 2200, 1800, 1600, 2100]
+}
+df = pd.DataFrame(data)
+
+df_encoded = pd.get_dummies(
+    df,
+    columns=["City", "Segment"],
+    drop_first=True
+)
+print(df_encoded.head())</code></pre>
+        <p><code>drop_first=True</code> drops one level per feature to reduce multicollinearity; all-False means the baseline category.</p>
+
+        <h2>5. Ordinal with Scikit-Learn</h2>
+        <pre><code>import pandas as pd
+from sklearn.preprocessing import OrdinalEncoder
+
+df_size = pd.DataFrame({
+    "Size": ["Small", "Medium", "Large", "Medium", "Small"]
+})
+encoder = OrdinalEncoder(categories=[["Small", "Medium", "Large"]])
+df_size["Size_Encoded"] = encoder.fit_transform(df_size[["Size"]])
+print(df_size)</code></pre>
+        <p>Result: Small → 0, Medium → 1, Large → 2 in a single numeric column.</p>
+
+        <h2>6. Quick Comparison</h2>
+        <table>
+          <tr><th>Aspect</th><th>One-Hot</th><th>Ordinal</th></tr>
+          <tr><td>Data type</td><td>Nominal</td><td>Ordinal</td></tr>
+          <tr><td>Tool</td><td><code>pd.get_dummies</code></td><td><code>OrdinalEncoder</code></td></tr>
+          <tr><td>Output</td><td>Many binary columns</td><td>One integer column</td></tr>
+          <tr><td>Risk</td><td>High dimensionality</td><td>Fake order on unordered data</td></tr>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must categorical data be encoded into numbers before training a machine learning model?</button>
+          <div class="accordion-body"><p>Algorithms need numeric inputs for math operations. String features such as city or payment type must be converted first; encoding quality affects accuracy and interpretability.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between One-Hot Encoding and Ordinal Encoding, and when should each be used?</button>
+          <div class="accordion-body"><p>One-hot is for unordered nominal labels (binary columns, one True per row). Ordinal is for ranked labels (single integer column preserving order).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the "Curse of Dimensionality" in categorical encoding, and how should rare categories be handled?</button>
+          <div class="accordion-body"><p>Many unique levels explode into many columns, hurting generalization. Map rare levels into a shared <code>Others</code> category before one-hot encoding.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/taiwan/scratch-coding-game-development-tianmu-taipei.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/arduino-robotics-courses-sathorn-bangkok.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-81');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-81');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '81') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual machine learning demos</li><li>Image and gesture recognition concepts</li><li>Ethical and safe AI habits</li><li>Beginner-friendly tools such as Scratch and mBlock</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
