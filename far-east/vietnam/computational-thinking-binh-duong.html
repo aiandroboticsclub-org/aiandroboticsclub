@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Logic Building Classes Binh Duong | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Logic Building Classes Binh Duong | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking and logic building classes in Binh Duong—decomposition, patterns and algorithms online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/computational-thinking-binh-duong.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,147 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Binh Duong · Vietnam</span><h1>Computational Thinking and Logic Building Classes in Binh Duong</h1>
     <p>Computational thinking and logic building classes in Binh Duong teach decomposition, pattern recognition, abstraction and algorithm design through puzzles and visual coding—skills that transfer to maths and programming.</p></div>
     <div><img src="../../../images/84.webp" alt="Computational Thinking Binh Duong" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-93">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-93">Lesson</label>
+        <select id="lesson-select-93" class="lesson-select" aria-label="Select lesson">
+          <option value="93" selected>093: Loan Risk Analysis Project: Prepare Data and Create Useful Features</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Loan Risk Analysis Project: Prepare Data and Create Useful Features" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Clean Data Matters</h2>
+        <p><strong>Garbage In, Garbage Out (GIGO)</strong>: models trained on noisy or incomplete data perform poorly. This project prepares a 1,000-row loan dataset with EDA, imputation, outlier clipping, and domain features for credit risk modeling.</p>
+
+        <h2>2. Load and Impute</h2>
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("loan_risk_data.csv")
+print(df.shape)  # (1000, 6)
+print(df.isnull().sum())  # Income: 51 missing
+
+income_median = df["Income"].median()
+df["Income"] = df["Income"].fillna(income_median)</code></pre>
+        <p>Columns: Loan_ID, Age, Income, Loan_Amount, Credit_Score, Default. Median fills the 51 missing Income values so all six columns are complete.</p>
+
+        <h2>3. Summaries and Correlation</h2>
+        <pre><code>print(df.describe())  # Loan_Amount Q3 ~21,000 vs max 500,000
+sns.heatmap(df.corr(), annot=True, cmap="coolwarm", fmt=".2f")
+plt.show()</code></pre>
+        <p>Large Q3–max gap signals outliers. Loan_Amount vs Loan_ID correlation is about 0.38; other pairs are weak.</p>
+
+        <h2>4. Clip Outliers</h2>
+        <pre><code>sns.boxplot(x=df["Loan_Amount"])  # extreme point at 500,000
+upper_limit = df["Loan_Amount"].quantile(0.90)
+df["Loan_Amount"] = df["Loan_Amount"].clip(upper=upper_limit)
+sns.boxplot(x=df["Loan_Amount"])  # cleaned distribution</code></pre>
+        <p>Clipping caps extreme amounts without dropping applicant rows.</p>
+
+        <h2>5. Feature Engineering</h2>
+        <pre><code>df["DTI_Ratio"] = df["Loan_Amount"] / df["Income"]
+
+bins = [0, 580, 670, 740, 850]  # example boundaries
+labels = ["High Risk", "Fair", "Good", "Excellent"]
+df["Risk_Category"] = pd.cut(df["Credit_Score"], bins=bins, labels=labels)
+
+print(df[["Income", "DTI_Ratio", "Risk_Category"]].head())</code></pre>
+        <ul>
+          <li><strong>DTI_Ratio</strong> = Loan_Amount / Income — repayment burden</li>
+          <li><strong>Risk_Category</strong> — credit score binned into High Risk, Fair, Good, Excellent</li>
+        </ul>
+
+        <h2>6. Portfolio Snapshot</h2>
+        <ul>
+          <li>High Risk ~19.3%</li>
+          <li>Fair ~20.8%</li>
+          <li>Good ~19.25%</li>
+          <li>Excellent ~23.0%</li>
+        </ul>
+        <p>After imputation, clipping, and engineered features, the dataset is ready for model training.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the concept of "Garbage In, Garbage Out" (GIGO), and how was missing data handled in this loan dataset?</button>
+          <div class="accordion-body"><p>GIGO means poor input data yields poor models. Income had 51 missing values out of 1,000 rows; those were filled with the median so every column became complete.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How were outliers detected in the Loan_Amount column, and how were they removed?</button>
+          <div class="accordion-body"><p><code>.describe()</code> showed Q3 near 21,000 but a max of 500,000; a box plot confirmed the extreme point. Values were clipped at the 90th percentile so extremes were capped without dropping rows.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What two new features were engineered for the machine learning model, and what did the risk distribution reveal?</button>
+          <div class="accordion-body"><p><strong>DTI_Ratio</strong> (Loan_Amount / Income) and <strong>Risk_Category</strong> (credit scores binned into High Risk, Fair, Good, Excellent). Portfolio shares were about 19.3% High Risk, 20.8% Fair, 19.25% Good, and 23% Excellent.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/arduino-electronics-course-tay-ho-hanoi.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/digital-animation-opentoonz-ba-dinh-hanoi.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-93');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-93');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '93') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Decomposition and pattern recognition</li><li>Abstraction and algorithm design</li><li>Logic puzzles and visual coding exercises</li><li>Real-time mentor code reviews</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
