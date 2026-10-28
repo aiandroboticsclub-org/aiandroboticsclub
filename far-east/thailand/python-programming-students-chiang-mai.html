@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Algorithmic Logic Chiang Mai Students | AI &amp; Robotics Club</title>
+  <title>Python Coding Algorithmic Logic Chiang Mai Students | AI & Robotics Club</title>
   <meta name="description" content="Python coding and algorithmic logic for students in Chiang Mai—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/python-programming-students-chiang-mai.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,130 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Chiang Mai · Thailand</span><h1>Python Coding and Algorithmic Logic for Students in Chiang Mai</h1>
     <p>Python coding and algorithmic logic for students in Chiang Mai smooths the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/95.webp" alt="Python Chiang Mai" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-88">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-88">Lesson</label>
+        <select id="lesson-select-88" class="lesson-select" aria-label="Select lesson">
+          <option value="88" selected>088: Build Your First Flask App: A Simple Hello World Tutorial</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build Your First Flask App: A Simple Hello World Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. From Scripts to a Local Web Server</h2>
+        <p>This lesson turns Flask theory into a running app: install the package, write a tiny route, and open the response in a browser.</p>
+
+        <h2>2. Environment Setup</h2>
+        <ul>
+          <li>Confirm Python: <code>python --version</code></li>
+          <li>Use VS Code (or similar) with the Python extension and a project folder such as <code>my_flask</code></li>
+          <li>Install Flask: <code>pip install flask</code> or <code>python -m pip install flask</code></li>
+        </ul>
+
+        <h2>3. hello.py</h2>
+        <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello Flask, your ML API is alive!"
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)</code></pre>
+
+        <h2>4. Code Anatomy</h2>
+        <ul>
+          <li><code>from flask import Flask</code> — import the framework class</li>
+          <li><code>app = Flask(__name__)</code> — create the application object</li>
+          <li><code>@app.route("/")</code> — map the root URL to <code>home()</code></li>
+          <li><code>app.run(debug=True, ...)</code> — start the development server with the interactive debugger</li>
+        </ul>
+        <p>Keep <code>debug=True</code> while learning; turn it off for public deployment so error pages do not expose internals.</p>
+
+        <h2>5. Run and Open in a Browser</h2>
+        <pre><code>python hello.py</code></pre>
+        <p>The terminal shows a local URL such as <code>http://127.0.0.1:5000</code>. The IP is localhost (your machine); the port (often 5000) is where Flask listens. Paste that URL into a browser to see the hello message.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you initialize a Flask application in Python, and what does the @app.route("/") decorator do?</button>
+          <div class="accordion-body"><p>Import Flask and create <code>app = Flask(__name__)</code>. The <code>@app.route("/")</code> decorator binds the root URL to the function below it so a browser request to that path runs the view and returns its string (or other response).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the purpose of the debug=True parameter in app.run(), and when should it be disabled?</button>
+          <div class="accordion-body"><p>It enables the interactive debugger and detailed error output during development. Disable it in production so stack traces and internal details are not exposed publicly.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What do the IP address and port number printed in the terminal represent when running a Flask app?</button>
+          <div class="accordion-body"><p><code>127.0.0.1</code> is localhost—your computer hosting the server. The port (e.g. <code>:5000</code>) is the channel Flask listens on for HTTP requests from the browser.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/online-stem-club-samut-prakan.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/scratch-coding-animation-bangna-bangkok.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-88');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-88');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '88') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
