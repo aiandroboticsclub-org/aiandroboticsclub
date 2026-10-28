@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding and Animation Thao Dien Expat Kids HCMC | AI &amp; Robotics Club</title>
+  <title>Scratch Coding and Animation Thao Dien Expat Kids HCMC | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and animation for Thao Dien expat kids in HCMC—arcade games, stories and visual computer science in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/scratch-coding-animation-thao-dien-hcmc.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,125 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Thao Dien · HCMC</span><h1>Scratch Coding and Animation for Thao Dien Expat Kids in HCMC</h1>
     <p>Scratch coding and animation for Thao Dien expat kids in HCMC turns passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/77.webp" alt="Scratch Thao Dien" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-99">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-99">Lesson</label>
+        <select id="lesson-select-99" class="lesson-select" aria-label="Select lesson">
+          <option value="99" selected>099: Gradient Descent Explained: How a Machine Learning Model Improves</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Gradient Descent Explained: How a Machine Learning Model Improves" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Optimize?</h2>
+        <p>A model starts with noticeable prediction error. Gradient Descent is the most common algorithm for iteratively reducing that cost toward a minimum.</p>
+        <p><strong>Gradient</strong> = slope of changing values; <strong>Descent</strong> = moving downward. Together: step down the error slope to the lowest cost point.</p>
+
+        <h2>2. Ball-on-a-Hill Analogy</h2>
+        <p>Release a ball from a high point (high error). It rolls into the valley, may overshoot and oscillate, then settles at the bottom (minimum cost). Gradient Descent follows the same idea with parameter updates instead of gravity.</p>
+
+        <h2>3. Update Steps</h2>
+        <ol>
+          <li>Initialize parameters randomly (e.g. slope m and intercept b).</li>
+          <li>Compute the gradient of the error at the current point.</li>
+          <li>Update: <strong>m_new = m_old − (learning rate × gradient error)</strong></li>
+        </ol>
+
+        <h2>4. Learning Rate (α)</h2>
+        <p>A hyperparameter that sets step size. Typical values: 0.1, 0.05, 0.01. It scales how much of the gradient is applied each iteration so updates stay controlled.</p>
+
+        <h2>5. Too Small vs Too Large vs Optimal</h2>
+        <table>
+          <thead>
+            <tr><th>Setting</th><th>Step size</th><th>Speed</th><th>Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Too small (e.g. 0.0001)</td><td>Tiny</td><td>Very slow</td><td>Precise but takes too long</td></tr>
+            <tr><td>Too large (e.g. 1.5)</td><td>Huge</td><td>Fast at first</td><td>Overshoots; may never settle</td></tr>
+            <tr><td>Optimal (e.g. 0.01–0.05)</td><td>Balanced</td><td>Good</td><td>Efficient convergence</td></tr>
+            <tr><td>Adaptive</td><td>Shrinks over time</td><td>Fast then precise</td><td>Speed early, fine control near the minimum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Gradient Descent, and how does the rolling-ball analogy explain it?</button>
+          <div class="accordion-body"><p>It is an iterative optimizer that lowers cost by stepping down the error slope. Like a ball released on a hill, it moves toward the valley, may oscillate, then rests at the minimum.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the parameter update formula, and what does the Learning Rate do?</button>
+          <div class="accordion-body"><p>m_new = m_old − (learning rate × gradient error). The learning rate (e.g. 0.1, 0.05, 0.01) scales each step so the update is controlled instead of a huge uncontrolled jump.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What if the Learning Rate is too small or too large, and what is an Adaptive Learning Rate?</button>
+          <div class="accordion-body"><p>Too small → tiny steps, very slow training. Too large → overshoot and endless oscillation. Adaptive rates start larger for speed, then shrink near the minimum for precision.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/python-coding-classes-district-1-hcmc.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/steam-model-prototyping-haiphong.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-99');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-99');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '99') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
