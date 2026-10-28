@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Animation Classes Bangna Bangkok | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Animation Classes Bangna Bangkok | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and animation classes in Bangna, Bangkok—arcade games, stories and visual computer science in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/scratch-coding-animation-bangna-bangkok.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,134 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bangna · Bangkok</span><h1>Scratch Coding and Animation Classes in Bangna, Bangkok</h1>
     <p>Scratch coding and animation classes in Bangna, Bangkok turn passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/92.webp" alt="Scratch Bangna" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-89">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-89">Lesson</label>
+        <select id="lesson-select-89" class="lesson-select" aria-label="Select lesson">
+          <option value="89" selected>089: Flask Routes and Views Explained: Connect URLs to Python Code</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Flask Routes and Views Explained: Connect URLs to Python Code" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Routes and Views</h2>
+        <p>A <strong>route</strong> is the URL path (<code>/</code>, <code>/about</code>, <code>/contact</code>). A <strong>view</strong> is the Python function that runs when that path is requested. <code>@app.route()</code> connects the two.</p>
+
+        <h2>2. Multi-Route App</h2>
+        <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Welcome to the Flask App"
+
+@app.route("/about")
+def about():
+    return "This is a simple route example to the about page"
+
+@app.route("/contact")
+def contact():
+    return """
+    <h2>Contact Us</h2>
+    <p>You can reach our organization at: info@dgskills.pk</p>
+    """
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+        <h2>3. HTML in Views</h2>
+        <p>Views can return plain text or HTML. Headings go from <code><h1></code> (largest) to smaller levels; <code><p></code> holds body text. The contact view uses <code><h2></code> and <code><p></code> so the browser formats the page.</p>
+
+        <h2>4. Test in the Browser</h2>
+        <ul>
+          <li><code>/</code> → home greeting</li>
+          <li><code>/about</code> → about text</li>
+          <li><code>/contact</code> → heading plus email paragraph</li>
+        </ul>
+
+        <h2>5. Debug Logs</h2>
+        <p>With <code>debug=True</code>, the terminal logs each request (e.g. <code>GET /</code>, <code>GET /about</code>, <code>GET /contact</code>) so you can confirm routing while you click around.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In Flask, what is the relationship between a route and a view function?</button>
+          <div class="accordion-body"><p>A route is the URL path declared with <code>@app.route()</code>. The view is the Python function under that decorator; Flask runs it when a client requests that path and returns its output to the browser.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How can view functions render HTML markup, and what HTML tags were used in the contact route example?</button>
+          <div class="accordion-body"><p>Return a string that contains HTML; the browser parses it. The contact example used <code><h2></code> for “Contact Us” and <code><p></code> for the email line.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens in the console when accessing the three routes while debug=True is enabled?</button>
+          <div class="accordion-body"><p>Flask logs each HTTP request—typically one line each for <code>/</code>, <code>/about</code>, and <code>/contact</code>—so you can verify that every route was hit.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/python-programming-students-chiang-mai.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/steam-model-building-pattaya.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-89');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-89');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '89') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
