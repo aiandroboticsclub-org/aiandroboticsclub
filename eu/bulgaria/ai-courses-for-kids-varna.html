@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Varna | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Varna | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Varna—machine learning foundations, data experiments and pattern recognition on a standard computer.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/bulgaria/ai-courses-for-kids-varna.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,198 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Varna · Bulgaria</span><h1>AI Courses for Kids in Varna</h1>
     <p>AI courses for kids in Varna introduce how computers learn from data through visual tools that show image and text recognition—on any standard home laptop with a browser.</p></div>
     <div><img src="../../../images/63.webp" alt="AI Varna" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-105">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-105">Lesson</label>
+        <select id="lesson-select-105" class="lesson-select" aria-label="Select lesson">
+          <option value="105" selected>105: Decision Trees Part 2: How Models Choose the Best Data Splits</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Decision Trees Part 2: How Models Choose the Best Data Splits" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 105 – Decision Trees Part 2: How Models Choose the Best Data Splits</h2>
+
+        <h3>1. Introduction: Translating Theory into Python Code</h3>
+        <p>Previous topics covered Gini Impurity, Entropy, and Information Gain. This module implements a Decision Tree classifier in Scikit-Learn, inspects how features are ranked for splits, exports human-readable rules, and reads feature importances.</p>
+
+        <h3>2. Environment Setup and Library Imports</h3>
+        <ul>
+          <li><strong>numpy</strong> — array operations</li>
+          <li><strong>DecisionTreeClassifier</strong> — core classifier from sklearn.tree</li>
+          <li><strong>export_text</strong> — plain-text tree structure</li>
+          <li><strong>make_classification</strong> — synthetic classification data</li>
+        </ul>
+        <pre><code>import numpy as np
+from sklearn.tree import DecisionTreeClassifier, export_text
+from sklearn.datasets import make_classification
+print("Libraries loaded successfully!")</code></pre>
+
+        <h3>3. Synthetic Dataset Generation and Inspection</h3>
+        <p>A small controlled set keeps the logic easy to visualize: 12 samples, 2 informative features, no redundant features, random_state=42 for reproducibility.</p>
+        <pre><code>X, y = make_classification(
+    n_samples=12,
+    n_features=2,
+    n_informative=2,
+    n_redundant=0,
+    random_state=42
+)
+
+for i in range(8):
+    print(f"Sample {i+1}: Feature 1 = {X[i, 0]:.2f}, Feature 2 = {X[i, 1]:.2f} -> Class = {y[i]}")</code></pre>
+        <p>Among the first 8 records, class mix is typically a few Class 0 and more Class 1 examples.</p>
+
+        <h3>4. Model Training and Hyperparameter Tuning</h3>
+        <ul>
+          <li><strong>max_depth=2</strong> — limits depth to reduce overfitting</li>
+          <li><strong>criterion='gini'</strong> — Gini Impurity for split quality (or 'entropy' for Information Gain)</li>
+          <li><strong>random_state=42</strong> — reproducible splits</li>
+        </ul>
+        <pre><code>tree = DecisionTreeClassifier(
+    max_depth=2,
+    criterion='gini',
+    random_state=42
+)
+tree.fit(X, y)
+print("Model training complete!")</code></pre>
+
+        <h3>5. Extracting Decision Rules & Explainable AI (XAI)</h3>
+        <pre><code>tree_rules = export_text(tree, feature_names=['feature_1', 'feature_2'])
+print(tree_rules)</code></pre>
+        <p>Typical structure (example):</p>
+        <pre><code>|--- feature_2 <= -0.19
+|   |--- class: 0
+|--- feature_2 >  -0.19
+|   |--- feature_1 <=  0.78
+|   |   |--- class: 1
+|   |--- feature_1 >   0.78
+|   |   |--- class: 1</code></pre>
+        <p>Root tests feature_2. If ≤ −0.19 → Class 0; otherwise a second test on feature_1 leads to Class 1 leaves. Every threshold and branch is visible, so Decision Trees are a clear form of Explainable AI (XAI).</p>
+
+        <h3>6. Feature Importance: Why Feature 2 Was Chosen First</h3>
+        <pre><code>importances = tree.feature_importances_
+print(f"Feature 1 Importance: {importances[0]:.3f} ({importances[0]*100:.1f}%)")
+print(f"Feature 2 Importance: {importances[1]:.3f} ({importances[1]*100:.1f}%)")</code></pre>
+        <p>Example scores: Feature 1 ≈ 0.082 (8.2%), Feature 2 ≈ 0.918 (91.8%). The higher importance feature is selected for the root split because it yields the largest Gini impurity reduction.</p>
+
+        <h3>7. Gini Impurity vs Information Gain</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Evaluation Metric</th>
+              <th>Gini Impurity (criterion='gini')</th>
+              <th>Information Gain (criterion='entropy')</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primary Goal</td>
+              <td>Minimize class impurity / mixing in child nodes</td>
+              <td>Maximize reduction in entropy (uncertainty)</td>
+            </tr>
+            <tr>
+              <td>Optimization Direction</td>
+              <td>Drive value toward 0</td>
+              <td>Maximize gain</td>
+            </tr>
+            <tr>
+              <td>Scikit-Learn Setting</td>
+              <td>Default: criterion='gini'</td>
+              <td>criterion='entropy'</td>
+            </tr>
+            <tr>
+              <td>Computational Speed</td>
+              <td>Slightly faster (no logs)</td>
+              <td>Slightly higher cost (log operations)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you instantiate and train a Decision Tree classifier in Scikit-Learn?</button>
+          <div class="accordion-body">
+            <p>Import DecisionTreeClassifier from sklearn.tree. Instantiate with hyperparameters such as max_depth=2 and criterion='gini' (or 'entropy'). Call .fit(X, y) with input features X and target labels y.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How can you visualize learned rules in text, and why is this Explainable AI?</button>
+          <div class="accordion-body">
+            <p>Use export_text(tree, feature_names=[...]) and print the result. Every threshold and branch is explicit, so users can trace the exact logic behind each prediction—classic Explainable AI (XAI).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the tree choose the root feature, and how do you check it in Python?</button>
+          <div class="accordion-body">
+            <p>It scores candidates with Gini Impurity or Information Gain and picks the feature with the largest impurity reduction. Inspect tree.feature_importances_. In the tutorial example, feature_2 (~0.918) outranked feature_1 (~0.082) and became the root split.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/belgium/python-coding-classes-for-children-antwerp.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/bulgaria/online-robotics-classes-for-kids-sofia.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-105');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-105');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '105') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>How data trains recognition models</li><li>Visual machine learning demos</li><li>Image and text pattern labs</li><li>Standard computer setup only</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
