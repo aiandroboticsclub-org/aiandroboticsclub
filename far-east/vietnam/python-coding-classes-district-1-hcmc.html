@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Programming Classes for Young Students District 1 HCMC | AI &amp; Robotics Club</title>
+  <title>Python Programming Classes for Young Students District 1 HCMC | AI & Robotics Club</title>
   <meta name="description" content="Python programming classes for young students in District 1, HCMC—clean syntax after Scratch, portfolio projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/python-coding-classes-district-1-hcmc.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,137 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · District 1 · HCMC</span><h1>Python Programming Classes for Young Students in District 1, HCMC</h1>
     <p>Python programming classes for young students in District 1, HCMC smooth the jump from Scratch blocks to readable text syntax through games, scripts and practical exercises.</p></div>
     <div><img src="../../../images/80.webp" alt="Python District 1" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-98">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-98">Lesson</label>
+        <select id="lesson-select-98" class="lesson-select" aria-label="Select lesson">
+          <option value="98" selected>098: Mean Squared Error (MSE) Explained: Measuring Machine Learning Errors</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Mean Squared Error (MSE) Explained: Measuring Machine Learning Errors" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Measure Error?</h2>
+        <p>No model is perfect on unseen data. Claims of 100% accuracy are a red flag. Mean Squared Error (MSE) is the standard metric used to quantify prediction error, tune models, and set realistic client expectations.</p>
+
+        <h2>2. Train vs Test</h2>
+        <ul>
+          <li><strong>Training set:</strong> larger share used to fit the model</li>
+          <li><strong>Test set:</strong> held out and never used during training</li>
+        </ul>
+        <p>Evaluating on training data only measures memorization. Hidden test data checks true generalization.</p>
+
+        <h2>3. Actual, Predicted, and Error</h2>
+        <p><strong>Error = Predicted − Actual</strong></p>
+        <p>Overestimates give positive error; underestimates give negative error.</p>
+
+        <h2>4. MSE Formula</h2>
+        <p><strong>MSE = (1/N) × Σ (Predictedᵢ − Actualᵢ)²</strong></p>
+        <p>Steps: compute each raw error → square it → sum → divide by N. Squaring removes sign cancellation.</p>
+
+        <h2>5. Worked Example (N = 4)</h2>
+        <table>
+          <thead>
+            <tr><th>Record</th><th>Actual</th><th>Predicted</th><th>Raw error</th><th>Squared</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>100</td><td>103</td><td>+3</td><td>9</td></tr>
+            <tr><td>2</td><td>200</td><td>195</td><td>−5</td><td>25</td></tr>
+            <tr><td>3</td><td>150</td><td>150</td><td>0</td><td>0</td></tr>
+            <tr><td>4</td><td>300</td><td>304</td><td>+4</td><td>16</td></tr>
+          </tbody>
+        </table>
+        <p>Sum of squares = 50 → <strong>MSE = 50 / 4 = 12.5</strong></p>
+
+        <h2>6. Why Square?</h2>
+        <ul>
+          <li>Removes negative signs so errors cannot cancel</li>
+          <li>Penalizes large mistakes more heavily (quadratic growth)</li>
+          <li>Produces a smooth, differentiable loss suited to optimizers like gradient descent</li>
+        </ul>
+
+        <h2>7. Client Communication</h2>
+        <p>Report both performance and expected MSE so stakeholders understand operational bounds before deployment.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must a machine learning model be evaluated on hidden test data when calculating MSE?</button>
+          <div class="accordion-body"><p>Testing on training data only shows memorization. A held-out test set checks whether the model generalizes to new inputs, which is the real goal of ML.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the mathematical formula for MSE, and how does it prevent error cancellation?</button>
+          <div class="accordion-body"><p>MSE = (1/N) Σ (Predicted − Actual)². Squaring turns negatives into positives so over- and under-predictions cannot cancel when averaged.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the main benefits of squaring prediction errors instead of keeping them linear?</button>
+          <div class="accordion-body"><p>Sign removal, stronger penalty on large errors (quadratic), and a differentiable loss surface that gradient-based optimizers can use.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/online-stem-club-can-tho-students.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/scratch-coding-animation-thao-dien-hcmc.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-98');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-98');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '98') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax and structure</li><li>Text adventure games and calculators</li><li>Data visualisers and simple GUIs</li><li>Transition from block coding</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
