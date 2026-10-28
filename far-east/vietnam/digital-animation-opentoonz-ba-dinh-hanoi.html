@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenToonz 2D Animation Graphic Design Ba Dinh Hanoi | AI &amp; Robotics Club</title>
+  <title>OpenToonz 2D Animation Graphic Design Ba Dinh Hanoi | AI & Robotics Club</title>
   <meta name="description" content="OpenToonz 2D animation and graphic design in Ba Dinh, Hanoi—Canva layouts and frame-by-frame stories.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/digital-animation-opentoonz-ba-dinh-hanoi.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,129 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Ba Dinh · Hanoi</span><h1>OpenToonz 2D Animation and Graphic Design in Ba Dinh, Hanoi</h1>
     <p>OpenToonz 2D animation and graphic design for Ba Dinh, Hanoi covers Canva layout skills and frame-by-frame 2D animation—building sequential logic that also supports STEM design thinking.</p></div>
     <div><img src="../../../images/83.webp" alt="Animation Ba Dinh" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-94">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-94">Lesson</label>
+        <select id="lesson-select-94" class="lesson-select" aria-label="Select lesson">
+          <option value="94" selected>094: Machine Learning Explained for Beginners: How Computers Learn from Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Machine Learning Explained for Beginners: How Computers Learn from Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Is Machine Learning?</h2>
+        <p><strong>Machine Learning (ML)</strong> combines “machine” and “learning”: the goal is to give computers the ability to learn from data and respond intelligently to new situations, similar to how people adapt to unfamiliar problems.</p>
+
+        <h2>2. Traditional Programming vs Human Learning</h2>
+        <ul>
+          <li><strong>Traditional programming:</strong> developers write explicit rules for every case. An unprogrammed scenario causes failure or errors.</li>
+          <li><strong>Human learning:</strong> people learn concepts, not only fixed rules, so they can handle new situations.</li>
+          <li><strong>ML goal:</strong> approximate that adaptability so models can generalize beyond the training examples.</li>
+        </ul>
+
+        <h2>3. How Computers Learn Patterns</h2>
+        <p>Instead of hardcoding rules, we supply many examples of inputs and correct outputs. The algorithm searches for patterns that map inputs to outputs. Domain experts often label large sets of cases so the model has reliable ground truth.</p>
+
+        <h2>4. Everyday Examples</h2>
+        <ul>
+          <li><strong>Email spam filters</strong> — route ads, phishing, and junk into Spam</li>
+          <li><strong>Recommendations</strong> — Netflix/YouTube suggest content from viewing history</li>
+          <li><strong>Search suggestions</strong> — after a few typed words, engines propose likely queries</li>
+        </ul>
+
+        <h2>5. Side-by-Side Comparison</h2>
+        <table>
+          <thead>
+            <tr><th>Criterion</th><th>Traditional programming</th><th>Machine learning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Inputs</td><td>Data + explicit rules</td><td>Data (inputs + outputs)</td></tr>
+            <tr><td>Output</td><td>Program answers</td><td>Learned rules and patterns</td></tr>
+            <tr><td>Rule creation</td><td>Written by programmers</td><td>Discovered from data</td></tr>
+            <tr><td>Unseen cases</td><td>Often fails if not coded</td><td>Can adapt if trained well</td></tr>
+            <tr><td>Data needs</td><td>Logic and specs</td><td>Many labeled examples</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental difference between Traditional Programming and Machine Learning?</button>
+          <div class="accordion-body"><p>Traditional programming supplies data and fixed rules; unknown cases break the program. Machine learning supplies inputs and desired outputs so the model learns patterns and can answer new questions.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is a domain expert necessary when preparing data for a Machine Learning system?</button>
+          <div class="accordion-body"><p>Experts with deep field experience label hundreds or thousands of cases with the correct outputs. Those labeled pairs become the ground truth the algorithm uses to learn reliable rules.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are three common real-world applications of Machine Learning mentioned in the lecture?</button>
+          <div class="accordion-body"><p>Email spam detection, movie/video recommendations (e.g. Netflix, YouTube), and search-engine auto-suggestions after a few typed words.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/computational-thinking-binh-duong.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/mblock-stem-robotics-da-nang.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-94');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-94');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '94') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Canva layouts and character illustration</li><li>Frame-by-frame 2D animation ideas</li><li>Storyboard sequencing and timing</li><li>Creative skills that support STEM design</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/opentoonz-for-kids/?referralCode=C230869728E6CA9BC7B9" target="_blank" rel="noopener noreferrer sponsored">OpenToonz for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
