@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Classes International School Kids Bangkok | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Classes International School Kids Bangkok | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking classes for international school kids in Bangkok—patterns, decomposition and algorithms online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/computational-thinking-international-schools-bangkok.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,138 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bangkok · Thailand</span><h1>Computational Thinking Classes for International School Kids in Bangkok</h1>
     <p>Computational thinking classes for international school kids in Bangkok teach pattern recognition, decomposition and algorithmic design through puzzles, visual coding challenges and mentor feedback—in English.</p></div>
     <div><img src="../../../images/99.webp" alt="Computational thinking Bangkok" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-83">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-83">Lesson</label>
+        <select id="lesson-select-83" class="lesson-select" aria-label="Select lesson">
+          <option value="83" selected>083: Feature Transformation in Machine Learning: Make Data More Useful</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Feature Transformation in Machine Learning: Make Data More Useful" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Transform Features</h2>
+        <p>After cleaning and scaling, two issues still hurt many models: skewed distributions and extreme outliers. Transformation reshapes continuous columns so they are more stable for learning.</p>
+
+        <h2>2. Skewness and Log Transform</h2>
+        <p>Right or left tails break the near-normal assumption of many linear methods. Common fixes: log, Box-Cox (positive only), Yeo-Johnson (handles zeros/negatives).</p>
+        <pre><code>import numpy as np
+import pandas as pd
+
+df = pd.read_csv("telecom_churn.csv")
+print(df[["Monthly Income", "Monthly Bill"]].describe())
+
+df["Income_Log"] = np.log1p(df["Monthly Income"])
+print(df[["Monthly Income", "Income_Log"]].head())</code></pre>
+        <p><code>np.log1p</code> computes \(\log(1+x)\), safe when zeros appear. Large incomes compress into a tighter, more centered range.</p>
+
+        <h2>3. Outliers: Why They Matter</h2>
+        <p>Extreme points pull error-driven models off the main pattern. Two practical treatments keep rows but limit leverage: clipping and winsorization.</p>
+
+        <h2>4. Clipping</h2>
+        <pre><code>upper_limit = df["Monthly Bill"].quantile(0.99)
+df["Bill_Clipped"] = df["Monthly Bill"].clip(upper=upper_limit)
+print(df["Bill_Clipped"].max(), df["Bill_Clipped"].min())</code></pre>
+        <p>Values above the 99th percentile are capped at that threshold (e.g. max drops from ~$35k toward ~$21.7k in the example).</p>
+
+        <h2>5. Winsorization</h2>
+        <pre><code>from scipy.stats.mstats import winsorize
+
+df["Bill_Winsorized"] = winsorize(
+    df["Monthly Bill"],
+    limits=[0.01, 0.01]
+)
+print(df["Bill_Winsorized"].max(), df["Bill_Winsorized"].min())</code></pre>
+        <p>Bottom/top 1% are replaced by the boundary values—no rows dropped, tails pulled inward.</p>
+
+        <h2>6. Technique Snapshot</h2>
+        <table>
+          <tr><th>Technique</th><th>Targets</th><th>Tool</th></tr>
+          <tr><td>Log</td><td>Right skew</td><td><code>np.log1p</code></td></tr>
+          <tr><td>Box-Cox / Yeo-Johnson</td><td>Skew</td><td>SciPy</td></tr>
+          <tr><td>Clipping</td><td>Outliers</td><td><code>Series.clip</code></td></tr>
+          <tr><td>Winsorize</td><td>Outliers</td><td><code>winsorize</code></td></tr>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is feature transformation needed in machine learning, and what two distinct problems does it address?</button>
+          <div class="accordion-body"><p>Raw columns are often skewed or hold extreme outliers that bias training. Transformation reduces asymmetry and stabilizes extremes so models fit the main data pattern more reliably.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the log transformation (np.log1p) reduce skewness, and what did it demonstrate on the telecom dataset?</button>
+          <div class="accordion-body"><p>It compresses large values via \(\log(1+x)\). Incomes in the tens of thousands mapped into a narrow band around 9–11, centering a previously right-skewed distribution.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between Clipping and Winsorization when handling outliers in Python?</button>
+          <div class="accordion-body"><p>Clipping caps values at a chosen threshold (e.g. 99th percentile). Winsorization replaces values outside low/high percentiles with those boundary values, preserving every row.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/arduino-robotics-courses-sathorn-bangkok.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/digital-art-animation-silom-bangkok.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-83');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-83');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '83') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Pattern recognition and abstraction</li><li>Problem decomposition</li><li>Algorithm design with visual coding</li><li>Interactive logic puzzles</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
