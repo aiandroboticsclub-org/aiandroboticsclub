@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids Sukhumvit Bangkok | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids Sukhumvit Bangkok | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids along Sukhumvit, Bangkok—live English STEM in ICT-friendly slots without Bangkok traffic.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/online-robotics-classes-sukhumvit-bangkok.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,18 +21,136 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Sukhumvit · Bangkok</span><h1>Online Robotics Classes for Kids on Sukhumvit, Bangkok</h1>
     <p>Online robotics classes for kids on Sukhumvit, Bangkok help international-school families explore sensors, motors and control logic through live English sessions—without inventing a private Sukhumvit campus or fighting traffic from Asoke to Bang Na.</p></div>
     <div><img src="../../../images/91.webp" alt="Robotics Sukhumvit" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-86">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-86">Lesson</label>
+        <select id="lesson-select-86" class="lesson-select" aria-label="Select lesson">
+          <option value="86" selected>086: Train-Test Split Explained: How to Prevent Data Leakage in Machine Learning</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Train-Test Split Explained: How to Prevent Data Leakage in Machine Learning" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Split the Dataset</h2>
+        <p>Every supervised ML dataset is divided into training data (often ~80%) for learning patterns and test data (~20%) held out until evaluation. The test set must be isolated from the start so scores reflect real generalization.</p>
+
+        <h2>2. What Data Leakage Is</h2>
+        <p>Leakage happens when test information mixes into training—for example computing mean and std on the full frame before splitting. The model then “sees” test statistics and scores look artificially good.</p>
+        <p><strong>Correct order:</strong> split first, then fit scaling/imputation only on the training partition and apply those parameters to the test set.</p>
+
+        <h2>3. Telecom Churn Case Study</h2>
+        <p>1,200 customer records → 80/20 → 960 train, 240 test.</p>
+        <pre><code>import pandas as pd
+
+df = pd.read_csv("telecom_churn.csv")
+print(len(df))  # 1200
+
+random_seed = 42
+df_shuffled = df.sample(frac=1, random_state=random_seed).reset_index(drop=True)
+train_size = int(0.8 * len(df_shuffled))  # 960
+
+train_df = df_shuffled.iloc[:train_size]
+test_df = df_shuffled.iloc[train_size:]
+
+print(len(train_df), len(test_df))  # 960, 240</code></pre>
+        <p><code>random_state=42</code> makes the shuffle reproducible so model comparisons use the same partitions.</p>
+
+        <h2>4. Verify No Overlap</h2>
+        <pre><code>train_indices = set(train_df.index)
+test_indices = set(test_df.index)
+intersection = train_indices.intersection(test_indices)
+print(intersection)  # set() empty</code></pre>
+
+        <h2>5. Separate X and y</h2>
+        <pre><code>X_train = train_df.drop(columns=["Churn"])
+y_train = train_df["Churn"]
+X_test = test_df.drop(columns=["Churn"])
+y_test = test_df["Churn"]
+
+print(X_train.shape, y_train.shape)  # (960, 14), (960,)
+print(X_test.shape, y_test.shape)    # (240, 14), (240,)</code></pre>
+        <p>Fourteen input features drive the churn label on both sides of the split.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the fundamental purpose of splitting data into Training and Testing sets in Machine Learning?</button>
+          <div class="accordion-body"><p>Training data (typically ~80%) teaches the model patterns. Testing data (~20%) stays hidden until evaluation so performance reflects how well the model generalizes to unseen cases.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Data Leakage, and why is normalizing data before splitting considered a classical error?</button>
+          <div class="accordion-body"><p>Leakage is when test information reaches training. Computing mean/std on the full dataset before the split embeds test statistics into training values and inflates scores. Split first; fit transforms only on train.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">In the 1,200-record telecom churn dataset, how was the split configured and verified?</button>
+          <div class="accordion-body"><p>Shuffle with <code>random_state=42</code>, 80/20 → 960 train / 240 test, empty index intersection, then separate Churn into y leaving 14 features in X for both partitions.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/mblock-stem-robotics-phuket-expats.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/online-stem-club-samut-prakan.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-86');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-86');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '86') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control basics</li><li>Control logic and debugging habits</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship in ICT-friendly windows</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
