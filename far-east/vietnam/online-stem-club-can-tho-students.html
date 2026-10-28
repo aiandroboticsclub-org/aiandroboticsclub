@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM and Robotics Coding Club Can Tho | AI &amp; Robotics Club</title>
+  <title>Online STEM and Robotics Coding Club Can Tho | AI & Robotics Club</title>
   <meta name="description" content="Online STEM and robotics coding club for Can Tho—flexible modules, coding and project practice in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/online-stem-club-can-tho-students.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,118 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Can Tho · Vietnam</span><h1>Online STEM and Robotics Coding Club for Can Tho Students</h1>
     <p>An online STEM and robotics coding club for Can Tho students combines programming fundamentals and project practice in flexible multi-week modules so learners build confidence through consistent iteration—fully in English.</p></div>
     <div><img src="../../../images/85.webp" alt="STEM Club Can Tho" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-97">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-97">Lesson</label>
+        <select id="lesson-select-97" class="lesson-select" aria-label="Select lesson">
+          <option value="97" selected>097: Linear Regression Cost Function Explained: How Prediction Errors Are Measured</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Linear Regression Cost Function Explained: How Prediction Errors Are Measured" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Prediction Error Is Inevitable</h2>
+        <p>Linear regression (and ML models in general) never achieve perfect predictions on every real-world case. Error must be measured and shared with clients as an expected margin—similar to a product label that reads 1000g ± 10g.</p>
+
+        <h2>2. Calculators vs Learning Models</h2>
+        <ul>
+          <li><strong>Calculator:</strong> hardcoded rules → exact, error-free answers; no learning</li>
+          <li><strong>ML model:</strong> discovers rules from historical data and applies them to unseen cases → a residual error margin remains</li>
+        </ul>
+
+        <h2>3. What a Cost Function Is</h2>
+        <p>The <strong>cost function</strong> is the mathematical metric that quantifies the difference between model predictions and ground-truth values across a dataset. On each test example, prediction vs actual yields an error; the cost function aggregates those errors into one score.</p>
+
+        <h2>4. Why Simple Sums Fail</h2>
+        <p>Adding raw errors can cancel positives and negatives. Example: errors of +4 and −4 sum to 0, which wrongly suggests a perfect model even though both predictions were wrong.</p>
+
+        <h2>5. Mean Squared Error (MSE)</h2>
+        <ol>
+          <li>Compute each prediction error</li>
+          <li>Square every error (negatives become positive)</li>
+          <li>Average the squared values</li>
+        </ol>
+        <p>MSE yields a single non-negative magnitude that reflects overall model error without cancellation.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is a Cost Function necessary in Linear Regression, and why do ML models always contain error?</button>
+          <div class="accordion-body"><p>ML models learn patterns rather than using fixed rules, so predictions on new data always carry some error. The cost function measures that error so teams can report an expected margin to clients.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why does simply adding up prediction errors fail when evaluating a machine learning model?</button>
+          <div class="accordion-body"><p>Positive and negative errors cancel. A +4 and a −4 sum to 0 and can hide real mistakes, falsely suggesting zero error.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Mean Squared Error (MSE) resolve the problem of negative error cancellation?</button>
+          <div class="accordion-body"><p>MSE squares each error before averaging, so negatives become positive (e.g. (−4)² = 16). The mean of those squares is a reliable non-negative error magnitude.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/online-robotics-classes-district-7-hcmc.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/python-coding-classes-district-1-hcmc.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-97');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-97');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '97') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Core coding logic and structure</li><li>Weekend live interactive sessions</li><li>Flexible multi-week modules</li><li>Project demonstration habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
