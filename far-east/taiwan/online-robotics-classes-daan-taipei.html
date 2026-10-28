@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics and Coding Classes Daan District Taipei | AI &amp; Robotics Club</title>
+  <title>Online Robotics and Coding Classes Daan District Taipei | AI & Robotics Club</title>
   <meta name="description" content="Online robotics and coding classes in Daan District, Taipei—live English STEM in CST-friendly slots.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/taiwan/online-robotics-classes-daan-taipei.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,170 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Daan · Taipei</span><h1>Online Robotics and Coding Classes in Daan District, Taipei</h1>
     <p>Online robotics and coding classes in Daan District, Taipei help families near Taipei educational hubs explore sensors, motors and control logic through live English sessions—without inventing a private Daan campus or fighting city transit.</p></div>
     <div><img src="../../../images/86.webp" alt="Robotics Daan Taipei" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-78">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-78">Lesson</label>
+        <select id="lesson-select-78" class="lesson-select" aria-label="Select lesson">
+          <option value="78" selected>078: Seaborn Distribution Plots: Histograms and KDE Plots Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Seaborn Distribution Plots: Histograms and KDE Plots Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Shape, Spread, Skew</h2>
+        <p>Distribution plots summarize continuous variables as bins, smooth densities, or cumulative curves—without needing a scatter of every row.</p>
+        <ul>
+          <li><code>sns.histplot</code> — discrete bins and counts (stack / layer / dodge)</li>
+          <li><code>sns.kdeplot</code> — smooth kernel density (no bins)</li>
+          <li><code>sns.ecdfplot</code> — cumulative proportion from 0 to 1</li>
+        </ul>
+
+        <h2>2. Useful Arguments</h2>
+        <ul>
+          <li><code>multiple</code>: stack, layer, or dodge groups</li>
+          <li><code>stat</code>: count, density, or probability</li>
+          <li><code>bins</code>: number of intervals for histograms</li>
+          <li><code>fill</code>: shade under KDE curves</li>
+        </ul>
+
+        <h2>3. Treatment Cost Histogram</h2>
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("healthcare_patient_analytics_seaborn.csv")
+
+plt.figure(figsize=(9, 5))
+sns.histplot(data=df, x="Treatment Cost", bins=30)
+plt.title("Treatment Cost Distribution (30 Bins)")
+plt.xlabel("Treatment Cost ($)")
+plt.ylabel("Count")
+plt.show()</code></pre>
+        <p>Mid-range costs dominate; extremes are rarer.</p>
+
+        <h2>4. Stacked Readmission Risk</h2>
+        <pre><code>plt.figure(figsize=(9, 5))
+sns.histplot(
+    data=df,
+    x="Readmission Risk",
+    hue="Visit Type",
+    multiple="stack",
+    bins=30
+)
+plt.title("Readmission Risk Distribution by Visit Type (Stacked)")
+plt.show()</code></pre>
+
+        <h2>5. KDE of Recovery Score</h2>
+        <pre><code>plt.figure(figsize=(9, 5))
+sns.kdeplot(
+    data=df,
+    x="Recovery Score",
+    hue="Visit Type",
+    fill=True
+)
+plt.title("Recovery Score Density Distribution by Visit Type")
+plt.show()</code></pre>
+        <p>Routine visits often show a sharper, higher density peak than Emergency.</p>
+
+        <h2>6. ECDF of Length of Stay</h2>
+        <pre><code>plt.figure(figsize=(9, 5))
+sns.ecdfplot(
+    data=df,
+    x="Length of Stay (Days)",
+    hue="Visit Type"
+)
+plt.title("Cumulative Length of Stay (Days) by Visit Type")
+plt.ylabel("Proportion")
+plt.show()</code></pre>
+        <p>In the example, about 80% of stays fall at or below 6 days.</p>
+
+        <h2>7. Quick Comparison</h2>
+        <table>
+          <tr><th>Plot</th><th>Function</th><th>Use</th></tr>
+          <tr><td>Histogram</td><td><code>sns.histplot</code></td><td>Binned frequencies</td></tr>
+          <tr><td>KDE</td><td><code>sns.kdeplot</code></td><td>Smooth density</td></tr>
+          <tr><td>ECDF</td><td><code>sns.ecdfplot</code></td><td>Percentile thresholds</td></tr>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the difference between a histogram (histplot) and a Kernel Density Estimation plot (kdeplot) in Seaborn?</button>
+          <div class="accordion-body"><p><code>histplot</code> bins data into discrete bars (count/density/probability) and can stack groups. <code>kdeplot</code> draws a continuous density curve without bins; <code>fill=True</code> shades under the curve.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does an Empirical Cumulative Distribution Function (ecdfplot) differ from a standard density curve, and how do you interpret its slope?</button>
+          <div class="accordion-body"><p>ECDF accumulates proportions as x increases, rising monotonically from 0 to 1. A horizontal value such as day 6 paired with proportion 0.8 means 80% of cases are at or below that stay length.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What clinical insights did Treatment Cost and Readmission Risk reveal when plotted with histplot?</button>
+          <div class="accordion-body"><p>Treatment costs peaked in middle bins (moderate costs most common). Stacked readmission-risk histograms let Routine vs Emergency shares be compared across risk levels on one chart.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/taiwan/arduino-microcontroller-course-hsinchu-tech-park.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/taiwan/python-fast-track-coding-kaohsiung.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-78');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-78');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '78') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control basics</li><li>Control logic and debugging habits</li><li>Simulators first, optional hardware later</li><li>Live online English mentorship in CST-friendly windows</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
