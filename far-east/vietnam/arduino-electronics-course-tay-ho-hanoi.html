@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Microcontroller Circuit Course Tay Ho Hanoi | AI &amp; Robotics Club</title>
+  <title>Arduino Microcontroller Circuit Course Tay Ho Hanoi | AI & Robotics Club</title>
   <meta name="description" content="Arduino microcontroller circuit course in Tay Ho, Hanoi—breadboards, sensors and control logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/vietnam/arduino-electronics-course-tay-ho-hanoi.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,161 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Tay Ho · Hanoi</span><h1>Arduino Microcontroller Circuit Course in Tay Ho, Hanoi</h1>
     <p>An Arduino microcontroller circuit course for Tay Ho, Hanoi guides students through breadboard wiring, ultrasonic sensing, motor control and introductory C++ logic—simulators first, optional kits under supervision.</p></div>
     <div><img src="../../../images/78.webp" alt="Arduino Tay Ho" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-92">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-92">Lesson</label>
+        <select id="lesson-select-92" class="lesson-select" aria-label="Select lesson">
+          <option value="92" selected>092: Python Data Analysis Project: Explore and Visualize Retail Sales</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Data Analysis Project: Explore and Visualize Retail Sales" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. End-to-End Retail EDA</h2>
+        <p>This project applies Pandas, Matplotlib, and Seaborn to a full-year retail dataset: load and inspect, engineer date features, aggregate, chart trends, and turn findings into business recommendations.</p>
+
+        <h2>2. Dataset Profile</h2>
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("retail_sales.csv")
+print(df.head(10))
+print("Dataset Dimensions:", df.shape)  # (1825, 6)
+print(df.dtypes)
+print(df.isnull().sum())  # all zeros</code></pre>
+        <p>Columns: Date, Category, Sales, Quantity, Profit, Region. Date range: 1 Jan–31 Dec 2023. No missing values.</p>
+
+        <h2>3. Date Features</h2>
+        <pre><code>df["Date"] = pd.to_datetime(df["Date"])
+df["Month"] = df["Date"].dt.month
+df["Quarter"] = df["Date"].dt.quarter
+df["Day Name"] = df["Date"].dt.day_name()
+df["Month Name"] = df["Date"].dt.month_name()</code></pre>
+
+        <h2>4. Summaries</h2>
+        <pre><code>print(df.describe())
+category_summary = df.groupby("Category").agg({
+    "Sales": "sum", "Profit": "sum", "Quantity": "sum"
+}).sort_values(by="Sales", ascending=False)
+region_summary = df.groupby("Region").agg({
+    "Sales": "sum", "Profit": "sum", "Quantity": "sum"
+})</code></pre>
+
+        <h2>5. Visual Analysis</h2>
+        <ul>
+          <li><strong>Line</strong> — monthly sales & profit</li>
+          <li><strong>Bar</strong> — sales by product category</li>
+          <li><strong>Pie</strong> — sales by region (West/South high, East low)</li>
+          <li><strong>Line</strong> — average sales by weekday</li>
+          <li><strong>Heatmap</strong> — correlation of Sales, Quantity, Profit</li>
+        </ul>
+        <pre><code>monthly_data = df.groupby("Month").agg({"Sales": "sum", "Profit": "sum"})
+plt.plot(monthly_data.index, monthly_data["Sales"], marker="o", label="Sales")
+plt.plot(monthly_data.index, monthly_data["Profit"], marker="s", label="Profit")
+plt.legend(); plt.show()
+
+corr = df[["Sales", "Quantity", "Profit"]].corr()
+sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
+plt.show()</code></pre>
+
+        <h2>6. Four-Chart Dashboard</h2>
+        <pre><code>fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+# axes[0,0]: monthly trends | axes[0,1]: category bars
+# axes[1,0]: region pie     | axes[1,1]: weekday line
+plt.tight_layout()
+plt.show()</code></pre>
+
+        <h2>7. Insights & Recommendations</h2>
+        <ul>
+          <li>Top category by sales: <strong>Electronics</strong></li>
+          <li>Best region: <strong>West</strong></li>
+          <li>Highest sales month: <strong>July</strong></li>
+          <li>Best weekday: <strong>Friday</strong> (good for promotions)</li>
+          <li>Annual profit margin: <strong>24.71%</strong>; highest margin category Sports Equipment, lowest Electronics despite volume</li>
+        </ul>
+        <p>Actions: push Electronics volume while lifting its margin; investigate East region; stock up for July peaks; promote on Fridays.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the initial dimensions, date range, and columns of the retail sales dataset, and what did the missing value audit reveal?</button>
+          <div class="accordion-body"><p>1,825 rows × 6 columns (Date, Category, Sales, Quantity, Profit, Region), spanning 1 Jan–31 Dec 2023. <code>.isnull().sum()</code> showed zero nulls in every column.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Which four visual charts were combined to create the comprehensive retail analytics dashboard?</button>
+          <div class="accordion-body"><p>Monthly sales/profit line (top-left), category sales bars (top-right), regional sales pie (bottom-left), and average sales by weekday line (bottom-right).</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What were the key analytical findings regarding the top category, region, month, day, and category profit margins?</button>
+          <div class="accordion-body"><p>Top sales category Electronics; best region West; peak month July; strongest weekday Friday. Overall margin 24.71%; Sports Equipment had the highest margin, Electronics the lowest despite highest sales.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/ai-for-beginners-cau-giay-hanoi.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/vietnam/computational-thinking-binh-duong.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-92');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-92');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '92') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breadboard circuit wiring</li><li>Ultrasonic sensors and motor control</li><li>Introductory microcontroller code</li><li>Simulators or optional home kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
