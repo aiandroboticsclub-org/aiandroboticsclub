@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM Robotics Creative Club Samut Prakan | AI &amp; Robotics Club</title>
+  <title>Online STEM Robotics Creative Club Samut Prakan | AI & Robotics Club</title>
   <meta name="description" content="Online STEM and robotics creative club for Samut Prakan—English sessions, sensors, motors and projects.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/thailand/online-stem-club-samut-prakan.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,141 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Samut Prakan · Thailand</span><h1>Online STEM and Robotics Creative Club in Samut Prakan</h1>
     <p>An online STEM and robotics creative club in Samut Prakan combines sensors, motors and programming so learners practise end-to-end engineering thinking—fully in English.</p></div>
     <div><img src="../../../images/100.webp" alt="STEM Club Samut Prakan" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-87">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-87">Lesson</label>
+        <select id="lesson-select-87" class="lesson-select" aria-label="Select lesson">
+          <option value="87" selected>087: Flask for Beginners: What It Is and How to Get Started</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Flask for Beginners: What It Is and How to Get Started" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Flask Is</h2>
+        <p>Notebooks and local scripts cannot serve clients by themselves. Flask is a lightweight Python web framework that turns models and pipelines into websites or APIs that browsers and apps can call.</p>
+
+        <h2>2. Core Capabilities</h2>
+        <ul>
+          <li><strong>Minimalist core</strong> — flexible, low boilerplate</li>
+          <li><strong>Built-in server & debugger</strong> — fast local testing</li>
+          <li><strong>Jinja2</strong> — dynamic HTML templates</li>
+          <li><strong>URL routing</strong> — map paths to Python functions</li>
+          <li><strong>REST endpoints</strong> — expose predictions over HTTP</li>
+        </ul>
+
+        <h2>3. Serving an ML Model</h2>
+        <p>Typical flow: client sends features → Flask parses the request → loaded model runs inference → Flask returns JSON or HTML.</p>
+        <pre><code>from flask import Flask, request, jsonify
+import numpy as np
+
+app = Flask(__name__)
+
+class DummyModel:
+    def predict(self, features):
+        return [int(np.sum(features) > 50)]
+
+model = DummyModel()
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    data = request.get_json()
+    features = data.get("features", [])
+    prediction = model.predict(features)
+    return jsonify({"status": "success", "prediction": prediction})
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+        <h2>4. Flask vs Django vs FastAPI</h2>
+        <table>
+          <tr><th>Factor</th><th>Flask</th><th>Django</th><th>FastAPI</th></tr>
+          <tr><td>Complexity</td><td>Minimal</td><td>Full-featured</td><td>Minimal</td></tr>
+          <tr><td>Learning curve</td><td>Very easy</td><td>Moderate</td><td>Easy</td></tr>
+          <tr><td>Speed</td><td>Moderate</td><td>Moderate</td><td>High (async)</td></tr>
+          <tr><td>Flexibility</td><td>Very high</td><td>Lower (opinionated)</td><td>Moderate</td></tr>
+          <tr><td>Best for</td><td>APIs, light apps, ML demos</td><td>Full web apps, ORM, auth</td><td>Fast APIs, async inference</td></tr>
+        </table>
+        <p>For data science teams shipping models quickly, Flask’s low overhead and clean integration with Scikit-Learn, PyTorch, and TensorFlow make it a practical first step.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Flask, and what makes it an ideal framework for deploying Machine Learning models?</button>
+          <div class="accordion-body"><p>Flask is a lightweight Python web framework for apps and APIs. It is minimal, flexible, ships with a dev server and debugger, and plugs cleanly into Scikit-Learn, PyTorch, and TensorFlow for rapid ML prototyping.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the inference request-response lifecycle work when serving an ML model through a Flask API?</button>
+          <div class="accordion-body"><p>Client sends input → Flask parses features → model runs inference → Flask returns the prediction (often via <code>jsonify</code>) as HTML or JSON.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Flask compare to Django and FastAPI across complexity, speed, learning curve, and use cases?</button>
+          <div class="accordion-body"><p>Flask is minimal and very flexible with a gentle learning curve—ideal for APIs and ML demos. Django is fuller and more opinionated for large apps. FastAPI is async and high-speed for performance-focused APIs.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/thailand/online-robotics-classes-sukhumvit-bangkok.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/python-programming-students-chiang-mai.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-87');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-87');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '87') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor and motor control practice</li><li>Coding challenges and debugging</li><li>Project demonstration habits</li><li>English live sessions for regional international students</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/codingforkids/?referralCode=77F73823DBA3D2ED82E3" target="_blank" rel="noopener noreferrer sponsored">Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
