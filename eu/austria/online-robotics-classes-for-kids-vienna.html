@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Vienna | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Vienna | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Vienna—English sessions on sensors, control loops and systematic error testing.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/austria/online-robotics-classes-for-kids-vienna.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,140 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Vienna · Austria</span><h1>Online Robotics Classes for Kids in Vienna</h1>
     <p>Online robotics classes for kids in Vienna introduce sensor processing, control loops, motor management and systematic error testing in clear English for local and international families.</p></div>
     <div><img src="../../../images/79.webp" alt="Online robotics Vienna" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-101">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-101">Lesson</label>
+        <select id="lesson-select-101" class="lesson-select" aria-label="Select lesson">
+          <option value="101" selected>101: Build Linear Regression from Scratch in Python: Step-by-Step Tutorial</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build Linear Regression from Scratch in Python: Step-by-Step Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Four-Step Implementation Workflow</h2>
+        <ol>
+          <li><strong>Load data</strong> — input features (x) and targets (y)</li>
+          <li><strong>Hypothesis</strong> — ŷ = mx + b</li>
+          <li><strong>Cost</strong> — Mean Squared Error</li>
+          <li><strong>Gradient descent</strong> — derivatives for m and b, then iterative updates</li>
+        </ol>
+
+        <h2>2. Math: Hypothesis, Error, Derivatives</h2>
+        <p>Hypothesis: ŷ = mx + b. Error: ŷ − y. MSE = average of squared errors.</p>
+        <p>Partial derivatives:</p>
+        <ul>
+          <li>∂J/∂m = (2/N) Σ (ŷ − y) · x — includes x because m multiplies x</li>
+          <li>∂J/∂b = (2/N) Σ (ŷ − y) — no x because b is independent of x</li>
+        </ul>
+        <p>Updates: m_new = m_old − α · ∂J/∂m ; b_new = b_old − α · ∂J/∂b</p>
+
+        <h2>3. Python Training Loop (Concept)</h2>
+        <p>Initialize m = 0, b = 0, learning_rate = 0.01, epochs = 5. Each epoch:</p>
+        <ol>
+          <li>y_pred = m * x + b</li>
+          <li>cost = mean((y_pred − y)²)</li>
+          <li>dm = (2/n) * sum((y_pred − y) * x); db = (2/n) * sum(y_pred − y)</li>
+          <li>m −= learning_rate * dm; b −= learning_rate * db</li>
+          <li>Log MSE, m, and b</li>
+        </ol>
+
+        <h2>4. Example Epoch Trace</h2>
+        <table>
+          <thead>
+            <tr><th>Epoch</th><th>MSE</th><th>Slope m</th><th>Intercept b</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>18.00</td><td>0.27</td><td>0.09</td></tr>
+            <tr><td>2</td><td>11.10</td><td>0.47</td><td>0.14</td></tr>
+            <tr><td>3</td><td>7.08</td><td>0.62</td><td>0.19</td></tr>
+            <tr><td>4</td><td>4.73</td><td>0.74</td><td>0.22</td></tr>
+            <tr><td>5</td><td>3.37</td><td>0.83</td><td>0.26</td></tr>
+          </tbody>
+        </table>
+        <p>Error falls steadily while m and b move toward a better fit — gradient descent is working as intended.</p>
+
+        <h2>5. Line of Best Fit</h2>
+        <p>The final line (e.g. y ≈ 0.83x + 0.26) follows the cloud of points. Real data rarely sits exactly on the line; residual distances remain. Gradient descent finds parameters that minimize total squared residual error.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the 4 core steps when implementing Linear Regression from scratch?</button>
+          <div class="accordion-body"><p>(1) Prepare x and y data. (2) Define ŷ = mx + b. (3) Use MSE as the cost. (4) Compute ∂J/∂m and ∂J/∂b and update m and b each epoch with a learning rate.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why does the derivative for m include x, but the derivative for b does not?</button>
+          <div class="accordion-body"><p>In y = mx + b, m is multiplied by x, so ∂J/∂m must scale by x. b is a constant independent of x, so ∂J/∂b does not include x.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do MSE, m, and b change across epochs in the example?</button>
+          <div class="accordion-body"><p>Starting from m = 0 and b = 0, MSE drops from 18.00 → 11.10 → 7.08 → 4.73 → 3.37. Slope rises toward ~0.83 and intercept toward ~0.26, showing successful convergence.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/vietnam/steam-model-prototyping-haiphong.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/austria/python-coding-classes-for-children-graz.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-101');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-101');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '101') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor input processing</li><li>Control loops and motor management</li><li>Systematic error testing</li><li>English for local and international families</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
