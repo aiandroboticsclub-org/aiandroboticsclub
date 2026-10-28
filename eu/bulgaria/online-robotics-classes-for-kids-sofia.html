@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Sofia | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Sofia | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Sofia—English sessions on circuit logic, motors, sensors and debugging for Balkan tech families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/bulgaria/online-robotics-classes-for-kids-sofia.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,174 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Sofia · Bulgaria</span><h1>Online Robotics Classes for Kids in Sofia</h1>
     <p>Online robotics classes for kids in Sofia help local and international students explore circuit logic, motor control, sensor processing and systematic debugging in clear English—from home, without inventing a private campus.</p></div>
     <div><img src="../../../images/61.webp" alt="Online robotics Sofia" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-106">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-106">Lesson</label>
+        <select id="lesson-select-106" class="lesson-select" aria-label="Select lesson">
+          <option value="106" selected>106: Decision Tree Depth and Overfitting Explained for Beginners</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Decision Tree Depth and Overfitting Explained for Beginners" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 106 – Decision Tree Depth and Overfitting Explained for Beginners</h2>
+
+        <h3>1. Introduction: Tree Depth vs Overfitting</h3>
+        <p>Maximum depth (<code>max_depth</code>) is a key hyperparameter. Unrestricted depth tends to memorize training noise ("ratta") and hurt test performance. Controlling depth improves generalization.</p>
+        <ul>
+          <li><strong>Shallow tree</strong> — may underfit</li>
+          <li><strong>Very deep tree</strong> — high train accuracy, weaker test accuracy (overfitting)</li>
+          <li><strong>Controlled depth</strong> — small train–test gap, better generalization</li>
+        </ul>
+
+        <h3>2. Experimental Setup</h3>
+        <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_moons
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score</code></pre>
+        <p><code>make_moons</code> creates a non-linear two-class problem with overlapping half-moons—useful for probing depth limits.</p>
+
+        <h3>3. Dataset and Train–Test Split</h3>
+        <pre><code>X, y = make_moons(n_samples=500, noise=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+print(f"Training Samples: {len(X_train)} | Testing Samples: {len(X_test)}")</code></pre>
+        <p>500 samples, 25% noise, 70/30 split (350 train / 150 test). Test data stays hidden during training.</p>
+
+        <h3>4. Evaluating Depths 1–15</h3>
+        <pre><code>depths = list(range(1, 16))
+train_accuracies = []
+test_accuracies = []
+
+for d in depths:
+    clf = DecisionTreeClassifier(max_depth=d, random_state=42)
+    clf.fit(X_train, y_train)
+    train_accuracies.append(accuracy_score(y_train, clf.predict(X_train)))
+    test_accuracies.append(accuracy_score(y_test, clf.predict(X_test)))</code></pre>
+
+        <h3>5. Plotting Train vs Test Accuracy</h3>
+        <pre><code>plt.figure(figsize=(10, 6))
+plt.plot(depths, train_accuracies, label="Training Accuracy", marker="o", color="blue")
+plt.plot(depths, test_accuracies, label="Testing Accuracy", marker="s", color="red")
+plt.xlabel("Max Tree Depth (max_depth)")
+plt.ylabel("Accuracy Score")
+plt.title("Decision Tree Depth vs. Overfitting Analysis")
+plt.ylim(0.80, 1.00)
+plt.grid(True, linestyle="--", alpha=0.6)
+plt.legend()
+plt.show()</code></pre>
+        <ul>
+          <li><strong>Depth 1</strong> — underfit (~0.83 train / ~0.82 test)</li>
+          <li><strong>Depth 2</strong> — both curves rise (~0.925 / ~0.90)</li>
+          <li><strong>Depth 6</strong> — small gap, strong generalization (optimal in this run)</li>
+          <li><strong>Depths 7–15</strong> — train → ~100%, test drops; gap ~10% (overfitting)</li>
+        </ul>
+
+        <h3>6. Finding Optimal Depth in Code</h3>
+        <pre><code>best_depth_idx = np.argmax(test_accuracies)
+best_depth = depths[best_depth_idx]
+best_test_acc = test_accuracies[best_depth_idx]
+print(f"Optimal Tree Depth: {best_depth}")
+print(f"Peak Testing Accuracy: {best_test_acc * 100:.2f}%")</code></pre>
+        <p>In this experiment, <code>max_depth = 6</code> maximized test accuracy with a minimal train–test gap.</p>
+
+        <h3>7. Deployment Checklist</h3>
+        <ul>
+          <li>Track train and test accuracy together</li>
+          <li>Watch for curve divergence (onset of overfitting)</li>
+          <li>Stop increasing depth once lines pull apart; prefer the last depth where they stayed close</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What happens as max_depth grows without restriction?</button>
+          <div class="accordion-body">
+            <p>Deeper trees fit training data almost perfectly but tend to memorize noise. Test accuracy often falls, widening the train–test gap—classic overfitting.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why make_moons, and how was the split set up?</button>
+          <div class="accordion-body">
+            <p>make_moons gives overlapping moon-shaped classes and a non-linear boundary. Configuration: 500 samples, noise=0.25, random_state=42; 70% train (350) / 30% test (150), test held out for unbiased evaluation.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you pick the optimal depth from the plot?</button>
+          <div class="accordion-body">
+            <p>Choose the depth where test accuracy peaks and the train–test gap stays small. Divergence (train rising, test falling) marks overfitting. Here, depth 6 was optimal before the gap grew at depth 7+.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/bulgaria/ai-courses-for-kids-varna.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/bulgaria/python-coding-classes-for-children-plovdiv.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-106');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-106');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '106') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Circuit logic and motor control</li><li>Sensor signal processing</li><li>Systematic debugging</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Sofia</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy — a structured option families can explore alongside live mentoring.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
