@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding and Game Development Tianmu Expat Kids Taipei | AI &amp; Robotics Club</title>
+  <title>Scratch Coding and Game Development Tianmu Expat Kids Taipei | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding and game development for Tianmu expat kids in Taipei—arcade games and visual computer science in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/far-east/taiwan/scratch-coding-game-development-tianmu-taipei.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,140 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Tianmu · Taipei</span><h1>Scratch Coding and Game Development for Tianmu Expat Kids in Taipei</h1>
     <p>Scratch coding and game development for Tianmu expat kids in Taipei turns passive screen time into creative coding—arcade games and animated stories built with drag-and-drop logic, fully in English.</p></div>
     <div><img src="../../../images/87.webp" alt="Scratch Tianmu" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-80">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-80">Lesson</label>
+        <select id="lesson-select-80" class="lesson-select" aria-label="Select lesson">
+          <option value="80" selected>080: Python Heatmaps and Correlation Charts Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Python Heatmaps and Correlation Charts Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. Why Heatmaps for Correlation</h2>
+        <p>A correlation matrix is numeric; a heatmap turns those values into a color grid so strong, weak, and inverse pairs are easier to scan as feature count grows.</p>
+        <ul>
+          <li>Use only numeric columns for <code>.corr()</code></li>
+          <li>Diagonal is always 1.0 (self-correlation)</li>
+          <li>Off-diagonal values lie between −1 and +1</li>
+        </ul>
+
+        <h2>2. Build the Matrix</h2>
+        <pre><code>import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+df = pd.read_csv("healthcare_patient_analytics_seaborn.csv")
+numeric_df = df.select_dtypes(include=["number"])
+corr_matrix = numeric_df.corr()
+print(corr_matrix)</code></pre>
+        <p>Magnitude shows strength; sign shows direction (same way vs opposite).</p>
+
+        <h2>3. Full Heatmap</h2>
+        <pre><code>plt.figure(figsize=(8, 6))
+sns.heatmap(
+    corr_matrix,
+    annot=True,
+    cmap="coolwarm"
+)
+plt.title("Healthcare Feature Correlation Heatmap")
+plt.show()</code></pre>
+        <p><code>annot=True</code> prints coefficients in cells. <code>cmap="coolwarm"</code> maps near-zero/negative toward blue and values near 1 toward red.</p>
+
+        <h2>4. Mask the Redundant Half</h2>
+        <p>The matrix is symmetric; the upper triangle mirrors the lower. Hide duplicates and the diagonal with <code>np.triu</code>:</p>
+        <pre><code>mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(
+    corr_matrix,
+    mask=mask,
+    annot=True,
+    cmap="coolwarm"
+)
+plt.title("Half Correlation Heatmap (Lower Triangle Only)")
+plt.show()</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must a dataset be filtered for numerical columns before creating a correlation heatmap in Python?</button>
+          <div class="accordion-body"><p><code>.corr()</code> only works on continuous numeric features. Text, dates, and unencoded categories must be excluded (e.g. via <code>select_dtypes(include=["number"])</code>) before building the matrix and heatmap.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What do the annot and cmap parameters control in sns.heatmap()?</button>
+          <div class="accordion-body"><p><code>annot=True</code> writes the coefficient in each cell. <code>cmap="coolwarm"</code> sets the color scale—near zero/negative toward blue, near 1.0 toward red.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is a correlation matrix considered redundant, and how does np.triu() resolve this in Seaborn?</button>
+          <div class="accordion-body"><p>The upper triangle mirrors the lower, and the diagonal is always 1.0. A mask from <code>np.triu(np.ones_like(corr_matrix, dtype=bool))</code> hides that half so only unique pairs remain.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/taiwan/python-fast-track-coding-kaohsiung.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/thailand/ai-for-kids-workshops-nonthaburi.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-80');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-80');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '80') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Block-based coding without syntax barriers</li><li>Arcade games and animated stories</li><li>Loops, conditionals and coordinates</li><li>Foundation for later Python and robotics</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/igatyyzC7Yc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
