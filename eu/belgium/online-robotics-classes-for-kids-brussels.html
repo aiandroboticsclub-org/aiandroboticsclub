@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Brussels | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Brussels | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Brussels—English sessions and the 100-Mission pathway for international and local families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/belgium/online-robotics-classes-for-kids-brussels.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,125 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Brussels · Belgium</span><h1>Online Robotics Classes for Kids in Brussels</h1>
     <p>Online robotics classes for kids in Brussels serve international and local families with clear English instruction and the optional 100-Mission Hero Journey for structured progression from Explorer to Tech Champion.</p></div>
     <div><img src="../../../images/74.webp" alt="Online robotics Brussels" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-103">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-103">Lesson</label>
+        <select id="lesson-select-103" class="lesson-select" aria-label="Select lesson">
+          <option value="103" selected>103: Decision Trees Explained: How Machine Learning Makes Decisions</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Decision Trees Explained: How Machine Learning Makes Decisions" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>1. What Is a Decision Tree?</h2>
+        <p>A supervised algorithm that models decisions like humans: conditions first, then more specific conclusions. It supports:</p>
+        <ul>
+          <li><strong>Classification</strong> — assign a category</li>
+          <li><strong>Regression</strong> — predict a continuous number</li>
+          <li><strong>Rule extraction</strong> — readable IF–THEN rules from training data</li>
+        </ul>
+
+        <h2>2. Structure</h2>
+        <ul>
+          <li><strong>Root node</strong> — first test (best starting feature)</li>
+          <li><strong>Internal nodes & branches</strong> — further questions and answer paths</li>
+          <li><strong>Leaf nodes</strong> — final prediction (class or value)</li>
+        </ul>
+
+        <h2>3. Splitting and Stopping</h2>
+        <p>Splits use metrics such as Information Gain or Gini Impurity to make subsets purer. Growth stops when:</p>
+        <ol>
+          <li>A node is pure (one class only)</li>
+          <li>Maximum depth is reached</li>
+          <li>Further splits add little purity</li>
+        </ol>
+
+        <h2>4. Example: Insurance Purchase</h2>
+        <p>Root: Age > 30? If no → Buy = No. If yes → Income > $60,000? If yes → Buy = Yes; if no → Buy = No.</p>
+        <p>Paths become rules, e.g. IF Age > 30 AND Income > $60,000 THEN Buy = YES.</p>
+
+        <h2>5. Explainable AI (XAI)</h2>
+        <p>Unlike black-box models, every root-to-leaf path is an explicit rule. Auditors and stakeholders can see exactly why a prediction was made.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a Decision Tree, and what problems can it solve?</button>
+          <div class="accordion-body"><p>A supervised model that decides via hierarchical conditions. It does classification (categories) and regression (continuous values), and yields human-readable rules from data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the structural parts, and when does growth stop?</button>
+          <div class="accordion-body"><p>Root, internal nodes/branches, and leaves. Stop on pure leaves, max depth, or when extra splits barely improve purity.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why are Decision Trees a strong example of Explainable AI?</button>
+          <div class="accordion-body"><p>Each path is a clear rule (e.g. Age and Income conditions → Buy Yes/No). The reasoning is transparent, not hidden in opaque math.</p></div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/austria/python-coding-classes-for-children-graz.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/belgium/python-coding-classes-for-children-antwerp.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-103');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-103');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '103') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control systems</li><li>English for international and local families</li><li>100-Mission progression pathway</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
