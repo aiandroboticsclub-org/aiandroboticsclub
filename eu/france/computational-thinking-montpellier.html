@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Classes in Montpellier | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Classes in Montpellier | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking classes in Montpellier—decomposition, debugging and structured problem-solving for students.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/computational-thinking-montpellier.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,144 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Montpellier · France</span><h1>Computational Thinking Classes in Montpellier</h1>
     <p>Computational thinking classes in Montpellier train decomposition, pattern recognition and debugging—core problem-solving habits useful in coding and beyond.</p></div>
     <div><img src="../../../images/60.webp" alt="Computational thinking classes in Montpellier" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-128">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-128">Lesson</label>
+        <select id="lesson-select-128" class="lesson-select" aria-label="Select lesson">
+          <option value="128" selected>128: K-Means Clustering Explained for Beginners: Group Similar Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="K-Means Clustering Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 128 – K-Means Clustering Explained</h2>
+
+        <h3>1. Supervised vs Unsupervised</h3>
+        <p>Supervised models train on features <strong>X</strong> and labels <strong>y</strong>. Unsupervised models see only <strong>X</strong> and must discover structure. Clustering is a common unsupervised task: choose a number of groups <strong>K</strong> and let the algorithm form them.</p>
+
+        <h3>2. Where Clustering Is Used</h3>
+        <ul>
+          <li>Customer segments for marketing</li>
+          <li>Unusual transaction groups in fraud analysis</li>
+          <li>Grouping similar articles or images</li>
+          <li>Browsing-behavior clusters for ads</li>
+        </ul>
+
+        <h3>3. Quality Without Labels</h3>
+        <p>Without ground-truth labels, quality is judged by distances:</p>
+        <ul>
+          <li><strong>Within-cluster distance</strong> — minimize (points in a group stay tight)</li>
+          <li><strong>Between-cluster distance</strong> — maximize (group centers stay apart)</li>
+        </ul>
+
+        <h3>4. What K-Means Does</h3>
+        <p>K-Means partitions data into <strong>K</strong> clusters around moving centers called <strong>centroids</strong>. It is transparent and widely used as explainable unsupervised learning.</p>
+
+        <h3>5. Four-Step Loop</h3>
+        <ol>
+          <li><strong>Initialize</strong> K centroids (random or smarter schemes like k-means++)</li>
+          <li><strong>Assign</strong> each point to the nearest centroid (often Euclidean distance)</li>
+          <li><strong>Update</strong> each centroid to the mean of its assigned points</li>
+          <li><strong>Repeat</strong> assign + update until stopping rules fire</li>
+        </ol>
+
+        <h3>6. When to Stop</h3>
+        <table>
+          <thead>
+            <tr><th>Criterion</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Max iterations</td><td>Hit a fixed iteration budget</td></tr>
+            <tr><td>Centroid movement</td><td>Shifts fall below a small threshold ε</td></tr>
+            <tr><td>Stable assignments</td><td>No points change cluster between rounds</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7. Strengths and Care</h3>
+        <p>K-Means is fast and scales well, but results depend on starting centroids. Practical fixes: use <strong>k-means++</strong> initialization, or run several random seeds and keep the run with the smallest within-cluster distance.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does unsupervised learning differ, and how is clustering scored without labels?</button>
+          <div class="accordion-body">
+            <p>Supervised learning uses X and y; unsupervised uses only X. Clustering quality is judged by minimizing within-cluster distance and maximizing between-cluster distance.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the four K-Means steps?</button>
+          <div class="accordion-body">
+            <p>Initialize K centroids → assign points by nearest distance → move centroids to cluster means → repeat until a stop rule is met.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do we stop, and how do we handle bad starts?</button>
+          <div class="accordion-body">
+            <p>Stop on max iterations, tiny centroid movement, or unchanged assignments. Reduce start sensitivity with k-means++ and multi-run selection of the lowest within-cluster cost.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/coding-and-robotics-classes-lille.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/online-robotics-classes-for-kids-paris.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-128');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-128');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '128') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Breaking problems into smaller steps</li><li>Spotting patterns and reusable ideas</li><li>Debugging as structured investigation</li><li>Explaining solutions clearly to others</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about computational thinking classes in Montpellier</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20computational%20thinking%20Montpellier" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Decomposition and Debugging: Essential Computer Science Logic for Students in Montpellier</h2>
