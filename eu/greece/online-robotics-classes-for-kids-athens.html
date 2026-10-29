@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Athens | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Athens | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Athens—English sessions on sensors, control logic and systematic debugging for local and international families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/greece/online-robotics-classes-for-kids-athens.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,159 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Athens · Greece</span><h1>Online Robotics Classes for Kids in Athens</h1>
     <p>Online robotics classes for kids in Athens help local and international students explore sensors, control loops and systematic debugging in clear English—from home, without inventing a private campus.</p></div>
     <div><img src="../../../images/61.webp" alt="Online robotics Athens" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-136">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-136">Lesson</label>
+        <select id="lesson-select-136" class="lesson-select" aria-label="Select lesson">
+          <option value="136" selected>136: Hierarchical Clustering with Scikit-Learn - Part 1</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Hierarchical Clustering with Scikit-Learn Part 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 136 – Hierarchical Clustering with Scikit-Learn (Part 1)</h2>
+
+        <h3>1. Agglomerative Flow</h3>
+        <p>Agglomerative clustering is unsupervised and bottom-up: every sample starts alone, closest pairs merge until <code>n_clusters</code> is reached. No target labels are used—only distances in the feature matrix.</p>
+
+        <h3>2. Core Hyperparameters</h3>
+        <table>
+          <thead>
+            <tr><th>Parameter</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>n_clusters</code></td><td>Final number of groups (e.g. 3)</td></tr>
+            <tr><td><code>metric</code> / affinity</td><td>Distance (euclidean, manhattan, …)</td></tr>
+            <tr><td><code>linkage</code></td><td><code>ward</code> (min variance), <code>complete</code> (max pair), <code>average</code> (mean pair)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>3. Iris Dataset</h3>
+        <p>150 rows × 4 features (sepal/petal length & width in cm). Same units across columns → no StandardScaler required before distance-based clustering.</p>
+
+        <h3>4. Implementation Pipeline</h3>
+        <pre><code>import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.cluster import AgglomerativeClustering
+
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+print(X.shape)  # (150, 4)
+
+hc = AgglomerativeClustering(n_clusters=3, linkage="ward")
+labels = hc.fit_predict(X)
+X["cluster"] = labels
+print(X["cluster"].value_counts())</code></pre>
+
+        <h3>5. Typical Cluster Counts (Ward, k=3)</h3>
+        <ul>
+          <li>Cluster 0: 64 samples</li>
+          <li>Cluster 1: 50 samples</li>
+          <li>Cluster 2: 36 samples</li>
+        </ul>
+        <p>IDs are arbitrary (0/1/2). Domain experts can later map them to species names.</p>
+
+        <h3>6. Pipeline Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Step</th><th>Tool</th><th>Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Load</td><td><code>load_iris()</code></td><td>(150, 4) matrix</td></tr>
+            <tr><td>Frame</td><td><code>pd.DataFrame</code></td><td>Named columns</td></tr>
+            <tr><td>Model</td><td><code>AgglomerativeClustering(n_clusters=3, linkage="ward")</code></td><td>Configured HC</td></tr>
+            <tr><td>Fit</td><td><code>.fit_predict(X)</code></td><td>150 integer labels</td></tr>
+            <tr><td>Inspect</td><td><code>.value_counts()</code></td><td>64 / 50 / 36</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does agglomerative clustering work, and what are its main hyperparameters?</button>
+          <div class="accordion-body">
+            <p>It starts with one cluster per sample and merges closest pairs until <code>n_clusters</code> is met. Key settings: <code>n_clusters</code>, distance <code>metric</code>, and <code>linkage</code> (ward / complete / average).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why skip feature scaling on Iris?</button>
+          <div class="accordion-body">
+            <p>All four features are in centimeters on similar scales, so no single column dominates Euclidean (or similar) distances. Scaling is optional here, unlike mixed-unit datasets.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What counts appear after fitting Ward with k=3, and how are labels named?</button>
+          <div class="accordion-body">
+            <p>Typically about 64, 50, and 36 samples in clusters 0–2. Labels are arbitrary integers; humans assign meaningful names afterward using domain knowledge.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/greece/ai-courses-for-kids-patras.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/greece/python-coding-classes-for-children-thessaloniki.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-136');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-136');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '136') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor input processing</li><li>Control logic loops</li><li>Motor speed management ideas</li><li>Systematic debugging</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Athens</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
