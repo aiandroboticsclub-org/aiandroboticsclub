@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Nicosia | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Nicosia | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Nicosia—English sessions and the 100-Mission pathway for local and expat families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/cyprus/online-robotics-classes-for-kids-nicosia.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,164 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Nicosia · Cyprus</span><h1>Online Robotics Classes for Kids in Nicosia</h1>
     <p>Online robotics classes for kids in Nicosia serve local and expat families with clear English instruction and the optional 100-Mission Hero Journey for structured progression.</p></div>
     <div><img src="../../../images/66.webp" alt="Online robotics Nicosia" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-112">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-112">Lesson</label>
+        <select id="lesson-select-112" class="lesson-select" aria-label="Select lesson">
+          <option value="112" selected>112: Random Forest Feature Importance and Out-of-Bag Error Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Random Forest Feature Importance and Out-of-Bag Error Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 112 – Feature Importance and Out-of-Bag Error</h2>
+
+        <h3>1. Two Practical Diagnostics</h3>
+        <p>Beyond accuracy, Random Forest offers:</p>
+        <ul>
+          <li><strong>Feature importance</strong> — how much each variable reduces impurity across <em>all</em> trees (useful for ranking drivers and simplifying models).</li>
+          <li><strong>Out-of-Bag (OOB) error</strong> — internal validation on samples left out of each tree’s bootstrap set (~1/3 of data), so you often do not need a separate hold-out split.</li>
+        </ul>
+
+        <h3>2. Feature Importance (3 Steps)</h3>
+        <ol>
+          <li>At every split that uses feature <em>f</em>, measure the drop in Gini/Entropy (or gain in Information Gain).</li>
+          <li>Sum those reductions for <em>f</em> over all such nodes in all trees; normalize so scores lie between 0 and 1 (or sum to 1).</li>
+          <li>Rank features by that score — higher = more predictive.</li>
+        </ol>
+        <p>Conceptually: Importance(f) = sum of ΔImpurity over nodes that split on f.</p>
+        <p>Example (house prices): Size 0.55, Location 0.25, Bedrooms 0.15, Age 0.05 — Age could be dropped with little loss.</p>
+
+        <h3>3. Out-of-Bag Error</h3>
+        <p>With sampling with replacement, about 33% of rows are left out of any given tree. Those OOB rows act as a built-in test set for that tree.</p>
+        <ol>
+          <li>Identify OOB samples per tree</li>
+          <li>Predict them with that tree</li>
+          <li>Aggregate predictions for each sample across trees where it was OOB, then compare to true labels → OOB accuracy and OOB error (1 − accuracy)</li>
+        </ol>
+        <p>Example: 1000 samples → ~333 OOB per tree; if 300 of 333 are correct, OOB accuracy ≈ 90%, error ≈ 10%.</p>
+
+        <h3>4. Python (Breast Cancer, Full Data + OOB)</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+feature_names = cancer.feature_names
+
+rf = RandomForestClassifier(
+    n_estimators=100,
+    oob_score=True,   # internal OOB evaluation
+    bootstrap=True,
+    random_state=42,
+    n_jobs=-1
+)
+rf.fit(X, y)  # no train_test_split required for OOB
+
+oob_accuracy = rf.oob_score_
+oob_error = 1.0 - oob_accuracy
+print(f"OOB Accuracy: {oob_accuracy * 100:.2f}%")
+print(f"OOB Error:    {oob_error * 100:.2f}%")
+
+importances = rf.feature_importances_
+sorted_idx = np.argsort(importances)[::-1]
+print("Top 5 features:")
+for rank, i in enumerate(sorted_idx[:5], 1):
+    print(f"{rank}. {feature_names[i]}: {importances[i]:.4f}")</code></pre>
+
+        <h3>5. Typical Output</h3>
+        <ul>
+          <li>OOB accuracy ≈ 96.13%, OOB error ≈ 3.87%</li>
+          <li>Top features often: worst area (~0.15), worst concave points (~0.14), mean concave points (~0.10), worst perimeter, worst radius</li>
+        </ul>
+        <p>OOB scoring lets the forest validate itself on the full dataset without an external split — especially useful on smaller data.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How is Feature Importance calculated in Random Forest?</button>
+          <div class="accordion-body">
+            <p>Measure impurity reduction (Gini/Entropy) at every split that uses a feature, sum those reductions across all trees, normalize to 0–1, then rank. Higher scores mark stronger predictors (e.g. house size 0.55 vs age 0.05).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is OOB Error, and why skip a separate test split?</button>
+          <div class="accordion-body">
+            <p>About one-third of samples are left out of each tree’s bootstrap set. Those OOB rows form a built-in validation set. Aggregating OOB predictions across the forest estimates generalization error without requiring train_test_split — efficient for smaller datasets.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do you enable OOB scoring in Scikit-Learn?</button>
+          <div class="accordion-body">
+            <p>Set oob_score=True on RandomForestClassifier, fit on the full X, y, then read rf.oob_score_ (accuracy) and 1 − that value (error). On Breast Cancer this often yields ~96% OOB accuracy without an explicit hold-out split.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/cyprus/ai-courses-for-kids-larnaca.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/cyprus/python-coding-classes-for-children-limassol.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-112');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-112');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '112') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control logic</li><li>English for local and expat families</li><li>100-Mission progression pathway</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
