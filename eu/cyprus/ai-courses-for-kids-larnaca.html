@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Larnaca | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Larnaca | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Larnaca—prompt safety, generative AI awareness and supervised classification models.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/cyprus/ai-courses-for-kids-larnaca.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,177 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Larnaca · Cyprus</span><h1>AI Courses for Kids in Larnaca</h1>
     <p>AI courses for kids in Larnaca emphasise digital safety—never sharing personal data—and guided practice training image and text classification models on child-safe platforms.</p></div>
     <div><img src="../../../images/68.webp" alt="AI Larnaca" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-111">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-111">Lesson</label>
+        <select id="lesson-select-111" class="lesson-select" aria-label="Select lesson">
+          <option value="111" selected>111: How Random Forest Works - Part 2: Making Better Predictions</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How Random Forest Works - Part 2: Making Better Predictions" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 111 – How Random Forest Works — Part 2</h2>
+
+        <h3>1. Tree Aggregation & Feature Diversity</h3>
+        <p>Part 1 covered bootstrapping and bagging. Part 2 focuses on how trees use different feature subsets and how their predictions are combined into a stronger result.</p>
+        <p><strong>Random feature selection:</strong> each tree sees only a random subset of features (e.g. Tree 1: Income + Age; Tree 2: Credit Score + Debt). Across a forest of ~50 trees, no single feature can dominate every split, which reduces feature bias.</p>
+        <p>Combining many weak trees trained on different data and feature subsets yields one robust strong classifier.</p>
+
+        <h3>2. Prediction Mechanisms</h3>
+        <ul>
+          <li><strong>Classification — majority voting:</strong> each tree votes for a class; the majority wins and individual errors are overruled by consensus.</li>
+          <li><strong>Regression — averaging:</strong> the mean of all tree outputs is the final value. Example: predictions $300k, $310k, $290k, $305k → average $300k.</li>
+        </ul>
+
+        <h3>3. Advantages of Aggregation</h3>
+        <ul>
+          <li><strong>Higher accuracy:</strong> one tree might reach ~78%; a 100-tree forest often approaches ~90%.</li>
+          <li><strong>Robustness to noise/outliers:</strong> extreme points affect few trees and are averaged out.</li>
+          <li><strong>High-dimensional data:</strong> features are split across trees instead of one huge tree.</li>
+          <li><strong>Feature importance:</strong> usage across trees (and OOB checks) ranks which variables matter most.</li>
+        </ul>
+
+        <h3>4. Python: Breast Cancer Classification</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+data = load_breast_cancer()
+X, y = data.data, data.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+rf = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=None,
+    bootstrap=True,
+    criterion='entropy',
+    random_state=42
+)
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+print(f"Overall Test Accuracy: {acc * 100:.1f}%")</code></pre>
+        <p>Typical result on this split: about <strong>94.2%</strong> test accuracy.</p>
+
+        <h3>5. Confusion Matrix & Metrics</h3>
+        <p>Example confusion matrix (171 test samples):</p>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Pred. Class 1</th>
+              <th>Pred. Class 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Actual Class 1</td>
+              <td>58</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>Actual Class 2</td>
+              <td>4</td>
+              <td>103</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>Diagonal = correct (58 + 103)</li>
+          <li>Off-diagonal = errors (6 + 4)</li>
+        </ul>
+        <p>Approximate metrics: precision ~94% both classes; recall ~91% / 96%; F1 ~92% / 95%. Top feature importances often include Worst Concave Points (~0.16) and Worst Area (~0.14).</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does random feature selection reduce feature bias?</button>
+          <div class="accordion-body">
+            <p>Each tree is limited to a random subset of features. In a single tree one feature can dominate every split; across many trees with different subsets, preference is shared and no single feature controls the whole forest.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do classification and regression aggregation differ?</button>
+          <div class="accordion-body">
+            <p>Classification uses majority vote so the class with the most tree votes wins. Regression takes the mean of all tree predictions (e.g. four house-price votes averaged to one final value), smoothing individual mistakes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What did the Breast Cancer Random Forest achieve?</button>
+          <div class="accordion-body">
+            <p>With n_estimators=100 and criterion='entropy', test accuracy was about 94.2% on 171 samples. The confusion matrix showed 58+103 correct and 6+4 errors. Precision ~94%, with solid recall and F1; top features included Worst Concave Points and Worst Area.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/croatia/stem-robotics-workshops-rijeka-kids.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/cyprus/online-robotics-classes-for-kids-nicosia.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-111');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-111');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '111') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Protecting personal data online</li><li>Critical evaluation of AI answers</li><li>Guided classification model practice</li><li>Child-safe platforms only</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
