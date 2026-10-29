@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Programming Classes for Kids in Nantes | AI &amp; Robotics Club</title>
+  <title>Arduino Programming Classes for Kids in Nantes | AI & Robotics Club</title>
   <meta name="description" content="Arduino programming classes for kids in Nantes—microcontrollers, circuits and code bridging software with physical outputs.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/arduino-programming-classes-kids-nantes.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,141 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Nantes · France</span><h1>Arduino Programming Classes for Kids in Nantes</h1>
     <p>Arduino programming classes for kids in Nantes introduce how code on a microcontroller can light LEDs, read sensors and drive simple behaviours—bridging software and circuits.</p></div>
     <div><img src="../../../images/59.webp" alt="Arduino programming classes for kids in Nantes" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-126">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-126">Lesson</label>
+        <select id="lesson-select-126" class="lesson-select" aria-label="Select lesson">
+          <option value="126" selected>126: Types of Naive Bayes Explained: Gaussian, Multinomial, and Bernoulli</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Types of Naive Bayes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 126 – Types of Naive Bayes</h2>
+
+        <h3>1. Choosing a Variant by Feature Type</h3>
+        <p>Naive Bayes variants differ by how they model feature distributions. Match the model to your data:</p>
+        <ul>
+          <li><strong>GaussianNB</strong> — continuous numbers (Gaussian / normal)</li>
+          <li><strong>MultinomialNB</strong> — discrete counts / frequencies (text, NLP)</li>
+          <li><strong>BernoulliNB</strong> — binary 0/1 presence–absence</li>
+        </ul>
+
+        <h3>2. Gaussian Naive Bayes</h3>
+        <p>For continuous features (decimals, measurements). Each feature is modeled with a class-wise mean and variance (normal curve). Typical for medical or sensor data (e.g. Breast Cancer lengths).</p>
+
+        <h3>3. Multinomial Naive Bayes</h3>
+        <p>For integer counts (1, 2, 3…). Strong on Bag-of-Words and TF-IDF text features for classification and sentiment.</p>
+
+        <h3>4. Bernoulli Naive Bayes</h3>
+        <p>For binary features only (keyword present = 1, absent = 0). Classic for spam filters based on keyword presence.</p>
+
+        <h3>5. Selection Guide</h3>
+        <table>
+          <thead>
+            <tr><th>Variant</th><th>Feature type</th><th>Distribution</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GaussianNB</td><td>Continuous</td><td>Normal (μ, σ²)</td><td>Medical, sensors, lengths</td></tr>
+            <tr><td>MultinomialNB</td><td>Counts</td><td>Multinomial</td><td>Text, BoW, TF-IDF</td></tr>
+            <tr><td>BernoulliNB</td><td>Binary 0/1</td><td>Bernoulli</td><td>Spam keyword flags</td></tr>
+          </tbody>
+        </table>
+
+        <h3>6. Python Sketch</h3>
+        <pre><code>from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X, y = load_breast_cancer(return_X_y=True)
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, random_state=42)
+gnb = GaussianNB().fit(X_tr, y_tr)
+print(accuracy_score(y_te, gnb.predict(X_te)))  # ~0.937</code></pre>
+        <p>Demo results (illustrative): GaussianNB ~93.7% on continuous cancer data; MultinomialNB on small text counts ~50%; BernoulliNB on binarized features ~56%. Always match the variant to the feature type for best results.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What decides Gaussian vs Multinomial vs Bernoulli?</button>
+          <div class="accordion-body">
+            <p>Feature format: continuous numbers → GaussianNB; integer counts (e.g. word frequencies) → MultinomialNB; binary 0/1 presence → BernoulliNB.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is MultinomialNB good for NLP?</button>
+          <div class="accordion-body">
+            <p>Text is often turned into count vectors (BoW or TF-IDF). MultinomialNB is built for those discrete frequency features, so it fits document classification and sentiment well.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What accuracies appeared in the demo?</button>
+          <div class="accordion-body">
+            <p>GaussianNB ~93.7% on continuous Breast Cancer data; MultinomialNB ~50% on sample text counts; BernoulliNB ~56% on binary features. Numbers depend on data size and quality—use them as orientation, not fixed benchmarks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/ai-courses-for-kids-marseille.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/coding-and-robotics-classes-lille.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-126');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-126');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '126') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>What a microcontroller does as a tiny computer</li><li>Basic inputs and outputs in beginner projects</li><li>Safe, supervised low-voltage practices</li><li>Reading simple sketches and changing one behaviour at a time</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about Arduino programming classes for kids in Nantes</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20Arduino%20classes%20Nantes" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Prototyping Circuit Logic: Bridging Software Code and Microcontrollers for Nantes Youth</h2>
@@ -43,7 +170,7 @@
     <div class="faq-item"><strong>Who supervises hardware work at home?</strong><p>A parent or guardian should supervise any activity with wires, batteries or tools.</p></div>
     <h2>Explore related learning</h2>
     <div class="seo-cards">
-      <a class="seo-card" href="coding-and-robotics-classes-lille.html"><img src="../../../images/57.webp" alt="Lille" loading="lazy"><span>Coding &amp; Robotics · Lille</span></a>
+      <a class="seo-card" href="coding-and-robotics-classes-lille.html"><img src="../../../images/57.webp" alt="Lille" loading="lazy"><span>Coding & Robotics · Lille</span></a>
       <a class="seo-card" href="stem-robotics-workshops-nice-kids.html"><img src="../../../images/55.webp" alt="Nice" loading="lazy"><span>STEM Robotics · Nice</span></a>
       <a class="seo-card" href="online-robotics-classes-for-kids-paris.html"><img src="../../../images/51.webp" alt="Paris" loading="lazy"><span>Robotics · Paris</span></a>
     </div>
