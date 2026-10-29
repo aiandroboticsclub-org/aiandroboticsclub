@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Split | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Split | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Split—variables, branching, loops and live interactive English sessions.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/croatia/python-coding-classes-for-children-split.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,166 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Split · Croatia</span><h1>Python Coding Classes for Children in Split</h1>
     <p>Python coding classes for children in Split build software foundations—variables, data types, branching, loops and modular functions—through live interactive English sessions and practical assignments.</p></div>
     <div><img src="../../../images/65.webp" alt="Python Split" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-109">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-109">Lesson</label>
+        <select id="lesson-select-109" class="lesson-select" aria-label="Select lesson">
+          <option value="109" selected>109: Random Forest Explained for Beginners: An Introduction to Ensemble Learning</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Random Forest Explained for Beginners: An Introduction to Ensemble Learning" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 109 – Random Forest Explained for Beginners</h2>
+
+        <h3>1. From Decision Trees to Random Forest</h3>
+        <p>A single decision tree is clear and explainable but can be biased, high-variance, and prone to overfitting on noisy data. Random Forest uses <strong>ensemble learning</strong>: many weak learners combined into one stronger model—like consulting a diverse group of experts instead of one person.</p>
+
+        <h3>2. How Random Forest Builds Diversity</h3>
+        <p>A forest of dozens or hundreds of trees is trained so trees do not all make the same mistakes:</p>
+        <ul>
+          <li><strong>Bootstrapping (bagging)</strong> — each tree gets a random sample drawn <em>with replacement</em> from the training set, so subsets differ and correlation drops.</li>
+          <li><strong>Random feature selection</strong> — each split (or tree) sees only a random subset of features, so no single dominant feature controls every tree.</li>
+        </ul>
+
+        <h3>3. Aggregating Predictions</h3>
+        <ul>
+          <li><strong>Classification</strong> — majority vote (mode) across trees</li>
+          <li><strong>Regression</strong> — average (mean) of tree outputs</li>
+        </ul>
+
+        <h3>4. Advantages and Applications</h3>
+        <ul>
+          <li>Higher accuracy and better generalization than a single tree</li>
+          <li>More resistant to overfitting (noise tends to cancel across trees)</li>
+          <li>Works well on large and high-dimensional data; trees can train in parallel</li>
+          <li>Useful feature-importance signals from the whole forest</li>
+        </ul>
+        <p>Common uses: spam detection, medical risk classification, house-price and other regression forecasts.</p>
+
+        <h3>5. Decision Tree vs Random Forest</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Single Decision Tree</th>
+              <th>Random Forest</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Structure</td>
+              <td>One tree</td>
+              <td>Many trees (forest)</td>
+            </tr>
+            <tr>
+              <td>Interpretability</td>
+              <td>High (easy to trace)</td>
+              <td>Lower (hard to inspect all trees)</td>
+            </tr>
+            <tr>
+              <td>Overfitting risk</td>
+              <td>Higher</td>
+              <td>Lower (averaging reduces noise)</td>
+            </tr>
+            <tr>
+              <td>Stability</td>
+              <td>Sensitive to small data changes</td>
+              <td>More stable</td>
+            </tr>
+            <tr>
+              <td>Accuracy</td>
+              <td>Moderate</td>
+              <td>Often much stronger</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is ensemble learning, and how does Random Forest use it?</button>
+          <div class="accordion-body">
+            <p>Ensemble learning combines many weak models into one strong model. Random Forest trains many independent trees and aggregates their predictions so individual errors cancel out, improving accuracy and stability.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are bootstrapping and random feature selection?</button>
+          <div class="accordion-body">
+            <p>Bootstrapping trains each tree on a random sample drawn with replacement so trees see different data. Random feature selection limits the features available at splits so no single feature dominates every tree. Both increase diversity and reduce correlated mistakes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How are predictions combined, and what is the main trade-off vs a single tree?</button>
+          <div class="accordion-body">
+            <p>Classification uses majority vote; regression uses the mean of tree outputs. The main trade-off is interpretability: one tree is easy to read; a forest of 50–100 trees is much harder to inspect, even though accuracy and robustness usually improve.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/croatia/online-robotics-classes-for-kids-zagreb.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/croatia/stem-robotics-workshops-rijeka-kids.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-109');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-109');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '109') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables and data types</li><li>If-else branching and loops</li><li>Modular functions</li><li>Live interactive English sessions</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
