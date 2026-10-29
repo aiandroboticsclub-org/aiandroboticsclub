@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Brno | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Brno | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Brno—variables, conditionals, loops and functions in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/czechia/python-coding-classes-for-children-brno.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,144 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Brno · Czechia</span><h1>Python Coding Classes for Children in Brno</h1>
     <p>Python coding classes for children in Brno introduce industry-friendly syntax—variables, conditionals, loops and modular functions—through guided challenges.</p></div>
     <div><img src="../../../images/92.webp" alt="Python Brno" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-118">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-118">Lesson</label>
+        <select id="lesson-select-118" class="lesson-select" aria-label="Select lesson">
+          <option value="118" selected>118: How Support Vector Machines Handle High-Dimensional Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How Support Vector Machines Handle High-Dimensional Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 118 – SVM in High Dimensions</h2>
+
+        <h3>1. Curse of Dimensionality</h3>
+        <p>Text, genomics, and similar domains often have hundreds or thousands of features. In high dimensions: distances lose meaning, overfitting risk rises, and kernel costs grow. SVM still works well when support vectors and regularization keep the boundary stable.</p>
+
+        <h3>2. Support Vectors + Regularization (C)</h3>
+        <ul>
+          <li><strong>Support vectors</strong> anchor the hyperplane even when many features exist.</li>
+          <li><strong>Small C</strong> → wider margin, some training errors allowed → simpler boundary, better generalization.</li>
+          <li><strong>Large C</strong> → few errors allowed → boundary can twist around points → higher overfitting risk.</li>
+        </ul>
+
+        <h3>3. PCA vs SelectKBest</h3>
+        <table>
+          <thead>
+            <tr><th>Approach</th><th>Idea</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PCA</td><td>Transform features into fewer uncorrelated components (keep variance)</td></tr>
+            <tr><td>SelectKBest</td><td>Keep only the top-k features by a score (e.g. f_classif)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>4. Four-Way Experiment (100 Features → 20)</h3>
+        <pre><code>from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.metrics import accuracy_score
+
+X, y = make_classification(
+    n_samples=1000, n_features=100, n_informative=10,
+    n_redundant=40, n_repeated=10, random_state=42
+)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Baseline C=10 vs regularized C=1; then PCA(20) and SelectKBest(k=20)</code></pre>
+        <p>Typical test accuracies: Baseline C=10 ~97% (overfit risk), Regularized C=1 ~95.5%, PCA 20-comp ~95.5%, SelectKBest 20-feat ~93.5%. Regularization + reducing dimensions keeps accuracy high with a simpler model.</p>
+
+        <h3>5. Practical Takeaway</h3>
+        <p>In high dimensions, prefer moderate C, and consider PCA or feature selection before RBF SVM so you cut noise and cost without giving up much accuracy.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the curse of dimensionality, and how does it hurt classifiers?</button>
+          <div class="accordion-body">
+            <p>Too many features make distances less meaningful, raise overfitting risk, and make kernel computations expensive. Models may fit noise instead of real structure.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does C fight overfitting in high-dimensional SVM?</button>
+          <div class="accordion-body">
+            <p>Small C allows a wider margin and some errors → simpler hyperplane and better generalization. Large C forces almost zero training error and can twist the boundary around individual points.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">PCA vs SelectKBest — and what did the demo show?</button>
+          <div class="accordion-body">
+            <p>PCA compresses into components; SelectKBest keeps the top-k scored features. In the demo, PCA to 20 components matched regularized full-feature accuracy (~95.5%); SelectKBest top-20 was still strong (~93.5%).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/czechia/online-robotics-classes-for-kids-prague.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/czechia/scratch-coding-classes-kids-pilsen.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-118');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-118');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '118') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables and data types</li><li>If-else conditionals</li><li>While and for loops</li><li>Modular functions</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
