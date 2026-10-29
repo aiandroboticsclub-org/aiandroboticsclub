@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Narva | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Narva | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Narva—machine learning fundamentals, ethics and beginner-friendly visual experiments.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/estonia/ai-courses-for-kids-narva.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,172 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Narva · Estonia</span><h1>AI Courses for Kids in Narva</h1>
     <p>AI courses for kids in Narva introduce how computers analyse patterns through interactive visual tools—beginner-friendly modules requiring only basic computer skills.</p></div>
     <div><img src="../../../images/59.webp" alt="AI Narva" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-121">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-121">Lesson</label>
+        <select id="lesson-select-121" class="lesson-select" aria-label="Select lesson">
+          <option value="121" selected>121: KNN Distance Metrics Explained: How the Algorithm Finds Similar Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="KNN Distance Metrics Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 121 – KNN Distance Metrics Explained</h2>
+
+        <h3>1. Why Distance Matters</h3>
+        <p>KNN decides neighbors by proximity. The metric you choose changes which points count as "near" and thus affects accuracy. Three common metrics: Euclidean, Manhattan, and Minkowski.</p>
+
+        <h3>2. Euclidean Distance</h3>
+        <p>Straight-line distance in feature space:</p>
+        <p>d(X, Y) = √(Σ (xᵢ − yᵢ)²)</p>
+        <ul>
+          <li>Very sensitive to feature scale — always scale or normalize first.</li>
+          <li>Best for continuous features (age, weight, height, income).</li>
+        </ul>
+
+        <h3>3. Manhattan Distance</h3>
+        <p>City-block / grid path — sum of absolute differences:</p>
+        <p>d(X, Y) = Σ |xᵢ − yᵢ|</p>
+        <ul>
+          <li>Less sensitive to outliers (no squaring of large gaps).</li>
+          <li>Useful for discrete or grid-like problems and high-dimensional sparse data.</li>
+        </ul>
+
+        <h3>4. Minkowski Distance</h3>
+        <p>General form controlled by p:</p>
+        <p>d(X, Y) = (Σ |xᵢ − yᵢ|^p)^(1/p)</p>
+        <ul>
+          <li>p = 1 → Manhattan</li>
+          <li>p = 2 → Euclidean</li>
+          <li>p ≥ 3 → more weight on large coordinate differences</li>
+        </ul>
+
+        <h3>5. Numerical Example: (2, 3) to (5, 7)</h3>
+        <ul>
+          <li>Δx = 3, Δy = 4</li>
+          <li>Euclidean: √(9 + 16) = <strong>5.0</strong></li>
+          <li>Manhattan: 3 + 4 = <strong>7.0</strong></li>
+          <li>Minkowski (p=3): (27 + 64)^(1/3) ≈ <strong>4.498</strong></li>
+        </ul>
+
+        <h3>6. Scikit-Learn Comparison</h3>
+        <pre><code>from sklearn.neighbors import KNeighborsClassifier
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X, y = make_classification(n_samples=1000, n_features=2,
+                           n_informative=2, n_redundant=0, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42)
+
+for name, kwargs in [
+    ('Euclidean', dict(metric='euclidean')),
+    ('Manhattan', dict(metric='manhattan')),
+    ('Minkowski p=3', dict(metric='minkowski', p=3))
+]:
+    clf = KNeighborsClassifier(n_neighbors=5, **kwargs)
+    clf.fit(X_train, y_train)
+    print(name, accuracy_score(y_test, clf.predict(X_test)))</code></pre>
+        <p>Example results on this split: Manhattan ~94.0%, Euclidean ~92.4%, Minkowski (p=3) ~92.4%. Always try more than one metric and scale features when using Euclidean or Minkowski with p=2.</p>
+
+        <h3>7. Quick Reference</h3>
+        <table>
+          <thead>
+            <tr><th>Metric</th><th>Geometry</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Euclidean (p=2)</td><td>Straight line</td><td>Scale-sensitive; continuous features</td></tr>
+            <tr><td>Manhattan (p=1)</td><td>Grid path</td><td>More robust to outliers</td></tr>
+            <tr><td>Minkowski</td><td>Tunable via p</td><td>Unifies the two; p≥3 stresses large gaps</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do Euclidean and Manhattan differ?</button>
+          <div class="accordion-body">
+            <p>Euclidean is straight-line distance and squares differences, so it is scale- and outlier-sensitive and needs normalization. Manhattan sums absolute differences along a grid path and is more robust to outliers; it fits discrete or city-block-style problems well.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Minkowski and how does p work?</button>
+          <div class="accordion-body">
+            <p>Minkowski is the general form (Σ |xᵢ−yᵢ|^p)^(1/p). p=1 is Manhattan, p=2 is Euclidean; larger p puts more weight on big coordinate differences.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What distances and accuracies appeared in the demo?</button>
+          <div class="accordion-body">
+            <p>From (2,3) to (5,7): Euclidean 5.0, Manhattan 7.0, Minkowski p=3 ≈4.498. On a 1,000-sample binary task with k=5, Manhattan reached about 94% while Euclidean and Minkowski p=3 were about 92.4%.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/czechia/stem-robotics-workshops-liberec-kids.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/estonia/online-robotics-classes-for-kids-tallinn.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-121');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-121');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '121') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>How computers analyse patterns</li><li>Interactive visual AI tools</li><li>Beginner-friendly modules</li><li>Basic computer skills only</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
