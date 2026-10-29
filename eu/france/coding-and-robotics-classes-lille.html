@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding and Robotics Classes for Kids in Lille | AI &amp; Robotics Club</title>
+  <title>Coding and Robotics Classes for Kids in Lille | AI & Robotics Club</title>
   <meta name="description" content="Coding and robotics classes for kids in Lille—sensors, motors and control loops for beginners learning automation concepts.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/coding-and-robotics-classes-lille.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,142 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Lille · France</span><h1>Coding and Robotics Classes for Kids in Lille</h1>
     <p>Coding and robotics classes for kids in Lille introduce how sensors read the world and how code drives motors—foundational automation ideas for beginners.</p></div>
     <div><img src="../../../images/57.webp" alt="Coding and robotics classes for kids in Lille" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-127">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-127">Lesson</label>
+        <select id="lesson-select-127" class="lesson-select" aria-label="Select lesson">
+          <option value="127" selected>127: Build a Naive Bayes Classifier with Python and Scikit-Learn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build a Naive Bayes Classifier" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 127 – Build a Naive Bayes Classifier</h2>
+
+        <h3>1. Six-Step Pipeline</h3>
+        <ol>
+          <li>Load data and form a DataFrame</li>
+          <li>Inspect class balance; split 75% train / 25% test</li>
+          <li>Fit GaussianNB (continuous features)</li>
+          <li>Predict on the test set</li>
+          <li>Score accuracy, confusion matrix, classification report</li>
+          <li>Interpret FN vs FP in a medical context; optional single-sample inference</li>
+        </ol>
+
+        <h3>2. Dataset</h3>
+        <p>Breast Cancer Wisconsin (Scikit-Learn): 569 samples, 30 continuous features (radius, texture, etc.), target 0 = malignant, 1 = benign. Class counts ≈ 212 malignant, 357 benign.</p>
+
+        <h3>3. Code Skeleton</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+cancer = load_breast_cancer()
+X_train, X_test, y_train, y_test = train_test_split(
+    cancer.data, cancer.target, test_size=0.25, random_state=42)
+
+model = GaussianNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+print(accuracy_score(y_test, y_pred))          # ~0.937
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred, target_names=cancer.target_names))</code></pre>
+
+        <h3>4. Results (illustrative)</h3>
+        <p>Overall accuracy ≈ 93.71% on 143 test samples. Typical report: malignant precision ~0.96, recall ~0.87; benign precision ~0.93, recall ~0.98.</p>
+
+        <h3>5. Confusion Matrix Focus</h3>
+        <p>Example layout of outcomes: TN, FP, FN, TP. In this run, errors were small (e.g. 2 FN + 7 FP). In medical AI, false negatives (missed disease) are usually costlier than false positives (extra checks), so engineers often prioritize reducing FN.</p>
+
+        <h3>6. Single-Sample Inference</h3>
+        <pre><code>sample = X_test[:1]
+pred = model.predict(sample)
+print(cancer.target_names[pred])  # e.g. ['benign']</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why GaussianNB, and what are the main workflow steps?</button>
+          <div class="accordion-body">
+            <p>Features are continuous measurements, so GaussianNB fits. Steps: load data → 75/25 split → fit GaussianNB → predict → accuracy / matrix / report → medical error analysis and optional single-sample predict.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What accuracy and confusion-matrix pattern did the demo show?</button>
+          <div class="accordion-body">
+            <p>About 93.71% accuracy. Matrix outcomes combined a small number of FN and FP (e.g. 2 + 7) among 143 tests, with strong TP/TN counts.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why are false negatives worse than false positives in medical AI?</button>
+          <div class="accordion-body">
+            <p>FN can send a sick patient home untreated. FP usually leads to more tests that clear a healthy person. Models are often tuned to keep FN as low as possible. Single samples can be scored with model.predict() and mapped via target_names.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/arduino-programming-classes-kids-nantes.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/computational-thinking-montpellier.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-127');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-127');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '127') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors as inputs (light, distance and similar ideas)</li><li>Motors and simple motion responses</li><li>Control loops: sense → decide → act</li><li>Beginner-friendly coding linked to physical behaviour</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about coding and robotics classes for kids in Lille</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20coding%20and%20robotics%20Lille" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Sensors, Motors, and Control Loops: Introducing Automation Concepts to Families in Lille</h2>
