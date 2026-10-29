@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Rijeka | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Rijeka | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Rijeka—motors, sensors, circuitry and project-based learning with simulators first.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/croatia/stem-robotics-workshops-rijeka-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,186 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Rijeka · Croatia</span><h1>STEM Robotics Workshops for Kids in Rijeka</h1>
     <p>STEM robotics workshops for kids in Rijeka turn passive screen time into productive building challenges—motors, sensors and circuitry explored first on free software simulators, then optionally with physical kits under adult supervision.</p></div>
     <div><img src="../../../images/70.webp" alt="STEM Rijeka" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-110">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-110">Lesson</label>
+        <select id="lesson-select-110" class="lesson-select" aria-label="Select lesson">
+          <option value="110" selected>110: How Random Forest Works - Part 1: Combining Multiple Decision Trees</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How Random Forest Works - Part 1: Combining Multiple Decision Trees" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 110 – How Random Forest Works — Part 1</h2>
+
+        <h3>1. Introduction & The Committee Analogy</h3>
+        <p>A single decision tree is easy to visualize but can overfit and show high variance when trained on the full dataset. Random Forest trains many trees on different samples and combines their outputs for more stable, accurate predictions—like a committee of experts instead of one decision-maker.</p>
+        <p>Different trees see different sub-samples, so they prioritize different features at the root. That diversity helps neutralize feature bias across the forest.</p>
+
+        <h3>2. Bootstrapping: Sampling with Replacement</h3>
+        <p>Bootstrapping draws <em>n</em> samples from the main dataset <strong>with replacement</strong>: a row that is picked stays in the pool and can be picked again. The result for each tree:</p>
+        <ul>
+          <li>Some records appear more than once in that tree’s training subset</li>
+          <li>Some records are never selected for that tree</li>
+          <li>Each tree trains on a distinct sub-sample and learns a different view of the problem</li>
+        </ul>
+
+        <h3>3. Out-of-Bag (OOB) Samples</h3>
+        <p>Records not selected for a tree’s bootstrap sample are its <strong>Out-of-Bag (OOB)</strong> samples. Example: 10 records total, 8 selected → 2 OOB. Because the tree never saw those OOB rows during training, they act as a built-in internal test set and support early checks on generalization without an extra external split.</p>
+
+        <h3>4. Bagging (Bootstrap Aggregating)</h3>
+        <p>After trees are trained on their bootstrap samples, predictions are combined:</p>
+        <ul>
+          <li><strong>Classification</strong> — majority vote (mode). Example (Iris): 5 trees vote Setosa, Setosa, Virginica, Setosa, Versicolor → final class Setosa.</li>
+          <li><strong>Regression</strong> — mean of the continuous outputs from all trees.</li>
+        </ul>
+        <p>Aggregation keeps bias low while reducing variance and improving stability.</p>
+
+        <h3>5. Python Implementation with Scikit-Learn (Iris)</h3>
+        <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42
+)
+
+rf_model = RandomForestClassifier(
+    n_estimators=50,    # 50 trees
+    max_depth=None,     # no depth limit
+    bootstrap=True,     # sampling with replacement
+    random_state=42,
+    n_jobs=-1           # use all CPU cores
+)
+
+rf_model.fit(X_train, y_train)
+y_pred = rf_model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Random Forest Test Accuracy: {accuracy * 100:.1f}%")</code></pre>
+        <p>On this setup the model reaches about 88.9% accuracy on the held-out test set.</p>
+
+        <h3>6. Bootstrapping vs Bagging</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Bootstrapping</th>
+              <th>Bagging</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Core process</td>
+              <td>Random sampling with replacement</td>
+              <td>Combining predictions from many bootstrapped trees</td>
+            </tr>
+            <tr>
+              <td>Stage</td>
+              <td>Dataset preparation (per tree)</td>
+              <td>Inference / final prediction</td>
+            </tr>
+            <tr>
+              <td>Main goal</td>
+              <td>Diversity + OOB samples</td>
+              <td>Lower variance, more stable predictions</td>
+            </tr>
+            <tr>
+              <td>Aggregation</td>
+              <td>N/A</td>
+              <td>Majority vote (class) / mean (regression)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is Bootstrapping, and what does “sampling with replacement” mean?</button>
+          <div class="accordion-body">
+            <p>Bootstrapping randomly selects n records from the main dataset to train one tree. Sampling with replacement means a selected record stays in the pool and can be chosen again, so some rows may appear multiple times in a tree’s subset and others may be missing. Each tree therefore trains on a distinct sub-sample.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are Out-of-Bag (OOB) samples, and how are they used?</button>
+          <div class="accordion-body">
+            <p>OOB samples are the records not selected for a given tree’s bootstrap subset. Because that tree never trained on them, they form a built-in internal validation set. Analysts use OOB results to check generalization before relying on a separate external test set.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Bagging combine predictions for classification vs regression?</button>
+          <div class="accordion-body">
+            <p>Classification uses majority voting: the class with the most votes across trees is the final label (e.g. 3 of 5 trees vote Setosa → Setosa). Regression averages the continuous outputs of all trees into a single predicted value.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/croatia/python-coding-classes-for-children-split.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/cyprus/ai-courses-for-kids-larnaca.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-110');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-110');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '110') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Motors, sensors and circuitry basics</li><li>Project-based creative problem-solving</li><li>Free software simulators to start</li><li>Optional physical kits under supervision</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
