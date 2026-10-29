@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Famagusta | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Famagusta | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Famagusta—circuit design, motor control, simulators and transparent curriculum.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/cyprus/stem-robotics-workshops-famagusta-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,150 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Famagusta · Cyprus</span><h1>STEM Robotics Workshops for Kids in Famagusta</h1>
     <p>STEM robotics workshops for kids in Famagusta introduce circuit paths, low-voltage safety and microcontroller ideas—starting with free simulators before optional physical kits.</p></div>
     <div><img src="../../../images/70.webp" alt="STEM Famagusta" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-115">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-115">Lesson</label>
+        <select id="lesson-select-115" class="lesson-select" aria-label="Select lesson">
+          <option value="115" selected>115: Support Vector Machines (SVM) Explained for Beginners</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Support Vector Machines (SVM) Explained for Beginners" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 115 – Support Vector Machines (SVM) Explained for Beginners</h2>
+
+        <h3>1. What SVM Does</h3>
+        <p>SVM is a strong supervised algorithm used mainly for classification (and also for regression). Instead of any separating boundary, it finds the <strong>optimal hyperplane</strong> that maximizes the margin between classes. It handles high-dimensional spaces well and can model non-linear data with kernels.</p>
+
+        <h3>2. Hyperplanes by Dimension</h3>
+        <table>
+          <thead>
+            <tr><th>Dimension</th><th>Hyperplane looks like</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1D</td><td>A point on a line</td></tr>
+            <tr><td>2D</td><td>A straight line (\(w \cdot x + b = 0\))</td></tr>
+            <tr><td>3D</td><td>A flat plane</td></tr>
+            <tr><td>>3D</td><td>A generalized hyperplane</td></tr>
+          </tbody>
+        </table>
+
+        <h3>3. Support Vectors and Margin</h3>
+        <ul>
+          <li><strong>Support vectors</strong> are the points closest to the boundary. Only they determine the hyperplane’s position and orientation. Removing far-away points does not change the solution.</li>
+          <li><strong>Margin</strong> is the distance from the hyperplane to those nearest points. SVM maximizes this margin for better generalization and less sensitivity to noise.</li>
+        </ul>
+
+        <h3>4. Math in Brief</h3>
+        <ul>
+          <li>Hyperplane: \(w \cdot x + b = 0\)</li>
+          <li>Objective: minimize \(\frac{1}{2}\|w\|^2\) (equivalent to maximizing margin \(2/\|w\|\))</li>
+          <li>Constraint: \(y_i (w \cdot x_i + b) \ge 1\) (equality holds for support vectors)</li>
+        </ul>
+
+        <h3>5. High Dimensions and Kernels</h3>
+        <p>SVM works well when there are many features. When data is not linearly separable, <strong>kernel functions</strong> map it so a curved boundary can still separate the classes.</p>
+
+        <h3>6. Concept Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Concept</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hyperplane</td><td>Decision boundary (\(w \cdot x + b = 0\))</td></tr>
+            <tr><td>Support vectors</td><td>Closest points that define the boundary</td></tr>
+            <tr><td>Margin</td><td>Distance to support vectors — maximize it</td></tr>
+            <tr><td>Weights \(w\)</td><td>Feature importance / orientation</td></tr>
+            <tr><td>Bias \(b\)</td><td>Shifts the boundary</td></tr>
+            <tr><td>Kernels</td><td>Allow non-linear separation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is a hyperplane in SVM, and how does its shape change with dimension?</button>
+          <div class="accordion-body">
+            <p>It is the decision boundary that separates classes. In 1D it is a point, in 2D a line, in 3D a plane, and in higher dimensions a generalized hyperplane.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are support vectors, and what happens if non-support points are removed?</button>
+          <div class="accordion-body">
+            <p>Support vectors are the points closest to the hyperplane and fully determine it. Removing points that are farther away leaves the hyperplane (and \(w\), \(b\)) unchanged.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the margin, why maximize it, and what is the optimization setup?</button>
+          <div class="accordion-body">
+            <p>The margin is the distance from the hyperplane to the nearest support vectors. Larger margins generalize better and are less noise-sensitive. SVM maximizes margin by minimizing \(\frac{1}{2}\|w\|^2\) subject to \(y_i (w \cdot x_i + b) \ge 1\).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/cyprus/scratch-coding-classes-kids-paphos.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/czechia/ai-courses-for-kids-ostrava.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-115');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-115');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '115') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Circuit paths and current flow</li><li>Low-voltage safety awareness</li><li>Microcontroller pin logic ideas</li><li>Simulators before physical kits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
