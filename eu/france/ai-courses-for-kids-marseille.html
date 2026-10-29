@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Marseille | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Marseille | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Marseille—pattern recognition, classification and responsible AI use for young learners in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/ai-courses-for-kids-marseille.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,153 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Marseille · France</span><h1>AI Courses for Kids in Marseille</h1>
     <p>AI courses for kids in Marseille introduce pattern recognition, classification and responsible use of intelligent tools—so children understand how predictions are made, not only how to chat with an app.</p></div>
     <div><img src="../../../images/53.webp" alt="AI courses for kids in Marseille" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-125">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-125">Lesson</label>
+        <select id="lesson-select-125" class="lesson-select" aria-label="Select lesson">
+          <option value="125" selected>125: Naive Bayes Independence Assumption Explained in Simple Terms</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Naive Bayes Independence Assumption" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 125 – Naive Bayes Independence Assumption</h2>
+
+        <h3>1. The Core Feature Independence Assumption</h3>
+        <p>Naive Bayes is built on Bayes' Theorem. Its defining trait is the assumption that every input feature is independent of the others given the class label, so each feature contributes separately to the class decision.</p>
+
+        <h3>2. Real-World Interdependence vs. the Naive Assumption</h3>
+        <p>In real data, features usually interact (the "Butterfly Effect" idea: small changes can cascade). Naive Bayes still treats features as independent. That trade-off ignores weak interactions so joint probabilities become a simple product of individual conditionals—much faster to train and predict.</p>
+
+        <h3>3. Why We Multiply Probabilities</h3>
+        <p>Under independence:</p>
+        <p>P(X₁, X₂, …, Xₙ | Class) = P(X₁ | Class) × P(X₂ | Class) × … × P(Xₙ | Class)</p>
+        <p>Without the assumption you would need large multi-dimensional contingency tables. With it, the math stays simple and fast.</p>
+
+        <h3>4. Spam Example: "Win" and "Prize"</h3>
+        <p>In real language those words often appear together. Naive Bayes still treats them as separate events and multiplies:</p>
+        <p>P("Win", "Prize" | Spam) = P("Win" | Spam) × P("Prize" | Spam)</p>
+
+        <h3>5. Python: GaussianNB on Breast Cancer</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42)
+
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+y_pred = gnb.predict(X_test)
+print(accuracy_score(y_test, y_pred) * 100)  # ~93.71%</code></pre>
+        <p>Defaults: <code>priors=None</code> (learned from class counts), <code>var_smoothing=1e-09</code> for numerical stability.</p>
+
+        <h3>6. Inspecting Internals</h3>
+        <ul>
+          <li><strong>class_prior_</strong> — baseline class probabilities</li>
+          <li><strong>theta_</strong> — feature means per class</li>
+          <li><strong>var_</strong> — feature variances per class</li>
+        </ul>
+        <p>Despite 30 correlated biological features, GaussianNB still reached about 93.71% test accuracy by modeling each feature as an independent Gaussian and multiplying the densities.</p>
+
+        <h3>7. Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Aspect</th><th>Real world</th><th>Naive Bayes</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Feature links</td><td>Interdependent</td><td>Independent</td><td>Ignores weak correlations</td></tr>
+            <tr><td>Joint probability</td><td>Heavy matrices</td><td>Product of singles</td><td>Fast math</td></tr>
+            <tr><td>Spam words</td><td>Correlated</td><td>Separate events</td><td>Simple product</td></tr>
+            <tr><td>Breast cancer (30 feats)</td><td>Correlated measures</td><td>Independent Gaussians</td><td>~93.71% accuracy</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the independence assumption, and why use it if it is unrealistic?</button>
+          <div class="accordion-body">
+            <p>It states that features are independent given the class. Real data is rarely like that, but the assumption lets the model multiply single-feature probabilities instead of building large joint tables, so training and prediction stay fast.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Naive Bayes treat words like "Win" and "Prize" in spam detection?</button>
+          <div class="accordion-body">
+            <p>Even though those words often appear together, the model treats them as independent and multiplies P("Win" | Spam) × P("Prize" | Spam) to get the joint likelihood for spam.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What accuracy did GaussianNB get on Breast Cancer, and which attributes were inspected?</button>
+          <div class="accordion-body">
+            <p>About 93.71% on a 75/25 split. Inspected: class_prior_ (class base rates), theta_ (per-class feature means), and var_ (per-class feature variances).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/estonia/scratch-coding-classes-kids-parnu.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/arduino-programming-classes-kids-nantes.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-125');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-125');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '125') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Patterns, examples and simple classification ideas</li><li>How models can be wrong or biased</li><li>Responsible prompts and verifying AI output</li><li>Connecting data examples to everyday decisions</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about AI courses for kids in Marseille</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20AI%20courses%20for%20kids%20in%20Marseille" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · Saturday live 12–1 PM GMT</p>
     </section>
