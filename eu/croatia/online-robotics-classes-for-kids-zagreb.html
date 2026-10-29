@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Zagreb | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Zagreb | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Zagreb—English sessions and the 100-Mission pathway for local and expat families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/croatia/online-robotics-classes-for-kids-zagreb.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,202 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Zagreb · Croatia</span><h1>Online Robotics Classes for Kids in Zagreb</h1>
     <p>Online robotics classes for kids in Zagreb serve local and expat families with clear English instruction and the optional 100-Mission Hero Journey for structured progression from Explorer to Tech Champion.</p></div>
     <div><img src="../../../images/64.webp" alt="Online robotics Zagreb" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-108">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-108">Lesson</label>
+        <select id="lesson-select-108" class="lesson-select" aria-label="Select lesson">
+          <option value="108" selected>108: Build a Decision Tree Model with Python and Scikit-Learn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build a Decision Tree Model with Python and Scikit-Learn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 108 – Build a Decision Tree Model with Python and Scikit-Learn</h2>
+
+        <h3>1. End-to-End Project Workflow</h3>
+        <p>This project loads the Iris dataset, applies pre-pruning, trains a DecisionTreeClassifier, visualizes the tree, and evaluates with Accuracy, Confusion Matrix, Precision, Recall, and F1-Score.</p>
+        <ul>
+          <li>Data ingestion (Iris features and labels)</li>
+          <li>Stratified 70/30 train–test split</li>
+          <li>Pre-pruned model: max_depth=3, criterion='entropy'</li>
+          <li>Tree visualization and traversal</li>
+          <li>Evaluation: ~93.3% accuracy, 3×3 confusion matrix, class metrics</li>
+        </ul>
+
+        <h3>2. Dataset and Stratified Split</h3>
+        <p>Iris features: petal/sepal length and width. Classes: Setosa, Versicolor, Virginica.</p>
+        <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+iris = load_iris()
+X, y = iris.data, iris.target
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42
+)</code></pre>
+        <p><strong>stratify=y</strong> keeps the same class proportions in train and test (e.g. 35 per class in train, 15 per class in test), avoiding imbalance skew.</p>
+
+        <h3>3. Model Construction and Pre-Pruning</h3>
+        <pre><code>from sklearn.tree import DecisionTreeClassifier
+
+clf = DecisionTreeClassifier(
+    max_depth=3,
+    criterion='entropy',
+    random_state=42
+)
+clf.fit(X_train, y_train)</code></pre>
+        <ul>
+          <li><strong>max_depth=3</strong> — limits depth to reduce overfitting</li>
+          <li><strong>criterion='entropy'</strong> — splits by Information Gain</li>
+          <li><strong>random_state=42</strong> — reproducible results</li>
+        </ul>
+
+        <h3>4. Interpreting the Tree</h3>
+        <p>Root: Petal Length ≤ 2.45? (Entropy ≈ 1.585, 105 samples).</p>
+        <ul>
+          <li><strong>True</strong> → pure Setosa leaf (35 samples, Entropy 0)</li>
+          <li><strong>False</strong> → Petal Width ≤ 1.75 on remaining 70 samples, then further splits on petal/sepal length into four leaves (e.g. pure Versicolor, pure Virginica, and a mixed leaf that votes majority)</li>
+        </ul>
+
+        <h3>5–6. Evaluation and Confusion Matrix</h3>
+        <pre><code>from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+y_pred = clf.predict(X_test)
+print(accuracy_score(y_test, y_pred))  # ~0.933 (93.3%)
+print(confusion_matrix(y_test, y_pred))</code></pre>
+        <p>Typical 3×3 pattern on 45 test samples: Setosa 15/15 correct; Virginica 15/15 correct; Versicolor 12/15 correct with 3 misclassified as Virginica. The entire ~6.7% error comes from Versicolor ↔ Virginica confusion.</p>
+
+        <h3>7. Classification Report Metrics</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>F1-Score</th>
+              <th>Support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Setosa</td><td>1.00</td><td>1.00</td><td>1.00</td><td>15</td></tr>
+            <tr><td>Versicolor</td><td>1.00</td><td>0.80</td><td>0.89</td><td>15</td></tr>
+            <tr><td>Virginica</td><td>0.83</td><td>1.00</td><td>0.91</td><td>15</td></tr>
+            <tr><td>Overall</td><td>—</td><td>—</td><td>0.93</td><td>45</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><strong>Precision</strong> — of predicted positives, how many were correct</li>
+          <li><strong>Recall</strong> — of actual positives, how many were found</li>
+          <li><strong>F1</strong> — harmonic mean of precision and recall</li>
+          <li><strong>Support</strong> — true sample count per class</li>
+        </ul>
+
+        <h3>8. Complete Script Outline</h3>
+        <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import matplotlib.pyplot as plt
+
+iris = load_iris()
+X, y = iris.data, iris.target
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42
+)
+clf = DecisionTreeClassifier(max_depth=3, criterion='entropy', random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print(accuracy_score(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+plt.figure(figsize=(12, 8))
+plot_tree(clf, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
+plt.show()</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why use stratify=y in the train–test split?</button>
+          <div class="accordion-body">
+            <p>It keeps the same class proportions in train and test. On Iris, each class gets equal share (e.g. 15 test samples each), so evaluation is not skewed by imbalance.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Which hyperparameters pre-pruned the tree, and what was the effect?</button>
+          <div class="accordion-body">
+            <p>max_depth=3 limits vertical growth; criterion='entropy' uses Information Gain. The tree stayed shallow (about four leaves) with ~93.3% test accuracy and remained readable.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What did the confusion matrix show about errors?</button>
+          <div class="accordion-body">
+            <p>Setosa and Virginica were perfect (15/15). Versicolor was 12/15 correct; 3 were labeled Virginica. All of the ~6.7% error came from that confusion—suggesting more distinguishing features between those two species could help.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/bulgaria/python-coding-classes-for-children-plovdiv.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/croatia/python-coding-classes-for-children-split.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-108');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-108');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '108') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control systems</li><li>English for local and expat families</li><li>100-Mission progression pathway</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
