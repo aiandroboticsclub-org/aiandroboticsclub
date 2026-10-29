@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Thessaloniki | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Thessaloniki | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Thessaloniki—readable syntax, text adventures and math quizzes in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/greece/python-coding-classes-for-children-thessaloniki.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,150 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Thessaloniki · Greece</span><h1>Python Coding Classes for Children in Thessaloniki</h1>
     <p>Python coding classes for children in Thessaloniki introduce clean, readable syntax so students master logic without getting stuck on complex punctuation—through text adventures and simple tools.</p></div>
     <div><img src="../../../images/62.webp" alt="Python Thessaloniki" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-137">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-137">Lesson</label>
+        <select id="lesson-select-137" class="lesson-select" aria-label="Select lesson">
+          <option value="137" selected>137: Hierarchical Clustering with Scikit-Learn - Part 2</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Hierarchical Clustering with Scikit-Learn Part 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 137 – Hierarchical Clustering Part 2: Dendrograms, PCA & Evaluation</h2>
+
+        <h3>1. Pipeline Overview</h3>
+        <p>End-to-end flow on the Wine dataset (178 × 13): scale features → Ward linkage dendrogram → AgglomerativeClustering (k=3) → PCA to 2D → check cluster counts. Labels are unsupervised IDs only.</p>
+
+        <h3>2. Why StandardScaler Is Required</h3>
+        <p>Features span very different ranges (e.g. Proline > 1000 vs Malic Acid ~1). Unscaled Euclidean distances would be dominated by large-magnitude columns. <code>StandardScaler</code> sets mean 0 and std 1 so every feature contributes fairly.</p>
+
+        <h3>3. Dendrogram (SciPy)</h3>
+        <pre><code>from scipy.cluster.hierarchy import linkage, dendrogram
+Z = linkage(X_scaled, method="ward")
+plt.figure(figsize=(10, 6))
+dendrogram(Z)
+plt.ylabel("Merge distance")
+plt.show()</code></pre>
+        <p>Y-axis runs ~0 (leaves) to ~35 (root). Top branches support a natural cut at <strong>k = 3</strong>.</p>
+
+        <h3>4. Fit Agglomerative Model</h3>
+        <pre><code>hc = AgglomerativeClustering(n_clusters=3, linkage="ward")
+labels = hc.fit_predict(X_scaled)</code></pre>
+        <p>Outputs integer IDs 0 / 1 / 2 for each of the 178 samples.</p>
+
+        <h3>5. PCA Visualization</h3>
+        <pre><code>pca = PCA(n_components=2)
+X_2D = pca.fit_transform(X_scaled)
+plt.scatter(X_2D[:, 0], X_2D[:, 1], c=labels, cmap="Set1", edgecolors="k")
+plt.xlabel("PC1"); plt.ylabel("PC2")
+plt.show()</code></pre>
+        <p>Cores of the three groups separate clearly; a few boundary points mix, which is normal for real data.</p>
+
+        <h3>6. Cluster Balance</h3>
+        <ul>
+          <li>Cluster 2: 64</li>
+          <li>Cluster 0: 58</li>
+          <li>Cluster 1: 56</li>
+        </ul>
+        <p>Max gap is only 8 samples → balanced partition, not degenerate tiny clusters.</p>
+
+        <h3>7. Full Script Skeleton</h3>
+        <pre><code>wine = load_wine()
+X = wine.data
+X_scaled = StandardScaler().fit_transform(X)
+Z = linkage(X_scaled, method="ward")
+# dendrogram(Z) ...
+hc = AgglomerativeClustering(n_clusters=3, linkage="ward")
+labels = hc.fit_predict(X_scaled)
+X_2D = PCA(n_components=2).fit_transform(X_scaled)
+# scatter + value_counts ...</code></pre>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why must you standardize the Wine features before hierarchical clustering?</button>
+          <div class="accordion-body">
+            <p>Distance metrics treat large-scale features as more important. Scaling to mean 0 / std 1 keeps Proline, Malic Acid, and the other eleven columns on equal footing.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does PCA help, and what does the 2D plot show?</button>
+          <div class="accordion-body">
+            <p>PCA compresses 13 dimensions to PC1/PC2 for plotting. Three colored groups appear with clear cores and mild boundary overlap—expected for continuous chemical measurements.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What counts did Ward k=3 produce, and why is a gap under 10 good?</button>
+          <div class="accordion-body">
+            <p>About 64 / 58 / 56 samples. A difference of only 8 means no cluster collapsed into a tiny outlier group; the partition is balanced across all 178 wines.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/greece/online-robotics-classes-for-kids-athens.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/greece/scratch-coding-classes-kids-heraklion.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-137');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-137');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '137') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean, readable Python syntax</li><li>Text adventure games</li><li>Math quiz engines</li><li>Simple data tools</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
