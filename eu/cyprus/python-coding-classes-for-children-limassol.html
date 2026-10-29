@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Limassol | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Limassol | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Limassol—variables, conditions, loops and functions for a tech-forward international hub.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/cyprus/python-coding-classes-for-children-limassol.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,193 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Limassol · Cyprus</span><h1>Python Coding Classes for Children in Limassol</h1>
     <p>Python coding classes for children in Limassol build software foundations—variables, conditions, loops and modular functions—suited to an international tech-forward city.</p></div>
     <div><img src="../../../images/67.webp" alt="Python Limassol" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-113">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-113">Lesson</label>
+        <select id="lesson-select-113" class="lesson-select" aria-label="Select lesson">
+          <option value="113" selected>113: Random Forest Hyperparameter Tuning: Improve Model Performance</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Random Forest Hyperparameter Tuning: Improve Model Performance" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 113 – Random Forest Hyperparameter Tuning</h2>
+
+        <h3>1. Parameters vs Hyperparameters</h3>
+        <ul>
+          <li><strong>Parameters</strong> — learned during training (e.g. split thresholds, weights).</li>
+          <li><strong>Hyperparameters</strong> — set by you before training (tree count, depth, min samples, etc.).</li>
+        </ul>
+        <p>Tuning aims for good performance on unseen data and a sensible bias–variance balance (avoid under- and overfitting).</p>
+
+        <h3>2. Main Random Forest Hyperparameters</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Hyperparameter</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>n_estimators</td>
+              <td>Number of trees (often start 100–200; more trees stabilize but cost more time)</td>
+            </tr>
+            <tr>
+              <td>max_depth</td>
+              <td>Max tree depth (shallow → underfit; unlimited → overfit; often try 5–20)</td>
+            </tr>
+            <tr>
+              <td>min_samples_split</td>
+              <td>Min samples needed to split a node (higher → smoother trees)</td>
+            </tr>
+            <tr>
+              <td>min_samples_leaf</td>
+              <td>Min samples in a leaf (higher → less noise memorization)</td>
+            </tr>
+            <tr>
+              <td>max_features</td>
+              <td>Max features considered per split (boosts diversity across trees)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3. Confusion Matrix Basics</h3>
+        <ul>
+          <li><strong>TP</strong> — predicted positive, correct</li>
+          <li><strong>TN</strong> — predicted negative, correct</li>
+          <li><strong>FP (Type I)</strong> — predicted positive, wrong</li>
+          <li><strong>FN (Type II)</strong> — predicted negative, wrong</li>
+        </ul>
+        <p>These feed Precision, Recall, and F1-Score.</p>
+
+        <h3>4. GridSearchCV</h3>
+        <p>Define a <code>param_grid</code>, then run k-fold CV (e.g. cv=5) over every combination; pick the set with the best average score. Large grids grow exponentially — keep candidates focused to control runtime.</p>
+
+        <h3>5. Python Example (Breast Cancer)</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42
+)
+
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 5, 10, 20],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+rf_base = RandomForestClassifier(random_state=42, n_jobs=-1)
+grid_search = GridSearchCV(
+    estimator=rf_base,
+    param_grid=param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+grid_search.fit(X_train, y_train)
+
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
+print(grid_search.best_params_)
+print(f"Test Accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}%")
+print(classification_report(y_test, y_pred, target_names=cancer.target_names))</code></pre>
+
+        <h3>6. Example Outcome</h3>
+        <p>A typical best set: <code>n_estimators=100</code>, <code>max_depth=None</code>, <code>min_samples_split=2</code>, <code>min_samples_leaf=1</code> → ~93.6% test accuracy. More trees (e.g. 200) did not improve accuracy here, so the search preferred 100 for efficiency.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Parameters vs hyperparameters — and which RF settings matter most?</button>
+          <div class="accordion-body">
+            <p>Parameters are learned in training; hyperparameters are set by you. Key RF knobs: n_estimators (tree count), max_depth, min_samples_split, min_samples_leaf, and max_features.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does GridSearchCV work, and why keep grids small?</button>
+          <div class="accordion-body">
+            <p>It tries every combination in param_grid with k-fold CV (e.g. 5 folds) and picks the best average score. Large grids explode the number of fits (e.g. many settings × 5 folds), so choose a focused set of candidates to stay within time budgets.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are TP, TN, FP, and FN?</button>
+          <div class="accordion-body">
+            <p>True Positive / True Negative: correct presence / absence predictions. False Positive (Type I): predicted present but wrong. False Negative (Type II): predicted absent but wrong. They underpin precision, recall, and F1.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/cyprus/online-robotics-classes-for-kids-nicosia.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/cyprus/scratch-coding-classes-kids-paphos.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-113');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-113');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '113') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables and data types</li><li>If-else conditions and loops</li><li>Modular functions</li><li>Software engineering foundations</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/hAo4wWGoRpk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
