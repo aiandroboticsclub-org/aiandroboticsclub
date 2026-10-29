@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Toulouse | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Toulouse | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Toulouse—event-driven games, animations and visual logic for young beginners.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/scratch-coding-classes-kids-toulouse.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,140 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Toulouse · France</span><h1>Scratch Coding Classes for Kids in Toulouse</h1>
     <p>Scratch coding classes for kids in Toulouse use visual blocks so children design games and stories while learning events, loops and coordination—before typing heavy syntax.</p></div>
     <div><img src="../../../images/54.webp" alt="Scratch coding classes for kids in Toulouse" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-133">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-133">Lesson</label>
+        <select id="lesson-select-133" class="lesson-select" aria-label="Select lesson">
+          <option value="133" selected>133: Hierarchical Clustering Explained: Discover Groups in Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Hierarchical Clustering Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 133 – Hierarchical Clustering</h2>
+
+        <h3>1. Nested Groups Without Pre-Set K</h3>
+        <p>Hierarchical clustering builds a hierarchy of nested groups. Unlike K-Means or K-NN, it does <strong>not</strong> require choosing K in advance—so you avoid expert guesses and trial-and-error over many K values.</p>
+
+        <h3>2. Dendrograms and XAI</h3>
+        <p>Results are shown as a <strong>dendrogram</strong> (tree): root = one all-inclusive cluster; leaves = individual points; branches = merges or splits. That visual structure makes the method a form of Explainable AI—you can inspect how groups formed and which distances drove merges.</p>
+
+        <h3>3. Fine vs Coarse; Two Approaches</h3>
+        <ul>
+          <li><strong>Fine clusters:</strong> small, pure groups.</li>
+          <li><strong>Coarse clusters:</strong> broader merges for a big-picture view.</li>
+          <li><strong>Agglomerative (bottom-up):</strong> each point starts alone; similar groups merge until one root remains.</li>
+          <li><strong>Divisive (top-down):</strong> one root is split repeatedly down to single points.</li>
+        </ul>
+
+        <h3>4. Sensitivities and Scale</h3>
+        <p>Choice of <strong>distance</strong> (Euclidean vs Manhattan) and <strong>linkage</strong> (single, complete, average) changes the tree. Grid search can tune those hyperparameters. Works well on small-to-medium data; full pairwise tree building is expensive on very large sets.</p>
+
+        <h3>5. Applications</h3>
+        <ul>
+          <li>Gene expression grouping in biology</li>
+          <li>Customer segments and churn risk tiers</li>
+          <li>Document hierarchies for large text collections</li>
+        </ul>
+
+        <h3>6. Property Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Aspect</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Paradigm</td><td>Unsupervised clustering</td></tr>
+            <tr><td>Structure</td><td>Nested hierarchy / dendrogram</td></tr>
+            <tr><td>K parameter</td><td>Not required upfront</td></tr>
+            <tr><td>XAI</td><td>Tree is inspectable</td></tr>
+            <tr><td>Approaches</td><td>Agglomerative & divisive</td></tr>
+            <tr><td>Sensitivities</td><td>Distance metric & linkage</td></tr>
+            <tr><td>Scale</td><td>Best for small–medium data</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is hierarchical clustering’s main edge over K-Means?</button>
+          <div class="accordion-body">
+            <p>It does not need a pre-chosen K. Nested groups and a dendrogram replace guessing or scanning many K values.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Agglomerative vs divisive, and why is it XAI?</button>
+          <div class="accordion-body">
+            <p>Agglomerative merges upward from single points; divisive splits downward from one root. The dendrogram shows every merge/split, so decisions are visually explainable.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is it sensitive to, and where is it used?</button>
+          <div class="accordion-body">
+            <p>Distance metric and linkage shape the tree; large datasets are costly. Common uses: gene profiling, customer segments/churn, and document hierarchies.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/python-programming-for-students-bordeaux.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/stem-robotics-workshops-nice-kids.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-133');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-133');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '133') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sprites, stages and event-driven behaviour</li><li>Loops, conditions and simple game rules</li><li>Collision ideas and score updates as logic</li><li>Presenting a project in their own words</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about Scratch coding classes for kids in Toulouse</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20Scratch%20coding%20classes%20for%20kids%20in%20Toulouse" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AldTAWskHVM" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Event-Driven Game Design: How Visual Coding Prepares Young Minds in Toulouse for STEM</h2>
