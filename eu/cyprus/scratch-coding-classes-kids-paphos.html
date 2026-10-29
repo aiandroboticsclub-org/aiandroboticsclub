@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Paphos | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Paphos | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Paphos—block-based animations, interactive games and live project showcases.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/cyprus/scratch-coding-classes-kids-paphos.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,159 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Paphos · Cyprus</span><h1>Scratch Coding Classes for Kids in Paphos</h1>
     <p>Scratch coding classes for kids in Paphos use visual snap-together blocks so beginners build animations and games while focusing on logic, not syntax typing errors.</p></div>
     <div><img src="../../../images/69.webp" alt="Scratch Paphos" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-114">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-114">Lesson</label>
+        <select id="lesson-select-114" class="lesson-select" aria-label="Select lesson">
+          <option value="114" selected>114: Build a Random Forest Model with Python and Scikit-Learn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build a Random Forest Model with Python and Scikit-Learn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 114 – Build a Random Forest Model with Scikit-Learn</h2>
+
+        <h3>1. End-to-End Workflow</h3>
+        <ol>
+          <li>Load data and separate features / target</li>
+          <li>Stratified train–test split (e.g. 75% / 25%)</li>
+          <li>Fit a baseline RandomForestClassifier</li>
+          <li>Tune key hyperparameters (e.g. n_estimators)</li>
+          <li>Evaluate with accuracy, confusion matrix, precision/recall/F1, and feature importance</li>
+        </ol>
+
+        <h3>2. Core Metrics</h3>
+        <ul>
+          <li><strong>Precision</strong> = TP / (TP + FP) — prioritize when false positives are costly (e.g. blocking real users)</li>
+          <li><strong>Recall</strong> = TP / (TP + FN) — prioritize when missing positives is dangerous (e.g. disease detection)</li>
+          <li><strong>F1</strong> = harmonic mean of precision and recall — balanced view on imbalanced data</li>
+          <li><strong>Support</strong> — count of true samples per class</li>
+        </ul>
+
+        <h3>3. Iris Pipeline (75/25 Stratified Split)</h3>
+        <pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix
+import numpy as np
+
+iris = load_iris()
+X, y = iris.data, iris.target
+feature_names = iris.feature_names
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, stratify=y, random_state=42
+)
+# ~112 train, ~38 test
+
+rf_baseline = RandomForestClassifier(
+    n_estimators=100, max_depth=None, random_state=42
+)
+rf_baseline.fit(X_train, y_train)
+y_pred = rf_baseline.predict(X_test)
+print(f"Baseline accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}%")
+print(confusion_matrix(y_test, y_pred))</code></pre>
+        <p>Typical baseline: <strong>~92.11%</strong> accuracy; only a few mix-ups between Versicolor and Virginica (Setosa often perfect).</p>
+
+        <h3>4. Tuning n_estimators</h3>
+        <p>Trying 20 / 50 / 100 / 200 trees often peaks at 50 and 100 (~92.11%). Prefer the smaller model (50 trees) when accuracy is equal — lower memory and faster inference.</p>
+
+        <h3>5. Feature Importance</h3>
+        <pre><code>importances = rf_baseline.feature_importances_
+indices = np.argsort(importances)[::-1]
+for f in range(X.shape[1]):
+    i = indices[f]
+    print(f"{f+1}. {feature_names[i]}: {importances[i]:.4f}")</code></pre>
+        <p>Typical ranking: Petal width and petal length dominate (~0.45 each, ~90% combined); sepal length moderate; sepal width low.</p>
+
+        <h3>6. Why Forest Beats a Single Tree</h3>
+        <p>One tree is readable but sensitive to bias and noise. A forest of diverse bootstrapped trees with random features averages out mistakes and is a strong classical default in practice.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">When should you prioritize Precision, Recall, or F1?</button>
+          <div class="accordion-body">
+            <p>Precision when false positives hurt (e.g. blocking real users). Recall when missing positives is costly (e.g. disease screening). F1 when you need a balance, especially on imbalanced classes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What accuracy and errors did the Iris baseline show?</button>
+          <div class="accordion-body">
+            <p>About 92.11% on 38 test samples (112 train). Roughly 3 errors total: Setosa often perfect; a few Versicolor↔Virginica confusions.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why prefer 50 trees over 100 when accuracy is the same, and which features mattered most?</button>
+          <div class="accordion-body">
+            <p>Equal accuracy → choose the smaller forest for less memory and faster predictions. Petal width and petal length carried most of the signal; sepal width contributed little.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/cyprus/python-coding-classes-for-children-limassol.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/cyprus/stem-robotics-workshops-famagusta-kids.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-114');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-114');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '114') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Visual snap-together blocks</li><li>Animations and interactive games</li><li>Live project showcases</li><li>Verified Scratch video modules</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
