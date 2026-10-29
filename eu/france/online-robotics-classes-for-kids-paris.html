@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Paris | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Paris | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Paris—sensors, motors and control logic in English for bilingual and expat families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/online-robotics-classes-for-kids-paris.html">
   <meta property="og:title" content="Online Robotics Classes for Kids in Paris">
@@ -25,14 +25,145 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Paris · France</span><h1>Online Robotics Classes for Kids in Paris</h1>
     <p>Online robotics classes for kids in Paris help English-speaking and bilingual families explore sensors, motors and control logic from home—without inventing a physical campus on every boulevard.</p></div>
     <div><img src="../../../images/51.webp" alt="Online Robotics Classes for Kids in Paris" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-129">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-129">Lesson</label>
+        <select id="lesson-select-129" class="lesson-select" aria-label="Select lesson">
+          <option value="129" selected>129: How to Choose the Number of Clusters in K-Means</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Choose the Number of Clusters in K-Means" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 129 – Choosing K in K-Means</h2>
+
+        <h3>1. Why K Is Hard</h3>
+        <p>Unlike supervised models, clustering has no labels to tell you how many groups exist. Common ways to pick <strong>K</strong> are domain knowledge, the elbow method (WCSS), and the silhouette score—often used together.</p>
+
+        <h3>2. Three Methods</h3>
+        <p><strong>Domain knowledge:</strong> Ask stakeholders how many operational groups make sense (e.g. customer tiers). Strongest when business logic is clear.</p>
+        <p><strong>Elbow method:</strong> Plot within-cluster sum of squares (WCSS / inertia) vs K. WCSS falls as K grows; the “elbow” is where the curve bends and further K adds little compression. Stopping near the elbow avoids over-splitting natural groups.</p>
+        <p><strong>Silhouette score:</strong> Scores each point from −1 to +1 by how close it is to its own cluster versus others. Average silhouette near +1 is better; 0 is boundary-like; −1 suggests wrong assignment. Prefer the K with the highest average score.</p>
+
+        <h3>3. Python Sketch</h3>
+        <pre><code>from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
+
+X, _ = make_blobs(n_samples=300, centers=4, cluster_std=1.0, random_state=42)
+k_range = range(2, 15)
+wcss, sil = [], []
+for k in k_range:
+    km = KMeans(n_clusters=k, random_state=42, n_init=10)
+    labels = km.fit_predict(X)
+    wcss.append(km.inertia_)
+    sil.append(silhouette_score(X, labels))
+
+best_k = list(k_range)[sil.index(max(sil))]
+print("Best K by silhouette:", best_k)
+
+plt.subplot(1, 2, 1); plt.plot(k_range, wcss, "bo-"); plt.title("Elbow (WCSS)")
+plt.subplot(1, 2, 2); plt.plot(k_range, sil, "ro-"); plt.title("Silhouette")
+plt.tight_layout(); plt.show()</code></pre>
+
+        <h3>4. Demo Outcome</h3>
+        <p>On synthetic blobs with 4 true centers, both elbow and silhouette typically agree on <strong>K = 4</strong> (silhouette peaks near ~0.65–0.80; WCSS flattens after K=4).</p>
+
+        <h3>5. Method Comparison</h3>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Signal</th><th>Pick when…</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Domain knowledge</td><td>Business categories</td><td>Experts can name the groups</td></tr>
+            <tr><td>Elbow (WCSS)</td><td>Curve bend</td><td>You need a visual heuristic</td></tr>
+            <tr><td>Silhouette</td><td>Max average score</td><td>You want a numeric cohesion/separation check</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the three main ways to choose K?</button>
+          <div class="accordion-body">
+            <p>Domain knowledge from experts, the elbow method on WCSS/inertia, and silhouette score. Hybrid use is common.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does the elbow method limit overfitting?</button>
+          <div class="accordion-body">
+            <p>It finds where WCSS stops dropping sharply. Larger K beyond that mostly splits real groups without real gain, so the elbow is a practical stop.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is silhouette, and what K did the demo favor?</button>
+          <div class="accordion-body">
+            <p>Scores from −1 to +1 compare own-cluster closeness to other clusters. Higher average is better. On 300-sample 4-center blobs, silhouette (and elbow) favored K = 4.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/computational-thinking-montpellier.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/online-stem-education-for-kids-strasbourg.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-129');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-129');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '129') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>How sensors act as inputs and motors as outputs</li><li>Simple control decisions, loops and debugging habits</li><li>Explaining a robot behaviour in clear everyday language</li><li>Using simulators first, then optional starter hardware when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in paris</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20to%20enquire%20about%20online%20robotics%20classes%20for%20kids%20in%20Paris" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section class="seo-video-wrap" style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;">Explore the free <a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live support 12–1 PM GMT</p>
     </section>
