@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Nice | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Nice | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Nice—project-based engineering, sensors and creative hardware logic online in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/stem-robotics-workshops-nice-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,157 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Nice · France</span><h1>STEM Robotics Workshops for Kids in Nice</h1>
     <p>STEM robotics workshops for kids in Nice turn passive screen time into design challenges—structure, sensors and control logic through guided online projects.</p></div>
     <div><img src="../../../images/55.webp" alt="STEM robotics workshops for kids in Nice" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-134">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-134">Lesson</label>
+        <select id="lesson-select-134" class="lesson-select" aria-label="Select lesson">
+          <option value="134" selected>134: Agglomerative vs Divisive Clustering: What's the Difference?</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Agglomerative vs Divisive Clustering" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 134 – Agglomerative vs Divisive Clustering</h2>
+
+        <h3>1. Two Directions on the Same Tree</h3>
+        <p>Hierarchical clustering builds nested groups. <strong>Agglomerative</strong> works bottom-up; <strong>divisive</strong> works top-down. Both end in a hierarchy, but they travel opposite paths.</p>
+
+        <h3>2. Agglomerative (Bottom-Up)</h3>
+        <p>Each point starts as its own cluster. Closest pairs are merged repeatedly until one root remains. Linkage choices:</p>
+        <ul>
+          <li><strong>Single:</strong> nearest pair between clusters</li>
+          <li><strong>Complete:</strong> farthest pair</li>
+          <li><strong>Average:</strong> mean of all cross pairs</li>
+          <li><strong>Ward:</strong> minimize post-merge variance</li>
+        </ul>
+        <p>Distances are usually Euclidean or Manhattan.</p>
+
+        <h3>3. Divisive (Top-Down)</h3>
+        <p>All points start in one root cluster. Dissimilar subsets are split until leaves (or a depth stop) are reached. Captures global structure but is much more expensive to run.</p>
+
+        <h3>4. Practical Trade-Offs</h3>
+        <ul>
+          <li>Divisive: heavy compute; less common in day-to-day work</li>
+          <li>Agglomerative: simpler, widely supported, often cleaner boundaries</li>
+        </ul>
+
+        <h3>5. Scikit-Learn Sketch</h3>
+        <pre><code>from sklearn.cluster import AgglomerativeClustering, BisectingKMeans
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+X, _ = make_blobs(n_samples=200, centers=3, cluster_std=0.9, random_state=42)
+
+agg = AgglomerativeClustering(n_clusters=3, linkage="ward")
+agg_labels = agg.fit_predict(X)
+
+div = BisectingKMeans(n_clusters=3, random_state=42)
+div_labels = div.fit_predict(X)
+
+fig, axes = plt.subplots(1, 2, figsize=(9, 4))
+axes[0].scatter(X[:, 0], X[:, 1], c=agg_labels, cmap="viridis", s=30)
+axes[0].set_title("Agglomerative")
+axes[1].scatter(X[:, 0], X[:, 1], c=div_labels, cmap="viridis", s=30)
+axes[1].set_title("Divisive")
+plt.tight_layout(); plt.show()</code></pre>
+        <p>On synthetic blobs, agglomerative often separates boundaries cleanly; divisive may misassign a few boundary points.</p>
+
+        <h3>6. Comparison Matrix</h3>
+        <table>
+          <thead>
+            <tr><th>Aspect</th><th>Agglomerative</th><th>Divisive</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Direction</td><td>Bottom-up</td><td>Top-down</td></tr>
+            <tr><td>Start</td><td>One cluster per point</td><td>One root for all</td></tr>
+            <tr><td>Operation</td><td>Merge closest</td><td>Split by dissimilarity</td></tr>
+            <tr><td>Cost</td><td>Lower / practical</td><td>Very expensive</td></tr>
+            <tr><td>Scikit-Learn</td><td><code>AgglomerativeClustering</code></td><td><code>BisectingKMeans</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do agglomerative and divisive differ?</button>
+          <div class="accordion-body">
+            <p>Agglomerative starts with single-point clusters and merges upward. Divisive starts with one root and splits downward until leaves or a depth stop.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Which linkage options exist for agglomerative?</button>
+          <div class="accordion-body">
+            <p>Single (nearest pair), complete (farthest), average (mean of pairs), and Ward (minimize variance). Distances are typically Euclidean or Manhattan.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why prefer agglomerative in practice?</button>
+          <div class="accordion-body">
+            <p>It is cheaper to run, well supported (e.g. AgglomerativeClustering), and often yields cleaner boundaries than divisive methods on the same data.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/scratch-coding-classes-kids-toulouse.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/greece/ai-courses-for-kids-patras.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-134');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-134');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '134') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Project framing: goal, constraints, test</li><li>Sensors and simple motion responses</li><li>Iterating when a design fails</li><li>Presenting engineering choices clearly</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about STEM robotics workshops for kids in Nice</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20STEM%20robotics%20workshops%20Nice" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Project-Based Engineering in Nice: Transforming Screen Time into Creative Hardware Logic</h2>
@@ -45,7 +188,7 @@
     <h2>Explore related learning</h2>
     <div class="seo-cards">
       <a class="seo-card" href="online-robotics-classes-for-kids-paris.html"><img src="../../../images/51.webp" alt="Paris" loading="lazy"><span>Robotics · Paris</span></a>
-      <a class="seo-card" href="coding-and-robotics-classes-lille.html"><img src="../../../images/57.webp" alt="Lille" loading="lazy"><span>Coding &amp; Robotics · Lille</span></a>
+      <a class="seo-card" href="coding-and-robotics-classes-lille.html"><img src="../../../images/57.webp" alt="Lille" loading="lazy"><span>Coding & Robotics · Lille</span></a>
       <a class="seo-card" href="arduino-programming-classes-kids-nantes.html"><img src="../../../images/59.webp" alt="Nantes" loading="lazy"><span>Arduino · Nantes</span></a>
     </div>
     <div class="related-links"><a href="../../../programs/online-ai-and-online-robotics-courses.html">Online Courses</a> · <a href="../../../index.html">Home</a></div>
