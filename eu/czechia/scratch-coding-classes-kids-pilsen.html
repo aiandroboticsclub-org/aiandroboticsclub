@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Pilsen | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Pilsen | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Pilsen—games, animation and visual block logic for beginners.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/czechia/scratch-coding-classes-kids-pilsen.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,148 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Pilsen · Czechia</span><h1>Scratch Coding Classes for Kids in Pilsen</h1>
     <p>Scratch coding classes for kids in Pilsen use drag-and-drop blocks so beginners design games and animations without syntax typing errors.</p></div>
     <div><img src="../../../images/94.webp" alt="Scratch Pilsen" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-119">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-119">Lesson</label>
+        <select id="lesson-select-119" class="lesson-select" aria-label="Select lesson">
+          <option value="119" selected>119: Build an SVM Machine Learning Model with Scikit-Learn</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build an SVM Machine Learning Model with Scikit-Learn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 119 – Build an SVM Model with Scikit-Learn</h2>
+
+        <h3>1. End-to-End Pipeline</h3>
+        <ol>
+          <li>Load data (Breast Cancer: 569 samples, 30 features, binary labels)</li>
+          <li>Split 75% train / 25% test</li>
+          <li>Fit Linear, Poly, and RBF SVC models</li>
+          <li>Tune C (e.g. 0.1, 1, 10, 50)</li>
+          <li>Report accuracy, confusion matrix, precision, recall, F1</li>
+          <li>Scale features before distance-based kernels</li>
+        </ol>
+
+        <h3>2. Load and Split</h3>
+        <pre><code>from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+
+cancer = load_breast_cancer()
+X, y = cancer.data, cancer.target
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+# ~426 train, ~143 test</code></pre>
+
+        <h3>3. Kernel Comparison (Unscaled)</h3>
+        <pre><code>from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+for name, model in {
+    'Linear': SVC(kernel='linear', random_state=42),
+    'RBF': SVC(kernel='rbf', random_state=42),
+    'Poly': SVC(kernel='poly', random_state=42)
+}.items():
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+    print(name, accuracy_score(y_test, pred), confusion_matrix(y_test, pred))</code></pre>
+        <p>Typical results: Linear ~95.1% (few errors), Poly ~91.6%, RBF ~63% without scaling — RBF suffers when feature scales differ. Linear often wins on this dataset (moderate complexity).</p>
+
+        <h3>4. Tuning C on RBF</h3>
+        <p>Trying C ∈ {0.1, 1, 10, 50}: low C stays around ~63%; C=10 and C=50 reach about ~63.6%. Still weak until features are scaled.</p>
+
+        <h3>5. Production Tips</h3>
+        <ul>
+          <li>Always scale (e.g. StandardScaler) before RBF/Poly.</li>
+          <li>Use GridSearchCV over kernel and C with cross-validation.</li>
+          <li>Report accuracy plus confusion matrix, precision, recall, and F1.</li>
+        </ul>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the main steps in an end-to-end SVM pipeline?</button>
+          <div class="accordion-body">
+            <p>Load and scale data, split train/test, fit kernels, predict on test, evaluate with accuracy and class metrics, then tune C (and kernel) with cross-validation or grid search.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How did Linear, Poly, and RBF score on Breast Cancer (unscaled)?</button>
+          <div class="accordion-body">
+            <p>About 95.1% (linear), 91.6% (poly), and 62.9% (RBF). Linear’s strength suggests intermediate complexity that a linear boundary can already separate well.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What does C do, and what happened when tuning RBF?</button>
+          <div class="accordion-body">
+            <p>C balances margin width vs training errors. On unscaled RBF, C=0.1/1 stayed near 62.9%; C=10/50 rose slightly to ~63.6%. Scaling is still required for RBF to shine.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/czechia/python-coding-classes-for-children-brno.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/czechia/stem-robotics-workshops-liberec-kids.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-119');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-119');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '119') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Game mechanics without syntax errors</li><li>Animated stories and quizzes</li><li>Events, loops and conditions</li><li>Live project showcases</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
