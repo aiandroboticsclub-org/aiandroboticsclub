@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Prague | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Prague | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Prague—sensors, motors and logic foundations in English for local and expat families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/czechia/online-robotics-classes-for-kids-prague.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,142 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Prague · Czechia</span><h1>Online Robotics Classes for Kids in Prague</h1>
     <p>Online robotics classes for kids in Prague help local and expat families explore sensors, motors and control logic from home—without inventing a campus on every street.</p></div>
     <div><img src="../../../images/91.webp" alt="Online robotics Prague" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-117">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-117">Lesson</label>
+        <select id="lesson-select-117" class="lesson-select" aria-label="Select lesson">
+          <option value="117" selected>117: The Kernel Trick Explained: How SVM Handles Complex Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="The Kernel Trick Explained: How SVM Handles Complex Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 117 – The Kernel Trick Explained</h2>
+
+        <h3>1. When Linear Separation Fails</h3>
+        <p>Many real datasets are not linearly separable (e.g. one class forming a ring around another). A straight line or flat hyperplane cannot split them cleanly. The <strong>kernel trick</strong> maps data into a higher-dimensional space where a linear boundary works again—without building that space explicitly.</p>
+
+        <h3>2. Inner Products Instead of Explicit Mapping</h3>
+        <p>A kernel function \(K(x_i, x_j) = \langle \Phi(x_i), \Phi(x_j) \rangle\) evaluates similarity in the feature space via inner products. That avoids computing full high-dimensional coordinates and keeps computation practical.</p>
+
+        <h3>3. Common Kernels</h3>
+        <table>
+          <thead>
+            <tr><th>Kernel</th><th>Formula</th><th>Use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Linear</td><td>\(x_i \cdot x_j\)</td><td>Already linearly separable data</td></tr>
+            <tr><td>Polynomial</td><td>\((x_i \cdot x_j + e)^d\)</td><td>Moderate curved boundaries</td></tr>
+            <tr><td>RBF (Gaussian)</td><td>\(\exp(-\gamma \|x_i - x_j\|^2)\)</td><td>Complex non-linear data (default in practice)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>4. Circles Demo (Scikit-Learn)</h3>
+        <pre><code>from sklearn.datasets import make_circles
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+X, y = make_circles(n_samples=200, factor=0.3, noise=0.05, random_state=42)
+
+for name, model in {
+    'Linear': SVC(kernel='linear'),
+    'Polynomial': SVC(kernel='poly', degree=3),
+    'RBF': SVC(kernel='rbf', gamma=1.5)
+}.items():
+    model.fit(X, y)
+    print(name, accuracy_score(y, model.predict(X)) * 100)</code></pre>
+        <p>Typical result on concentric circles: Linear ~69%, Poly ~71%, <strong>RBF ~100%</strong> — RBF forms a circular boundary that separates inner and outer classes.</p>
+
+        <h3>5. Takeaway</h3>
+        <p>Prefer RBF when boundaries are clearly non-linear; use linear when data is already separable with a line/plane. Polynomial sits in between for moderate curves.</p>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is the kernel trick, and how does it avoid heavy coordinate transforms?</button>
+          <div class="accordion-body">
+            <p>It maps data into a higher-dimensional space where classes become linearly separable, but does so by computing inner products \(K(x_i, x_j)\) instead of explicitly calculating all new coordinates.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are the main SVM kernels and their formulas?</button>
+          <div class="accordion-body">
+            <p>Linear: \(x_i \cdot x_j\). Polynomial: \((x_i \cdot x_j + e)^d\). RBF: \(\exp(-\gamma \|x_i - x_j\|^2)\). Linear for simple splits; poly for moderate curves; RBF for complex non-linear data.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How did Linear, Poly, and RBF score on make_circles?</button>
+          <div class="accordion-body">
+            <p>About 69% (linear), 71% (poly degree 3), and 100% (RBF with gamma=1.5). Only RBF fully separated the concentric classes with a circular boundary.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/czechia/ai-courses-for-kids-ostrava.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/czechia/python-coding-classes-for-children-brno.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-117');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-117');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '117') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control loops</li><li>Input-output signal ideas</li><li>Systematic debugging</li><li>Simulators first, optional hardware when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Prague</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy — a structured option families can explore alongside live mentoring.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
