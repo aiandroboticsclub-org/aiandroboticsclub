@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Programming for Students in Bordeaux | AI &amp; Robotics Club</title>
+  <title>Python Programming for Students in Bordeaux | AI & Robotics Club</title>
   <meta name="description" content="Python programming for students in Bordeaux—algorithmic thinking, debugging and real logic challenges in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/python-programming-for-students-bordeaux.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,148 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bordeaux · France</span><h1>Python Programming for Students in Bordeaux</h1>
     <p>Python programming for students in Bordeaux focuses on algorithmic thinking—breaking problems into steps, testing ideas and debugging with a calm, structured approach.</p></div>
     <div><img src="../../../images/56.webp" alt="Python programming for students in Bordeaux" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-132">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-132">Lesson</label>
+        <select id="lesson-select-132" class="lesson-select" aria-label="Select lesson">
+          <option value="132" selected>132: K-Means Clustering with Scikit-Learn - Part 2: Test and Improve the Model</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="K-Means Clustering with Scikit-Learn - Part 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 132 – K-Means Part 2: Test and Improve</h2>
+
+        <h3>1. Pipeline Overview</h3>
+        <p>Without labels, we cannot use accuracy or precision. Quality is judged by <strong>inertia</strong> (within-cluster sum of squares) and metrics like the silhouette score. Pipeline: load data → scale features → choose K (elbow) → fit → visualize → evaluate.</p>
+
+        <h3>2. Wine Data and Scaling</h3>
+        <p>Wine has 178 samples × 13 chemical features. Scales differ a lot (Alcohol ~10–20, Proline in the 1000s). Unscaled, large-magnitude features dominate Euclidean distances. <code>StandardScaler</code> puts features on a comparable range before clustering.</p>
+        <pre><code>from sklearn.datasets import load_wine
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
+
+wine = load_wine()
+df = pd.DataFrame(wine.data, columns=wine.feature_names)
+X_selected = df[["alcohol", "malic_acid"]].values
+X_scaled = StandardScaler().fit_transform(X_selected)</code></pre>
+
+        <h3>3. Elbow for K</h3>
+        <p>Loop K from 1–10 with <code>n_init=10</code>, plot inertia. Sharp drop through K=3, then flattening — so K=3 is the elbow; higher K mainly over-splits groups.</p>
+
+        <h3>4. Fit, Predict, Plot</h3>
+        <pre><code>from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+kmeans = KMeans(n_clusters=3, n_init=10, random_state=42)
+labels = kmeans.fit_predict(X_scaled)
+centroids = kmeans.cluster_centers_
+
+plt.scatter(X_scaled[labels == 0, 0], X_scaled[labels == 0, 1], c="black", label="Cluster 0")
+plt.scatter(X_scaled[labels == 1, 0], X_scaled[labels == 1, 1], c="green", label="Cluster 1")
+plt.scatter(X_scaled[labels == 2, 0], X_scaled[labels == 2, 1], c="yellow", label="Cluster 2")
+plt.scatter(centroids[:, 0], centroids[:, 1], s=200, c="red", marker="X", label="Centroids")
+plt.xlabel("Scaled Alcohol"); plt.ylabel("Scaled Malic Acid"); plt.legend(); plt.show()</code></pre>
+
+        <h3>5. Silhouette and Balance</h3>
+        <p>Average silhouette ≈ <strong>0.48</strong> (between overlap and ideal separation): boundaries are close but groups remain clear. Counts were roughly balanced (e.g. 66 / 63 / 49 across clusters).</p>
+
+        <h3>6. Pipeline Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Step</th><th>Tool</th><th>Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ingest</td><td><code>load_wine()</code></td><td>(178, 13) features</td></tr>
+            <tr><td>Scale</td><td><code>StandardScaler</code></td><td>Comparable feature ranges</td></tr>
+            <tr><td>Choose K</td><td>Elbow / inertia</td><td>K = 3</td></tr>
+            <tr><td>Fit</td><td><code>fit_predict</code></td><td>Labels + centroids</td></tr>
+            <tr><td>Validate</td><td><code>silhouette_score</code></td><td>~0.48; balanced counts</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why scale Wine features before K-Means?</button>
+          <div class="accordion-body">
+            <p>Distance-based clustering is skewed by large-magnitude columns (e.g. Proline vs Malic Acid). StandardScaler equalizes scales so no feature dominates.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How did the elbow pick K = 3?</button>
+          <div class="accordion-body">
+            <p>Inertia fell sharply from K=1→3, then flattened. K=3 captures structure without the over-splitting that higher K causes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What did silhouette 0.48 and the counts show?</button>
+          <div class="accordion-body">
+            <p>0.48 means reasonable separation without heavy overlap. Sample counts (~66 / 63 / 49) showed a balanced three-group split on 178 wines.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/python-coding-classes-for-children-lyon.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/scratch-coding-classes-kids-toulouse.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-132');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-132');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '132') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Step-by-step problem decomposition</li><li>Core syntax: variables, conditions, loops</li><li>Detective-style debugging habits</li><li>Pathway toward functions and structure when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about Python programming for students in Bordeaux</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20Python%20programming%20Bordeaux" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Algorithmic Thinking Made Simple: Solving Real Logic Challenges for Students in Bordeaux</h2>
