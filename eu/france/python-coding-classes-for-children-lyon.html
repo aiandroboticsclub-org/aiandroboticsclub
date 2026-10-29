@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Lyon | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Lyon | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Lyon—variables, syntax and logic in English for young learners and bilingual families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/python-coding-classes-for-children-lyon.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,168 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Lyon · France</span><h1>Python Coding Classes for Children in Lyon</h1>
     <p>Python coding classes for children in Lyon introduce readable, text-based programming—variables, conditions and loops—through guided projects suitable for motivated beginners.</p></div>
     <div><img src="../../../images/52.webp" alt="Python coding classes for children in Lyon" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-131">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-131">Lesson</label>
+        <select id="lesson-select-131" class="lesson-select" aria-label="Select lesson">
+          <option value="131" selected>131: K-Means Clustering with Scikit-Learn - Part 1: Build Your First Model</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="K-Means Clustering with Scikit-Learn - Part 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 131 – K-Means with Scikit-Learn (Part 1)</h2>
+
+        <h3>1. Unsupervised Setup on Iris</h3>
+        <p>Iris has 150 samples and 4 features (sepal/petal length and width), plus class labels for supervised tasks. For K-Means we <strong>drop the labels</strong> and pass only the feature matrix <code>X = iris.data</code> so the algorithm discovers groups without targets.</p>
+
+        <h3>2. Centroid Initialization</h3>
+        <p>Pure random starts can place two centroids in the same natural cluster, so one real group is split and another is left uncovered. Two safeguards help:</p>
+        <ul>
+          <li><code>init='k-means++'</code> — samples starts far apart using distance-based probabilities.</li>
+          <li><code>n_init=10</code> — runs 10 seeds and keeps the lowest-inertia solution.</li>
+        </ul>
+
+        <h3>3. Useful Hyperparameters</h3>
+        <table>
+          <thead>
+            <tr><th>Parameter</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>n_clusters</code></td><td>How many groups to form (e.g. 3)</td></tr>
+            <tr><td><code>init</code></td><td><code>'k-means++'</code> or <code>'random'</code></td></tr>
+            <tr><td><code>n_init</code></td><td>Number of restarts; pick best inertia</td></tr>
+            <tr><td><code>max_iter</code></td><td>Cap on iterations per run (default 300)</td></tr>
+            <tr><td><code>tol</code></td><td>Stop when centroid moves fall below this</td></tr>
+            <tr><td><code>algorithm</code></td><td><code>'lloyd'</code> or <code>'elkan'</code></td></tr>
+          </tbody>
+        </table>
+
+        <h3>4. Code Sketch</h3>
+        <pre><code>from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+
+iris = load_iris()
+X = iris.data  # (150, 4) — labels discarded
+print("Feature matrix:", X.shape)
+
+kmeans = KMeans(
+    n_clusters=3,
+    init="k-means++",
+    n_init=10,
+    max_iter=300,
+    random_state=42,
+)
+kmeans.fit(X)
+
+print("Centroids shape:", kmeans.cluster_centers_.shape)  # (3, 4)
+print("Centroids:\n", kmeans.cluster_centers_)
+print("First 10 labels:", kmeans.labels_[:10])</code></pre>
+
+        <h3>5. What the Fit Returns</h3>
+        <ul>
+          <li><code>cluster_centers_</code> — 3×4 matrix of centroid coordinates in feature space.</li>
+          <li><code>labels_</code> — length-150 array of cluster ids (0, 1, or 2) per sample.</li>
+        </ul>
+        <p>Example: early Iris rows often land in the same cluster (e.g. Cluster 0), matching the tight Setosa-like group in feature space.</p>
+
+        <h3>6. Parameter / Attribute Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Type</th><th>Use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>n_clusters</code></td><td>Hyperparameter</td><td><code>KMeans(n_clusters=3)</code></td></tr>
+            <tr><td><code>init</code></td><td>Hyperparameter</td><td><code>init='k-means++'</code></td></tr>
+            <tr><td><code>n_init</code></td><td>Hyperparameter</td><td><code>n_init=10</code></td></tr>
+            <tr><td><code>max_iter</code></td><td>Hyperparameter</td><td><code>max_iter=300</code></td></tr>
+            <tr><td><code>cluster_centers_</code></td><td>Fitted</td><td>Learned centroid matrix</td></tr>
+            <tr><td><code>labels_</code></td><td>Fitted</td><td>Per-sample cluster index</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why drop Iris labels, and what is X’s shape?</button>
+          <div class="accordion-body">
+            <p>K-Means is unsupervised, so it must not see targets. Use only <code>X = iris.data</code> with shape (150, 4).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How do k-means++ and n_init fix bad starts?</button>
+          <div class="accordion-body">
+            <p>Random starts can put two centroids in one true cluster. <code>k-means++</code> spreads starts by distance; <code>n_init=10</code> tries several seeds and keeps the lowest inertia.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are cluster_centers_ and labels_ after fit?</button>
+          <div class="accordion-body">
+            <p><code>cluster_centers_</code> is a 3×4 matrix of centroid coordinates; <code>labels_</code> is 150 integers (0–2) assigning each sample to a cluster.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/online-stem-education-for-kids-strasbourg.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/python-programming-for-students-bordeaux.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-131');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-131');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '131') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables, simple data types and readable syntax</li><li>Conditions, loops and basic functions</li><li>Debugging with patience instead of random guessing</li><li>Small interactive programs a child can explain aloud</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about Python coding classes for children in Lyon</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20I%20want%20Python%20coding%20classes%20for%20children%20in%20Lyon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
