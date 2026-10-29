@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Liberec | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Liberec | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Liberec—gears, motors, sensors and project-based engineering online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/czechia/stem-robotics-workshops-liberec-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,153 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Liberec · Czechia</span><h1>STEM Robotics Workshops for Kids in Liberec</h1>
     <p>STEM robotics workshops for kids in Liberec introduce practical engineering ideas—gears, torque, conductivity and sensor reflections—through guided online projects.</p></div>
     <div><img src="../../../images/95.webp" alt="STEM Robotics Workshops for Kids in Liberec" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-120">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-120">Lesson</label>
+        <select id="lesson-select-120" class="lesson-select" aria-label="Select lesson">
+          <option value="120" selected>120: K-Nearest Neighbors (KNN) Explained: A Beginner's Guide</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="K-Nearest Neighbors (KNN) Explained: A Beginner's Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 120 – K-Nearest Neighbors (KNN) Explained</h2>
+
+        <h3>1. What Is KNN?</h3>
+        <p>K-Nearest Neighbors is a simple supervised algorithm for classification and regression. Its idea is "birds of a feather flock together": a new point is labeled by looking at its closest neighbors in feature space.</p>
+        <ul>
+          <li><strong>Lazy learner:</strong> no fitted equation or weights—training data stays in memory and is queried at prediction time.</li>
+          <li><strong>Explainable:</strong> every decision can be traced to the actual neighbors used.</li>
+          <li><strong>Dual use:</strong> majority vote for classes; mean of neighbor targets for continuous values.</li>
+        </ul>
+
+        <h3>2. Advantages and Uses</h3>
+        <ul>
+          <li>Easy to understand; non-parametric (no distribution assumptions).</li>
+          <li>Works with mixed numerical and categorical features when distances are defined carefully.</li>
+          <li>Examples: handwritten digit recognition; house price estimates from similar nearby properties.</li>
+        </ul>
+
+        <h3>3. Four-Step Workflow</h3>
+        <ol>
+          <li><strong>Choose k</strong> — usually an odd number for classification to avoid ties (e.g. 3, 5, 7).</li>
+          <li><strong>Compute distances</strong> from the query to every training point (Euclidean or Manhattan).</li>
+          <li><strong>Sort</strong> distances and keep the top-k nearest neighbors.</li>
+          <li><strong>Predict</strong> — majority vote (classification) or mean of targets (regression).</li>
+        </ol>
+
+        <h3>4. Distance Metrics</h3>
+        <ul>
+          <li><strong>Euclidean:</strong> straight-line distance — √(Σ (xᵢ − yᵢ)²).</li>
+          <li><strong>Manhattan:</strong> grid path — sum of absolute differences.</li>
+        </ul>
+
+        <h3>5. Concrete Examples</h3>
+        <p><strong>Classification (k=5):</strong> Neighbors vote Red, Red, Blue, Red, Blue → Red wins 3–2.</p>
+        <p><strong>Regression (k=3 house prices):</strong> $250k, $270k, $260k → predicted price $260k.</p>
+
+        <h3>6. Summary</h3>
+        <table>
+          <thead>
+            <tr><th>Feature</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Paradigm</td><td>Supervised (classification & regression)</td></tr>
+            <tr><td>Training</td><td>Lazy / non-parametric (stores data)</td></tr>
+            <tr><td>Key hyperparameter</td><td>k (often odd for classification)</td></tr>
+            <tr><td>Distances</td><td>Euclidean, Manhattan</td></tr>
+            <tr><td>Aggregation</td><td>Vote (class) / mean (regression)</td></tr>
+            <tr><td>XAI</td><td>Transparent neighbor-based logic</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is KNN "lazy" and Explainable AI?</button>
+          <div class="accordion-body">
+            <p>It does not learn parameters; it keeps the training set and compares a new point to stored examples at inference. Predictions are explained by the actual neighbors and their labels or values—"birds of a feather flock together."</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why choose an odd k, and how are distances computed?</button>
+          <div class="accordion-body">
+            <p>Odd k (3, 5, 7…) avoids 2–2 style ties in majority vote. Distances are usually Euclidean (straight-line) or Manhattan (sum of absolute coordinate differences).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does Step 4 differ for classification vs regression?</button>
+          <div class="accordion-body">
+            <p>Classification: majority vote among the k neighbors. Regression: mean of the k neighbors' continuous target values (e.g. average of three nearby house prices).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/czechia/scratch-coding-classes-kids-pilsen.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/estonia/ai-courses-for-kids-narva.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-120');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-120');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '120') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Gear ratios and motor torque ideas</li><li>Electrical conductivity basics</li><li>Sensor wave reflections</li><li>CET-aligned session options on enquiry</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about STEM robotics workshops for kids in Liberec</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/BJSVKCUvkos" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy — a structured option families can explore alongside live mentoring.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
