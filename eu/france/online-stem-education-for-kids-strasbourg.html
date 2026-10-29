@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM Education for Kids in Strasbourg | AI &amp; Robotics Club</title>
+  <title>Online STEM Education for Kids in Strasbourg | AI & Robotics Club</title>
   <meta name="description" content="Online STEM education for kids in Strasbourg—logic, problem-solving and creative technology for European bilingual families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/france/online-stem-education-for-kids-strasbourg.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,158 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Strasbourg · France</span><h1>Online STEM Education for Kids in Strasbourg</h1>
     <p>Online STEM education for kids in Strasbourg blends logic, experimentation and creative technology for bilingual and international families who want structured problem-solving practice.</p></div>
     <div><img src="../../../images/58.webp" alt="Online STEM education for kids in Strasbourg" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-130">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-130">Lesson</label>
+        <select id="lesson-select-130" class="lesson-select" aria-label="Select lesson">
+          <option value="130" selected>130: K-Means Inertia and Within-Cluster Variation Explained</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="K-Means Inertia and Within-Cluster Variation Explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 130 – K-Means Inertia and Within-Cluster Variation</h2>
+
+        <h3>1. Objective Function</h3>
+        <p>K-Means groups unlabeled points into <strong>K</strong> clusters by minimizing intra-cluster variance: the total squared distance from each point to its cluster centroid. That sum is called <strong>inertia</strong> (also WCSS — within-cluster sum of squares).</p>
+        <p>Inertia = Σ Σ ||x<sub>i</sub> − μ<sub>k</sub>||². Squaring removes sign and penalizes large distances more strongly.</p>
+
+        <h3>2. Low vs High Inertia</h3>
+        <ul>
+          <li><strong>Low inertia:</strong> Points sit close to their centroids — tight, cohesive groups.</li>
+          <li><strong>High inertia:</strong> Points are scattered far from centroids — weak grouping quality.</li>
+        </ul>
+        <p>Training repeatedly shifts centroids to drive inertia down until it stabilizes (convergence) or a max-iteration limit is hit.</p>
+
+        <h3>3. Outliers and Local Minima</h3>
+        <p>Squared distances make inertia sensitive to outliers, which can pull centroids away from the true cluster core. Random centroid starts can also trap the run in a local minimum. Scikit-Learn’s <code>n_init=10</code> runs K-Means several times with different seeds and keeps the run with the lowest inertia.</p>
+
+        <h3>4. Python Sketch</h3>
+        <pre><code>from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+X, _ = make_blobs(n_samples=200, centers=3, cluster_std=1.0, random_state=42)
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+labels = kmeans.fit_predict(X)
+centroids = kmeans.cluster_centers_
+inertia_val = kmeans.inertia_
+print(f"Inertia (K=3): {inertia_val:.2f}")
+
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap="viridis", alpha=0.8, edgecolors="k")
+plt.scatter(centroids[:, 0], centroids[:, 1], s=200, c="black", marker="x", linewidths=3)
+plt.title(f"K-Means (K=3) | Inertia: {inertia_val:.2f}")
+plt.show()
+
+for k in [2, 3, 4, 5]:
+    m = KMeans(n_clusters=k, random_state=42, n_init=10).fit(X)
+    print(f"K={k} | Inertia: {m.inertia_:.2f}")</code></pre>
+
+        <h3>5. Demo Numbers</h3>
+        <p>On 200-sample 3-center blobs:</p>
+        <ul>
+          <li>K=2 → ~3720 (under-clustered)</li>
+          <li>K=3 → ~364 (sharp drop; natural fit)</li>
+          <li>K=4 → ~314 (small gain)</li>
+          <li>K=5 → ~274 (further small gain; overfit risk)</li>
+        </ul>
+        <p>Past the natural K, more clusters always lower inertia a bit but mainly split real groups — diminishing returns and overfitting.</p>
+
+        <h3>6. Concept Table</h3>
+        <table>
+          <thead>
+            <tr><th>Term</th><th>Meaning</th><th>In Scikit-Learn</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Inertia (WCSS)</td><td>Sum of squared point–centroid distances</td><td><code>kmeans.inertia_</code></td></tr>
+            <tr><td>Centroids</td><td>Mean of each cluster</td><td><code>kmeans.cluster_centers_</code></td></tr>
+            <tr><td>Convergence</td><td>Inertia stops falling</td><td>Handled inside <code>.fit()</code></td></tr>
+            <tr><td>n_init</td><td>Multiple random starts; keep best inertia</td><td><code>KMeans(n_init=10)</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is inertia, and what do high vs low values mean?</button>
+          <div class="accordion-body">
+            <p>Inertia (WCSS) is the sum of squared distances from points to their centroids. Low inertia means compact clusters; high inertia means loose, poorly grouped points. K-Means aims to minimize it.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Why is inertia sensitive to outliers, and how does n_init help?</button>
+          <div class="accordion-body">
+            <p>Squaring distances amplifies far points, so outliers can drag centroids. <code>n_init</code> runs K-Means with several random starts and keeps the lowest-inertia solution, reducing the chance of a bad local minimum.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What inertia pattern appeared for K = 2–5, and why is large K risky?</button>
+          <div class="accordion-body">
+            <p>Inertia fell from ~3720 (K=2) to ~364 (K=3), then only modestly to ~314 and ~274. Beyond the natural cluster count, extra K mostly over-splits groups (overfitting) even though inertia keeps edging down.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/france/online-robotics-classes-for-kids-paris.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/france/python-coding-classes-for-children-lyon.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-130');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-130');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '130') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Logical problem-solving routines</li><li>Linking maths-friendly thinking to coding ideas</li><li>Small experiments with clear hypotheses</li><li>Communication of results to family or peers</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online STEM education for kids in Strasbourg</p>
     <a href="https://wa.me/923224217059?text=Hi%2C%20STEM%20education%20Strasbourg" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>European Capital Innovators: Fostering Logic and Problem-Solving in Strasbourg</h2>
