@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Ostrava | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Ostrava | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Ostrava—classification, training models, ethics and critical evaluation of AI answers.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/czechia/ai-courses-for-kids-ostrava.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,150 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Ostrava · Czechia</span><h1>AI Courses for Kids in Ostrava</h1>
     <p>AI courses for kids in Ostrava introduce how training data shapes models, how bias can appear, and how to evaluate AI answers critically under parent supervision.</p></div>
     <div><img src="../../../images/93.webp" alt="AI Ostrava" loading="lazy" width="400" height="300"></div></div>
+
+    <div class="ai-lesson-block" id="ai-lesson-116">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-116">Lesson</label>
+        <select id="lesson-select-116" class="lesson-select" aria-label="Select lesson">
+          <option value="116" selected>116: SVM Margin Explained: How Support Vector Machines Separate Data</option>
+        </select>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="SVM Margin Explained: How Support Vector Machines Separate Data" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="lesson-transcript">
+        <h2>Chapter 116 – SVM Margin Explained</h2>
+
+        <h3>1. Goal: Maximize the Margin</h3>
+        <p>SVM places a hyperplane so that the gap (margin) to the nearest points of each class is as large as possible. That gap is a safety zone that improves generalization on new data.</p>
+
+        <h3>2. Boundary, Support Vectors, and Geometry</h3>
+        <ul>
+          <li><strong>Hyperplane (2D):</strong> line \(w \cdot x + b = 0\). One side → Class 0; other side → Class 1.</li>
+          <li><strong>Support vectors:</strong> the closest points to that line. Only they fix the final boundary; other points can move without changing it.</li>
+          <li><strong>Margin:</strong> \(\frac{1}{\|w\|}\) — distance from the decision line to the parallel margin lines at \(w \cdot x + b = \pm 1\).</li>
+        </ul>
+
+        <h3>3. Hard vs Soft Margin (C)</h3>
+        <ul>
+          <li><strong>High C</strong> (e.g. 10): hard margin — penalizes violations heavily; tight fit around support vectors.</li>
+          <li><strong>Low C</strong> (e.g. 0.1): soft margin — allows a few violations for a wider, more robust gap.</li>
+        </ul>
+
+        <h3>4. Python Sketch (Linear SVC + Plot)</h3>
+        <pre><code>from sklearn.svm import SVC
+from sklearn.datasets import make_blobs
+import numpy as np
+import matplotlib.pyplot as plt
+
+X, y = make_blobs(n_samples=100, centers=2, cluster_std=1.1, random_state=42)
+svm = SVC(kernel='linear', C=10)
+svm.fit(X, y)
+
+w, b = svm.coef_[0], svm.intercept_[0]
+margin = 1.0 / np.linalg.norm(w)
+print("Margin:", margin, "| Support vectors:", len(svm.support_vectors_))
+
+# Plot decision line and parallel margins, highlight support vectors</code></pre>
+        <p>Typical run: a few support vectors (often one per class on clean blobs), margin width from \(1/\|w\|\), decision line and two parallel dotted margins.</p>
+
+        <h3>5. Parameter Cheat Sheet</h3>
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>C</td><td>Hard vs soft margin trade-off</td></tr>
+            <tr><td>kernel='linear'</td><td>Linear separator</td></tr>
+            <tr><td>svm.coef_ / intercept_</td><td>\(w\) and \(b\)</td></tr>
+            <tr><td>1 / ||w||</td><td>Margin width</td></tr>
+            <tr><td>support_vectors_</td><td>Points that define the boundary</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What is SVM’s main goal, and how is the margin defined?</button>
+          <div class="accordion-body">
+            <p>Maximize the margin — the distance from the hyperplane to the nearest points (support vectors). Mathematically: Margin = 1 / ||w||. Wider margins usually generalize better.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">What are support vectors, and why don’t other points matter?</button>
+          <div class="accordion-body">
+            <p>They are the closest points to the boundary and fully determine it. Points farther away can be moved or removed without changing the decision surface.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">How does C control hard vs soft margins?</button>
+          <div class="accordion-body">
+            <p>High C → hard margin (few or no violations). Low C → soft margin (some violations allowed for a wider gap). Use SVC(kernel='linear', C=...).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/eu/cyprus/stem-robotics-workshops-famagusta-kids.html">Previous lesson</a>
+        <a class="nav-btn" href="/eu/czechia/online-robotics-classes-for-kids-prague.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-116');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          });
+          if (!open) {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+      var sel = document.getElementById('lesson-select-116');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '116') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+
     <h2>What children can learn</h2>
     <ul><li>Data classification ideas</li><li>Training models with examples</li><li>Recognising bias and privacy</li><li>Critical evaluation of AI answers</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
