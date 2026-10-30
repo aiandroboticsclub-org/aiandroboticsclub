@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding and Robotics Classes for Kids in Genoa | AI &amp; Robotics Club</title>
+  <title>Coding and Robotics Classes for Kids in Genoa | AI & Robotics Club</title>
   <meta name="description" content="Coding and robotics classes for kids in Genoa—LEDs, sensors, motors and practical electronics logic.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/italy/coding-and-robotics-classes-genoa.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,362 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Genoa · Italy</span><h1>Coding and Robotics Classes for Kids in Genoa</h1>
     <p>Coding and robotics classes for kids in Genoa introduce LEDs, sensors, switches and motors as the language of signals and actuators.</p></div>
     <div><img src="../../../images/77.webp" alt="Coding robotics Genoa" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-147">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-147">Lesson</label>
+    <select id="lesson-select-147" class="lesson-select" aria-label="Select lesson">
+      <option value="147" selected>147: Neural Network Training Explained Step by Step</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Neural Network Training Explained Step by Step" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 147 — Neural Network Training Explained Step by Step</h2>
+
+    <h3>1. Introduction & The Core Purpose of Training</h3>
+    <p>In artificial neural networks, training refers to the process of teaching a model to minimize its prediction error and maximize its accuracy. A well-trained neural network is one that achieves minimal error when processing data.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Biological Human Analogy                    │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Human Learning Mechanism:                                  │
+  │    • Humans learn by being repeatedly exposed to examples.  │
+  │    • Extracted patterns are stored in human memory.         │
+  │                                                             │
+  │  Neural Network Training Analogy:                           │
+  │    • Neural networks learn by repeatedly processing         │
+  │      input data samples across multiple iterations.         │
+  │    • Learns underlying patterns and updates weights.        │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>The Human Learning Analogy</strong></p>
+    <p>Neural network training mirrors the way humans learn. When humans are trained, they are shown examples repeatedly to improve their understanding and extract underlying patterns into memory. Similarly, a neural network must be exposed to input data repeatedly to learn data patterns and improve its predictive performance.</p>
+
+    <h3>2. The 5-Step Training Pipeline Flow</h3>
+    <p>The complete training execution pipeline follows a structured 5-step sequence:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               5-Step Neural Network Pipeline                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Parameter Initialization                           │
+  │     • Initialize weights (w) and biases (b) using           │
+  │       random number generation.                             │
+  │                                                             │
+  │  Step 2: Forward Pass                                       │
+  │     • Feed training data into input layer ──► Moves toward  │
+  │       output layer to calculate predictions.                │
+  │                                                             │
+  │  Step 3: Loss Calculation                                   │
+  │     • Compare predicted values (ŷ) against actual           │
+  │       annotated labels (y) to extract the loss.             │
+  │                                                             │
+  │  Step 4: Backpropagation & Weight Updates                   │
+  │     • Compute gradients and adjust weights using Gradient   │
+  │       Descent (w = w − η · ∂L/∂w).                          │
+  │                                                             │
+  │  Step 5: Epoch Iterations                                   │
+  │     • Repeat the loop over multiple full data passes.       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Weight & Bias Initialization:</strong> Connection weights (w) and biases (b) are initialized using random number generation.</li>
+      <li><strong>Forward Pass:</strong> Training data inputs enter through the input layer and flow forward toward the output layer, where the network calculates its predictions.</li>
+      <li><strong>Loss Computation:</strong> The network's predicted output values are compared against the ground-truth annotated labels provided in the training data to calculate the loss.</li>
+      <li><strong>Backpropagation & Parameter Adjustments:</strong> The loss gradient is calculated, and the network uses the Gradient Descent algorithm to adjust weights and biases across all layers to reduce prediction error.</li>
+      <li><strong>Iterative Epoch Loops:</strong> Steps 2 through 4 are repeated across multiple full dataset iterations called epochs until the loss function is minimized and accuracy is maximized.</li>
+    </ol>
+
+    <h3>3. Data Splitting Strategies for Generalization</h3>
+    <p>To evaluate how well a model generalizes to new, unseen data, the raw dataset is split into distinct subsets.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Data Splitting Ratios & Set Roles                │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ 3-Set Split (Industry Rule)   │ Functional Role & Purpose   │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Training Set  : 60%         │ • Used to learn weights &   │
+  │                               │   biases.                   │
+  │ • Validation Set: 20%         │ • Used to tune hyper-       │
+  │                               │   parameters.               │
+  │ • Testing Set   : 20%         │ • Used to evaluate final    │
+  │                               │   unseen performance.       │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ 2-Set Alternative Split       │                             │
+  │ • Training Set  : 70%         │ • Learns parameters.        │
+  │ • Testing Set   : 30%         │ • Tests final accuracy.     │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>A. Set Definitions & Roles:</strong></p>
+    <ul>
+      <li><strong>Training Set:</strong> Used directly by the network to learn optimal weights and biases during training.</li>
+      <li><strong>Validation Set:</strong> Used by data scientists to tweak and tune hyper-parameters.</li>
+      <li><strong>Testing Set:</strong> Kept completely separate during training; used to measure final model performance and testing error on unseen data.</li>
+    </ul>
+    <p><strong>B. Industry Rules of Thumb for Data Ratios:</strong></p>
+    <ul>
+      <li><strong>3-Set Partitioning:</strong> 60% Training, 20% Validation, and 20% Testing.</li>
+      <li><strong>2-Set Partitioning:</strong> 70% Training and 30% Testing.</li>
+    </ul>
+
+    <h3>4. Epochs, Batches, and Mini-Batch Training</h3>
+    <p>When datasets contain large volumes of sample data, training is structured using epochs and batches:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Epoch vs. Batch vs. Mini-Batch                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Epoch: A single complete pass over the ENTIRE training   │
+  │    dataset.                                                 │
+  │                                                             │
+  │  • Batch: Dividing a large dataset into smaller sample      │
+  │    subsets.                                                 │
+  │                                                             │
+  │  • Mini-Batch Training: Training the network batch-by-batch │
+  │    to improve training stability and computational speed.   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Concrete Numerical Example:</strong></p>
+    <p>Suppose a training dataset contains 1,000 total samples:</p>
+    <ul>
+      <li>Selected Batch Size: 100 samples.</li>
+      <li>Total Batches Generated: 1000 / 100 = <strong>10 batches</strong>.</li>
+      <li>Execution: Processing all 10 batches through a forward and backward pass once constitutes 1 complete Epoch.</li>
+    </ul>
+
+    <h3>5. Parameters vs. Hyper-parameters & Learning Rate (η) Dynamics</h3>
+    <p>Understanding the distinction between model parameters and hyper-parameters is essential in neural network engineering:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Parameters vs. Hyper-parameters                │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Category                      │ Definition & Examples       │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Model Parameters              │ Variables learned           │
+  │                               │ AUTOMATICALLY by the network│
+  │                               │ (e.g., Weights & Biases).   │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Hyper-parameters              │ Variables set MANUALLY by   │
+  │                               │ humans before training      │
+  │                               │ (e.g., Learning Rate η,     │
+  │                               │ Batch Size, Epochs).        │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>The Weight Update Equation:</strong></p>
+    <p>The learning rate (η) is a hyper-parameter that controls the step size of weight updates during gradient descent:</p>
+    <p>w = w − η · ∂L/∂w</p>
+    <p>Where η represents the learning rate, and ∂L/∂w represents the error gradient with respect to weight w.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Learning Rate (η) Impact Analysis                │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Learning Rate Setting         │ Behavioral Impact & Results │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Too High (η = 0.1)            │ Takes 10% steps; overshoots │
+  │                               │ target, causing unstable,   │
+  │                               │ divergent training.         │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Too Low (η = 0.0001)          │ Learning is extremely slow; │
+  │                               │ may fail to converge within │
+  │                               │ allocated epochs.           │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Optimal (η = 0.01)            │ Fast learning with smooth,  │
+  │                               │ stable convergence.         │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Numerical Comparison of Learning Rates:</strong></p>
+    <ul>
+      <li><strong>High Learning Rate (η = 0.1):</strong> Makes 10% updates per step. This step size is too large, causing the model to overshoot target values, destabilize training, and diverge.</li>
+      <li><strong>Excessively Low Learning Rate (η = 0.0001):</strong> Makes tiny updates. Learning becomes sluggish and takes excessive compute time, failing to converge within specified epochs.</li>
+      <li><strong>Optimal Learning Rate (η = 0.01):</strong> Provides fast training while ensuring smooth, stable convergence. Recommended starting values are 0.01 or 0.001.</li>
+    </ul>
+
+    <h3>6. Model Evaluation Metrics & Post-Deployment Generalization</h3>
+    <p>After training completes, the model must be evaluated to ensure it performs well on unseen client data post-deployment.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Evaluation Metrics by Task Type                │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Task Type                     │ Evaluation Metrics Used     │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Classification Tasks          │ • Accuracy                  │
+  │                               │ • Precision                 │
+  │                               │ • Recall                    │
+  │                               │ • F1-Score                  │
+  │                               │ • Confusion Matrix          │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Regression Tasks              │ • Mean Squared Error (MSE)  │
+  │                               │ • Mean Absolute Error (MAE) │
+  │                               │ • Root Mean Squared Error   │
+  │                               │   (RMSE)                    │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Confusion Matrix:</strong> Visualizes classification performance by showing how frequently the model confuses one category with another.</li>
+      <li><strong>Post-Deployment Performance:</strong> Thorough evaluation ensures that the model maintains high accuracy and low error when deployed to process unseen client data in real-world applications.</li>
+    </ul>
+
+    <h3>7. Summary Table: Key Pipeline Concepts</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Training Pipeline Stage</th>
+          <th>Operational Description</th>
+          <th>Key Rule / Formula</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Weight Initialization</td>
+          <td>Weights and biases initialized using random number generation.</td>
+          <td>Random initialization</td>
+        </tr>
+        <tr>
+          <td>Forward Pass</td>
+          <td>Computes predicted outputs from input to output layer.</td>
+          <td>Forward propagation</td>
+        </tr>
+        <tr>
+          <td>Loss & Backpropagation</td>
+          <td>Compares predictions to labels; updates parameters via Gradient Descent.</td>
+          <td>w = w − η · ∂L/∂w</td>
+        </tr>
+        <tr>
+          <td>Data Partitioning</td>
+          <td>Splits dataset to evaluate generalization (60/20/20 or 70/30).</td>
+          <td>Train (60%), Val (20%), Test (20%)</td>
+        </tr>
+        <tr>
+          <td>Mini-Batching</td>
+          <td>Divides 1,000 samples into 100-sample batches (10 batches = 1 Epoch).</td>
+          <td>Improves stability & speedup</td>
+        </tr>
+        <tr>
+          <td>Parameters vs. Hyper-parameters</td>
+          <td>Parameters are learned automatically; hyper-parameters are set manually.</td>
+          <td>Parameters: w, b; Hyper-params: η, batch size</td>
+        </tr>
+        <tr>
+          <td>Optimal Learning Rate</td>
+          <td>Controls update step size; start with small values like 0.01 or 0.001.</td>
+          <td>Fast & smooth convergence</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What are the main steps in the neural network training pipeline?</button>
+      <div class="accordion-body">
+        <ol>
+          <li><strong>Weight & Bias Initialization:</strong> The training process begins by initializing the network's weights and biases using random number generation.</li>
+          <li><strong>Forward Pass:</strong> Training data is fed into the network and moves sequentially from the input layer toward the output layer to compute predictions.</li>
+          <li><strong>Loss Calculation:</strong> The network's predicted output is compared against the actual annotated target labels to calculate the prediction error (loss).</li>
+          <li><strong>Backpropagation & Weight Adjustment:</strong> The calculated loss is used to compute gradients across all layers. Using the Gradient Descent algorithm, the network adjusts its weights and biases according to the update formula w = w − η · ∂L/∂w.</li>
+          <li><strong>Iterations & Epochs:</strong> This complete cycle is repeated across multiple iterations and passes (epochs) over the training data to minimize the loss function and maximize prediction accuracy.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How should dataset splitting be structured, and what are the key differences between Epochs and Batches?</button>
+      <div class="accordion-body">
+        <p><strong>Dataset Splitting & Ratios:</strong></p>
+        <ul>
+          <li><strong>Training Set (60% or 70%):</strong> Used directly by the network to learn weights and biases.</li>
+          <li><strong>Validation Set (20%):</strong> Used by developers to tune hyperparameters and tweak network settings.</li>
+          <li><strong>Testing Set (20% or 30%):</strong> Kept completely separate during training to evaluate final model accuracy, error, and generalization capability on unseen data.</li>
+          <li><strong>Rules of Thumb:</strong> Use a 60% / 20% / 20% split for Train/Validation/Test, or a 70% / 30% split if only using Training and Testing sets.</li>
+        </ul>
+        <p><strong>Epochs vs. Batches:</strong></p>
+        <ul>
+          <li><strong>Epoch:</strong> A complete single pass of the training pipeline over the entire dataset.</li>
+          <li><strong>Batch:</strong> A smaller subset of the training dataset used to perform incremental updates (mini-batch training), which improves training stability and speeds up processing.</li>
+          <li><strong>Example:</strong> A dataset of 1,000 samples divided into a batch size of 100 yields 10 batches per epoch.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is the difference between parameters and hyperparameters, and how does the learning rate impact training?</button>
+      <div class="accordion-body">
+        <p><strong>Parameters vs. Hyperparameters:</strong></p>
+        <ul>
+          <li><strong>Parameters:</strong> Variables that the neural network learns automatically during training (e.g., weights and biases).</li>
+          <li><strong>Hyperparameters:</strong> Settings explicitly set by a human before training begins (e.g., learning rate, batch size).</li>
+        </ul>
+        <p><strong>Impact of Learning Rate (η):</strong></p>
+        <ul>
+          <li><strong>Too High (≈ 0.1):</strong> Takes oversized update steps that overshoot target weights, causing training instability and divergence.</li>
+          <li><strong>Too Low (≈ 0.0001):</strong> Results in extremely slow learning that takes excessive time and may fail to converge within the allotted epochs.</li>
+          <li><strong>Optimal Rate (≈ 0.01):</strong> Provides fast and smooth convergence toward optimal accuracy.</li>
+        </ul>
+        <p><strong>Evaluation Metrics:</strong></p>
+        <ul>
+          <li><strong>Classification:</strong> Evaluated using Accuracy, Precision, Recall, F1 Score, and Confusion Matrices.</li>
+          <li><strong>Regression:</strong> Evaluated using Mean Squared Error (MSE), Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/arduino-programming-classes-kids-verona.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/italy/computational-thinking-padua.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-147');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-147');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '147') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>LEDs, buzzers and switches</li><li>Light sensors and motors</li><li>Simulators before hardware</li><li>Patience in troubleshooting</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/eVy9NUzWv18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Sensors, Signals, and Actuators: Practical Electronics Instruction in Genoa</h2>
