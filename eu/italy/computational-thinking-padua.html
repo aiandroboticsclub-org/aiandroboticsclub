@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Classes in Padua | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Classes in Padua | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking classes in Padua—decomposition, debugging and foundations of computer science logic.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/italy/computational-thinking-padua.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,277 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Padua · Italy</span><h1>Computational Thinking Classes in Padua</h1>
     <p>Computational thinking classes in Padua train decomposition and debugging—breaking large problems into smaller, testable steps.</p></div>
     <div><img src="../../../images/80.webp" alt="Computational thinking Padua" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-148">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-148">Lesson</label>
+    <select id="lesson-select-148" class="lesson-select" aria-label="Select lesson">
+      <option value="148" selected>148: Neural Network Learning Rate and Training Parameters Explained</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Neural Network Learning Rate and Training Parameters Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 148 — Neural Network Learning Rate and Training Parameters Explained</h2>
+
+    <h3>1. Introduction & Core Training Challenges</h3>
+    <p>When training an artificial neural network, achieving optimal model performance requires balancing learning parameters and model complexity. If a network is improperly configured or trained, it typically suffers from one of two primary training failure modes: Underfitting (Under-training) or Overfitting (Over-training).</p>
+
+    <h3>2. Underfitting (Under-Training)</h3>
+    <p><strong>A. Definition & Identification</strong></p>
+    <p>Underfitting (Under-training) occurs when a neural network fails to accurately identify and capture the underlying patterns within the training dataset.</p>
+    <p><strong>B. Primary Causes of Underfitting</strong></p>
+    <ol>
+      <li><strong>Too Few Epochs:</strong> Stopping the training process prematurely before the model has had sufficient iterations to learn the dataset's patterns (for example, halting training at 500 epochs when 1,000 epochs were required).</li>
+      <li><strong>Overly Simple Network Architecture:</strong> Keeping the neural network architecture too simple by using too few hidden layers or too few neurons per layer.</li>
+      <li><strong>Excessively High Learning Rate:</strong> Setting the learning rate too high causes the model to make aggressive jumps during optimization, preventing it from converging onto the desired target accuracy.</li>
+      <li><strong>Insufficient Dataset Features:</strong> A domain-level issue where the dataset provided lacks the necessary features required to distinguish and identify underlying data patterns.</li>
+    </ol>
+
+    <h3>3. Overfitting (Over-Training)</h3>
+    <p><strong>A. Definition & Identification</strong></p>
+    <p>Overfitting (Over-training) occurs when a model learns the training data too excessively, memorizing noise and specific details rather than learning generalizable patterns.</p>
+    <ul>
+      <li><strong>Key Diagnostic Indicator:</strong> The model exhibits very low training error but suffers from very high testing error on new, unseen data.</li>
+    </ul>
+    <p><strong>B. Primary Causes of Overfitting</strong></p>
+    <ol>
+      <li><strong>Running Too Many Epochs:</strong> Training the network for excessive iterations (for example, running 1,000 epochs when optimal pattern learning was achieved at 500 epochs).</li>
+      <li><strong>Overly Complex Network Architecture:</strong> Creating an excessively complex network containing unnecessary hidden layers or an excessive number of neurons.</li>
+      <li><strong>Insufficient Training Data Volume or Variance:</strong> Training on a dataset that lacks sufficient quantity or structural variance.</li>
+      <li><strong>Lack of Regularization:</strong> Failing to apply regularization techniques during training, which are necessary to constrain equation complexity and prevent the model from growing overly complex.</li>
+    </ol>
+
+    <h3>4. Evaluating Model Performance: The Confusion Matrix</h3>
+    <p>To diagnose underfitting, overfitting, and overall model performance on classification tasks, data scientists utilize evaluation metrics built from a Confusion Matrix.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Binary Confusion Matrix Structure           │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │                               │ Actual Positive Class       │ Actual Negative Class
+  ├───────────────────────────────┼─────────────────────────────┼─────────────────────────────┤
+  │ Predicted Positive Class      │ True Positive (TP)          │ False Positive (FP)         │
+  │                               │ (Correct Prediction)        │ (Type I Error)              │
+  ├───────────────────────────────┼─────────────────────────────┼─────────────────────────────┤
+  │ Predicted Negative Class      │ False Negative (FN)         │ True Negative (TN)          │
+  │                               │ (Type II Error)             │ (Correct Prediction)        │
+  └───────────────────────────────┴─────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>A. The 4 Core Outcomes of a Binary Classifier:</strong></p>
+    <ul>
+      <li><strong>True Positive (TP):</strong> The model correctly predicts the positive class when it is actually present.</li>
+      <li><strong>True Negative (TN):</strong> The model correctly predicts the negative class when it is actually absent.</li>
+      <li><strong>False Positive (FP):</strong> The model incorrectly predicts the positive class when it is actually absent (Error Type 1).</li>
+      <li><strong>False Negative (FN):</strong> The model incorrectly predicts the negative class when it is actually present (Error Type 2).</li>
+    </ul>
+
+    <h3>5. Performance Metrics & Mathematical Formulas</h3>
+    <p>Using the four values from the Confusion Matrix, four primary performance metrics are derived:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Key Evaluation Metric Formulas                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Accuracy:                                               │
+  │     Formula: Accuracy = (TP + TN) / Total Dataset Samples   │
+  │                                                             │
+  │  2. Precision:                                              │
+  │     Formula: Precision = TP / (TP + FP)                     │
+  │                                                             │
+  │  3. Recall:                                                 │
+  │     Formula: Recall = TP / (TP + FN)                        │
+  │                                                             │
+  │  4. F1-Score (Unbiased Metric):                             │
+  │     Harmonic mean utilizing both Precision and Recall.      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Accuracy:</strong> Measures the overall proportion of correct predictions across the entire dataset: Accuracy = (TP + TN) / Total Number of Samples</li>
+      <li><strong>Precision:</strong> Measures the proportion of correctly predicted positive instances out of all instances predicted as positive: Precision = TP / (TP + FP)</li>
+      <li><strong>Recall:</strong> Measures the proportion of correctly predicted positive instances out of all actual positive instances present in the data: Recall = TP / (TP + FN)</li>
+      <li><strong>F1-Score:</strong> Represents an unbiased performance metric calculated as the harmonic mean of both Precision and Recall.</li>
+    </ol>
+
+    <h3>6. Numerical Benchmark Example</h3>
+    <p>Consider a binary classification dataset containing 100 actual positive examples and 100 actual negative examples (200 total samples):</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Numerical Confusion Matrix Example             │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Classification Predictions Output:                         │
+  │    • True Positives  (TP) = 90  (Correct Positive)          │
+  │    • True Negatives  (TN) = 85  (Correct Negative)          │
+  │    • False Positives (FP) = 15  (Error)                     │
+  │    • False Negatives (FN) = 10  (Error)                     │
+  │                                                             │
+  │  Calculated Metric Values:                                  │
+  │    • Accuracy  = (90 + 85) / 200 = 175 / 200 = 87.5%        │
+  │    • Precision = 90 / (90 + 15)   = 90 / 105  ≈ 85.7%       │
+  │    • Recall    = 90 / (90 + 10)   = 90 / 100  = 90.0%       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Correct Predictions:</strong> TP = 90 and TN = 85 (175 total correct predictions).</li>
+      <li><strong>Errors:</strong> FN = 10 and FP = 15 (25 total error predictions).</li>
+      <li><strong>Metric Calculations:</strong>
+        <ul>
+          <li>Accuracy: (90 + 85) / 200 = 175 / 200 = <strong>87.5%</strong></li>
+          <li>Precision: 90 / (90 + 15) = 90 / 105 ≈ <strong>85.7%</strong></li>
+          <li>Recall: 90 / (90 + 10) = 90 / 100 = <strong>90.0%</strong></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>7. Summary Comparison: Underfitting vs. Overfitting</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature Dimension</th>
+          <th>Underfitting (Under-Training)</th>
+          <th>Overfitting (Over-Training)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Core Problem</td>
+          <td>Model fails to identify underlying data patterns.</td>
+          <td>Model memorizes training noise and specifics.</td>
+        </tr>
+        <tr>
+          <td>Epoch Count Cause</td>
+          <td>Too few training epochs.</td>
+          <td>Too many training epochs.</td>
+        </tr>
+        <tr>
+          <td>Architecture Cause</td>
+          <td>Network is too simple (too few layers/neurons).</td>
+          <td>Network is overly complex (too many layers/neurons).</td>
+        </tr>
+        <tr>
+          <td>Learning Rate Role</td>
+          <td>Learning rate is set too high (jumps/fails to converge).</td>
+          <td>Lack of regularization during optimization.</td>
+        </tr>
+        <tr>
+          <td>Diagnostic Behavior</td>
+          <td>High error on both training and testing sets.</td>
+          <td>Very low training error, but very high testing error.</td>
+        </tr>
+        <tr>
+          <td>Generalization</td>
+          <td>Fails to capture general dataset trends.</td>
+          <td>Fails to generalize to new, unseen examples.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is under-training (underfitting) in neural networks, what are its primary indications, and what causes it?</button>
+      <div class="accordion-body">
+        <p><strong>Definition & Indication:</strong> Under-training occurs when a neural network model fails to extract sufficient information or identify underlying patterns from the dataset. It is indicated when both the training error and the testing error remain high.</p>
+        <p><strong>Primary Causes:</strong></p>
+        <ol>
+          <li><strong>Too Few Epochs:</strong> Stopping training prematurely (for example, stopping at 500 epochs when 1,000 epochs were required for learning).</li>
+          <li><strong>Model Too Simple:</strong> Keeping the network architecture overly simple by using too few layers or neurons.</li>
+          <li><strong>Excessively High Learning Rate:</strong> Setting the learning rate too high causes the model to jump rapidly between values and fail to converge on the desired accuracy.</li>
+          <li><strong>Insufficient Features:</strong> The dataset lacks necessary features or attributes required to identify meaningful patterns.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is over-training (overfitting), how can it be identified, and what factors contribute to it?</button>
+      <div class="accordion-body">
+        <p><strong>Definition & Indication:</strong> Over-training (overfitting) occurs when a model learns the training data excessively, effectively memorizing the data along with its noise rather than learning generalizable patterns. It is identified when the training error is very low but the testing error is very high, leading to poor performance on new, unseen data.</p>
+        <p><strong>Contributing Factors:</strong></p>
+        <ol>
+          <li><strong>Excessive Epochs:</strong> Running training for far too many epochs (for example, running 1,000 epochs when 500 were sufficient).</li>
+          <li><strong>Overly Complex Architecture:</strong> Building a network with an excessive number of layers or neurons.</li>
+          <li><strong>Limited or Low-Variance Training Data:</strong> Lacking an adequate quantity or variety of samples in the training dataset.</li>
+          <li><strong>Lack of Regularization:</strong> Failing to apply regularization techniques, which prevent the model equation from becoming overly complex.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How does a Confusion Matrix help evaluate model performance, and what key metrics are calculated from it?</button>
+      <div class="accordion-body">
+        <p><strong>Confusion Matrix Structure:</strong> A Confusion Matrix plots predicted positives and negatives against actual positives and negatives. For binary classification, it produces four core outcomes:</p>
+        <ol>
+          <li><strong>True Positive (TP):</strong> Correctly predicting a positive class.</li>
+          <li><strong>True Negative (TN):</strong> Correctly predicting a negative class.</li>
+          <li><strong>False Positive (FP):</strong> Incorrectly predicting a negative case as positive (also known as a false alarm).</li>
+          <li><strong>False Negative (FN):</strong> Incorrectly predicting a positive case as negative.</li>
+        </ol>
+        <p><strong>Derived Performance Metrics & Formulas:</strong></p>
+        <ul>
+          <li><strong>Accuracy:</strong> (TP + TN) / Total, measuring overall correct predictions.</li>
+          <li><strong>Precision:</strong> TP / (TP + FP), measuring precision among positive predictions.</li>
+          <li><strong>Recall:</strong> TP / (TP + FN), measuring the proportion of actual positive cases correctly identified.</li>
+          <li><strong>F1 Score:</strong> The harmonic mean of Precision and Recall, serving as an unbiased performance metric.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/coding-and-robotics-classes-genoa.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/italy/online-robotics-classes-for-kids-rome.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-148');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-148');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '148') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Problem decomposition</li><li>Pattern recognition</li><li>Debugging as investigation</li><li>Free Saturday live support</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Decomposing Complex Logic: Foundations of Computer Science in Padua</h2>
