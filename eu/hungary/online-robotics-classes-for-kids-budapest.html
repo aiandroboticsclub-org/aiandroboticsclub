@@ -21,7 +21,368 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Budapest · Hungary</span><h1>Online Robotics Classes for Kids in Budapest</h1>
     <p>Online robotics classes for kids in Budapest help international school students and local families explore sensors, motors and control logic in clear English—from home, without inventing a private campus.</p></div>
     <div><img src="../../../images/71.webp" alt="Online robotics Budapest" loading="lazy" width="400" height="300"></div></div>
-PLACEHOLDER_BLOCK
+<div class="ai-lesson-block" id="ai-lesson-141">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-141">Lesson</label>
+    <select id="lesson-select-141" class="lesson-select" aria-label="Select lesson">
+      <option value="141" selected>141: PCA with Scikit-Learn - Part 1: Reduce the Number of Features</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="PCA with Scikit-Learn - Part 1: Reduce the Number of Features" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 141 — PCA with Scikit-Learn — Part 1: Reduce the Number of Features</h2>
+
+    <h3>1. Introduction & End-to-End Workflow Overview</h3>
+    <p>In machine learning, high-dimensional datasets containing dozens or hundreds of features present significant challenges. Working directly with high-dimensional data increases the risk of overfitting (where models memorize training noise) and degrades inference speed.</p>
+    <p>Principal Component Analysis (PCA) is an unsupervised learning algorithm that resolves high dimensionality by projecting features onto a smaller set of orthogonal principal components.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │         End-to-End PCA Feature Reduction Workflow           │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Dataset Ingestion & Feature Scale Inspection       │
+  │     • Load Breast Cancer Dataset (569 samples × 30 features)│
+  │                                                             │
+  │  Step 2: Feature Standardization                            │
+  │     • Scale features using StandardScaler (Mean = 0)        │
+  │                                                             │
+  │  Step 3: Dimensionality Reduction via PCA                   │
+  │     • Compress 30 features to 2 Principal Components (PC1, PC2)│
+  │                                                             │
+  │  Step 4: Shape Transformation Diagnostic                    │
+  │     • Verify reduction from (569, 30) down to (569, 2)      │
+  │                                                             │
+  │  Step 5: Explained Variance Ratio Evaluation                │
+  │     • Evaluate PC1 (44.2%), PC2 (18.9%), Total (63.24%)      │
+  │                                                             │
+  │  Step 6: 2D Data Visualization & XAI Assessment             │
+  │     • Plot PC1 vs. PC2 scatter plot & assess interpretability│
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Mathematical Mechanics:</strong></p>
+    <ul>
+      <li><strong>Eigenvectors:</strong> Define the directional axes of the data projection.</li>
+      <li><strong>Eigenvalues:</strong> Quantify the amount of data variance preserved along each eigenvector axis.</li>
+      <li><strong>Component Selection Trade-Off:</strong>
+        <ul>
+          <li>Selecting Fewer Components: Yields faster computation speeds but results in higher information loss.</li>
+          <li>Selecting More Components: Preserves more information and variance, but increases computational load.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>2. Dataset Ingestion & Feature Standardization (StandardScaler)</h3>
+    <p>For this implementation, we utilize Scikit-Learn's Breast Cancer Wisconsin Dataset (<code>load_breast_cancer</code>):</p>
+    <ul>
+      <li><strong>Dataset Shape:</strong> Contains 569 sample instances across 30 continuous physical features.</li>
+      <li><strong>High-Dimensional Candidate:</strong> Having 30 continuous features makes this dataset an ideal candidate for dimensionality reduction.</li>
+    </ul>
+    <pre><code>import pandas as pd
+from sklearn.datasets import load_breast_cancer
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# 1. Load Breast Cancer dataset and extract input features X
+cancer = load_breast_cancer()
+X = cancer.data
+y = cancer.target
+
+print(f"Original Dataset Shape: {X.shape}")  # Output: (569, 30)
+</code></pre>
+    <p><strong>Why Feature Standardization is Critical:</strong></p>
+    <p>PCA is highly sensitive to unstandardized feature scales. When features exist on different numerical scales, features with larger raw magnitudes artificially dominate spatial direction calculations.</p>
+    <p>Applying <code>StandardScaler().fit_transform(X)</code> normalizes all 30 features to be centered around a mean of 0, ensuring equal feature weighting prior to PCA projection.</p>
+    <pre><code># 2. Standardize features using StandardScaler
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+</code></pre>
+
+    <h3>3. Drastic Dimensionality Reduction (PCA(n_components=2))</h3>
+    <p>We instantiate Scikit-Learn's PCA class, setting <code>n_components=2</code> to compress the 30 input features down to 2 principal components (PC1 and PC2):</p>
+    <pre><code># 3. Instantiate PCA with 2 target components and fit_transform scaled data
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# 4. Compare feature matrix shape before and after PCA
+print(f"Shape Before PCA : {X_scaled.shape}")  # Output: (569, 30)
+print(f"Shape After PCA  : {X_pca.shape}")     # Output: (569, 2)
+</code></pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Shape Transformation Breakdown              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Original Feature Matrix : 569 samples × 30 columns       │
+  │  • Transformed PCA Matrix   : 569 samples × 2 columns        │
+  │                                                             │
+  │  Orthogonality Property:                                    │
+  │    PC1 and PC2 are strictly ORTHOGONAL (perpendicular),     │
+  │    guaranteeing they represent completely different         │
+  │    patterns of variance in the dataset.                     │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>By compressing 30 features into PC1 and PC2, the data representation drops from 30 columns to just 2 columns. Because PC1 and PC2 are orthogonal, they capture entirely independent data patterns.</p>
+
+    <h3>4. Evaluating Explained Variance Ratio & Information Loss</h3>
+    <p>To evaluate how much underlying information was retained after compressing 30 features into 2 components, we examine the Explained Variance Ratio (<code>explained_variance_ratio_</code>):</p>
+    <pre><code># 5. Extract explained variance ratios
+variance_ratios = pca.explained_variance_ratio_
+pc1_var = variance_ratios[0]
+pc2_var = variance_ratios[1]
+
+# 6. Sum individual ratios to calculate total preserved variance
+total_preserved_var = pc1_var + pc2_var
+
+print("--- Explained Variance Ratio Diagnostics ---")
+print(f"PC1 Variance Contribution : {pc1_var * 100:.2f}%")    # 44.20%
+print(f"PC2 Variance Contribution : {pc2_var * 100:.2f}%")    # 18.90%
+print(f"Total Preserved Variance  : {total_preserved_var * 100:.2f}%")  # 63.24%
+</code></pre>
+    <pre>
+--- Explained Variance Ratio Diagnostics ---
+PC1 Variance Contribution : 44.20%
+PC2 Variance Contribution : 18.90%
+Total Preserved Variance  : 63.24%
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Variance Coverage Assessment                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • PC1 Explained Variance : 44.20% (0.442)                  │
+  │  • PC2 Explained Variance : 18.90% (0.189)                  │
+  │  • Total Variance Preserved: 63.24% (0.6324)                 │
+  │                                                             │
+  │  Client Requirement Rule:                                   │
+  │    Whether 63.24% variance coverage is acceptable depends   │
+  │    on application requirements. If a client needs           │
+  │    higher coverage (e.g., 85%+), increase `n_components`    │
+  │    to preserve more variance and lower info loss.           │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Analytical Variance Diagnostics:</strong></p>
+    <ol>
+      <li><strong>Component Contributions:</strong> PC1 accounts for 44.2% (0.442) of the total variance, while PC2 accounts for 18.9% (0.189).</li>
+      <li><strong>Total Preserved Variance (63.24%):</strong> Summing PC1 and PC2 yields 63.24% (0.6324) total preserved variance.</li>
+      <li><strong>Handling Client Requirements:</strong> Whether 63.24% variance coverage is sufficient depends on project and client requirements. If higher coverage is required, data scientists can increase the number of principal components (e.g., selecting 4 or 5 components) to reduce information loss.</li>
+    </ol>
+
+    <h3>5. 2D Data Visualization & Explainable AI (XAI) Assessment</h3>
+    <p>Plotting 30-dimensional data directly is impossible. Compressing the dataset into 2 principal components allows us to visualize sample distribution across a 2D scatter plot:</p>
+    <pre><code># 7. Scatter plot PC1 vs PC2
+plt.figure(figsize=(9, 6))
+scatter = plt.scatter(
+    X_pca[:, 0],
+    X_pca[:, 1],
+    c=y,
+    cmap='plasma',
+    edgecolors='k',
+    alpha=0.8
+)
+
+plt.title('Breast Cancer Dataset Projected onto 2 Principal Components')
+plt.xlabel('Principal Component 1 (PC1)')
+plt.ylabel('Principal Component 2 (PC2)')
+plt.colorbar(scatter, label='Target Class (0 = Malignant, 1 = Benign)')
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+</code></pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 2D Scatter Plot Diagnostics                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Axis Value Ranges:                                         │
+  │    • X-Axis (PC1) : Ranges from -6.0 to ~17.0               │
+  │    • Y-Axis (PC2) : Ranges from -7.5 to ~13.0               │
+  │                                                             │
+  │  Explainable AI (XAI) Limitation:                           │
+  │    PCA components combine multiple original features into  │
+  │    composite axes, making individual physical features      │
+  │    difficult to interpret directly.                         │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Visual & Interpretability Insights:</strong></p>
+    <ul>
+      <li><strong>Scatter Plot Ranges:</strong> PC1 values span from -6.0 to ~17.0, and PC2 values span from -7.5 to ~13.0. The plot shows separation between binary target classes (Malignant vs. Benign) alongside areas of class overlap.</li>
+      <li><strong>Explainable AI (XAI) Limitation:</strong> PCA does not belong to Explainable AI because principal components combine multiple original features into synthetic linear transformations, making direct physical interpretation challenging.</li>
+    </ul>
+
+    <h3>6. Complete Executable Python Script</h3>
+    <p>Below is the complete, runnable Python code implementing the end-to-end PCA workflow:</p>
+    <pre><code># =====================================================================
+# Complete PCA Implementation Script (Topic 141)
+# =====================================================================
+
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_breast_cancer
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# 1. Load Dataset
+cancer = load_breast_cancer()
+X = cancer.data
+y = cancer.target
+
+# 2. Standardize Features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# 3. Apply PCA (30 features -> 2 components)
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# 4. Print Shapes
+print(f"Shape Before PCA : {X_scaled.shape}")  # (569, 30)
+print(f"Shape After PCA  : {X_pca.shape}")     # (569, 2)
+
+# 5. Evaluate Explained Variance Ratios
+ratios = pca.explained_variance_ratio_
+print(f"PC1 Variance Ratio: {ratios[0]:.4f}")  # 0.4427
+print(f"PC2 Variance Ratio: {ratios[1]:.4f}")  # 0.1897
+print(f"Total Preserved   : {np.sum(ratios):.4f}")  # 0.6324 (63.24%)
+
+# 6. Plot Results
+plt.figure(figsize=(8, 5))
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap='plasma',
+            alpha=0.8, edgecolors='k')
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.title('PCA Reduction (569x30 -> 569x2)')
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.show()
+</code></pre>
+
+    <h3>7. Summary Comparison: Topic 141 Workflow Components</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pipeline Step</th>
+          <th>Function / Tool</th>
+          <th>Operational Purpose</th>
+          <th>Output Result on Dataset</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dataset Ingestion</td>
+          <td>load_breast_cancer()</td>
+          <td>Ingests 569 samples across 30 continuous features.</td>
+          <td>Matrix shape: (569, 30).</td>
+        </tr>
+        <tr>
+          <td>Standardization</td>
+          <td>StandardScaler()</td>
+          <td>Centers features around mean = 0 to prevent scaling bias.</td>
+          <td>Mean-centered matrix X_scaled.</td>
+        </tr>
+        <tr>
+          <td>PCA Reduction</td>
+          <td>PCA(n_components=2)</td>
+          <td>Projects 30 features onto 2 orthogonal components.</td>
+          <td>Transformed shape: (569, 2).</td>
+        </tr>
+        <tr>
+          <td>Variance Evaluation</td>
+          <td>.explained_variance_ratio_</td>
+          <td>Measures variance captured per component.</td>
+          <td>PC1: 44.2%, PC2: 18.9%.</td>
+        </tr>
+        <tr>
+          <td>Total Coverage</td>
+          <td>np.sum(ratios)</td>
+          <td>Calculates total preserved data variance.</td>
+          <td>63.24% preserved variance.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: Why is feature standardization (StandardScaler) mandatory before fitting PCA on the Breast Cancer dataset?</button>
+      <div class="accordion-body">
+        <p>Feature standardization using StandardScaler is mandatory because PCA is highly sensitive to differences in unstandardized feature scales.</p>
+        <p>In the raw Breast Cancer dataset (which contains 30 continuous features), features exist on varying numerical ranges. If unscaled, features with larger raw magnitudes would artificially overpower direction calculations when extracting eigenvectors. Applying <code>StandardScaler().fit_transform(X)</code> normalizes all 30 features to be centered around a mean of 0, ensuring that every variable contributes equally during PCA dimensionality reduction.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What were the shape transformations and Explained Variance Ratios obtained when compressing the dataset into 2 principal components?</button>
+      <div class="accordion-body">
+        <p>Applying <code>PCA(n_components=2)</code> on the standardized Breast Cancer dataset produced the following results:</p>
+        <ul>
+          <li><strong>Shape Transformation:</strong> Transformed the feature matrix from 569 samples × 30 original features down to 569 samples × 2 principal components (PC1 and PC2).</li>
+          <li><strong>Explained Variance Ratios:</strong>
+            <ul>
+              <li>Principal Component 1 (PC1): Captured 44.20% (0.442) of the total variance.</li>
+              <li>Principal Component 2 (PC2): Captured 18.90% (0.189) of the total variance.</li>
+              <li>Total Preserved Variance: Summing PC1 and PC2 yielded 63.24% (0.6324) preserved variance.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What should a data scientist do if 63.24% preserved variance is insufficient for a client's project requirements, and why is PCA not considered Explainable AI (XAI)?</button>
+      <div class="accordion-body">
+        <p><strong>Adjusting Preserved Variance:</strong> If a client requires higher variance coverage (e.g., 85%+), the data scientist should increase the number of principal components (e.g., setting <code>n_components=4</code> or 5). Retaining additional principal components preserves more data variance and reduces information loss.</p>
+        <p><strong>Explainable AI (XAI) Limitation:</strong> PCA does not belong to Explainable AI because principal components are synthetic linear combinations of multiple original features. Because features are blended together into composite axes, it is difficult to interpret the direct physical meaning of transformed components.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/hungary/ai-courses-for-kids-szeged.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/hungary/python-coding-classes-for-children-debrecen.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-141');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-141');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json();
+}).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '141') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
     <h2>What children can learn</h2>
     <ul><li>Logic design and circuit understanding</li><li>Sensor programming ideas</li><li>Systematic error testing</li><li>Simulators first, optional hardware when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Budapest</p>
