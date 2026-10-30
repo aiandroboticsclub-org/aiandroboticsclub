@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Rome | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Rome | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Rome—sensors, motors and control logic in English for international and local families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/italy/online-robotics-classes-for-kids-rome.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,279 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Rome · Italy</span><h1>Online Robotics Classes for Kids in Rome</h1>
     <p>Online robotics classes for kids in Rome help international and bilingual families explore sensors, motors and control logic from home—without inventing a campus on every street.</p></div>
     <div><img src="../../../images/71.webp" alt="Online robotics classes for kids in Rome" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-149">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-149">Lesson</label>
+    <select id="lesson-select-149" class="lesson-select" aria-label="Select lesson">
+      <option value="149" selected>149: Neural Network Evaluation Metrics: How to Measure Model Performance</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Neural Network Evaluation Metrics: How to Measure Model Performance" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 149 — Neural Network Evaluation Metrics: How to Measure Model Performance</h2>
+
+    <h3>1. Introduction: In-Depth Model Evaluation</h3>
+    <p>Once an Artificial Neural Network (ANN) is trained, evaluating its performance goes beyond simply checking overall correctness. In real-world machine learning deployments, understanding how and where a model makes errors is critical for determining its suitability for deployment.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Model Evaluation Architecture               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Core Questions Answered by Performance Metrics:            │
+  │                                                             │
+  │  1. Accuracy  ──► "How often is the model correct overall?" │
+  │  2. Precision ──► "How often is it correct when predicting  │
+  │                   positive cases only?"                     │
+  │  3. Recall    ──► "How many actual positive instances did   │
+  │                   the model manage to find?"                │
+  │  4. F1-Score  ──► "What is the harmonic balance between    │
+  │                   Precision and Recall?"                    │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>Depending on the domain—such as medical diagnosis, spam filtering, or financial fraud detection—different metrics provide the necessary visibility to validate model safety and efficiency.</p>
+
+    <h3>2. Accuracy: Overall Model Correctness</h3>
+    <p><strong>A. Definition & Formula</strong></p>
+    <p>Accuracy measures the overall proportion of correct predictions (both True Positives and True Negatives) made across the total dataset.</p>
+    <p>Accuracy = (TP + TN) / (TP + TN + FP + FN)</p>
+    <p>Simplified: Accuracy = (TP + TN) / Total Dataset Samples</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 When to Use vs. Avoid Accuracy              │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Recommended Usage             │ Severe Limitation           │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Ideal for BALANCED datasets │ • Highly MISLEADING for     │
+  │   where classes are represented│   IMBALANCED datasets       │
+  │   in equal proportions.       │   (e.g., rare disease tests)│
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>B. Limitations with Class Imbalance</strong></p>
+    <p>While Accuracy is an intuitive metric, it can be highly misleading when evaluating imbalanced datasets.</p>
+    <ul>
+      <li><strong>Example:</strong> In a rare disease screening dataset where 99% of patients are healthy (negative) and only 1% have the disease (positive), a naive model that predicts "Healthy" for every single patient achieves 99% Accuracy. However, it fails completely at its core objective because it missed 100% of the sick patients.</li>
+    </ul>
+
+    <h3>3. Precision: Minimizing False Alarms</h3>
+    <p><strong>A. Definition & Formula</strong></p>
+    <p>Precision evaluates prediction quality among positive outputs. It answers: Out of all instances the model predicted as positive, how many were actually correct?</p>
+    <p>Precision = TP / (TP + FP)</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  Precision Focus & Use Case                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Objective : High Precision ──► Low False Alarms (FP)     │
+  │                                                             │
+  │  • Primary Use Case: SPAM E-MAIL DETECTION                  │
+  │    - False Positive Cost: Flagging a legitimate email as    │
+  │      spam causes a user to miss important messages.         │
+  │    - High precision ensures that emails marked as spam are  │
+  │      almost certainly spam.                                 │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>4. Recall (Sensitivity): Finding All Positive Cases</h3>
+    <p><strong>A. Definition & Formula</strong></p>
+    <p>Recall—also known as Sensitivity—evaluates detection coverage. It answers: Out of all actual positive instances present in the dataset, how many did the model successfully identify?</p>
+    <p>Recall = TP / (TP + FN)</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   Recall Focus & Use Cases                  │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Objective : High Recall ──► Low Missed Cases (FN)        │
+  │                                                             │
+  │  • Primary Use Cases:                                       │
+  │    1. CANCER DETECTION                                      │
+  │    2. FINANCIAL FRAUD DETECTION                             │
+  │                                                             │
+  │  • Domain Logic: Missing a malignant tumor or fraudulent    │
+  │    transaction (False Negative) has catastrophic costs.     │
+  │    It is far better to generate occasional false alarms     │
+  │    than to miss a positive case.                            │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>5. F1-Score: The Harmonic Mean for Imbalanced Data</h3>
+    <p><strong>A. Definition & Formula</strong></p>
+    <p>When classes are imbalanced, focusing solely on Precision or Recall can give an incomplete picture. The F1-Score is an unbiased performance metric calculated as the Harmonic Mean of Precision and Recall.</p>
+    <p>F1-Score = 2 × (Precision × Recall) / (Precision + Recall)</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Why Use the Harmonic Mean?                  │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Balances Trade-offs: Integrates both Precision and      │
+  │    Recall into a single unified metric.                     │
+  │                                                             │
+  │  • Robust against Class Imbalance: Provides a reliable,    │
+  │    unbiased evaluation score when dataset classes are       │
+  │    severely imbalanced.                                     │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>6. Concrete Numerical Benchmark Example</h3>
+    <p>Consider a binary classification neural network evaluated on a test set of 100 samples with the following Confusion Matrix results:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Binary Confusion Matrix Results               │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ True Positives  (TP) = 40     │ False Positives (FP) = 10   │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ False Negatives (FN) = 5      │ True Negatives  (TN) = 45   │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Step-by-Step Metric Calculation:</strong></p>
+    <ol>
+      <li><strong>Accuracy:</strong> (40 + 45) / (40 + 45 + 10 + 5) = 85 / 100 = <strong>0.85 (85%)</strong></li>
+      <li><strong>Precision:</strong> 40 / (40 + 10) = 40 / 50 = <strong>0.80 (80%)</strong></li>
+      <li><strong>Recall:</strong> 40 / (40 + 5) = 40 / 45 ≈ <strong>0.89 (89%)</strong></li>
+      <li><strong>F1-Score:</strong> 2 × (0.80 × 0.889) / (0.80 + 0.889) = 2 × 0.711 / 1.689 ≈ <strong>0.84 (84%)</strong></li>
+    </ol>
+
+    <h3>7. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Performance Metric</th>
+          <th>Mathematical Formula</th>
+          <th>Key Question Answered</th>
+          <th>Primary Domain Application</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accuracy</td>
+          <td>(TP + TN) / Total Samples</td>
+          <td>"How often is the model correct overall?"</td>
+          <td>Balanced dataset classification</td>
+        </tr>
+        <tr>
+          <td>Precision</td>
+          <td>TP / (TP + FP)</td>
+          <td>"How often is it correct when predicting positive?"</td>
+          <td>Spam Email Detection</td>
+        </tr>
+        <tr>
+          <td>Recall (Sensitivity)</td>
+          <td>TP / (TP + FN)</td>
+          <td>"How many actual positives were found?"</td>
+          <td>Cancer & Fraud Detection</td>
+        </tr>
+        <tr>
+          <td>F1-Score</td>
+          <td>2 × (Precision × Recall) / (Precision + Recall)</td>
+          <td>"What is the harmonic balance of Precision & Recall?"</td>
+          <td>Severely imbalanced datasets</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is Accuracy in neural network evaluation, how is it calculated, and why can it be misleading for imbalanced datasets?</button>
+      <div class="accordion-body">
+        <p><strong>Definition:</strong> Accuracy describes the overall correctness of a trained model across the entire dataset. It answers the core question: "How often is the model correct overall?"</p>
+        <p><strong>Formula:</strong> Accuracy = (TP + TN) / (TP + TN + FP + FN) = (TP + TN) / Total Dataset</p>
+        <p><strong>Limitation with Imbalanced Datasets:</strong> While accuracy is a reliable metric when dataset classes are well-balanced, it can produce highly misleading results when classes are imbalanced.</p>
+        <ul>
+          <li><strong>Example:</strong> In medical disease detection, if 99% of the dataset consists of healthy individuals (disease absent) and only 1% consists of sick patients, a model that simply predicts "no disease" for every instance will achieve 99% accuracy. However, because it misses all actual sick patients, the model is completely unusable in real-world medical applications.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What are Precision and Recall (Sensitivity), how are they calculated, and what are their specific real-world use cases?</button>
+      <div class="accordion-body">
+        <p><strong>Precision:</strong></p>
+        <ul>
+          <li><strong>Definition:</strong> Precision measures how many of the instances predicted as positive by the model are actually correct. It answers: "How often is the model correct when predicting positive cases only?"</li>
+          <li><strong>Formula:</strong> Precision = TP / (TP + FP)</li>
+          <li><strong>Use Case:</strong> High precision ensures a low rate of false alarms. A primary application is spam detection, where it is vital to avoid marking legitimate real emails as spam.</li>
+        </ul>
+        <p><strong>Recall (Sensitivity):</strong></p>
+        <ul>
+          <li><strong>Definition:</strong> Recall (Sensitivity) measures what proportion of actual positive instances present in the data were successfully caught by the model. It answers: "How many actual positives have been found by the model?"</li>
+          <li><strong>Formula:</strong> Recall = TP / (TP + FN)</li>
+          <li><strong>Use Case:</strong> High recall ensures that very few positive cases are missed. Critical applications include cancer detection and fraud detection, where catching every true positive case is paramount, even if it leads to some false alarms.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is the F1 Score, why is it considered an unbiased metric, and how are these metrics computed from a sample Confusion Matrix?</button>
+      <div class="accordion-body">
+        <p><strong>F1 Score Definition & Unbiased Nature:</strong> The F1 Score is the harmonic mean of Precision and Recall. By combining both metrics into a single calculation, it provides a balanced, unbiased measure that is particularly useful when dealing with highly imbalanced class distributions.</p>
+        <p><strong>Formula:</strong> F1 Score = 2 × (Precision × Recall) / (Precision + Recall)</p>
+        <p><strong>Numerical Example from a Binary Confusion Matrix:</strong> Given a sample binary classifier with TP = 40, FP = 10, FN = 5, TN = 45 (Total = 100):</p>
+        <ul>
+          <li>Accuracy: (40 + 45) / 100 = 0.85 (85%)</li>
+          <li>Precision: 40 / (40 + 10) = 0.80 (80%)</li>
+          <li>Recall: 40 / (40 + 5) ≈ 0.89 (89%)</li>
+          <li>F1 Score: 2 × (0.80 × 0.89) / (0.80 + 0.89) ≈ 0.84 (84%)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/computational-thinking-padua.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/italy/online-stem-education-for-kids-venice.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-149');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-149');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '149') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors as inputs and motors as outputs</li><li>Control decisions, loops and debugging</li><li>Explaining robot behaviour clearly</li><li>Simulators first, optional hardware when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Rome</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
