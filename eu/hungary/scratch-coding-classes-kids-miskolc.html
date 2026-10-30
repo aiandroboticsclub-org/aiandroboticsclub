@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Miskolc | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Miskolc | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Miskolc—event-driven blocks, games and animated stories for beginners.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/hungary/scratch-coding-classes-kids-miskolc.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,326 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Miskolc · Hungary</span><h1>Scratch Coding Classes for Kids in Miskolc</h1>
     <p>Scratch coding classes for kids in Miskolc use snap-together blocks so beginners design games and animated stories without typing syntax errors.</p></div>
     <div><img src="../../../images/74.webp" alt="Scratch Miskolc" loading="lazy" width="400" height="300"></div></div>
+<div class="ai-lesson-block" id="ai-lesson-143">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-143">Lesson</label>
+    <select id="lesson-select-143" class="lesson-select" aria-label="Select lesson">
+      <option value="143" selected>143: Artificial Neural Networks Explained for Beginners</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Artificial Neural Networks Explained for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 143 — Artificial Neural Networks Explained for Beginners</h2>
+
+    <h3>1. Introduction & Evolution of Artificial Neural Networks (ANNs)</h3>
+    <p>Artificial Neural Networks (ANNs) are a foundational supervised learning technique in artificial intelligence invented several decades ago. At its core, an ANN is a mathematical model inspired by the structure and working mechanisms of the human brain.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Evolution of AI Paradigms                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Early AI (70–80 Years Ago): Rule-Based Systems             │
+  │    • Relied on hardcoded logic & manual rules               │
+  │    • Failed to handle complex, unstructured tasks           │
+  │                                                             │
+  │  Biological Paradigm Shift: Replicating the Human Brain     │
+  │    • Human brain = billions of interconnected neurons       │
+  │    • Simulating neurons in computers yields human-like AI   │
+  │                                                             │
+  │  Modern Era: Foundation of Deep Learning                    │
+  │    • ANNs learn patterns automatically from input data      │
+  │    • Powers modern deep learning & modern AI applications   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Early Rule-Based Systems:</strong> When artificial intelligence began 70 to 80 years ago, systems relied strictly on rule-based logic. When rule-based models failed to handle complex real-world tasks, scientists looked to replicate the human brain—the most intelligent structure known in the universe.</li>
+      <li><strong>Simulating Biological Intelligence:</strong> Because human intelligence originates in the brain through billions of physical neurons, researchers hypothesized that simulating artificial neurons inside computers would create human-like machine intelligence.</li>
+      <li><strong>The Foundation of Modern Deep Learning:</strong> Today, ANNs serve as the foundational bedrock for deep learning and the broader artificial intelligence boom. ANNs automatically discover and learn complex patterns directly from raw training data.</li>
+      <li><strong>Core Real-World Applications:</strong> ANNs are applied across a wide variety of domain tasks, including Classification and Regression, Image Recognition, and Natural Language Processing (NLP).</li>
+    </ul>
+
+    <h3>2. Biological vs. Artificial Neurons</h3>
+    <p>To understand how ANNs function mathematically, it is helpful to compare a biological neuron to an artificial neuron:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Biological vs. Artificial Neuron              │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Biological Neuron (Brain)     │ Artificial Neuron (ANN)     │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Dendrites (Receive inputs)  │ • Input Features (x_i)      │
+  │ • Synaptic Strengths          │ • Connection Weights (w_i)  │
+  │ • Cell Body Processing        │ • Weighted Sum + Bias (b)   │
+  │ • Axon (Fires output signal)  │ • Activation Function (σ)   │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+
+    <h4>A. Biological Neuron Mechanics</h4>
+    <p>In the human brain, a biological neuron receives incoming electrical signals through its dendrites (inputs). The cell body processes these signals and, if a certain threshold is reached, fires an output signal down its axon to neighboring neurons.</p>
+
+    <h4>B. Artificial Neuron Mechanics</h4>
+    <p>An artificial neuron converts this biological mechanism into a precise mathematical process:</p>
+    <ol>
+      <li><strong>Inputs (x_i):</strong> Receives numerical inputs (x_1, x_2, x_3, x_4, …) from neighboring neurons or raw input data.</li>
+      <li><strong>Weights (w_i):</strong> Multiplies each input by an assigned connection weight (x_1 w_1, x_2 w_2, x_3 w_3, …).
+        <ul>
+          <li><strong>Weight Analogy:</strong> Imagine consulting a group of advisors before making a decision. You assign higher weight to trusted, intelligent advisors and lower weight to less reliable ones. Similarly, weights in a neural network dictate how strongly or weakly an input influences the output signal.</li>
+        </ul>
+      </li>
+      <li><strong>Bias (b):</strong> Adds a bias value b to the weighted sum. Biases adjust the baseline shift and help pull the mean of the sums closer to zero.</li>
+      <li><strong>Activation Function (σ):</strong> Passes the total weighted sum through an activation function to introduce non-linearity into the network output.</li>
+    </ol>
+
+    <h4>Mathematical Neuron Equation</h4>
+    <p>Combining these steps yields the formal mathematical equation for a single artificial neuron:</p>
+    <pre>ŷ = σ ( Σ_i x_i w_i + b )
+
+Expanded: ŷ = σ (x_1 w_1 + x_2 w_2 + x_3 w_3 + … + b)</pre>
+    <p>Where:</p>
+    <ul>
+      <li><strong>x</strong>: Input feature values</li>
+      <li><strong>w</strong>: Connection weights</li>
+      <li><strong>b</strong>: Neuron bias term</li>
+      <li><strong>σ</strong>: Activation function</li>
+      <li><strong>ŷ</strong>: Final output predicted by the neuron</li>
+    </ul>
+    <p><strong>Key Training Goal:</strong> ANNs learn the optimal values for all weights (w) and biases (b) automatically by training iteratively on input datasets.</p>
+
+    <h3>3. Network Architecture & Layer Structure</h3>
+    <p>In an Artificial Neural Network, individual artificial neurons are organized systematically into layers, where outputs from one layer become the inputs to the next.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Layer Architecture of an ANN                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Input Layer         Hidden Layers          Output Layer   │
+  │    (External)        (Internal Logic)         (External)    │
+  │   ┌─────────┐      ┌─────┐     ┌─────┐      ┌─────────┐     │
+  │   │ Neuron  │─────►│Neuron────►│Neuron├─────►│ Neuron  │     │
+  │   ├─────────┤      ├─────┤     ├─────┤      ├─────────┤     │
+  │   │ Neuron  │─────►│Neuron────►│Neuron├─────►│ Neuron  │     │
+  │   └─────────┘      └─────┘     └─────┘      └─────────┘     │
+  │   Receives raw    Hidden from outside world   Outputs final │
+  │    data inputs      (2–3 in standard ANNs;    predictions   │
+  │                     dozens in Deep Learning)                │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Input Layer:</strong> The first layer in the network. It receives raw input feature data directly from the external world.</li>
+      <li><strong>Hidden Layers:</strong> Intermediate processing layers situated between the input and output layers. They are called "hidden" because their internal calculations are hidden from the outside world. Standard ANNs typically contain 2 to 3 hidden layers, whereas advanced deep learning models contain dozens of hidden layers.</li>
+      <li><strong>Output Layer:</strong> The final layer of the network. It outputs the network's final prediction back to the external world.</li>
+    </ol>
+    <p><strong>Example Architecture:</strong> A standard simple ANN architecture consists of 1 Input Layer, 2 Hidden Layers, and 1 Output Layer.</p>
+
+    <h3>4. Activation Functions & The Necessity of Non-Linearity</h3>
+    <p>Without activation functions, a neural network is inherently a simple linear model performing only linear additions and multiplications.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Why Non-Linear Activation Functions Matter       │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Without Activation Functions:                              │
+  │    • Network collapses into a basic linear equation         │
+  │    • Fails on real-world complex patterns                   │
+  │                                                             │
+  │  With Non-Linear Activation Functions:                      │
+  │    • Introduces non-linearity into model transformations    │
+  │    • Solves complex non-linear problems:                    │
+  │      1. Face detection & recognition in images              │
+  │      2. Non-linear time-series forecasting                  │
+  │      3. Speech understanding & NLP                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>By applying non-linear activation functions, neural networks can learn complex non-linear problems, such as:</p>
+    <ul>
+      <li>Face detection and recognition in image processing</li>
+      <li>Non-linear time-series forecasting in data science</li>
+      <li>Speech understanding and natural language processing</li>
+    </ul>
+
+    <h3>5. Comparative Analysis of Key Activation Functions</h3>
+    <p>The three most widely used activation functions in ANNs are Sigmoid, Tanh, and ReLU:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Activation Function Comparison              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Sigmoid Function:                                       │
+  │     • Formula : σ(x) = 1 / (1 + e⁻ˣ)                        │
+  │     • Range   : (0 to 1)                                    │
+  │     • Best For: Binary Classification (Yes/No outputs)      │
+  │     • Drawback: Vanishing Gradient Issue                    │
+  │                                                             │
+  │  2. Tanh Function (Hyperbolic Tangent):                     │
+  │     • Formula : tanh(x) = (eˣ - e⁻ˣ) / (eˣ + e⁻ˣ)            │
+  │     • Range   : (-1 to +1) [Zero-Centered]                  │
+  │     • Best For: Hidden Layers (Faster convergence)          │
+  │     • Drawback: Vanishing Gradient Issue                    │
+  │                                                             │
+  │  3. ReLU Function (Rectified Linear Unit):                  │
+  │     • Formula : f(x) = max(0, x)                            │
+  │     • Range   : (0 to +∞)                                   │
+  │     • Best For: Deep Learning Models (Fast training)        │
+  │     • Drawback: Dying ReLU Problem                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h4>A. The Sigmoid Activation Function</h4>
+    <ul>
+      <li><strong>Mathematical Formula:</strong> σ(x) = 1 / (1 + e<sup>−x</sup>)</li>
+      <li><strong>Output Range:</strong> 0 to 1</li>
+      <li><strong>Primary Use Case:</strong> Binary Classification tasks where the output represents a probability between two classes (e.g., Yes or No).</li>
+      <li><strong>Graph Characteristics:</strong> Forms a smooth, S-shaped curve that transitions smoothly between 0 and 1 (unlike a harsh step function).</li>
+      <li><strong>Major Drawback:</strong> Suffers from the Vanishing Gradient Problem in deep networks, where learning gradients shrink close to zero and drastically slow down model training.</li>
+    </ul>
+
+    <h4>B. The Tanh (Hyperbolic Tangent) Function</h4>
+    <ul>
+      <li><strong>Mathematical Formula:</strong> tanh(x) = (e<sup>x</sup> − e<sup>−x</sup>) / (e<sup>x</sup> + e<sup>−x</sup>)</li>
+      <li><strong>Output Range:</strong> −1 to +1</li>
+      <li><strong>Primary Use Case:</strong> Excellent performance when applied to hidden layers.</li>
+      <li><strong>Graph Characteristics:</strong> Forms an S-shaped curve that is zero-centered (centered at 0), providing faster convergence during training compared to Sigmoid.</li>
+      <li><strong>Major Drawback:</strong> Still susceptible to the Vanishing Gradient Problem.</li>
+    </ul>
+
+    <h4>C. The ReLU (Rectified Linear Unit) Function</h4>
+    <ul>
+      <li><strong>Mathematical Formula:</strong> f(x) = max(0, x)</li>
+      <li><strong>Output Range:</strong> 0 to +∞ (Positive Infinity)</li>
+      <li><strong>Primary Use Case:</strong> The most popular activation function in deep learning.</li>
+      <li><strong>Graph Characteristics:</strong> Behaves linearly for positive values (x > 0) and truncates all negative values (x < 0) to zero.</li>
+      <li><strong>Key Advantages:</strong> Delivers extremely fast training and resolves the vanishing gradient problem.</li>
+      <li><strong>Major Drawback:</strong> Can suffer from the Dying ReLU Problem, where neurons get permanently stuck outputting zero during training.</li>
+    </ul>
+
+    <h3>6. Summary Comparison Table: Activation Functions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Activation Function</th>
+          <th>Mathematical Formula</th>
+          <th>Output Range</th>
+          <th>Ideal Placement / Best Use Case</th>
+          <th>Primary Limitation / Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sigmoid</td>
+          <td>1 / (1 + e<sup>−x</sup>)</td>
+          <td>0 to 1</td>
+          <td>Output layer for Binary Classification</td>
+          <td>Vanishing Gradient Problem</td>
+        </tr>
+        <tr>
+          <td>Tanh</td>
+          <td>(e<sup>x</sup> − e<sup>−x</sup>) / (e<sup>x</sup> + e<sup>−x</sup>)</td>
+          <td>−1 to +1</td>
+          <td>Hidden Layers (Zero-centered convergence)</td>
+          <td>Vanishing Gradient Problem</td>
+        </tr>
+        <tr>
+          <td>ReLU</td>
+          <td>max(0, x)</td>
+          <td>0 to +∞</td>
+          <td>Deep Learning Models (Fast training)</td>
+          <td>Dying ReLU Problem</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How does an artificial neuron mathematically process inputs to produce an output?</button>
+      <div class="accordion-body">
+        <p>An artificial neuron processes incoming inputs (x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, …) through four sequential mathematical steps:</p>
+        <ol>
+          <li>Multiply each input by its corresponding connection weight (x<sub>i</sub> × w<sub>i</sub>).</li>
+          <li>Sum all weighted inputs.</li>
+          <li>Add a bias term (b).</li>
+          <li>Pass the result through an activation function σ.</li>
+        </ol>
+        <p>The complete equation is: ŷ = σ (Σ x<sub>i</sub> w<sub>i</sub> + b). During training the network automatically learns the optimal values of all weights and biases.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: Why are non-linear activation functions necessary in neural networks?</button>
+      <div class="accordion-body">
+        <p>Without activation functions, an ANN is inherently a basic linear model restricted to linear additions and multiplications. Non-linear activation functions introduce non-linearity into the network, enabling ANNs to learn complex real-world problems such as face recognition in images, time-series forecasting, and speech processing.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What are the three most common activation functions and their key characteristics?</button>
+      <div class="accordion-body">
+        <ol>
+          <li><strong>Sigmoid:</strong> Formula 1/(1+e<sup>−x</sup>), range 0–1, ideal for binary classification output layers; suffers from vanishing gradients.</li>
+          <li><strong>Tanh:</strong> Formula (e<sup>x</sup>−e<sup>−x</sup>)/(e<sup>x</sup>+e<sup>−x</sup>), range −1 to +1 (zero-centered), preferred in hidden layers for faster convergence; still prone to vanishing gradients.</li>
+          <li><strong>ReLU:</strong> Formula max(0, x), range 0 to +∞, dominant in deep learning because of fast training and resistance to vanishing gradients; can suffer from the dying ReLU problem.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/hungary/python-coding-classes-for-children-debrecen.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/hungary/stem-robotics-workshops-pecs-kids.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-143');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-143');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '143') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
     <h2>What children can learn</h2>
     <ul><li>Event-driven game logic</li><li>Maze challenges and animated stories</li><li>Blocks without syntax errors</li><li>Free Saturday live support</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
@@ -41,7 +350,7 @@
     <h2>Frequently asked questions</h2>
     <div class="faq-item"><strong>What age group is Scratch coding designed for?</strong><p>Scratch is ideal for children aged 6 to 10 as an engaging entry point into coding logic.</p></div>
     <div class="faq-item"><strong>Do students build playable games in Scratch?</strong><p>Yes, students create interactive games, maze challenges, and animated stories.</p></div>
-    <div class="faq-item"><strong>How can families participate in free Saturday live support?</strong><p>Join our YouTube live stream every Saturday from 12 PM to 1 PM GMT for free live Q&amp;A.</p></div>
+    <div class="faq-item"><strong>How can families participate in free Saturday live support?</strong><p>Join our YouTube live stream every Saturday from 12 PM to 1 PM GMT for free live Q&A.</p></div>
     <h2>Explore related learning</h2>
     <div class="seo-cards">
       <a class="seo-card" href="python-coding-classes-for-children-debrecen.html"><img src="../../../images/72.webp" alt="Debrecen" loading="lazy"><span>Python · Debrecen</span></a>
