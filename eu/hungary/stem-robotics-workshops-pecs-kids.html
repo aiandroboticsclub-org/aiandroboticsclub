@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Pecs | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Pecs | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Pecs—project-based hardware thinking, circuits and CET-friendly sessions.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/hungary/stem-robotics-workshops-pecs-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,260 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Pecs · Hungary</span><h1>STEM Robotics Workshops for Kids in Pecs</h1>
     <p>STEM robotics workshops for kids in Pecs turn passive screen time into design challenges—build, test and revise through guided online projects aligned with CET hours.</p></div>
     <div><img src="../../../images/75.webp" alt="STEM Pecs" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-144">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-144">Lesson</label>
+    <select id="lesson-select-144" class="lesson-select" aria-label="Select lesson">
+      <option value="144" selected>144: Feedforward Neural Networks Explained: How Information Moves Through a Network</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Feedforward Neural Networks Explained: How Information Moves Through a Network" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 144 — Feedforward Neural Networks Explained: How Information Moves Through a Network</h2>
+
+    <h3>1. Introduction: What is a Feedforward Neural Network (FNN)?</h3>
+    <p>In Artificial Neural Networks (ANNs), information processing follows specific architectural rules. A Feedforward Neural Network (FNN) is a fundamental neural network architecture where data flows strictly in one direction—moving from the Input Layer, passing through any Hidden Layers, and terminating at the Output Layer.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │         Unidirectional Information Flow in FNNs             │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Input Layer             Hidden Layers          Output Layer
+  │   ┌─────────┐             ┌─────────┐            ┌─────────┐│
+  │   │ Feature ├────────────►│ Neuron  ├───────────►│ Predict ││
+  │   ├─────────┤             ├─────────┤            ├─────────┤│
+  │   │ Feature ├────────────►│ Neuron  ├───────────►│ Predict ││
+  │   └─────────┘             └─────────┘            └─────────┘│
+  │                                                             │
+  │   Strict Forward Flow: NO Loops | NO Feedback Connections   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Architectural Rule:</strong></p>
+    <ul>
+      <li><strong>Strict Unidirectional Flow:</strong> Signals move strictly forward from input to output.</li>
+      <li><strong>No Loops or Feedback:</strong> There are no cyclic loops and no feedback connections inside a Feedforward Neural Network.</li>
+      <li><strong>Multilayer Perceptron (MLP):</strong> This architecture is also formally known as a Multilayer Perceptron (MLP). The MLP represents the simplest and historically first form of artificial neural network invented.</li>
+    </ul>
+
+    <h3>2. Layer-by-Layer Mathematical Calculations</h3>
+    <p>As input data enters the network, each layer transforms the incoming signal using a two-step mathematical formula before passing the result to the next layer.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │             Mathematical Calculation per Neuron             │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Weighted Sum with Bias Calculation                 │
+  │     • Formula: g = (w * x) + b                              │
+  │     • x = Input vector                                      │
+  │     • w = Connection weight vector                          │
+  │     • b = Bias term                                         │
+  │                                                             │
+  │  Step 2: Activation Function Pass                           │
+  │     • Formula: Output = Activation(g)                       │
+  │     • Passes g into ReLU, Sigmoid, or Tanh                  │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Weighted Sum with Bias (g):</strong> Each layer multiplies incoming inputs by their corresponding connection weights and adds a bias term: g = (w · x) + b. Where x is the vector of input feature values, w is the vector of connection weights, and b is the bias.</li>
+      <li><strong>Activation Function Application:</strong> The weighted sum g is passed through an activation function (such as ReLU, Sigmoid, or Tanh) to compute the final neuron output: Neuron Output = Activation(g).</li>
+      <li><strong>Propagating to Output:</strong> This process repeats sequentially across all hidden layers until reaching the Output Layer, which delivers the network's final prediction to the external world.</li>
+    </ol>
+
+    <h3>3. Key Characteristics and Best Use Cases</h3>
+    <p>Feedforward Neural Networks possess distinct operational traits that determine their ideal deployment scenarios:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Key Traits & Ideal Applications             │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Key Operational Traits        │ Best-Suited Applications    │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • One-way signal propagation  │ • Tabular structured data   │
+  │ • Uses activation functions   │ • Simple image recognition  │
+  │   (ReLU, Sigmoid, Tanh)       │ • Basic text feature tasks  │
+  │ • Learns weights & biases     │ • Regression & classification│
+  │   during supervised training  │                             │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Supervised Parameter Learning:</strong> During training on supervised datasets, the network automatically learns and adjusts its weights and biases.</li>
+      <li><strong>Best-Suited Tasks:</strong> FNNs perform exceptionally well on tabular data, simple image classification tasks, and basic text feature processing.</li>
+      <li><strong>Limitations:</strong> FNNs lack internal memory and cannot handle time-series data or sequential memory tasks. (Sequential data requires specialized architectures like Recurrent Neural Networks, covered in later modules).</li>
+    </ul>
+
+    <h3>4. Real-World Practical Example: Predicting Car Prices</h3>
+    <p>To understand how an FNN processes real-world data, consider a regression problem predicting the estimated market price of a car.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │             Car Price Prediction Architecture               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Input Features (x):                                        │
+  │    • x₁ = Car Mileage                                       │
+  │    • x₂ = Car Age                                           │
+  │    • x₃ = Engine Size                                       │
+  │                                                             │
+  │  Hidden Layer Processing:                                   │
+  │    • Calculates g = (w · x) + b                             │
+  │    • Applies Activation Function                            │
+  │                                                             │
+  │  Output Prediction (ŷ):                                     │
+  │    • Final Estimated Car Price ($)                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Numerical Walkthrough:</strong></p>
+    <p>Suppose a single neuron in the network receives a simplified input value:</p>
+    <ul>
+      <li>Input Feature (x): 2</li>
+      <li>Weight (w): 1</li>
+      <li>Bias (b): 0</li>
+    </ul>
+    <p><strong>Step 1:</strong> Compute Weighted Sum (g): g = (x · w) + b = (2 · 1) + 0 = 2</p>
+    <p><strong>Step 2:</strong> Apply ReLU Activation Function: Passing g = 2 into the ReLU (Rectified Linear Unit) activation function: Output = ReLU(2) = 2 (Because ReLU acts as an identity function for positive values, an input of 2 returns an output of 2).</p>
+    <p>Thus, the final forward pass output emitted by this neuron is 2.</p>
+
+    <h3>5. The Foundation of Deep Learning</h3>
+    <p>Feedforward Neural Networks serve as the core foundational building block for all modern deep learning architectures.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            From Simple ANNs to Deep Learning                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Simple Artificial Neural Network (ANN / MLP):              │
+  │    • Input Layer ──► 1 or 2 Hidden Layers ──► Output Layer  │
+  │                                                             │
+  │  Deep Learning (Deep Neural Network):                       │
+  │    • Input Layer ──► DOZENS of Hidden Layers ──► Output     │
+  │                                                             │
+  │  Key Insight: Increasing hidden layers transforms a basic   │
+  │               FNN into a Deep Learning model!               │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>When we scale up an Artificial Neural Network by significantly increasing the number of hidden layers, it transitions into Deep Learning.</p>
+
+    <h3>6. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension / Property</th>
+          <th>Operational Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data Flow Direction</td>
+          <td>Strictly unidirectional from input layer to output layer.</td>
+        </tr>
+        <tr>
+          <td>Network Topology</td>
+          <td>Contains no loops and no feedback connections.</td>
+        </tr>
+        <tr>
+          <td>Alternative Term</td>
+          <td>Multilayer Perceptron (MLP) — the simplest form of ANN.</td>
+        </tr>
+        <tr>
+          <td>Neuron Formula</td>
+          <td>g = (w · x) + b, followed by Activation(g).</td>
+        </tr>
+        <tr>
+          <td>Primary Activation Functions</td>
+          <td>ReLU, Sigmoid, and Tanh.</td>
+        </tr>
+        <tr>
+          <td>Best Data Domain</td>
+          <td>Tabular data, simple images, and basic text features.</td>
+        </tr>
+        <tr>
+          <td>Primary Limitation</td>
+          <td>Ineffective for time-series data and memory tasks.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is the fundamental data flow rule inside a Feedforward Neural Network?</button>
+      <div class="accordion-body">
+        <p>Data inside a Feedforward Neural Network moves strictly in one direction, flowing forward from the input layer, passing through hidden layers, and terminating at the output layer. There are no loops and no feedback connections inside an FNN.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: For which types of tasks are Feedforward Neural Networks ineffective?</button>
+      <div class="accordion-body">
+        <p>FNNs lack internal memory loops and are ineffective for time-series data and sequential memory tasks. Time-series forecasting requires specialized deep learning architectures (such as Recurrent Neural Networks) designed to retain temporal memory.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What alternative name is given to the Feedforward Neural Network architecture?</button>
+      <div class="accordion-body">
+        <p>The Feedforward Neural Network is also formally known as a Multilayer Perceptron (MLP). The MLP represents the simplest and historically first form of artificial neural network invented.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/hungary/scratch-coding-classes-kids-miskolc.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/italy/ai-courses-for-kids-turin.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-144');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-144');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '144') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Project goals and constraints</li><li>Creative problem-solving through building</li><li>Circuit and hardware ideas</li><li>CET after-school and weekend options</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/maths-for-future-coders/?referralCode=48998EFE8E0894560BC3" target="_blank" rel="noopener noreferrer sponsored">Maths for Future Coders</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
