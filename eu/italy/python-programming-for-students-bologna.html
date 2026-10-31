@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Programming for Students in Bologna | AI &amp; Robotics Club</title>
+  <title>Python Programming for Students in Bologna | AI & Robotics Club</title>
   <meta name="description" content="Python programming for students in Bologna—loops, functions and academic coding pathways in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/italy/python-programming-for-students-bologna.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,380 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bologna · Italy</span><h1>Python Programming for Students in Bologna</h1>
     <p>Python programming for students in Bologna focuses on logic, loops and functions—structured pathways suited to motivated learners in a university city culture.</p></div>
     <div><img src="../../../images/76.webp" alt="Python Bologna" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-152">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-152">Lesson</label>
+    <select id="lesson-select-152" class="lesson-select" aria-label="Select lesson">
+      <option value="152" selected>152: Build a Neural Network with TensorFlow and Keras</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build a Neural Network with TensorFlow and Keras" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 152 — Build a Neural Network with TensorFlow and Keras</h2>
+
+    <h3>1. Introduction & Google Colab Cloud Environment</h3>
+    <p>When training deep learning models, datasets and mathematical operations require massive computational throughput. While standard local computers often possess only CPUs, deep learning models perform best when accelerated by Graphics Processing Units (GPUs).</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Google Colab Infrastructure                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Free GPU Cloud Environment                               │
+  │    - Provides free access to T4 GPUs for lightweight tests  │
+  │    - Eliminates local GPU hardware prerequisites            │
+  │                                                             │
+  │  • Runtime Configuration:                                   │
+  │    - Runtime ──► Change runtime type                        │
+  │    - Hardware Accelerator ──► Select T4 GPU                 │
+  │                                                             │
+  │  • File Compatibility:                                      │
+  │    - Executes Jupyter Notebook (.ipynb) and Python (.py)    │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>Google Colab provides a cloud-based environment where users can access GPU hardware accelerators (such as the T4 GPU) for free.</p>
+    <p><strong>Setting Up the Environment:</strong></p>
+    <ol>
+      <li><strong>Accessing Colab:</strong> Navigate to colab.research.google.com and log in with a Gmail account.</li>
+      <li><strong>Hardware Accelerator Selection:</strong> Select Runtime → Change runtime type, select Python, and choose T4 GPU.</li>
+      <li><strong>GPU Parallelization:</strong> Selecting a GPU restarts the hardware engine and enables parallel tensor computation, accelerating neural network training.</li>
+    </ol>
+
+    <h3>2. Data Ingestion & Preprocessing with Scikit-Learn</h3>
+    <p>Before constructing the neural network, raw input data must be ingested, split, and standardized. For this hands-on implementation, we utilize the Wine Dataset (load_wine).</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Data Ingestion & Preprocessing Pipeline          │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Ingest Wine Dataset (X = 13 features, y = 3 classes)│
+  │                                                             │
+  │  Step 2: Train/Test Data Split                              │
+  │     • 80% Training Set (142 samples × 13 features)          │
+  │     • 20% Testing Set                                       │
+  │                                                             │
+  │  Step 3: Feature Standardization (StandardScaler)           │
+  │     • Normalize features so Mean = 0 and Variance = 1       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Preprocessing Workflow:</strong></p>
+    <ol>
+      <li><strong>Dataset Overview:</strong> The Wine dataset contains 13 continuous feature dimensions and 3 target classes for multi-class classification.</li>
+      <li><strong>Train/Test Partitioning:</strong> Using train_test_split, the data is divided using an 80/20 ratio (yielding 142 training samples with 13 feature columns).</li>
+      <li><strong>Feature Scaling:</strong> Using StandardScaler, input features are standardized (X_scaled) to prevent scaling bias across input dimensions.</li>
+    </ol>
+
+    <h3>3. Constructing the Neural Network with tf.keras.Sequential</h3>
+    <p>To build the artificial neural network architecture, we use TensorFlow's high-level API: tf.keras.Sequential.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              3-Layer Neural Network Architecture            │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Input Layer           Hidden Layers           Output Layer│
+  │  (13 Features)         (Dense 16 & 8)           (Dense 3)   │
+  │   ┌─────────┐        ┌─────────┐  ┌────────┐    ┌─────────┐ │
+  │   │  x1..13 ├───────►│ 16 ReLU ├─►│ 8 ReLU ├───►│ 3 Softmax││
+  │   └─────────┘        └─────────┘  └────────┘    └─────────┘ │
+  │                      (Layer 1)    (Layer 2)      (Output)   │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Layer Definitions:</strong></p>
+    <ul>
+      <li><strong>Hidden Layer 1:</strong> Dense(16, activation='relu', input_shape=(13,)) — A fully connected layer with 16 neurons, ReLU activation, receiving 13 input features.</li>
+      <li><strong>Hidden Layer 2:</strong> Dense(8, activation='relu') — A second fully connected layer containing 8 neurons with ReLU activation.</li>
+      <li><strong>Output Layer:</strong> Dense(3, activation='softmax') — The final layer containing 3 neurons (matching the 3 target classes) paired with the Softmax activation function. Softmax converts raw output logits into probability distributions, making it ideal for multi-class classification.</li>
+    </ul>
+
+    <h3>4. Model Parameters & Weight Breakdown</h3>
+    <p>Executing model.summary() provides a complete breakdown of the trainable parameters (weights and biases) across all layers:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Parameter Calculation per Layer                  │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Layer Type & Neurons          │ Mathematical Weight Formula │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Layer 1 (Dense 16 Neurons)    │ (13 inputs × 16) + 16 bias  │
+  │                               │ = 224 Parameters            │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Layer 2 (Dense 8 Neurons)     │ (16 inputs × 8) + 8 bias    │
+  │                               │ = 136 Parameters            │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Layer 3 (Dense 3 Output)      │ (8 inputs × 3) + 3 bias     │
+  │                               │ = 27 Parameters             │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Total Trainable Parameters    │ 224 + 136 + 27 = 387        │
+  │ Total Model Memory Size       │ ~1.5 KB                     │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Layer 1:</strong> (13 × 16) + 16 = <strong>224 parameters</strong>.</li>
+      <li><strong>Layer 2:</strong> (16 × 8) + 8 = <strong>136 parameters</strong>.</li>
+      <li><strong>Output Layer:</strong> (8 × 3) + 3 = <strong>27 parameters</strong>.</li>
+      <li><strong>Total Trainable Parameters:</strong> <strong>387 total trainable parameters</strong> (requiring approx. 1.5 KB of memory).</li>
+    </ul>
+
+    <h3>5. Compiling the Model (Optimizer, Loss, Metrics)</h3>
+    <p>Before training, the model must be compiled by specifying its optimization algorithm, loss function, and evaluation metrics:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                Model Compilation Configuration              │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Component                     │ Configured Selection        │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Optimizer                     │ Adam Optimizer ('adam')     │
+  │ Loss Function                 │ Sparse Categorical          │
+  │                               │ Cross-Entropy               │
+  │ Performance Metric            │ Accuracy ('accuracy')       │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Optimizer:</strong> Adam Optimizer ('adam'), an industry-standard choice for efficient gradient updates.</li>
+      <li><strong>Loss Function:</strong> Sparse Categorical Cross-Entropy ('sparse_categorical_crossentropy'), the standard loss function for integer-encoded multi-class targets.</li>
+      <li><strong>Performance Metric:</strong> Accuracy (['accuracy']), tracks classification accuracy during training.</li>
+    </ol>
+
+    <h3>6. Model Training & Evaluation (fit & evaluate)</h3>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Model Training & Evaluation                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Training Execution (model.fit):                         │
+  │     • Trained for 20 Epochs with verbose=1                  │
+  │     • GPU parallelization executes epochs rapidly           │
+  │                                                             │
+  │  2. Evaluation Execution (model.evaluate):                  │
+  │     • Tested on unseen scaled test data                     │
+  │     • Test Loss     = ~0.064                                │
+  │     • Test Accuracy = 1.0 (100% Perfect Accuracy)           │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Model Training (fit):</strong></p>
+    <p>The network is trained using model.fit(X_train_scaled, y_train, epochs=20, verbose=1). Setting verbose=1 displays internal training logs per epoch, helping developers debug loss and accuracy trends in real time. On a GPU, all 20 epochs execute rapidly.</p>
+    <p><strong>B. Model Evaluation (evaluate):</strong></p>
+    <p>Evaluating the model on the unseen test dataset using model.evaluate(X_test_scaled, y_test, verbose=1) yields a test loss of ~0.064 and a test accuracy of 1.0 (100%). Because the Wine dataset is clean and linearly structured, deep learning achieves perfect classification performance.</p>
+
+    <h3>7. End-to-End Executable Python Code</h3>
+    <p>Below is the complete, runnable Python script implementing Topic 152 in Google Colab or Jupyter Notebook:</p>
+    <pre>
+# =====================================================================
+# Complete Neural Network Script using TensorFlow & Keras (Topic 152)
+# =====================================================================
+
+import tensorflow as tf
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# 1. Ingest Wine Dataset
+wine = load_wine()
+X = wine.data
+y = wine.target
+
+# 2. Train/Test Data Split (80/20)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 3. Standardize Features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+print(f"Training Feature Shape: {X_train_scaled.shape}")  # (142, 13)
+
+# 4. Build Neural Network Architecture using Keras Sequential API
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(16, activation='relu', input_shape=(X_train_scaled.shape[1],)),
+    tf.keras.layers.Dense(8, activation='relu'),
+    tf.keras.layers.Dense(3, activation='softmax')
+])
+
+# Display Model Parameters Summary (387 parameters)
+model.summary()
+
+# 5. Compile Model (Optimizer, Loss, Metric)
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 6. Train Neural Network (20 Epochs)
+history = model.fit(
+    X_train_scaled, y_train,
+    epochs=20,
+    verbose=1
+)
+
+# 7. Evaluate Model on Test Dataset
+test_loss, test_acc = model.evaluate(X_test_scaled, y_test, verbose=1)
+
+print("\n--- Model Final Evaluation ---")
+print(f"Test Loss     : {test_loss:.4f}")
+print(f"Test Accuracy : {test_acc * 100:.2f}%")
+    </pre>
+
+    <h3>8. Summary Table: Keras Building Pipeline</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pipeline Stage</th>
+          <th>TensorFlow / Keras Function</th>
+          <th>Configuration & Purpose</th>
+          <th>Result / Metric</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cloud GPU Setup</td>
+          <td>Google Colab (T4 GPU)</td>
+          <td>Enables free GPU hardware acceleration.</td>
+          <td>Fast parallel training.</td>
+        </tr>
+        <tr>
+          <td>Data Ingestion</td>
+          <td>load_wine()</td>
+          <td>Loads 13 input features and 3 target classes.</td>
+          <td>Matrix shape (142, 13).</td>
+        </tr>
+        <tr>
+          <td>Scaling</td>
+          <td>StandardScaler()</td>
+          <td>Centers features around Mean = 0, Std = 1.</td>
+          <td>Standardized input data.</td>
+        </tr>
+        <tr>
+          <td>Architecture</td>
+          <td>tf.keras.Sequential</td>
+          <td>Builds 16-neuron ReLU → 8-neuron ReLU → 3-neuron Softmax.</td>
+          <td>Total 387 parameters.</td>
+        </tr>
+        <tr>
+          <td>Compilation</td>
+          <td>model.compile()</td>
+          <td>Sets adam optimizer, sparse_categorical_crossentropy loss, and accuracy metric.</td>
+          <td>Configured loss pipeline.</td>
+        </tr>
+        <tr>
+          <td>Training</td>
+          <td>model.fit()</td>
+          <td>Trains model for 20 epochs with verbose=1.</td>
+          <td>Rapid loss reduction.</td>
+        </tr>
+        <tr>
+          <td>Evaluation</td>
+          <td>model.evaluate()</td>
+          <td>Evaluates model loss and accuracy on test data.</td>
+          <td>100% Test Accuracy.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How is Google Colab configured to accelerate neural network training in TensorFlow?</button>
+      <div class="accordion-body">
+        <p><strong>Hardware Acceleration:</strong> Google Colab provides free, limited access to cloud GPUs (such as the T4 GPU). Selecting a GPU significantly speeds up deep learning model training compared to a standard CPU.</p>
+        <p><strong>Environment Setup:</strong> Users access Colab via colab.research.google.com, log in with a Gmail account, and upload notebook files (.ipynb format) or .py scripts.</p>
+        <p><strong>Runtime Configuration:</strong> By navigating to "Change runtime type", users can select the programming environment (Python, R, or Julia) and switch the hardware accelerator from CPU to a T4 GPU.</p>
+        <p><strong>TensorFlow Parallel Execution:</strong> TensorFlow converts dataset arrays into tensors and executes calculations in parallel on the GPU, enabling superfast model training.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How is the dataset loaded, preprocessed, and formatted before building the neural network model in Topic 152?</button>
+      <div class="accordion-body">
+        <p><strong>Dataset Ingestion:</strong> The Wine dataset (load_wine) is loaded from sklearn.datasets, providing input features alongside target labels for supervised learning.</p>
+        <p><strong>Train/Test Splitting:</strong> The dataset is split using train_test_split with an 80/20 ratio (80% for training and 20% for testing).</p>
+        <p><strong>Feature Standardization:</strong> Features are scaled using StandardScaler from sklearn.preprocessing to standardize inputs across both training and test sets.</p>
+        <p><strong>Dataset Dimensions:</strong> After splitting, the training set consists of 142 samples with 13 input features/dimensions.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is the artificial neural network architecture constructed, compiled, trained, and evaluated using TensorFlow and Keras?</button>
+      <div class="accordion-body">
+        <p><strong>Model Architecture (tf.keras.Sequential):</strong></p>
+        <ul>
+          <li><strong>First Hidden Layer:</strong> A Dense layer with 16 neurons, ReLU activation, and an input_shape matching the 13 input features (224 trainable parameters).</li>
+          <li><strong>Second Hidden Layer:</strong> A Dense layer with 8 neurons and ReLU activation (136 trainable parameters).</li>
+          <li><strong>Output Layer:</strong> A Dense layer with 3 neurons and a Softmax activation function to output class probabilities across the 3 categories (27 trainable parameters).</li>
+          <li><strong>Total Parameters:</strong> The network contains 387 total trainable parameters.</li>
+        </ul>
+        <p><strong>Model Compilation:</strong></p>
+        <ul>
+          <li><strong>Optimizer:</strong> Adam optimizer (a popular industry standard).</li>
+          <li><strong>Loss Function:</strong> sparse_categorical_crossentropy.</li>
+          <li><strong>Performance Metric:</strong> accuracy.</li>
+        </ul>
+        <p><strong>Training & Evaluation:</strong></p>
+        <ul>
+          <li>The model is trained using model.fit() for 20 epochs with verbose=1 to display step-by-step progress for debugging.</li>
+          <li>Evaluating the model on the test dataset via model.evaluate() yields a test loss of 0.064 and a test accuracy of 1.0 (100%).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/python-coding-classes-for-children-milan.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/italy/scratch-coding-classes-kids-naples.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-152');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-152');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '152') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Logic and structure</li><li>Loops and functions</li><li>Clear readable programs</li><li>CET-friendly live sessions</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Logic, Loops, and Functions: Academic Coding Pathways for Students in Bologna</h2>
