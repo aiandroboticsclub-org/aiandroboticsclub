@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Vilnius | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Vilnius | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Vilnius—English sessions on sensors, control loops and debugging for Baltic tech families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/lithuania/online-robotics-classes-for-kids-vilnius.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,19 +21,437 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Vilnius · Lithuania</span><h1>Online Robotics Classes for Kids in Vilnius</h1>
     <p>Online robotics classes for kids in Vilnius help local and international students explore sensors, control loops and systematic debugging in clear English—from home, without inventing a private campus.</p></div>
     <div><img src="../../../images/51.webp" alt="Online robotics Vilnius" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-159">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-159">Lesson</label>
+    <select id="lesson-select-159" class="lesson-select" aria-label="Select lesson">
+      <option value="159" selected>159: Build an LSTM Model with TensorFlow and Keras</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build an LSTM Model with TensorFlow and Keras" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 159 — Build an LSTM Model with TensorFlow and Keras</h2>
+
+    <h3>1. Introduction & Motivation: Why Long Short-Term Memory (LSTM)?</h3>
+    <p>In previous lectures on Recurrent Neural Networks (RNNs), we learned that basic recurrent architectures (SimpleRNN) process sequential data by passing hidden states from one time step to the next. However, when datasets involve long sequences, standard RNNs suffer from the Vanishing Gradient Problem. As gradients are backpropagated through time, they shrink exponentially toward zero, causing learning to stall and preventing the network from capturing long-term dependencies.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              SimpleRNN vs. LSTM Memory Capacity             │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ SimpleRNN Layer               │ Long Short-Term Memory (LSTM)│
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Suffers from Vanishing      │ • Solves Vanishing Gradient  │
+  │   Gradients over long sequences│   Problem via Internal Gates│
+  │ • Limited to short memory     │ • Retains long-term context │
+  │   spans.                      │   across long time series.  │
+  │ • ~1,000 parameters for 32    │ • ~4,352 parameters for 32  │
+  │   units.                      │   units (4× complexity).    │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>How LSTMs Solve Vanishing Gradients:</strong></p>
+    <p>Long Short-Term Memory (LSTM) networks solve the vanishing gradient problem by using internal gating mechanisms (Forget Gate, Input Gate, Output Gate) and a Cell State conveyor belt. These gates regulate information flow, enabling the network to selectively retain crucial context over extended time horizons.</p>
+    <p><strong>Hyperparameter Tuning Options:</strong></p>
+    <ul>
+      <li><strong>LSTM Units:</strong> Tuning the number of recurrent units (e.g., testing 50 units, 100 units, or higher). Increasing units improves pattern extraction but increases model weight complexity and execution runtime.</li>
+      <li><strong>Learning Rate & Batch Size:</strong> Adjusting learning rates and mini-batch sizes via grid search to identify optimal training convergence.</li>
+      <li><strong>Dropout Layers:</strong> Inserting Dropout layers to shrink model complexity and prevent overfitting when working with complex architectures.</li>
+      <li><strong>Stacked LSTM Layers:</strong> Stacking multiple LSTM layers sequentially to learn highly complex visual or temporal patterns.</li>
+    </ul>
+
+    <h3>2. Cloud GPU Acceleration & Environment Setup</h3>
+    <p>To train deep learning models efficiently, we utilize Google Colab, a free web-based cloud environment providing temporary access to GPU hardware acceleration.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Google Colab Environment Setup              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Cloud GPU Enabling:                                     │
+  │     • Runtime ──► Change runtime type ──► Select GPU        │
+  │     • Accelerates tensor matrix calculations over standard  │
+  │       CPUs.                                                 │
+  │                                                             │
+  │  2. Session File Storage:                                   │
+  │     • Files uploaded directly to Colab session storage      │
+  │       (module_159_data.csv) are temporary and deleted       │
+  │       when the cloud session ends.                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Python Imports:</strong></p>
+    <pre>
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+import pandas as pd
+import numpy as np
+    </pre>
+    <ul>
+      <li><strong>tensorflow (tf):</strong> The core deep learning library for GPU processing.</li>
+      <li><strong>Sequential:</strong> Keras API for building linear layer stacks.</li>
+      <li><strong>LSTM:</strong> Specialized recurrent layer that extracts long-term sequential patterns.</li>
+      <li><strong>Dense:</strong> Fully connected output layer used to construct binary or multi-class classifiers.</li>
+      <li><strong>pandas & numpy:</strong> Data manipulation libraries for reading CSV files and manipulating multidimensional arrays.</li>
+    </ul>
+
+    <h3>3. Data Ingestion, Preprocessing & 3D Tensor Reshaping</h3>
+    <p><strong>A. Dataset Structure:</strong></p>
+    <p>We load module_159_data.csv into a Pandas DataFrame (df_loaded). The dataset contains 2,000 total rows with:</p>
+    <ul>
+      <li><strong>10 Sequential Feature Columns:</strong> Named step_0, step_1, step_2, ..., step_9.</li>
+      <li><strong>1 Target Column:</strong> Named target containing binary class labels (0 and 1), establishing a binary classification task.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               2D Matrix to 3D Tensor Reshaping              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Raw Input Shape (X)     : (2000, 10) [2D Matrix]           │
+  │                                                             │
+  │  Reshaping Transformation:                                  │
+  │    • X.reshape((X.shape[0], X.shape[1], 1))                 │
+  │                                                             │
+  │  Target Input Shape (X)  : (2000, 10, 1) [3D Tensor]        │
+  │                                                             │
+  │  Keras Tensor Specification: (Samples, Timesteps, Features) │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>B. Reshaping into 3D Tensors:</strong></p>
+    <p>Keras LSTM layers require input data formatted as a 3D tensor with dimensions (batch_size, timesteps, features).</p>
+    <ol>
+      <li><strong>Feature Separation:</strong> The target column is removed from input X and stored in y.</li>
+      <li><strong>Reshaping:</strong> Converting the 2D array of shape (2000, 10) into a 3D tensor of shape (2000, 10, 1) adds an explicit feature dimension (features = 1) required by the LSTM layer.</li>
+    </ol>
+
+    <h3>4. Building the LSTM Architecture (Sequential)</h3>
+    <p>We construct the binary classification model by stacking an LSTM layer and a Dense output layer:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  LSTM Network Architecture                  │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Input Tensor Shape (10 Timesteps × 1 Feature)             │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   LSTM Layer            ──► 32 Units                        │
+  │                             Extracts long-term patterns     │
+  │                             Output Shape: (None, 32)        │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Dense Layer           ──► 1 Unit, Sigmoid Activation      │
+  │                             Binary Classification Output    │
+  │                             Output Shape: (None, 1)         │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>LSTM(32, input_shape=(10, 1)):</strong> Consists of 32 LSTM units receiving sequences of 10 timesteps with 1 feature per step.</li>
+      <li><strong>Dense(1, activation='sigmoid'):</strong> A single-neuron output layer using the Sigmoid activation function, emitting output values between 0 and 1 representing probability scores.</li>
+    </ul>
+
+    <h3>5. Model Summary & Parameter Analysis (model.summary())</h3>
+    <p>Executing model.summary() displays the parameter breakdown across layers:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        Model Summary Breakdown                          │
+  ├──────────────────────────────┬───────────────────┬──────────────────────┤
+  │ Layer (Type)                 │ Output Shape      │ Param #              │
+  ├──────────────────────────────┼───────────────────┼──────────────────────┤
+  │ lstm (LSTM)                  │ (None, 32)        │ 4,352                │
+  │ dense (Dense)                │ (None, 1)         │ 33                   │
+  ├──────────────────────────────┴───────────────────┴──────────────────────┤
+  │ Total params: 4,385 (17.13 KB)                                          │
+  │ Trainable params: 4,385                                                 │
+  │ Non-trainable params: 0                                                 │
+  └─────────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Mathematical Parameter Calculations:</strong></p>
+    <ol>
+      <li><strong>LSTM Layer Parameters (4,352 Parameters):</strong> An LSTM unit contains 4 internal gates/layers (Forget Gate, Input Gate, Candidate State, Output Gate). Each gate requires weights for the input dimension, weights for recurrent units, and biases: Params = 4 × [(input_dim + units) × units + units] = 4 × [(1 + 32) × 32 + 32] = 4 × [1056 + 32] = 4 × 1088 = <strong>4,352 parameters</strong>. (Note: This parameter count is roughly 4 times larger than a SimpleRNN layer with 32 units, which contains ~1,088 parameters).</li>
+      <li><strong>Dense Layer Parameters (33 Parameters):</strong> Params = (input_units × output_units) + biases = (32 × 1) + 1 = <strong>33 parameters</strong>.</li>
+      <li><strong>Total Model Memory:</strong> 4352 + 33 = <strong>4,385 trainable parameters</strong> (occupying ~17.13 KB of memory).</li>
+    </ol>
+
+    <h3>6. Model Compilation & Hyperparameters</h3>
+    <p>We configure training hyperparameters using model.compile():</p>
+    <pre>
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+    </pre>
+    <ul>
+      <li><strong>Optimizer:</strong> Adam ('adam'), an adaptive learning rate optimizer.</li>
+      <li><strong>Loss Function:</strong> Binary Cross-Entropy ('binary_crossentropy'), the standard loss function for binary targets.</li>
+      <li><strong>Evaluation Metric:</strong> Accuracy (['accuracy']), to monitor correct classification performance.</li>
+    </ul>
+
+    <h3>7. Model Training & Validation (fit)</h3>
+    <p>Training is executed using model.fit() with the following configurations:</p>
+    <ul>
+      <li><strong>Epochs:</strong> 20 Epochs.</li>
+      <li><strong>Batch Size:</strong> 32 samples per mini-batch.</li>
+      <li><strong>Validation Split:</strong> 80/20 Train/Validation Split (0.2).</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Training Performance Progress               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Epoch 1/20:                                                │
+  │    • Training Loss: 0.6838   | Training Accuracy: 49.27%    │
+  │    • Validation Loss: 0.6766 | Validation Accuracy: 43.75%  │
+  │                                                             │
+  │  Epoch Jump:                                                │
+  │    • Validation Accuracy jumps rapidly to 76.50%            │
+  │                                                             │
+  │  Epoch 20/20 (Final Epoch):                                 │
+  │    • Training Loss: 0.1785   | Training Accuracy: >93.23%   │
+  │    • Validation Loss: 0.1963 | Validation Accuracy: 90.25%  │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Training Progress Highlights:</strong></p>
+    <ul>
+      <li><strong>Initial Epoch:</strong> Training loss begins high at 0.6838 with 49.27% accuracy, while validation accuracy starts at 43.75%.</li>
+      <li><strong>Rapid Convergence:</strong> On Colab's GPU, validation accuracy jumps quickly to 76.50% in early epochs.</li>
+      <li><strong>Final Epoch:</strong> By Epoch 20, training accuracy surpasses 93.23% (loss drops to 0.1785), while validation accuracy reaches 90.25% (validation loss drops to 0.1963).</li>
+    </ul>
+
+    <h3>8. Final Evaluation & Client Expectation Setting</h3>
+    <p>Calling model.evaluate(X, y, verbose=0) yields the model's final test accuracy:</p>
+    <pre>
+loss, accuracy = model.evaluate(X, y, verbose=0)
+print(f"Final Model Accuracy: {accuracy * 100:.2f}%")  # Output: 93.25%
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Final Model Metrics & Client Benchmarks          │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Final Evaluated Model Accuracy: 93.25%                   │
+  │                                                             │
+  │  Industry Practice for Client Projects:                     │
+  │    • When setting initial expectations, data scientists     │
+  │      typically quote an 80%+ accuracy benchmark.            │
+  │    • Delivering >90% accuracy on client datasets results in │
+  │      high client satisfaction compared to an 80% baseline.  │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>9. Complete Executable Python Code</h3>
+    <p>Below is the complete Python script executed in Google Colab:</p>
+    <pre>
+# =====================================================================
+# Complete LSTM Model Script using TensorFlow & Keras (Topic 159)
+# =====================================================================
+
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+import pandas as pd
+import numpy as np
+
+# 1. Load Dataset from CSV File into Pandas DataFrame
+df_loaded = pd.read_csv('module_159_data.csv')
+
+# 2. Separate Feature Columns (step_0 to step_9) and Target Variable
+X = df_loaded.drop(columns=['target'], axis=1).values
+y = df_loaded['target'].values
+
+# 3. Reshape 2D Data Matrix (2000, 10) into 3D Tensor (2000, 10, 1)
+X = X.reshape((X.shape[0], X.shape[1], 1))
+print(f"Reshaped 3D Input Tensor Shape: {X.shape}")  # (2000, 10, 1)
+
+# 4. Construct LSTM Architecture using Keras Sequential API
+model = Sequential([
+    LSTM(32, input_shape=(10, 1)),
+    Dense(1, activation='sigmoid')
+])
+
+# 5. Display Model Summary & Parameter Breakdown (4,385 Total Params)
+model.summary()
+
+# 6. Compile Model Hyperparameters
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+# 7. Train Model for 20 Epochs with 80/20 Train/Validation Split
+history = model.fit(
+    X, y,
+    epochs=20,
+    batch_size=32,
+    validation_split=0.2
+)
+
+# 8. Evaluate Final Model Performance
+loss, accuracy = model.evaluate(X, y, verbose=0)
+print(f"\n--- Final Model Evaluation ---")
+print(f"Final Model Accuracy: {accuracy * 100:.2f}%")  # Output: 93.25%
+    </pre>
+
+    <h3>10. Summary Pipeline Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Method / Function</th>
+          <th>Configuration & Parameters</th>
+          <th>Output Metric / Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GPU Acceleration</td>
+          <td>Colab Hardware Setup</td>
+          <td>Enables GPU runtime.</td>
+          <td>Accelerated execution speed.</td>
+        </tr>
+        <tr>
+          <td>Ingestion</td>
+          <td>pd.read_csv()</td>
+          <td>Loads module_159_data.csv.</td>
+          <td>2,000 samples, 10 steps, 1 target.</td>
+        </tr>
+        <tr>
+          <td>Preprocessing</td>
+          <td>X.reshape()</td>
+          <td>Converts 2D (2000, 10) to 3D (2000, 10, 1).</td>
+          <td>Compatible 3D tensor shape.</td>
+        </tr>
+        <tr>
+          <td>Architecture</td>
+          <td>Sequential()</td>
+          <td>LSTM(32) + Dense(1, activation='sigmoid').</td>
+          <td>4,385 total parameters (~17.13 KB).</td>
+        </tr>
+        <tr>
+          <td>Compilation</td>
+          <td>model.compile()</td>
+          <td>Sets adam, binary_crossentropy, accuracy.</td>
+          <td>Configured loss pipeline.</td>
+        </tr>
+        <tr>
+          <td>Training</td>
+          <td>model.fit()</td>
+          <td>20 Epochs, batch_size=32, 0.2 validation split.</td>
+          <td>Val Acc reaches 90.25%.</td>
+        </tr>
+        <tr>
+          <td>Evaluation</td>
+          <td>model.evaluate()</td>
+          <td>Evaluates final accuracy with verbose=0.</td>
+          <td>93.25% Final Test Accuracy.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What primary problem does an LSTM network solve compared to standard RNNs, and what techniques can be used to optimize its performance and prevent overfitting?</button>
+      <div class="accordion-body">
+        <p><strong>Solving the Vanishing Gradient Problem:</strong> Standard Recurrent Neural Networks (RNNs) suffer from the vanishing gradient problem when processing long sequential data, where gradients shrink close to zero and halt model learning. LSTMs overcome this limitation using internal gating mechanisms that preserve learning across long sequence horizons.</p>
+        <p><strong>Hyperparameter Tuning Options:</strong></p>
+        <ol>
+          <li><strong>LSTM Units:</strong> The number of units/neurons per layer can be tuned (e.g., testing 50, 100, or more units) via experimentation to identify optimal model capacity.</li>
+          <li><strong>Learning Rate & Batch Size:</strong> Adjusted through grid search to achieve steady convergence and optimal execution speed.</li>
+          <li><strong>Dropout Layers:</strong> Added to reduce model complexity, shrink model footprint, and prevent overfitting when working with heavy network structures.</li>
+          <li><strong>Layer Stacking:</strong> Multiple LSTM layers can be stacked sequentially to learn complex representation patterns from intricate datasets.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How is the dataset loaded, structured, and reshaped for the LSTM model in Topic 159?</button>
+      <div class="accordion-body">
+        <p><strong>Dataset Loading & Structure:</strong> The dataset file (module_159_data.csv) is uploaded to Google Colab and ingested into a Pandas DataFrame using pd.read_csv(). The dataset contains 10 sequential feature columns (step_0 through step_9) denoting sequential steps, along with a single target column containing binary values (0 and 1).</p>
+        <p><strong>Feature & Target Isolation:</strong> The input features are isolated into variable X by dropping the target column, while the binary labels are saved in variable y.</p>
+        <p><strong>Data Reshaping for Keras:</strong> Standard tabular input arrays are 2-dimensional (2000, 10), but Keras LSTM layers explicitly require a 3-dimensional tensor formatted as (samples, timesteps, features). Using X.reshape(), the dataset dimensions are converted to (2000, 10, 1) by adding an explicit feature dimension of size 1.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is the step-by-step neural network architecture built in Topic 159, how is it compiled and trained, and what final accuracy was achieved?</button>
+      <div class="accordion-body">
+        <p><strong>Model Architecture (tf.keras.models.Sequential):</strong></p>
+        <ol>
+          <li><strong>LSTM Feature Extractor:</strong> An LSTM layer configured with 32 units/neurons and an input_shape of (10, 1). Because LSTMs contain internal gating cells, this layer utilizes 4,352 trainable parameters (roughly 4 times more than a standard RNN layer with the same neuron count).</li>
+          <li><strong>Classification Output (Dense):</strong> A fully connected Dense layer with 1 node and a Sigmoid activation function for binary output (yes/no), contributing 33 parameters.</li>
+          <li><strong>Total Parameters:</strong> The network contains 4,385 total trainable parameters (~17.13 KB).</li>
+        </ol>
+        <p><strong>Model Compilation Settings:</strong> Compiled using the Adam optimizer, Binary Cross-Entropy (binary_crossentropy) as the loss function, and Accuracy as the evaluation metric.</p>
+        <p><strong>Training Execution & Performance:</strong></p>
+        <ul>
+          <li>Trained via model.fit() over 20 epochs with a batch size of 32 and an 80/20 validation split using Google Colab GPU acceleration.</li>
+          <li>Over 20 epochs, training accuracy improved from 49.27% to 93.23%, while training loss dropped from 0.6838 down to 0.1785.</li>
+          <li>Final model evaluation via model.evaluate() yielded a high test accuracy of 93.25%.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/lithuania/ai-courses-for-kids-klaipeda.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/lithuania/python-coding-classes-for-children-kaunas.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-159');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-159');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '159') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor input processing</li><li>Control logic loops</li><li>Motor control ideas</li><li>Systematic debugging</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Vilnius</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/robotics-miniature-modeling-for-kids/?referralCode=D74B38EF4ECFAEEA971A" target="_blank" rel="noopener noreferrer sponsored">Robotics Miniature Modeling for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
