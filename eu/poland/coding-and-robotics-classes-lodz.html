@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coding and Robotics Classes for Kids in Lodz | AI &amp; Robotics Club</title>
+  <title>Coding and Robotics Classes for Kids in Lodz | AI & Robotics Club</title>
   <meta name="description" content="Coding and robotics classes for kids in Lodz—sensors, hardware integration and robotics fundamentals online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/poland/coding-and-robotics-classes-lodz.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,459 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Lodz · Poland</span><h1>Coding and Robotics Classes for Kids in Lodz</h1>
     <p>Coding and robotics classes for kids in Lodz introduce how sensors read the environment and how code triggers actions—hardware meeting software.</p></div>
     <div><img src="../../../images/87.webp" alt="Coding robotics Lodz" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-164">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-164">Lesson</label>
+    <select id="lesson-select-164" class="lesson-select" aria-label="Select lesson">
+      <option value="164" selected>164: Image Processing with OpenCV and Python: A Beginner's Guide</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Image Processing with OpenCV and Python: A Beginner's Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 164 — Image Processing with OpenCV and Python: A Beginner's Guide</h2>
+
+    <h3>1. Introduction to OpenCV & Environment Setup</h3>
+    <p>In computer vision, theoretical concepts such as spatial filtering, feature extraction, and image transformations require practical hands-on execution. In Python, the industry-standard tool for image and video processing is OpenCV (Open Source Computer Vision Library).</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   OpenCV Architecture & Setup               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Core Engine: Written in C++ for maximum computational    │
+  │    speed.                                                   │
+  │                                                             │
+  │  • Python Integration: Utilizes Python bindings (cv2        │
+  │    module) that integrate seamlessly with NumPy arrays      │
+  │                                                             │
+  │  • Installation Command: pip install opencv-python          │
+  │  • Import Statement   : import cv2                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Key Application Domains:</strong></p>
+    <p>OpenCV powers real-world computer vision systems across diverse fields:</p>
+    <ul>
+      <li><strong>Object & Face Detection:</strong> Locating objects and human faces in digital frames.</li>
+      <li><strong>Traffic Sign Recognition:</strong> Identifying road signs in autonomous vehicles.</li>
+      <li><strong>Medical Image Enhancement:</strong> Refining CT and MRI visual scans.</li>
+      <li><strong>AR/VR & Robotics:</strong> Guiding robotic vision systems and augmented reality overlays.</li>
+    </ul>
+
+    <h3>2. Image Ingestion, Display, & Color Spaces (BGR vs. RGB)</h3>
+    <p><strong>A. Reading and Displaying Images:</strong></p>
+    <p>To process an image, OpenCV loads file formats (such as JPEG, PNG, or TIFF) from disk into computer memory as a multidimensional NumPy array.</p>
+    <pre>
+import cv2
+import numpy as np
+
+# 1. Read image from disk
+image = cv2.imread('flower.jpg')
+
+# Verify image loading
+if image is None:
+    print("Error: Image not found!")
+    </pre>
+    <p>To display an image on screen, OpenCV creates a window frame using cv2.imshow(). To prevent the display window from closing instantly, cv2.waitKey(0) pauses program execution until a keyboard key is pressed.</p>
+    <pre>
+# 2. Display image in a popup window
+cv2.imshow('Original Image', image)
+
+# Wait indefinitely for a keypress before continuing
+cv2.waitKey(0)
+    </pre>
+    <p><strong>B. The BGR Color Format vs. Standard RGB:</strong></p>
+    <p>A critical quirk of OpenCV is its native color channel order. While standard human-readable digital formats use RGB (Red, Green, Blue), OpenCV stores color channels in BGR (Blue, Green, Red) order.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Color Channel Storage Order                 │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Standard Visual Formats (RGB) │ OpenCV Native Format (BGR)  │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Channel 0 ──► Red           │ • Channel 0 ──► Blue        │
+  │ • Channel 1 ──► Green         │ • Channel 1 ──► Green       │
+  │ • Channel 2 ──► Blue          │ • Channel 2 ──► Red         │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>C. Converting to Grayscale:</strong></p>
+    <p>For pre-processing, 3-channel BGR images are frequently converted into 1-channel Grayscale images using cv2.cvtColor(). This compresses visual data into 8 bits per pixel, representing 256 discrete shades of gray (ranging from 0 for pure black to 255 for pure white), which isolates spatial and geometric features while discarding color noise.</p>
+    <pre>
+# Convert BGR color image to 8-bit Grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+cv2.imshow('Grayscale Image', gray_image)
+cv2.waitKey(0)
+    </pre>
+
+    <h3>3. Image Filtering & Noise Reduction (Gaussian & Median Blur)</h3>
+    <p>Before extracting features, raw images must undergo spatial filtering to remove high-frequency noise. Applying edge detection to raw images directly can produce fragmented edge boundaries due to pixel noise. Applying blurring filters first ensures that downstream algorithms extract continuous, connected edge components.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  Spatial Filtering Operations               │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Gaussian Blur (cv2.GaussianBlur)│ Median Blur (cv2.medianBlur)│
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Uses a 2D Gaussian kernel   │ • Replaces target pixel with│
+  │   (e.g., 5×5 grid).           │   the median of neighbors.  │
+  │ • Smooths high-frequency noise│ • Highly effective at salt- │
+  │   smoothly.                   │   and-pepper noise removal. │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <pre>
+# 1. Apply 5x5 Gaussian Blur for smooth noise reduction
+gaussian_blur = cv2.GaussianBlur(gray_image, (5, 5), 0)
+cv2.imshow('Gaussian Blur', gaussian_blur)
+cv2.waitKey(0)
+
+# 2. Apply Median Blur with kernel size 5
+median_blur = cv2.medianBlur(gray_image, 5)
+cv2.imshow('Median Blur', median_blur)
+cv2.waitKey(0)
+    </pre>
+
+    <h3>4. Feature Extraction: Canny Edge Detection</h3>
+    <p>Once an image has been smoothed, we can perform feature extraction to identify key structural boundaries.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                Canny Edge Detector Pipeline                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Input: Pre-processed & Blurred Grayscale Image             │
+  │       │                                                     │
+  │       ▼                                                     │
+  │  cv2.Canny(image, threshold1, threshold2)                   │
+  │       │                                                     │
+  │       ▼                                                     │
+  │  Dual Hysteresis Thresholds (e.g., 100 & 200)               │
+  │       │                                                     │
+  │       ▼                                                     │
+  │  Output: Binary Edge Map (Highlights Structural Outlines)   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>The Canny Edge Detector is an advanced edge detection algorithm that evaluates local pixel intensity gradients using dual hysteresis threshold parameters (e.g., threshold1 = 100, threshold2 = 200).</p>
+    <pre>
+# Extract edges using Canny Edge Detection
+edges = cv2.Canny(gaussian_blur, 100, 200)
+
+cv2.imshow('Canny Edges', edges)
+cv2.waitKey(0)
+    </pre>
+
+    <h3>5. Geometric Image Transformations (Resize, Rotate, Flip)</h3>
+    <p>OpenCV provides built-in functions to modify the spatial geometry and orientation of image matrices:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Geometric Transformation Methods            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Resizing (cv2.resize):                                  │
+  │     • Shrinks or expands spatial width and height.          │
+  │     • Reduces computational load for faster execution.      │
+  │                                                             │
+  │  2. Rotation (cv2.getRotationMatrix2D + cv2.warpAffine):    │
+  │     • Calculates center coordinates (width/2, height/2).    │
+  │     • Generates affine rotation matrix at specified angle   │
+  │       (e.g., 45°) with minimal quality loss.                │
+  │                                                             │
+  │  3. Flipping (cv2.flip):                                    │
+  │     • Flips image along X-axis (0) or Y-axis (1).           │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <pre>
+# 1. Resize Image to 400x300 pixels
+resized_img = cv2.resize(image, (400, 300))
+cv2.imshow('Resized Image', resized_img)
+cv2.waitKey(0)
+
+# 2. Rotate Image by 45 degrees around its center
+height, width = image.shape[:2]
+center = (width // 2, height // 2)
+
+# Compute 2D rotation matrix for 45-degree angle
+rotation_matrix = cv2.getRotationMatrix2D(center, 45, 1.0)
+rotated_img = cv2.warpAffine(image, rotation_matrix, (width, height))
+
+cv2.imshow('Rotated Image', rotated_img)
+cv2.waitKey(0)
+
+# 3. Flip Image along the Y-axis (horizontal flip)
+flipped_img = cv2.flip(image, 1)
+cv2.imshow('Flipped Image', flipped_img)
+cv2.waitKey(0)
+    </pre>
+
+    <h3>6. Saving Output Files & Memory Cleanup</h3>
+    <p>After completing pre-processing, filtering, and feature extraction, the processed outputs can be written back to disk using cv2.imwrite().</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Memory Management & Window Cleanup            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Save Output Image : cv2.imwrite('edges_out.jpg', edges)  │
+  │                                                             │
+  │  • Clean Memory      : cv2.destroyAllWindows()              │
+  │                                                             │
+  │  • Crucial Rule: Destroying OpenCV display windows releases │
+  │    allocated memory buffers and prevents memory leaks.      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <pre>
+# Save extracted edge output to disk
+cv2.imwrite('edges_output.jpg', edges)
+
+# Close all GUI windows and release allocated memory
+cv2.destroyAllWindows()
+    </pre>
+
+    <h3>7. Complete Executable Python Script</h3>
+    <p>Below is the complete runnable Python script implementing Topic 164:</p>
+    <pre>
+# =====================================================================
+# Complete OpenCV Image Processing Pipeline (Topic 164)
+# =====================================================================
+
+import cv2
+import numpy as np
+
+# 1. Ingest Image from Disk
+img_path = 'flower.jpg'
+image = cv2.imread(img_path)
+
+if image is None:
+    print(f"Error: Could not read image at {img_path}")
+else:
+    # 2. Display Original BGR Image
+    cv2.imshow('1 - Original Image', image)
+    cv2.waitKey(0)
+
+    # 3. Convert Color Space: BGR to Grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cv2.imshow('2 - Grayscale', gray)
+    cv2.waitKey(0)
+
+    # 4. Apply Spatial Blurring Filters
+    gauss_blur = cv2.GaussianBlur(gray, (5, 5), 0)
+    cv2.imshow('3 - Gaussian Blur', gauss_blur)
+    cv2.waitKey(0)
+
+    med_blur = cv2.medianBlur(gray, 5)
+    cv2.imshow('4 - Median Blur', med_blur)
+    cv2.waitKey(0)
+
+    # 5. Extract Features using Canny Edge Detection
+    edges = cv2.Canny(gauss_blur, 100, 200)
+    cv2.imshow('5 - Canny Edges', edges)
+    cv2.waitKey(0)
+
+    # 6. Apply Geometric Transformations: Resizing
+    resized = cv2.resize(image, (400, 300))
+    cv2.imshow('6 - Resized Image', resized)
+    cv2.waitKey(0)
+
+    # 7. Apply Geometric Transformations: 45-Degree Rotation
+    h, w = image.shape[:2]
+    center = (w // 2, h // 2)
+    rot_mat = cv2.getRotationMatrix2D(center, 45, 1.0)
+    rotated = cv2.warpAffine(image, rot_mat, (w, h))
+    cv2.imshow('7 - Rotated Image', rotated)
+    cv2.waitKey(0)
+
+    # 8. Apply Geometric Transformations: Y-Axis Flip
+    flipped = cv2.flip(image, 1)
+    cv2.imshow('8 - Flipped Image', flipped)
+    cv2.waitKey(0)
+
+    # 9. Save Edge Feature Output to Disk
+    cv2.imwrite('edges_output.jpg', edges)
+    print("Successfully saved 'edges_output.jpg' to disk!")
+
+    # 10. Memory Cleanup: Destroy all display windows
+    cv2.destroyAllWindows()
+    </pre>
+
+    <h3>8. Summary Pipeline Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Processing Stage</th>
+          <th>OpenCV Function</th>
+          <th>Key Parameters & Operations</th>
+          <th>Practical Objective</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Image Ingestion</td>
+          <td>cv2.imread()</td>
+          <td>File path string.</td>
+          <td>Loads image as a NumPy array.</td>
+        </tr>
+        <tr>
+          <td>Display Window</td>
+          <td>cv2.imshow() & cv2.waitKey(0)</td>
+          <td>Title string & image matrix.</td>
+          <td>Renders visual window & waits for keypress.</td>
+        </tr>
+        <tr>
+          <td>Color Conversion</td>
+          <td>cv2.cvtColor()</td>
+          <td>cv2.COLOR_BGR2GRAY.</td>
+          <td>Converts 3-channel BGR to 1-channel Grayscale.</td>
+        </tr>
+        <tr>
+          <td>Gaussian Blur</td>
+          <td>cv2.GaussianBlur()</td>
+          <td>(5, 5) kernel size.</td>
+          <td>Smooths high-frequency noise.</td>
+        </tr>
+        <tr>
+          <td>Median Blur</td>
+          <td>cv2.medianBlur()</td>
+          <td>Kernel threshold 5.</td>
+          <td>Removes salt-and-pepper noise.</td>
+        </tr>
+        <tr>
+          <td>Edge Detection</td>
+          <td>cv2.Canny()</td>
+          <td>Thresholds (100, 200).</td>
+          <td>Extracts structural boundary lines.</td>
+        </tr>
+        <tr>
+          <td>Resizing</td>
+          <td>cv2.resize()</td>
+          <td>Target dimensions (400, 300).</td>
+          <td>Reduces compute load for faster processing.</td>
+        </tr>
+        <tr>
+          <td>Rotation</td>
+          <td>cv2.getRotationMatrix2D() + cv2.warpAffine()</td>
+          <td>Center, 45° angle, scale 1.0.</td>
+          <td>Performs affine rotation with minimal loss.</td>
+        </tr>
+        <tr>
+          <td>Flipping</td>
+          <td>cv2.flip()</td>
+          <td>Flip code 1 (Y-axis) or 0 (X-axis).</td>
+          <td>Flips orientation horizontally/vertically.</td>
+        </tr>
+        <tr>
+          <td>File Writing</td>
+          <td>cv2.imwrite()</td>
+          <td>Output filename & array.</td>
+          <td>Saves processed output matrix to disk.</td>
+        </tr>
+        <tr>
+          <td>Cleanup</td>
+          <td>cv2.destroyAllWindows()</td>
+          <td>No arguments.</td>
+          <td>Frees allocated RAM & closes GUI windows.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is OpenCV, how is it installed and imported in Python, and how does it handle image color formats compared to standard RGB?</button>
+      <div class="accordion-body">
+        <p><strong>Overview & Architecture:</strong> OpenCV (Open Source Computer Vision Library) is an open-source library widely used for image processing, object detection, face recognition, and robotics. It is written in C++ for optimal computational performance, with Python bindings provided for ease of development.</p>
+        <p><strong>Installation & Import:</strong></p>
+        <ul>
+          <li><strong>Installation:</strong> Installed via pip using <code>pip install opencv-python</code>.</li>
+          <li><strong>Import:</strong> Imported into Python scripts using <code>import cv2</code>, where cv2 serves as the core module.</li>
+        </ul>
+        <p><strong>BGR vs. RGB Color Representation:</strong></p>
+        <ul>
+          <li>While standard human-readable image formats use the RGB (Red, Green, Blue) ordering, OpenCV reads and stores color images in BGR (Blue, Green, Red) order by default.</li>
+          <li><strong>Color Conversion:</strong> To convert a BGR color image to grayscale for feature pre-processing, OpenCV provides the function <code>cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</code>. This converts the 3-channel BGR matrix into a single 8-bit grayscale image representing 256 gray levels (ranging from 0 to 255).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What are the primary OpenCV functions for reading, displaying, saving, and managing window memory when processing images?</button>
+      <div class="accordion-body">
+        <ul>
+          <li><strong>Reading Images (cv2.imread):</strong> Reads an image file from disk into a NumPy array (e.g., <code>img = cv2.imread('flower.jpeg')</code>).</li>
+          <li><strong>Displaying Images (cv2.imshow):</strong> Displays the image in a GUI window. It takes two arguments: the window title string and the image matrix to display (e.g., <code>cv2.imshow('Original Image', img)</code>).</li>
+          <li><strong>Keyboard Delay (cv2.waitKey):</strong> Halts script execution after displaying an image window. Passing 0 (<code>cv2.waitKey(0)</code>) tells OpenCV to pause indefinitely until the user presses any key on the keyboard.</li>
+          <li><strong>Saving Output (cv2.imwrite):</strong> Writes an image array to disk (e.g., <code>cv2.imwrite('edges_output.jpg', edges)</code>).</li>
+          <li><strong>Window Cleanup (cv2.destroyAllWindows):</strong> Closes all active GUI windows created during execution. Calling this function releases reserved system memory and prevents memory leakage.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: Why is image blurring applied before Canny Edge Detection, and what functions perform resizing, rotation, and flipping in OpenCV?</button>
+      <div class="accordion-body">
+        <p><strong>Preprocessing & Feature Extraction Pipeline:</strong></p>
+        <ul>
+          <li><strong>Image Blurring:</strong> Applying smoothing filters like Gaussian Blur (<code>cv2.GaussianBlur(gray_img, (5, 5), 0)</code>) or Median Blur (<code>cv2.medianBlur(gray_img, 5)</code>) eliminates high-frequency background noise.</li>
+          <li><strong>Why Blur Before Edge Detection:</strong> Running Canny Edge Detection (<code>cv2.Canny(gray_img, 100, 200)</code>) directly on a raw image can produce fragmented, disconnected edges. Applying blurring filters first ensures that extracted edges form continuous, connected boundary components.</li>
+        </ul>
+        <p><strong>Geometric Image Transformations:</strong></p>
+        <ul>
+          <li><strong>Resizing:</strong> <code>cv2.resize()</code> scales an image down to smaller dimensions (e.g., 400 x 300 pixels) to increase computational speed during downstream tasks.</li>
+          <li><strong>Rotation:</strong> Computed by generating a 2D affine rotation matrix via <code>cv2.getRotationMatrix2D(center, angle, scale)</code> (e.g., rotating by 45°) and applying it to the image using <code>cv2.warpAffine()</code> with minimal quality loss.</li>
+          <li><strong>Flipping:</strong> <code>cv2.flip(image, flipCode)</code> flips an image along the horizontal (X-axis) or vertical (Y-axis) directions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/arduino-programming-classes-kids-lublin.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/poland/computational-thinking-bydgoszcz.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-164');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-164');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '164') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensor values and coded actions</li><li>Hardware integration basics</li><li>Simulators before physical labs</li><li>Adult supervision for components</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/cHbF0UbPFd8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Hardware Meets Code: Sensor Integration and Robotics Fundamentals in Lodz</h2>
