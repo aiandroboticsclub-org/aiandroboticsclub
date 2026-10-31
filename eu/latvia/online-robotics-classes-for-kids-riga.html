@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Riga | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Riga | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Riga—English sessions and the 100-Mission pathway for local and expat families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/latvia/online-robotics-classes-for-kids-riga.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,320 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Riga · Latvia</span><h1>Online Robotics Classes for Kids in Riga</h1>
     <p>Online robotics classes for kids in Riga serve local and expat families with clear English instruction and the optional 100-Mission Hero Journey for structured progression.</p></div>
     <div><img src="../../../images/54.webp" alt="Online robotics Riga" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-156">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-156">Lesson</label>
+    <select id="lesson-select-156" class="lesson-select" aria-label="Select lesson">
+      <option value="156" selected>156: Recurrent Neural Networks (RNNs) Explained for Beginners</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Recurrent Neural Networks (RNNs) Explained for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 156 — Recurrent Neural Networks (RNNs) Explained for Beginners</h2>
+
+    <h3>1. Introduction: From Static Models to Sequential Data</h3>
+    <p>In prior modules, we explored fundamental deep learning architectures such as Artificial Neural Networks (ANNs) and Convolutional Neural Networks (CNNs). While these networks excel at processing static data (such as tabular rows or standalone image files), real-world scenarios frequently involve sequential or time-dependent data.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Static vs. Sequential Data                  │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Static Data (ANNs / CNNs)     │ Sequential Data (RNNs)      │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Fixed-size independent      │ • Time-dependent order      │
+  │   inputs (e.g., individual    │   where current data        │
+  │   photos, single tabular      │   depends on previous data. │
+  │   records).                   │                             │
+  │ • Ignores temporal order      │ • Preserves sequence memory │
+  │   and past history.           │   across time steps.        │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>What is Sequential Data?</strong></p>
+    <p>Sequential data refers to information that arrives in a specific sequence or time order where each element depends on previous elements:</p>
+    <ul>
+      <li><strong>Time-Series Data:</strong> Data points indexed with timestamps (e.g., daily stock prices, weather sensors).</li>
+      <li><strong>Text Data:</strong> Running streams of words in sentences, paragraphs, or articles.</li>
+      <li><strong>Speech Data:</strong> Continuous audio waveforms changing over time.</li>
+      <li><strong>Video Streams:</strong> Successive frame sequences forming continuous visual motion.</li>
+    </ul>
+    <p>To process sequential data effectively, networks need an internal mechanism to remember past information—a capability provided by Recurrent Neural Networks (RNNs).</p>
+
+    <h3>2. Core Architecture & Memory Loops</h3>
+    <p>Unlike traditional feedforward networks that process inputs in a single forward sweep without internal loops, an RNN introduces recurrent loops that maintain an internal memory.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                Recurrent Memory Loop Structure              │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │     Current Input (x_t) ──┐                                 │
+  │                           ▼                                 │
+  │                    ┌─────────────┐                          │
+  │  Previous Hidden ──► Hidden State│──► Current Output (y_t)  │
+  │  State (h_{t-1})   │    (h_t)    │                          │
+  │                    └──────┬──────┘                          │
+  │                           │                                 │
+  │                           └─► Passes Memory Loop to         │
+  │                               Next Time Step (h_t)          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>How Information Flows:</strong></p>
+    <ol>
+      <li>At each time step t, the network receives the current input vector (x_t) alongside the previous hidden state (h_{t-1}).</li>
+      <li>The hidden state acts as the network's memory, storing historical context from earlier time steps.</li>
+      <li>The output produced at time step t can serve as a prediction or be passed forward to influence calculations at the next time step t+1.</li>
+    </ol>
+    <p><strong>Flexible Input and Output Configurations:</strong></p>
+    <p>RNNs can be configured to fit diverse sequential tasks:</p>
+    <ul>
+      <li><strong>Sequence-to-Single Output:</strong> Predicts a single output from a full sequence (e.g., sentiment classification or time-series regression).</li>
+      <li><strong>Sequence-to-Sequence Output:</strong> Translates an input sequence into an output sequence (e.g., machine translation or text generation).</li>
+    </ul>
+
+    <h3>3. Mathematical Foundations & Layer Equations</h3>
+    <p>At every time step t, the hidden state h_t and output y_t are updated using two primary equations:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │             Recurrent Neural Network Formulas               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Hidden State Update Equation:                           │
+  │     h_t = σ( W_h · h_{t-1} + W_{xh} · x_t + b_h )           │
+  │                                                             │
+  │  2. Output Node Update Equation:                            │
+  │     y_t = W_y · h_t + b_y                                   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Parameter Breakdown:</strong></p>
+    <ul>
+      <li>x_t: Input vector at current time step t.</li>
+      <li>h_{t-1}: Previous hidden state vector carrying past memory.</li>
+      <li>h_t: Updated hidden state vector at current time step t.</li>
+      <li>y_t: Generated output vector at current time step t.</li>
+      <li>W_{xh}: Weight matrix applied to current input x_t.</li>
+      <li>W_h: Weight matrix applied to previous hidden state h_{t-1}.</li>
+      <li>W_y: Weight matrix applied to current hidden state h_t to generate output.</li>
+      <li>b_h, b_y: Bias vectors for hidden and output layers.</li>
+      <li>σ: Non-linear activation function (such as Tanh or ReLU).</li>
+    </ul>
+
+    <h3>4. Unrolling the RNN & Parameter Sharing</h3>
+    <p>To visualize how an RNN operates across a sequence, we can "unroll" or expand the recurrent loop over successive time steps.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  Unrolled RNN Architecture                  │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │    Output (y₁)           Output (y₂)           Output (y₃)  │
+  │         ▲                     ▲                     ▲       │
+  │         │ [W_y]               │ [W_y]               │ [W_y] │
+  │    ┌────┴────┐  [W_h]    ┌────┴────┐  [W_h]    ┌────┴────┐  │
+  │    │ Hidden  ├──────────►│ Hidden  ├──────────►│ Hidden  │  │
+  │    │ State 1 │           │ State 2 │           │ State 3 │  │
+  │    └────┬────┘           └────┬────┘           └────┬────┘  │
+  │         ▲ [W_xh]              ▲ [W_xh]              ▲ [W_xh]│
+  │         │                     │                     │       │
+  │    Input (x₁)            Input (x₂)            Input (x₃)   │
+  │                                                             │
+  │   Key Insight: Identical Weights (W_h, W_xh, W_y) Reused    │
+  │                Across ALL Time Steps (Parameter Sharing)    │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>The Principle of Parameter Sharing:</strong></p>
+    <p>Unrolling the network reveals a critical efficiency property: the exact same weight matrices (W_{xh}, W_h, W_y) are reused across every time step. Rather than learning distinct weights for each step in a sequence, the network shares parameters across time, drastically reducing the total number of trainable parameters.</p>
+
+    <h3>5. Real-World Applications & Examples</h3>
+    <p>Recurrent Neural Networks are deployed across domains requiring sequence modeling:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Key RNN Real-World Applications               │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Application Domain            │ Operational Mechanism       │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Stock Price Prediction        │ Predicts tomorrow's price   │
+  │                               │ by processing past daily    │
+  │                               │ price sequences.            │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Language Modeling & NLP       │ Predicts the next word in a │
+  │                               │ sentence based on preceding │
+  │                               │ context words.              │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Speech Recognition            │ Converts continuous audio   │
+  │                               │ signals into text.          │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Stock Price Forecasting:</strong> Predicting tomorrow's stock price requires analyzing price sequences from previous days to identify trends.</li>
+      <li><strong>Language Modeling:</strong> Generating text or predicting missing words relies on surrounding context within running text sequences.</li>
+      <li><strong>Speech Recognition:</strong> Converting continuous voice recordings into written text requires tracking temporal audio patterns.</li>
+    </ul>
+
+    <h3>6. The Vanishing Gradient Problem & Limitations</h3>
+    <p>When training RNNs using Backpropagation Through Time (BPTT), the network calculates gradients recursively across time steps. This process introduces a fundamental technical challenge known as the Vanishing Gradient Problem.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │           The Vanishing Gradient Problem Mechanism          │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Cause:                                                     │
+  │    • BPTT repeatedly multiplies partial derivatives during  │
+  │      backward passes over many time steps.                  │
+  │                                                             │
+  │  Mathematical Effect:                                       │
+  │    • Derivatives smaller than 1 shrink exponentially        │
+  │      toward zero (e.g., 0.1 × 0.1 = 0.01).                  │
+  │                                                             │
+  │  Consequence:                                               │
+  │    • Weight adjustments become infinitely small.            │
+  │    • Learning stalls for long sequences.                    │
+  │    • Network captures SHORT-TERM memory well but FAILS      │
+  │      on LONG-TERM dependencies.                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Why Gradients Vanish:</strong></p>
+    <ol>
+      <li>During BPTT, partial derivatives are multiplied repeatedly over time steps.</li>
+      <li>Multiplying numbers smaller than 1 causes values to shrink exponentially (e.g., 0.1 × 0.1 = 0.01).</li>
+      <li>Over long time sequences, these gradients approach zero, causing weight updates to freeze.</li>
+      <li>Consequently, basic RNNs excel at capturing short-term dependencies but perform poorly on long-term dependencies (e.g., long text documents or extended time series).</li>
+    </ol>
+
+    <h3>7. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature / Metric</th>
+          <th>Feedforward Networks (ANNs / CNNs)</th>
+          <th>Recurrent Neural Networks (RNNs)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data Compatibility</td>
+          <td>Static data (tables, standalone images).</td>
+          <td>Sequential / Time-series data (text, audio, video).</td>
+        </tr>
+        <tr>
+          <td>Data Connections</td>
+          <td>Strictly forward flow without feedback loops.</td>
+          <td>Contains recurrent loops that maintain memory.</td>
+        </tr>
+        <tr>
+          <td>Parameter Usage</td>
+          <td>Distinct weights per layer.</td>
+          <td>Parameter Sharing: Reuses identical weight matrices.</td>
+        </tr>
+        <tr>
+          <td>Hidden State Formula</td>
+          <td>h = Activation(W · x + b)</td>
+          <td>h_t = σ(W_h · h_{t-1} + W_{xh} · x_t + b_h)</td>
+        </tr>
+        <tr>
+          <td>Training Algorithm</td>
+          <td>Standard Backpropagation.</td>
+          <td>Backpropagation Through Time (BPTT).</td>
+        </tr>
+        <tr>
+          <td>Primary Limitation</td>
+          <td>Ignores temporal order in sequences.</td>
+          <td>Vanishing Gradient Problem on long sequences.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is sequential data, why are standard feedforward networks (like ANNs and CNNs) insufficient for it, and how do Recurrent Neural Networks (RNNs) handle sequential information?</button>
+      <div class="accordion-body">
+        <p><strong>Sequential Data vs. Static Data:</strong> Standard artificial neural networks (ANNs) and convolutional neural networks (CNNs) operate on static data where data points are independent. In contrast, sequential data arrives in an ordered sequence where current data points depend on prior data points. Examples include time-series data (with timestamps), text data (running text), speech, and videos.</p>
+        <p><strong>Limitation of Feedforward Networks:</strong> Feedforward networks lack memory; they process inputs independently without retaining context from prior time steps.</p>
+        <p><strong>How RNNs Process Sequences:</strong> Unlike feedforward networks, RNNs contain loops that allow them to maintain a memory (hidden state). At each time step, an RNN combines the current input (x_t) with the previous hidden state (h_{t-1}) to calculate the new hidden state (h_t). This hidden state preserves past information across time steps to model temporal patterns.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What are the mathematical formulas for updating the hidden state and output in an RNN, and what does "unrolling" an RNN with shared parameters mean?</button>
+      <div class="accordion-body">
+        <p><strong>Mathematical Foundations:</strong></p>
+        <ul>
+          <li><strong>Hidden State Update:</strong> At time step t, the hidden state h_t is updated using the formula: h_t = σ(W_hh · h_{t-1} + W_xh · x_t + b_h) where W_hh is the hidden-to-hidden weight matrix, h_{t-1} is the previous hidden state, W_xh is the input-to-hidden weight matrix, x_t is the current input, b_h is the bias, and σ represents a non-linear activation function (such as tanh or ReLU).</li>
+          <li><strong>Output Node Calculation:</strong> The output y_t at time step t is calculated as: y_t = W_hy · h_t + b_y where W_hy is the weight matrix and b_y is the bias for the output layer.</li>
+        </ul>
+        <p><strong>Unrolling an RNN:</strong> "Unrolling" means visualizing the recurrent loop as a sequence of repeated cells connected across time steps (similar to recursion).</p>
+        <p><strong>Parameter Sharing:</strong> When an RNN is unrolled across time steps, the exact same weight matrices (W) are reused at every time step. This concept of shared parameters keeps the network architecture consistent regardless of the sequence length.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is Backpropagation Through Time (BPTT), what causes the Vanishing Gradient Problem in RNNs, and how does it limit model performance?</button>
+      <div class="accordion-body">
+        <p><strong>Backpropagation Through Time (BPTT):</strong> BPTT is the training algorithm responsible for learning in RNNs, where prediction errors and gradients are calculated backward through time across all sequence time steps.</p>
+        <p><strong>Cause of the Vanishing Gradient Problem:</strong> During BPTT, calculating gradients across multiple time steps requires multiplying many derivative values together. Because these activation derivatives are typically smaller than 1 (e.g., 0.1 × 0.1 = 0.01), repeated multiplication across many time steps causes gradient values to shrink exponentially toward zero.</p>
+        <p><strong>Impact on Model Performance:</strong> When gradients vanish to near zero, weight updates become extremely tiny or stop entirely, meaning the network stops learning. Consequently, basic RNNs struggle to capture long-term dependencies and perform poorly on long text or speech sequences, limiting them primarily to short-term dependencies.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/latvia/ai-courses-for-kids-liepaja.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/latvia/python-coding-classes-for-children-daugavpils.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-156');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-156');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '156') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control logic</li><li>English for local and expat families</li><li>100-Mission progression pathway</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4XlVXW5xyMk" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
