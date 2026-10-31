@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Kaunas | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Kaunas | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Kaunas—clean syntax, text adventures and math quizzes in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/lithuania/python-coding-classes-for-children-kaunas.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,291 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Kaunas · Lithuania</span><h1>Python Coding Classes for Children in Kaunas</h1>
     <p>Python coding classes for children in Kaunas introduce clean, readable syntax so students focus on programming logic—through text adventures, quizzes and interactive tools.</p></div>
     <div><img src="../../../images/52.webp" alt="Python Kaunas" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-160">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-160">Lesson</label>
+    <select id="lesson-select-160" class="lesson-select" aria-label="Select lesson">
+      <option value="160" selected>160: Computer Vision Basics: The Math Behind How AI Understands Images</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Computer Vision Basics: The Math Behind How AI Understands Images" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 160 — Computer Vision Basics: The Math Behind How AI Understands Images</h2>
+
+    <h3>1. Introduction: Digitizing the Analog World</h3>
+    <p>In artificial intelligence, the modern landscape is divided into three primary paradigms: Data Science, Computer Vision (CV), and Natural Language Processing (NLP). Among these, Computer Vision represents a massive pillar dedicated to processing and understanding visual media—specifically images and videos.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 The Three Major AI Paradigms                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Data Science              ──► Tabular & Structured Data │
+  │  2. Computer Vision (CV)      ──► Images & Video Streams    │
+  │  3. Natural Language Processing ──► Text & Speech Sequences │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Analog vs. Digital Representation</strong></p>
+    <ul>
+      <li><strong>The Analog Real World:</strong> Human eyes perceive light as a continuous, analog stream of varying brightness and wavelengths across physical space.</li>
+      <li><strong>The Digital Computer World:</strong> Computers cannot process continuous analog signals; they operate strictly on quantitative numerical structures.</li>
+      <li><strong>Sampling & Digitization:</strong> To allow a computer to perceive an image, the continuous real-world light field is sampled onto a finite 2D spatial grid. Each individual cell within this discrete grid is assigned numerical values representing light intensity.</li>
+    </ul>
+
+    <h3>2. Mathematical Representation of a Digital Image</h3>
+    <p>Formally, a digital image is modeled as a discrete two-dimensional spatial function, denoted as I(x, y):</p>
+    <p>I(x, y) = Light Intensity at Spatial Coordinate (x, y)</p>
+    <ul>
+      <li><strong>I:</strong> Represents the light intensity (brightness or color value) at a specific coordinate.</li>
+      <li><strong>(x, y):</strong> Represents the discrete spatial location on the image plane.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  Image Coordinate System                    │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Origin (0,0)                                               │
+  │    ┌───────────────────────────────► X-axis (Width n)       │
+  │    │ (0,0)   (0,1)   (0,2) ...                              │
+  │    │ (1,0)   I(i,j)                                         │
+  │    │ (2,0)                                                  │
+  │    ▼                                                        │
+  │  Y-axis (Height m)                                          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>The Pixel (Picture Element)</strong></p>
+    <ul>
+      <li><strong>Definition:</strong> A pixel (short for picture element) is the smallest discrete building block of a digital image.</li>
+      <li><strong>Matrix Representation:</strong> Mathematically, a digital image is stored in computer memory as a 2D matrix or 2D array of size m × n:
+        <ul>
+          <li><strong>m:</strong> Represents the height of the image (total number of rows).</li>
+          <li><strong>n:</strong> Represents the width of the image (total number of columns).</li>
+          <li><strong>I(i, j):</strong> Denotes the pixel intensity value at row i and column j.</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>Standard Coordinate Conventions:</strong></p>
+    <ul>
+      <li><strong>Origin (0, 0):</strong> Positioned at the top-left corner of the image matrix.</li>
+      <li><strong>Horizontal Axis (x-axis):</strong> Extends from left to right along the image width (columns).</li>
+      <li><strong>Vertical Axis (y-axis):</strong> Extends from top to bottom down the image height (rows).</li>
+    </ul>
+
+    <h3>3. Grayscale Images & 8-Bit Pixel Intensity Mapping</h3>
+    <p>A grayscale image contains no color hues—only varying levels of brightness across a single channel (the Gray Channel). Each pixel is represented by a single scalar numerical value.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              8-Bit Pixel Intensity Scale (0–255)            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Pixel Value = 0   ──► Pure BLACK (Minimum Intensity)       │
+  │  Pixel Value = 128 ──► Mid-Tone GRAY                        │
+  │  Pixel Value = 255 ──► Pure WHITE (Maximum Intensity)       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>The 8-Bit Storage Standard:</strong></p>
+    <p>Computer memory stores grayscale pixel values using 8 bits (1 byte) per pixel:</p>
+    <p>Total Intensity Levels = 2<sup>8</sup> = 256 Discrete Levels (Ranging from 0 to 255)</p>
+    <ul>
+      <li><strong>0:</strong> Represents pure black (zero light intensity).</li>
+      <li><strong>255:</strong> Represents pure white (maximum light intensity).</li>
+      <li><strong>1 to 254:</strong> Represent 254 intermediate shades of gray. For instance, 1 is an almost unnoticeable off-black, 128 is a neutral gray, and 254 is an off-white.</li>
+    </ul>
+    <p>Using 8 bits per pixel maximizes memory efficiency by utilizing a full byte cleanly.</p>
+
+    <h3>4. Color Images (RGB) & 3D Tensors</h3>
+    <p>Natural color perception is constructed by combining three fundamental primary additive color channels: Red (R), Green (G), and Blue (B).</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                3D Color Image Tensor Layout                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │    Height (m) × Width (n) × 3 Color Channels (R, G, B)      │
+  │                                                             │
+  │         ┌───────────┐  Red Channel Matrix (R)               │
+  │       ┌───────────┐ │  Green Channel Matrix (G)             │
+  │     ┌───────────┐ │ │  Blue Channel Matrix (B)              │
+  │     │  Pixel    │ │ │                                       │
+  │     │ (i, j)    │ │ │  Each pixel (i,j) stores vector:      │
+  │     │           │ │─┘  [ R(i,j), G(i,j), B(i,j) ]           │
+  │     └───────────┘─┘                                         │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Pixel Vector Representation:</strong></p>
+    <p>In a color image, every spatial location (i, j) stores a vector of three numerical values:</p>
+    <p>Pixel(i, j) = [ R(i, j), G(i, j), B(i, j) ]</p>
+    <p>Where R(i, j), G(i, j), and B(i, j) each range independently from 0 to 255.</p>
+    <p><strong>3D Tensor Transformation:</strong></p>
+    <p>Combining spatial dimensions with color channels transforms a 2D matrix into a 3D Tensor:</p>
+    <p>Tensor Dimensions = Height (m) × Width (n) × Channels (c)</p>
+    <ul>
+      <li>For standard RGB images, c = 3.</li>
+      <li><strong>Specialized Domains:</strong> In medical imaging or remote sensing, additional channels may be included, such as a Depth channel (Z-buffer) or Infrared (IR) data.</li>
+    </ul>
+    <p><strong>Concrete Memory Calculation Example (HD Image):</strong></p>
+    <p>Consider a standard High Definition (HD) image with a spatial resolution of 1920 × 1080 pixels across 3 color channels:</p>
+    <p>Total Numerical Elements = 1920 × 1080 × 3 = <strong>6,220,800</strong> numbers</p>
+    <p>Storing a single uncompressed HD image in computer memory requires 6.22 million numerical values (approximately 6.22 MB).</p>
+
+    <h3>5. Fundamental Image Mathematical Operations</h3>
+    <p>Because digital images are stored as numerical matrices, image processing algorithms manipulate visuals using matrix arithmetic:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Basic Image Matrix Operations               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Brightness Adjustment (Scalar Addition):                │
+  │     I_new(x, y) = I_old(x, y) + c                           │
+  │                                                             │
+  │  2. Noise Reduction (Averaging Operation):                  │
+  │     I_average = (I₁ + I₂) / 2                               │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Brightness Adjustment (Scalar Addition):</strong> I_new(x, y) = I_old(x, y) + c. Adding a positive constant factor c to every pixel value increases overall image brightness.</li>
+      <li><strong>Noise Reduction (Averaging):</strong> I_average = (I₁ + I₂) / 2. Averaging pixel intensity values across neighboring pixels or successive image frames reduces random visual noise and smooths the image signal.</li>
+    </ol>
+
+    <h3>6. Summary Comparison Table: Grayscale vs. Color (RGB)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature / Metric</th>
+          <th>Grayscale Image</th>
+          <th>Color (RGB) Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data Structure</td>
+          <td>2D Matrix (m × n).</td>
+          <td>3D Tensor (m × n × 3).</td>
+        </tr>
+        <tr>
+          <td>Channel Count</td>
+          <td>1 Channel (Gray Channel).</td>
+          <td>3 Channels (Red, Green, Blue).</td>
+        </tr>
+        <tr>
+          <td>Values per Pixel</td>
+          <td>1 Scalar Numerical Value.</td>
+          <td>Vector of 3 Values [R, G, B].</td>
+        </tr>
+        <tr>
+          <td>Bit Depth per Channel</td>
+          <td>8 bits (1 byte).</td>
+          <td>8 bits per channel (24 bits total per pixel).</td>
+        </tr>
+        <tr>
+          <td>Intensity Range</td>
+          <td>0 (Black) to 255 (White).</td>
+          <td>0 to 255 per channel.</td>
+        </tr>
+        <tr>
+          <td>HD Memory Requirement</td>
+          <td>1920 × 1080 × 1 = 2.07 Million Numbers.</td>
+          <td>1920 × 1080 × 3 = 6.22 Million Numbers.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How does a computer represent a digital image mathematically, and what coordinate system convention is used?</button>
+      <div class="accordion-body">
+        <p><strong>Digital Representation:</strong> Computers treat continuous analog images as quantitative structures by sampling them into a discrete 2D matrix or array of size m × n, where m represents the height and n represents the width.</p>
+        <p><strong>Pixels and Intensity:</strong> Each unit cell in this grid is called a pixel (picture element), which is the smallest discrete element of a digital image. Each pixel stores a numerical value I(x, y) that represents the light intensity or color brightness at that specific location.</p>
+        <p><strong>Coordinate System Convention:</strong> In computer vision, the origin (0, 0) is placed at the top-left corner of the image:</p>
+        <ul>
+          <li>The x-axis moves horizontally from left to right along the width.</li>
+          <li>The y-axis moves vertically downwards from top to bottom along the height.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How are grayscale and color (RGB) images stored digitally, and what is the pixel intensity range for an 8-bit image?</button>
+      <div class="accordion-body">
+        <p><strong>Grayscale Images (Single Channel):</strong> Grayscale images contain no color and use a single gray channel. Each pixel value is typically stored using 8 bits (1 byte).</p>
+        <ul>
+          <li><strong>Range:</strong> An 8-bit representation yields 2<sup>8</sup> = 256 intensity values ranging from 0 to 255.</li>
+          <li><strong>Interpretation:</strong> 0 represents pure black (minimum intensity), 255 represents pure white (maximum intensity), and intermediate values (1–254) represent various shades of gray.</li>
+        </ul>
+        <p><strong>Color Images (RGB / 3D Matrix):</strong> Color images combine three primary color channels—Red, Green, and Blue (RGB). This converts the image from a 2D matrix into a 3D matrix formatted as (Height × Width × Channels). Each pixel location (i, j) contains three separate scalar values: (R<sub>i,j</sub>, G<sub>i,j</sub>, B<sub>i,j</sub>).</p>
+        <p><strong>Memory Example:</strong> Storing a standard HD image (1920 × 1080 resolution) across 3 color channels requires 1920 × 1080 × 3 ≈ 6.22 million numerical values/bytes in memory.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What are two basic mathematical pixel operations covered in Topic 160, and what are their formulas?</button>
+      <div class="accordion-body">
+        <ol>
+          <li><strong>Increasing Image Brightness:</strong> Brightness is increased across an image by adding a constant scalar factor c to every pixel's intensity value: I<sub>new</sub>(x, y) = I<sub>old</sub>(x, y) + c</li>
+          <li><strong>Noise Reduction via Pixel Averaging:</strong> Image noise can be smoothed out by computing the average intensity across pixels: I<sub>avg</sub> = (I<sub>1</sub> + I<sub>2</sub>) / 2</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/lithuania/online-robotics-classes-for-kids-vilnius.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/luxembourg/online-robotics-classes-for-kids-luxembourg.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-160');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-160');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '160') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Clean Python syntax</li><li>Text adventure games</li><li>Math quiz engines</li><li>Interactive data tools</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
