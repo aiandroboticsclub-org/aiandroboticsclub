@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Robotics Workshops for Kids in Florence | AI &amp; Robotics Club</title>
+  <title>STEM Robotics Workshops for Kids in Florence | AI & Robotics Club</title>
   <meta name="description" content="STEM robotics workshops for kids in Florence—project-based building, creativity and automation logic online.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/italy/stem-robotics-workshops-florence-kids.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,349 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Florence · Italy</span><h1>STEM Robotics Workshops for Kids in Florence</h1>
     <p>STEM robotics workshops for kids in Florence blend creative design with automation logic—goals, tests and revisions through guided online projects.</p></div>
     <div><img src="../../../images/75.webp" alt="STEM Florence" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-154">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-154">Lesson</label>
+    <select id="lesson-select-154" class="lesson-select" aria-label="Select lesson">
+      <option value="154" selected>154: How to Train a Convolutional Neural Network (CNN)</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Train a Convolutional Neural Network (CNN)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 154 — How to Train a Convolutional Neural Network (CNN)</h2>
+
+    <h3>1. Introduction & Core CNN Training Pipeline Overview</h3>
+    <p>Training a Convolutional Neural Network (CNN) involves an iterative mathematical optimization cycle designed to minimize prediction error and maximize model accuracy across visual datasets. Just like standard artificial neural networks, training a CNN relies on a three-step cycle repeated continuously over training samples:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              3-Step CNN Iterative Training Cycle            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Forward Pass                                       │
+  │     • Input image/batch is fed into the network             │
+  │     • Network calculates predicted output class (y_hat)     │
+  │                                                             │
+  │  Step 2: Loss Calculation                                   │
+  │     • Measures error between predicted output (y_hat) and   │
+  │       actual desired target output (y)                      │
+  │                                                             │
+  │  Step 3: Backpropagation & Parameter Adjustments            │
+  │     • Computes loss gradients using backpropagation         │
+  │     • Adjusts connection weights and biases across layers   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Step 1: Forward Pass:</strong> The network receives an input image (or batch of images) and propagates the signal forward through convolutional, activation, and pooling layers to produce a predicted output (ŷ).</li>
+      <li><strong>Step 2: Loss Calculation:</strong> A loss function measures the discrepancy or error between the network's predicted output (ŷ) and the ground-truth target label (y).</li>
+      <li><strong>Step 3: Backpropagation Pass:</strong> The backpropagation algorithm computes error gradients with respect to every weight and bias in the network, adjusting them to reduce prediction error.</li>
+    </ol>
+    <p><strong>Epochs and Batch Processing:</strong></p>
+    <ul>
+      <li><strong>Epoch Definition:</strong> Completing one full pass of the entire training dataset through both the forward pass and backpropagation cycle constitutes 1 Epoch.</li>
+      <li><strong>Batch Processing:</strong> CNN training is executed batch-wise rather than image-wise. Data is partitioned into smaller sample batches (e.g., a batch size of 64 images).</li>
+      <li><strong>Batch Update Calculation:</strong> For a dataset of N total image samples trained with a batch size of 64 over 10 epochs, the network performs (N/64) × 10 total parameter updates.</li>
+    </ul>
+
+    <h3>2. Controlling Feature Map Spatial Dimensions — Padding Mechanics</h3>
+    <p>When performing convolution, sliding a kernel filter across an image inherently reduces the output spatial dimensions and discards border details. Padding resolves this issue by adding extra pixels (typically with a numerical value of 0) around the outer perimeter of the input image.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                     Purposes of Zero-Padding                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Spatial Dimension Control:                              │
+  │     • Prevents feature maps from shrinking after convolution│
+  │                                                             │
+  │  2. Edge Information Preservation:                          │
+  │     • Preserves visual details located at image borders that│
+  │       would otherwise be lost during sliding operations     │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Two Primary Types of Padding:</strong></p>
+    <ul>
+      <li><strong>Valid Padding (No Padding):</strong> No extra padding pixels are added (P = 0). As a result, the spatial size of the feature map shrinks after every convolution operation.</li>
+      <li><strong>Same Padding:</strong> Zero-padding pixels are added to the image borders such that the output feature map spatial size exactly equals the input image spatial size (O = W).</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Padding Numerical Walkthrough Example            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Setup: Input Image = 5×5 pixels, Kernel Filter = 3×3 pixels│
+  │                                                             │
+  │  Case A: Valid Padding (P = 0)                              │
+  │     • Output Dimension = 5 - 3 + 1 = 3                        │
+  │     • Feature Map shrinks from 5×5 down to 3×3 pixels       │
+  │                                                             │
+  │  Case B: Same Padding (1-Cell Zero Border, P = 1)           │
+  │     • One row/column of 0s added to all 4 sides             │
+  │     • Formula: 5 + 2(1) - 3 + 1 = 5                         │
+  │     • Feature Map size is preserved at 5×5 pixels           │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Valid Padding Example:</strong> Feeding a 5 × 5 pixel image through a 3 × 3 kernel without padding yields a reduced 3 × 3 pixel output (5 − 3 + 1 = 3).</li>
+      <li><strong>Same Padding Example:</strong> Adding a 1-cell border of zeros (P = 1) around the 5 × 5 image expands its effective grid to 7 × 7. Applying the 3 × 3 kernel yields an output dimension of 5 × 5 pixels (5 + 2(1) − 3 + 1 = 5), successfully preserving original spatial dimensions.</li>
+    </ul>
+
+    <h3>3. Controlling Downsampling & Efficiency — Stride Mechanics</h3>
+    <p>Stride refers to the step size or jump distance (measured in pixels) taken by the sliding kernel window as it traverses across the image.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Impact of Stride Settings                   │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Small Stride (Stride = 1)     │ Large Stride (Stride = 2+)  │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Moves 1 pixel per step      │ • Jumps multiple pixels     │
+  │   (Default / Minimum jump)    │   per step (Aggressive)     │
+  │ • Produces LARGER feature map │ • Produces SMALLER feature  │
+  │ • Captures fine image details │   map                       │
+  │ • Requires HIGHER compute time│ • Dramatically REDUCES      │
+  │                               │   computation time          │
+  │                               │ • Risk: May discard fine    │
+  │                               │   spatial information       │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Stride = 1 (Default):</strong> The kernel advances by 1 pixel per step, taking the finest possible sampling steps across the image.</li>
+      <li><strong>Stride = 2 (Aggressive Downsampling):</strong> The kernel advances by 2 pixels per step, skipping pixel locations to downsample the image.</li>
+      <li><strong>Computational Trade-Off:</strong> Larger strides reduce output matrix dimensions, performing downsampling that significantly decreases computation time. However, setting the stride too large risks losing essential fine visual details.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            Stride Numerical Walkthrough Example             │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Setup: Input Image = 7×7 pixels, Kernel Filter = 3×3 pixels│
+  │                                                             │
+  │  Case A: Default Stride (S = 1)                             │
+  │     • Formula: (7 - 3) / 1 + 1 = 5                          │
+  │     • Output Feature Map = 5×5 pixels                       │
+  │                                                             │
+  │  Case B: Larger Stride (S = 2)                              │
+  │     • Formula: (7 - 3) / 2 + 1 = 3                          │
+  │     • Output Feature Map = 3×3 pixels                       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Stride 1 Result:</strong> Processing a 7 × 7 pixel input with a 3 × 3 kernel at S = 1 produces a 5 × 5 pixel feature map ((7 − 3)/1 + 1 = 5).</li>
+      <li><strong>Stride 2 Result:</strong> Processing the same 7 × 7 pixel input at S = 2 produces a smaller 3 × 3 pixel feature map ((7 − 3)/2 + 1 = 3).</li>
+    </ul>
+
+    <h3>4. Universal Spatial Output Dimension Formula</h3>
+    <p>To calculate the spatial output dimension (Width/Height O) of a feature map for any combination of input size (W), kernel size (K), padding (P), and stride (S), use the universal spatial output equation:</p>
+    <p>O = ⌊(W − K + 2P) / S⌋ + 1</p>
+    <p>Where:</p>
+    <ul>
+      <li>W = Input image spatial width / height</li>
+      <li>K = Kernel / filter spatial dimension</li>
+      <li>P = Padding size (number of zero-layers added to each border)</li>
+      <li>S = Stride step size</li>
+      <li>O = Output feature map spatial width / height</li>
+    </ul>
+
+    <h3>5. Model Evaluation, Testing, & Preventing Overfitting</h3>
+    <p>Once CNN training completes and the network achieves its target accuracy, it must be evaluated on separate data subsets.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Data Partitioning & Evaluation                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Data Partitioning Strategy:                                │
+  │    • Split dataset into a larger Training Set and smaller   │
+  │      Validation & Testing Sets (e.g., 70% Train / 30% Test) │
+  │                                                             │
+  │  Classification Evaluation Metrics:                         │
+  │    • Accuracy, Loss, Precision, and Recall                  │
+  │                                                             │
+  │  CRITICAL TESTING RULE (Preventing Overfitting):            │
+  │    • FREEZE WEIGHTS DURING TESTING                          │
+  │    • Connection weights must NEVER be updated on test data  │
+  │      to prevent overfitting and ensure an unbiased measure  │
+  │      of model generalization                                │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Dataset Partitioning:</strong> The dataset is divided into a larger Training Set and smaller Validation and Testing Sets (such as a 70% Training / 30% Testing split).</li>
+      <li><strong>Evaluation Metrics:</strong> Model performance on classification tasks is evaluated using Accuracy, Loss, Precision, and Recall.</li>
+      <li><strong>Golden Rule of Testing (Freezing Weights):</strong> During testing on unseen data, connection weights must NOT be updated. Freezing weights during testing prevents model overfitting and ensures an unbiased evaluation of how well the CNN generalizes to new data.</li>
+    </ol>
+
+    <h3>6. Summary Comparison Table: CNN Training Parameters</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter / Concept</th>
+          <th>Definition & Operational Function</th>
+          <th>Key Mathematical Effect / Rule</th>
+          <th>Primary Advantage & Trade-Off</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Epoch</td>
+          <td>One complete pass across the entire training dataset.</td>
+          <td>Continuous loop until loss is minimized.</td>
+          <td>Ensures network repeatedly sees data patterns.</td>
+        </tr>
+        <tr>
+          <td>Batch Size</td>
+          <td>Grouping images into mini-batches for training.</td>
+          <td>Total updates = (N / Batch Size) × Epochs.</td>
+          <td>Enables efficient GPU tensor updates.</td>
+        </tr>
+        <tr>
+          <td>Valid Padding</td>
+          <td>No zero-padding added around image borders (P = 0).</td>
+          <td>Output size shrinks: O = W − K + 1.</td>
+          <td>Simple, but discards edge pixel details.</td>
+        </tr>
+        <tr>
+          <td>Same Padding</td>
+          <td>Adds zero-padding borders so output size equals input size.</td>
+          <td>Output size preserved: O = W.</td>
+          <td>Preserves edge information & image dimensions.</td>
+        </tr>
+        <tr>
+          <td>Stride (S)</td>
+          <td>Pixel step size taken by the sliding kernel window.</td>
+          <td>Output size formula: O = (W − K + 2P) / S + 1.</td>
+          <td>Larger stride reduces compute time but can drop fine details.</td>
+        </tr>
+        <tr>
+          <td>Weight Freezing</td>
+          <td>Disabling weight updates during testing on unseen data.</td>
+          <td>Weights remain static during evaluation.</td>
+          <td>Essential for preventing overfitting & testing generalization.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What are the primary steps involved in training a Convolutional Neural Network (CNN), and how should the trained model be evaluated?</button>
+      <div class="accordion-body">
+        <p><strong>The 3-Step CNN Training Iteration:</strong></p>
+        <ol>
+          <li><strong>Forward Pass:</strong> The input image or mini-batch is passed through the network layers to compute predictions.</li>
+          <li><strong>Loss Calculation:</strong> A loss function measures the prediction error by comparing the model's actual output against the desired target output.</li>
+          <li><strong>Backpropagation & Weight Adjustment:</strong> The backpropagation algorithm computes error gradients with respect to weights and biases, updating network parameters to minimize loss.</li>
+        </ol>
+        <p><strong>Epochs & Batches:</strong> Training is performed iteratively over mini-batches rather than individual images. One complete pass over the entire training dataset is called an epoch. The overarching goal across epochs is to minimize overall loss while improving classification accuracy.</p>
+        <p><strong>Model Evaluation & Testing Best Practices:</strong></p>
+        <ul>
+          <li><strong>Dataset Splitting:</strong> Datasets are divided into a larger training set and smaller validation and testing sets (e.g., a 70/30 train/test split).</li>
+          <li><strong>Evaluation Metrics:</strong> Model performance is evaluated using metrics such as Accuracy, Loss, Precision, and Recall.</li>
+          <li><strong>Critical Rule on Testing:</strong> Testing is conducted on unseen test data only after training completes. Weights must never be updated during testing; updating parameters on test data leads to data leakage and severe overfitting.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is Padding in CNNs, why is it necessary, and how do Valid Padding and Same Padding differ mathematically?</button>
+      <div class="accordion-body">
+        <p><strong>Definition & Purpose:</strong> Padding involves adding extra border pixels (typically initialized with a value of 0) around the edges of an input image before applying convolution.</p>
+        <p><strong>Why Padding is Necessary:</strong></p>
+        <ul>
+          <li><strong>Prevents Spatial Shrinking:</strong> Standard convolution reduces the spatial dimensions of feature maps at every layer; padding prevents premature image shrinkage.</li>
+          <li><strong>Preserves Edge Information:</strong> Without padding, pixels located along the edges of an image are included in fewer convolution operations than central pixels, causing essential edge details to be lost.</li>
+        </ul>
+        <p><strong>Types of Padding & Mathematical Examples:</strong></p>
+        <ul>
+          <li><strong>Valid Padding (No Padding):</strong> No extra pixels are added around the image (P = 0). The output spatial size shrinks according to the formula O = W − K + 1.
+            <ul>
+              <li>Example: For a 5 × 5 input image (W = 5) and a 3 × 3 kernel (K = 3), the output feature map size is (5 − 3 + 1) = 3 × 3 pixels.</li>
+            </ul>
+          </li>
+          <li><strong>Same Padding:</strong> Zero-padding is added around the border (P ≥ 1) so that the output feature map retains the exact same spatial dimensions as the input image (O = W).
+            <ul>
+              <li>Example: For a 5 × 5 input image (W = 5) and a 3 × 3 kernel (K = 3), adding 1 layer of zero-padding (P = 1) yields an output size of (5 + 2(1) − 3 + 1) = 5 × 5 pixels.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is Stride in CNNs, how does it influence output dimensions, and what are its key computational trade-offs?</button>
+      <div class="accordion-body">
+        <p><strong>Definition:</strong> Stride (S) defines the step size—the number of pixels the sliding kernel window moves or jumps across the image during the convolution operation.</p>
+        <p><strong>Impact of Stride Settings:</strong></p>
+        <ul>
+          <li><strong>Small Stride (S = 1):</strong> The kernel moves 1 pixel at a time, performing dense sampling. This yields larger output feature maps and preserves fine visual details.</li>
+          <li><strong>Large Stride (S ≥ 2):</strong> The kernel jumps multiple pixels at a time, performing aggressive down-sampling. This produces significantly smaller output feature maps.</li>
+        </ul>
+        <p><strong>Mathematical Comparison Example:</strong></p>
+        <p>Given a 7 × 7 input image (W = 7) and a 3 × 3 kernel (K = 3):</p>
+        <ul>
+          <li>Stride = 1: Output dimension = (7 − 3)/1 + 1 = 5 × 5 pixels.</li>
+          <li>Stride = 2: Output dimension = (7 − 3)/2 + 1 = 3 × 3 pixels.</li>
+        </ul>
+        <p><strong>Computational Trade-Offs:</strong></p>
+        <ul>
+          <li><strong>Advantage:</strong> A larger stride substantially reduces computation time and memory footprint by reducing feature map dimensions early in the network.</li>
+          <li><strong>Risk:</strong> Increasing stride too much risks skipping over and losing essential fine-grained image details.</li>
+          <li><strong>Rule of Thumb:</strong> Select padding and stride values carefully to balance computational efficiency with spatial feature preservation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/scratch-coding-classes-kids-naples.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/latvia/ai-courses-for-kids-liepaja.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-154');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-154');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '154') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Project goals and constraints</li><li>Creative design plus logic</li><li>Iteration after failure</li><li>Clear presentation of ideas</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Blending Art and Automation: Hands-On STEM Building Projects for Youth in Florence</h2>
@@ -40,7 +376,7 @@
     <h2>Explore related learning</h2>
     <div class="seo-cards">
       <a class="seo-card" href="online-robotics-classes-for-kids-rome.html"><img src="../../../images/71.webp" alt="Rome" loading="lazy"><span>Robotics · Rome</span></a>
-      <a class="seo-card" href="coding-and-robotics-classes-genoa.html"><img src="../../../images/77.webp" alt="Genoa" loading="lazy"><span>Coding &amp; Robotics · Genoa</span></a>
+      <a class="seo-card" href="coding-and-robotics-classes-genoa.html"><img src="../../../images/77.webp" alt="Genoa" loading="lazy"><span>Coding & Robotics · Genoa</span></a>
       <a class="seo-card" href="scratch-coding-classes-kids-naples.html"><img src="../../../images/74.webp" alt="Naples" loading="lazy"><span>Scratch · Naples</span></a>
     </div>
   </main>
