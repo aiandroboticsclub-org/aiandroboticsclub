@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Courses for Kids in Liepaja | AI &amp; Robotics Club</title>
+  <title>AI Courses for Kids in Liepaja | AI & Robotics Club</title>
   <meta name="description" content="AI courses for kids in Liepaja—pattern recognition labs, digital safety and supervised classification models.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/latvia/ai-courses-for-kids-liepaja.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,412 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Liepaja · Latvia</span><h1>AI Courses for Kids in Liepaja</h1>
     <p>AI courses for kids in Liepaja emphasise digital safety and guided practice training image and text classification models on child-safe platforms.</p></div>
     <div><img src="../../../images/56.webp" alt="AI Liepaja" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-155">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-155">Lesson</label>
+    <select id="lesson-select-155" class="lesson-select" aria-label="Select lesson">
+      <option value="155" selected>155: Build an Image Recognition CNN with TensorFlow and Keras</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build an Image Recognition CNN with TensorFlow and Keras" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 155 — Build an Image Recognition CNN with TensorFlow and Keras</h2>
+
+    <h3>1. Introduction & Cloud GPU Infrastructure</h3>
+    <p>In previous modules, we examined the theoretical foundations of Convolutional Neural Networks (CNNs), including kernel filtering, spatial feature maps, activation functions, and max pooling operations. In this lecture, we translate those theoretical concepts into practical Python code by building an end-to-end image recognition CNN using TensorFlow and Keras.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              End-to-End Image Recognition Workflow          │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Cloud GPU Environment Setup (Google Colab T4 GPU)  │
+  │     • Accelerates tensor processing over standard CPUs      │
+  │                                                             │
+  │  Step 2: Data Ingestion & Preprocessing (MNIST Dataset)     │
+  │     • Load 28×28 grayscale images (10 digit classes)        │
+  │     • Normalize pixels (0–255 → 0.0–1.0) & add channel axis │
+  │                                                             │
+  │  Step 3: CNN Architecture Construction (models.Sequential)  │
+  │     • Stack Conv2D, MaxPooling2D, Flatten, and Dense layers │
+  │                                                             │
+  │  Step 4: Model Parameter Diagnostic (model.summary())       │
+  │     • Calculate layer output shapes and 121,930 parameters  │
+  │                                                             │
+  │  Step 5: Compilation & Training (fit with Adam Optimizer)   │
+  │     • Train for 3 epochs with a 10% validation split        │
+  │                                                             │
+  │  Step 6: Final Evaluation (evaluate on Unseen Test Data)    │
+  │     • Measure test loss and test accuracy (98.59%)          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Cloud Acceleration with Google Colab:</strong></p>
+    <p>When programming CNNs in Python, training deep networks locally on standard CPUs can be extremely slow. Google Colab provides a free cloud environment equipped with GPU hardware accelerators (such as the T4 GPU).</p>
+    <ul>
+      <li><strong>Enabling GPU in Colab:</strong> Navigate to Runtime → Change runtime type, select GPU (e.g., T4 GPU), and save. This restarts the hardware environment and enables parallel tensor operations for fast deep learning execution.</li>
+    </ul>
+
+    <h3>2. Data Ingestion & Image Preprocessing Pipeline</h3>
+    <p>For this implementation, we utilize the classic MNIST Handwritten Digits Dataset (tf.keras.datasets.mnist), which contains grayscale image samples of handwritten numbers from 0 through 9 across 10 distinct classes.</p>
+    <pre>
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# 1. Load the MNIST Dataset
+mnist = tf.keras.datasets.mnist
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+print(f"Training Images Shape: {X_train.shape}")  # (60000, 28, 28)
+print(f"Testing Images Shape : {X_test.shape}")   # (10000, 28, 28)
+    </pre>
+    <p><strong>Pixel Normalization & Channel Axis Expansion:</strong></p>
+    <ol>
+      <li><strong>Pixel Value Normalization:</strong> Raw pixel values range from 0 to 255 (stored as 8-bit unsigned integers / 1 byte). Dividing X_train and X_test by 255.0 rescales all pixel intensities to a continuous range between 0.0 and 1.0, which improves numerical stability during backpropagation.</li>
+      <li><strong>Channel Dimension Expansion:</strong> Grayscale images have a single color channel. TensorFlow requires image inputs to follow a 3D shape (Height, Width, Channels). Using tf.newaxis expands the array shape from (28, 28) to (28, 28, 1).</li>
+    </ol>
+    <pre>
+# 2. Rescale pixel values between 0.0 and 1.0
+X_train = X_train / 255.0
+X_test = X_test / 255.0
+
+# 3. Add explicit channel axis for grayscale images (28, 28, 1)
+X_train = X_train[..., tf.newaxis]
+X_test = X_test[..., tf.newaxis]
+
+print(f"Reshaped Train Matrix: {X_train.shape}")  # (60000, 28, 28, 1)
+    </pre>
+
+    <h3>3. Network Architecture Design (models.Sequential)</h3>
+    <p>Architectural decisions dictate how effectively a CNN extracts visual features. When designing an architecture, studying established domain research helps save extensive trial-and-error experimentation time.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   CNN Layer Architecture                    │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Input Image Layer (28 × 28 × 1 Grayscale)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Conv2D Layer 1        ──► 32 Filters (3×3), ReLU          │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   MaxPooling2D Layer 1  ──► Pool Size (2×2)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Conv2D Layer 2        ──► 64 Filters (3×3), ReLU          │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   MaxPooling2D Layer 2  ──► Pool Size (2×2)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Flatten Layer         ──► Reshapes 2D maps to 1D vector  │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Dense Hidden Layer    ──► 64 Neurons, ReLU                │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Output Dense Layer    ──► 10 Neurons, Softmax (Classes)   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Detailed Layer Breakdown:</strong></p>
+    <ul>
+      <li><strong>Layer 1: Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)):</strong> Applies 32 filters of size 3×3 with ReLU activation to extract basic primitive features (edges, corners).</li>
+      <li><strong>Layer 2: MaxPooling2D((2, 2)):</strong> Applies a 2×2 pool window to extract maximum values, shrinking spatial dimensions and reducing computation time.</li>
+      <li><strong>Layer 3: Conv2D(64, (3, 3), activation='relu'):</strong> Expands filter depth to 64 filters of size 3×3 to construct complex features from primitives.</li>
+      <li><strong>Layer 4: MaxPooling2D((2, 2)):</strong> Performs a second 2×2 spatial downsampling to further compress the feature maps.</li>
+      <li><strong>Layer 5: Flatten():</strong> Reshapes the multi-dimensional feature maps into a 1D feature vector suitable for fully connected layers.</li>
+      <li><strong>Layer 6: Dense(64, activation='relu'):</strong> Fully connected layer containing 64 neurons with ReLU activation for pattern learning.</li>
+      <li><strong>Layer 7: Dense(10, activation='softmax'):</strong> The output layer containing 10 neurons (corresponding to digits 0–9) paired with the Softmax activation function to output class probability distributions.</li>
+    </ul>
+    <pre>
+# 4. Construct CNN Architecture
+model = models.Sequential([
+    # First Convolutional Block
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
+    layers.MaxPooling2D((2, 2)),
+
+    # Second Convolutional Block
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+
+    # Classification Head
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+    </pre>
+
+    <h3>4. Model Diagnostics & Parameter Breakdown (model.summary())</h3>
+    <p>Executing model.summary() displays the complete layer-by-layer spatial shape transformations and trainable parameter counts:</p>
+    <pre>
+# 5. Print Model Parameter Summary
+model.summary()
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        Model Summary Breakdown                          │
+  ├──────────────────────────────┬───────────────────┬──────────────────────┤
+  │ Layer (Type)                 │ Output Shape      │ Param #              │
+  ├──────────────────────────────┼───────────────────┼──────────────────────┤
+  │ conv2d (Conv2D)              │ (None, 26, 26, 32)│ 320                  │
+  │ max_pooling2d (MaxPooling2D) │ (None, 13, 13, 32)│ 0                    │
+  │ conv2d_1 (Conv2D)            │ (None, 11, 11, 64)│ 18,496               │
+  │ max_pooling2d_1 (MaxPooling) │ (None, 5, 5, 64)  │ 0                    │
+  │ flatten (Flatten)            │ (None, 1600)      │ 0                    │
+  │ dense (Dense)                │ (None, 64)        │ 102,464              │
+  │ dense_1 (Dense)              │ (None, 10)        │ 650                  │
+  ├──────────────────────────────┴───────────────────┴──────────────────────┤
+  │ Total params: 121,930 (476.29 KB)                                       │
+  │ Trainable params: 121,930                                               │
+  │ Non-trainable params: 0                                                 │
+  └─────────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Mathematical Parameter Analysis:</strong></p>
+    <ol>
+      <li><strong>conv2d:</strong> Input 28×28×1 → 32 filters of 3×3. Weight formula: (3×3×1×32) + 32 biases = <strong>320 parameters</strong>. Output spatial size shrinks to 26×26×32.</li>
+      <li><strong>max_pooling2d:</strong> Downsamples 26×26 → 13×13×32. Parameter count = 0 (no trainable weights required for max operation).</li>
+      <li><strong>conv2d_1:</strong> Input 13×13×32 → 64 filters of 3×3. Weight formula: (3×3×32×64) + 64 biases = <strong>18,496 parameters</strong>. Output spatial size shrinks to 11×11×64.</li>
+      <li><strong>max_pooling2d_1:</strong> Downsamples 11×11 → 5×5×64. Parameter count = 0.</li>
+      <li><strong>flatten:</strong> Reshapes 3D tensor (5×5×64) into a 1D vector of 5×5×64 = <strong>1600 values</strong>. Parameter count = 0.</li>
+      <li><strong>dense:</strong> Input 1600 → 64 neurons. Weight formula: (1600×64) + 64 biases = <strong>102,464 parameters</strong>.</li>
+      <li><strong>dense_1:</strong> Input 64 → 10 output neurons. Weight formula: (64×10) + 10 biases = <strong>650 parameters</strong>.</li>
+      <li><strong>Total Model Memory:</strong> 121,930 trainable parameters occupying ~476 KB of data memory. Notice that as data moves deeper, spatial dimensions shrink (28 → 26 → 13 → 11 → 5) while channel depth expands (1 → 32 → 64).</li>
+    </ol>
+
+    <h3>5. Model Compilation, Training, & Diagnostics (fit)</h3>
+    <p>Before training, we compile the model using the Adam optimizer, sparse categorical cross-entropy loss, and the accuracy metric:</p>
+    <pre>
+# 6. Compile Model Configuration
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 7. Train Model for 3 Epochs with 10% Validation Split
+history = model.fit(
+    X_train, y_train,
+    epochs=3,
+    validation_split=0.1
+)
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Epoch Training Metrics Log                  │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Epoch 1/3:                                                 │
+  │    • Training Loss: 0.3300  | Training Accuracy: 89.00%     │
+  │    • Validation Loss: 0.0500| Validation Accuracy: 98.00%   │
+  │                                                             │
+  │  Epoch 2/3:                                                 │
+  │    • Training Accuracy: 98.00%                              │
+  │                                                             │
+  │  Epoch 3/3:                                                 │
+  │    • Training Accuracy: 98.97% | Training Loss: ~0.0300     │
+  │    • Validation Accuracy: 98.65%| Validation Loss: ~0.0400   │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Epoch Training Dynamics:</strong></p>
+    <ul>
+      <li><strong>Epoch Efficiency:</strong> Deep learning CNNs require very few epochs compared to classical machine learning models. Here, training over just 3 epochs achieves high convergence.</li>
+      <li><strong>Accuracy Progression:</strong> Training accuracy increases from 89% in Epoch 1 up to 98.97% (~99%) in Epoch 3, while validation accuracy reaches 98.65%.</li>
+      <li><strong>Generalization Check:</strong> Matching training (~98.97%) and validation (~98.65%) accuracies confirms that the network is well-fitted without underfitting or overfitting.</li>
+    </ul>
+
+    <h3>6. Evaluation on Unseen Test Data (evaluate)</h3>
+    <p>Finally, we evaluate model generalization on the completely separate test dataset of 10,000 unseen images using model.evaluate():</p>
+    <pre>
+# 8. Evaluate Model on Test Dataset
+test_loss, test_acc = model.evaluate(X_test, y_test)
+
+print(f"\nTest Dataset Loss    : {test_loss:.4f}")
+print(f"Test Dataset Accuracy: {test_acc * 100:.2f}%")  # Output: 98.59%
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   Final Model Performance                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Test Dataset Loss    : 0.0420                            │
+  │  • Test Dataset Accuracy: 98.59%                            │
+  │                                                             │
+  │  Industry Context:                                          │
+  │    • MNIST is a relatively clean benchmark dataset.         │
+  │    • Complex client real-world images present higher noise. │
+  │    • In production settings, an accuracy around 80% is      │
+  │      frequently considered an acceptable baseline.          │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Performance Takeaways:</strong></p>
+    <ul>
+      <li><strong>High Accuracy:</strong> The CNN achieves 98.59% test accuracy on MNIST digits.</li>
+      <li><strong>Industry Context:</strong> While MNIST yields over 98% accuracy due to its simple structure, real-world client images are substantially more complex. In industrial deployments, achieving around 80% accuracy on complex visual tasks is often considered an acceptable working baseline.</li>
+    </ul>
+
+    <h3>7. Summary Table: Topic 155 Pipeline Overview</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pipeline Stage</th>
+          <th>TensorFlow / Keras Code</th>
+          <th>Operational Function</th>
+          <th>Output Result / Metric</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GPU Acceleration</td>
+          <td>Colab T4 GPU Setup</td>
+          <td>Enables parallel tensor training.</td>
+          <td>Accelerated training execution.</td>
+        </tr>
+        <tr>
+          <td>Data Ingestion</td>
+          <td>mnist.load_data()</td>
+          <td>Loads 60k train & 10k test grayscale images.</td>
+          <td>Array shapes (60000, 28, 28).</td>
+        </tr>
+        <tr>
+          <td>Preprocessing</td>
+          <td>X / 255.0 & tf.newaxis</td>
+          <td>Normalizes pixels to 0–1 & adds channel axis.</td>
+          <td>Matrix shape (60000, 28, 28, 1).</td>
+        </tr>
+        <tr>
+          <td>Feature Extractor</td>
+          <td>Conv2D & MaxPooling2D</td>
+          <td>Extracts primitive and complex features.</td>
+          <td>Feature shapes shrink spatially.</td>
+        </tr>
+        <tr>
+          <td>Classifier Head</td>
+          <td>Flatten → Dense</td>
+          <td>Maps 1D feature vector to 10 digit classes.</td>
+          <td>10 Softmax output probabilities.</td>
+        </tr>
+        <tr>
+          <td>Model Summary</td>
+          <td>model.summary()</td>
+          <td>Calculates parameter weights per layer.</td>
+          <td>121,930 total parameters (~476 KB).</td>
+        </tr>
+        <tr>
+          <td>Compilation</td>
+          <td>model.compile()</td>
+          <td>Sets adam, sparse_categorical_crossentropy.</td>
+          <td>Configured training pipeline.</td>
+        </tr>
+        <tr>
+          <td>Training</td>
+          <td>model.fit()</td>
+          <td>Trains for 3 epochs with 10% validation split.</td>
+          <td>Train Acc: 98.97%, Val Acc: 98.65%.</td>
+        </tr>
+        <tr>
+          <td>Evaluation</td>
+          <td>model.evaluate()</td>
+          <td>Evaluates model on 10,000 unseen test images.</td>
+          <td>98.59% Test Accuracy.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How is image data preprocessed before building a CNN in TensorFlow and Keras, and why are these transformations necessary?</button>
+      <div class="accordion-body">
+        <p><strong>Pixel Value Normalization:</strong> Raw image pixel intensities range from 0 to 255 based on 8-bit byte representation. To accelerate training convergence, pixel values in both training and testing datasets are normalized by dividing by 255.0 (x_train / 255.0 and x_test / 255.0), scaling all pixel values into a range between 0.0 and 1.0.</p>
+        <p><strong>Channel Dimension Expansion:</strong> CNN layers in Keras expect a 3D input shape (Height, Width, Channels) for each image. Because grayscale datasets like MNIST lack explicit color channels, an explicit channel dimension is added using tf.newaxis to expand the data dimensions to (28, 28, 1).</p>
+        <p><strong>Hardware Acceleration:</strong> Training is typically configured on cloud platforms like Google Colab using a T4 GPU, which substantially speeds up execution compared to standard CPU processing.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is the complete sequential CNN architecture constructed in Topic 155, and what is the specific role of each layer?</button>
+      <div class="accordion-body">
+        <p>The model is built using Keras's Sequential API (tf.keras.models.Sequential) with the following layer stack:</p>
+        <ol>
+          <li><strong>First Convolutional Layer (Conv2D):</strong> Contains 32 filters of size 3x3 with ReLU activation and an input_shape of (28, 28, 1) to extract primitive low-level features such as edges.</li>
+          <li><strong>First Max Pooling Layer (MaxPooling2D):</strong> Uses a 2x2 pooling kernel to downsample feature map dimensions, reducing spatial size and computation time.</li>
+          <li><strong>Second Convolutional Layer (Conv2D):</strong> Contains 64 filters of size 3x3 with ReLU activation to combine primitive features into more complex spatial patterns.</li>
+          <li><strong>Second Max Pooling Layer (MaxPooling2D):</strong> Uses a 2x2 pooling kernel for additional spatial downsampling and computational efficiency.</li>
+          <li><strong>Flatten Layer (Flatten):</strong> Converts multidimensional feature maps into a 1D feature vector containing 1,600 values to bridge the feature extraction layers with the classification head.</li>
+          <li><strong>Fully Connected Hidden Layer (Dense):</strong> A dense layer with 64 neurons and ReLU activation for high-level decision reasoning.</li>
+          <li><strong>Output Layer (Dense):</strong> A fully connected output layer with 10 nodes and a Softmax activation function. The 10 nodes correspond to the 10 digit classes (0–9) in the MNIST dataset, outputting probability distributions across all categories.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is the CNN compiled, trained, and evaluated, and what accuracy performance was achieved?</button>
+      <div class="accordion-body">
+        <p><strong>Compilation Settings:</strong> The model is compiled using the Adam optimizer, Sparse Categorical Cross-Entropy (sparse_categorical_crossentropy) as the loss function, and Accuracy as the performance metric.</p>
+        <p><strong>Training Process:</strong> The model is trained using model.fit() over 3 epochs with a 10% validation split (validation_split=0.1). Across three epochs, training accuracy increases from ~89% to ~98.97%, while validation accuracy reaches ~98.65%.</p>
+        <p><strong>Model Evaluation & Results:</strong> Evaluating the trained model on the unseen test dataset via model.evaluate() achieves a high test accuracy of 98.59%.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/italy/stem-robotics-workshops-florence-kids.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/latvia/online-robotics-classes-for-kids-riga.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-155');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-155');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '155') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Protecting personal data online</li><li>Critical evaluation of AI output</li><li>Guided classification model practice</li><li>Child-safe platforms only</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/GBe4v5UEarc" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/chatgpt-for-kids/?referralCode=B14D538021C531BB04E6" target="_blank" rel="noopener noreferrer sponsored">ChatGPT for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
