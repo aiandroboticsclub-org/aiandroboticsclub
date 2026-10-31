@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Warsaw | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Warsaw | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Warsaw—sensors, motors and control logic in English for international and tech families.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/poland/online-robotics-classes-for-kids-warsaw.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,14 +21,481 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Warsaw · Poland</span><h1>Online Robotics Classes for Kids in Warsaw</h1>
     <p>Online robotics classes for kids in Warsaw help international and bilingual families explore sensors, motors and control logic from home—without inventing a campus on every street.</p></div>
     <div><img src="../../../images/81.webp" alt="Online robotics classes for kids in Warsaw" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-166">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-166">Lesson</label>
+    <select id="lesson-select-166" class="lesson-select" aria-label="Select lesson">
+      <option value="166" selected>166: YOLO Object Detection Explained: How AI Finds Objects in Images</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="YOLO Object Detection Explained: How AI Finds Objects in Images" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 166 — YOLO Object Detection Explained: How AI Finds Objects in Images</h2>
+
+    <h3>1. Introduction & Core Object Detection Concepts</h3>
+    <p>In computer vision, visual recognition tasks are divided into two distinct sub-problems: Object Classification and Object Localization.</p>
+    <ul>
+      <li><strong>Object Classification:</strong> Determines what object is present in an image, which is framed as a classification problem.</li>
+      <li><strong>Object Localization:</strong> Determines where the object is located and its spatial dimensions, which is framed as a continuous regression problem.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Object Recognition Framework                │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Object Classification         │ Object Localization         │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Identifies WHAT object is   │ • Pinpoints WHERE the object│
+  │   present in the image.       │   is located.               │
+  │ • Categorizes class labels.   │ • Predicts bounding box     │
+  │                               │   coordinates and size.     │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Core YOLO Architecture:</strong></p>
+    <p>The YOLO (You Only Look Once) framework solves both classification and localization simultaneously in a single forward pass. Its architecture consists of two primary modules:</p>
+    <ol>
+      <li><strong>CNN Backbone:</strong> A deep feature extraction backbone such as DarkNet, MobileNet, or ResNet.</li>
+      <li><strong>Detection Head:</strong> A fully connected regression head that outputs bounding box predictions.</li>
+    </ol>
+    <p><strong>Bounding Box Representation:</strong></p>
+    <p>A bounding box encloses a detected object, providing both its spatial location and its size. By default, YOLO models come pre-trained on the COCO dataset, which contains 80 distinct object classes. When target objects fall outside these default 80 classes, developers must build a custom dataset, annotate images with bounding boxes, and fine-tune YOLO.</p>
+
+    <h3>2. Environment & Library Setup in Google Colab</h3>
+    <p>Because YOLO-style models are deep neural networks with millions of trainable parameters, training requires significant computational power.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Google Colab Environment Setup              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Enable GPU Acceleration:                                │
+  │     • Runtime ──► Change runtime type ──► Select GPU.       │
+  │     • Connects session to cloud GPU hardware instance.      │
+  │                                                             │
+  │  2. Core Python Libraries:                                  │
+  │     • tensorflow : Deep learning GPU execution.             │
+  │     • numpy      : Matrix and array operations.             │
+  │     • cv2        : OpenCV image transformations.            │
+  │     • matplotlib : Data visualization and rendering.        │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <pre>
+import tensorflow as tf
+from tensorflow.keras import layers, models
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+    </pre>
+
+    <h3>3. Dataset Creation & Label Annotation Structure</h3>
+    <p><strong>Label Representation (5 Output Parameters):</strong></p>
+    <p>To train a YOLO-like model, every object label is annotated using a 5-element vector:</p>
+    <pre>
+Label Vector = [x_center, y_center, w, h, class]
+    </pre>
+    <ul>
+      <li><strong>x_center:</strong> Horizontal coordinate of the bounding box center.</li>
+      <li><strong>y_center:</strong> Vertical coordinate of the bounding box center.</li>
+      <li><strong>w:</strong> Spatial width of the bounding box.</li>
+      <li><strong>h:</strong> Spatial height of the bounding box.</li>
+      <li><strong>class:</strong> Target object class ID (e.g., binary class 1).</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Dataset Specification Details               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Dataset Size       : 200 total image samples.            │
+  │  • Image Dimensions   : 128×128 pixels × 3 channels.        │
+  │  • Pixel Format       : uint8 (8 bits per channel).         │
+  │  • Train / Test Split : 80% Train (160) / 20% Test (40).    │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+
+    <h3>4. YOLO-like CNN Network Architecture</h3>
+    <p>The network is constructed using Keras Sequential API, stacking three pairs of Convolutional and Max Pooling layers followed by a classification and regression head:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   YOLO CNN Layer Flow                       │
+  ├─────────────────────────────────────────────────────────────┤
+  │   Input Image (128 × 128 × 3 Color Channels)                │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Conv2D Layer 1        ──► 16 Filters (3×3), ReLU          │
+  │   MaxPooling2D Layer 1  ──► Pool Size (2×2)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Conv2D Layer 2        ──► 32 Filters (3×3), ReLU          │
+  │   MaxPooling2D Layer 2  ──► Pool Size (2×2)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Conv2D Layer 3        ──► 64 Filters (3×3), ReLU          │
+  │   MaxPooling2D Layer 3  ──► Pool Size (2×2)                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Flatten Layer         ──► Reshapes 3D tensor to 1D        │
+  │   Dense Hidden Layer    ──► 128 Neurons, ReLU               │
+  │   Dense Output Layer    ──► 5 Output Nodes, Sigmoid         │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <pre>
+# Construct YOLO-like CNN Architecture
+model = models.Sequential([
+    # First Convolutional Block
+    layers.Conv2D(16, (3, 3), activation='relu', input_shape=(128, 128, 3)),
+    layers.MaxPooling2D((2, 2)),
+
+    # Second Convolutional Block
+    layers.Conv2D(32, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+
+    # Third Convolutional Block
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+
+    # Detection Head
+    layers.Flatten(),
+    layers.Dense(128, activation='relu'),
+    layers.Dense(5, activation='sigmoid')  # Outputs: [x, y, w, h, class]
+])
+    </pre>
+
+    <h3>5. Model Summary & Parameter Analysis (model.summary())</h3>
+    <p>Executing model.summary() displays the complete layer transformation pipeline:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        Model Summary Breakdown                          │
+  ├──────────────────────────────┬───────────────────┬──────────────────────┤
+  │ Layer (Type)                 │ Output Shape      │ Param #              │
+  ├──────────────────────────────┼───────────────────┼──────────────────────┤
+  │ conv2d (Conv2D)              │ (None, 126, 126,16)│ 448                  │
+  │ max_pooling2d (MaxPooling2D) │ (None, 63, 63, 16)│ 0                    │
+  │ conv2d_1 (Conv2D)            │ (None, 61, 61, 32)│ 4,640                │
+  │ max_pooling2d_1 (MaxPooling) │ (None, 30, 30, 32)│ 0                    │
+  │ conv2d_2 (Conv2D)            │ (None, 28, 28, 64)│ 18,496               │
+  │ max_pooling2d_2 (MaxPooling) │ (None, 14, 14, 64)│ 0                    │
+  │ flatten (Flatten)            │ (None, 12544)     │ 0                    │
+  │ dense (Dense)                │ (None, 128)       │ 1,605,760            │
+  │ dense_1 (Dense Output)       │ (None, 5)         │ 645                  │
+  ├──────────────────────────────┴───────────────────┴──────────────────────┤
+  │ Total params: 1,629,889 (6.22 MB memory)                                │
+  │ Trainable params: 1,629,889                                             │
+  └─────────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <ul>
+      <li><strong>Total Parameters:</strong> The model contains 1,629,889 trainable parameters requiring 6.22 MB of memory.</li>
+      <li><strong>Dense Layer Dominance:</strong> The first Dense layer accounts for ~1.6 million parameters due to the flattened input vector size of 12,544 units.</li>
+    </ul>
+
+    <h3>6. Model Compilation, Training, & Loss Optimization</h3>
+    <p>The model is compiled using the Adam optimizer and Mean Squared Error (MSE) loss:</p>
+    <pre>
+model.compile(
+    optimizer='adam',
+    loss='mse'
+)
+
+# Train for 10 Epochs with batch size 8
+history = model.fit(
+    X_train, Y_train,
+    epochs=10,
+    batch_size=8,
+    validation_split=0.2
+)
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Training Progression Log                    │
+  ├─────────────────────────────────────────────────────────────┤
+  │  • Epoch 1/10  : Loss = 0.0300                              │
+  │  • Epoch 10/10 : Loss = 0.00157                             │
+  │  • Test Evaluation (model.evaluate):                        │
+  │    Final Test Loss = 0.0012                                 │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>Training over 10 epochs reduces loss from 0.03 down to 0.00157. Evaluating the trained model on test data yields a low test loss of 0.0012.</p>
+
+    <h3>7. Evaluation Metric: Intersection over Union (IoU)</h3>
+    <p>To evaluate how accurately predicted bounding boxes overlap with ground truth bounding boxes, we use Intersection over Union (IoU).</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Intersection over Union (IoU)                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │    Formula:                                                 │
+  │        IoU = Area of Overlap (Intersection)                 │
+  │              ───────────────────────────────                │
+  │               Area of Union (Total Area)                    │
+  │                                                             │
+  │    Evaluation Results across Test Samples:                  │
+  │      • Example 1 IoU : 0.607                                │
+  │      • Example 2 IoU : 0.700                                │
+  │      • Example 3 IoU : 0.570                                │
+  │      • Example 4 IoU : 0.870 (Highest Performance)          │
+  │      • Example 5 IoU : 0.720                                │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>An IoU score closer to 1.0 indicates near-perfect spatial alignment between predicted and actual bounding boxes. In test evaluations, the model achieved IoU scores reaching up to 0.87.</p>
+
+    <h3>8. Complete Executable Python Script</h3>
+    <p>Below is the complete, runnable Python code implementing Topic 166:</p>
+    <pre>
+# =====================================================================
+# Complete YOLO Object Detection Script (Topic 166)
+# =====================================================================
+
+import tensorflow as tf
+from tensorflow.keras import layers, models
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+# 1. Dataset Generation Function
+def create_dataset(num_samples=200):
+    images = []
+    labels = []
+    img_size = 128
+
+    for _ in range(num_samples):
+        # Create black canvas (128x128x3 uint8)
+        img = np.zeros((img_size, img_size, 3), dtype=np.uint8)
+
+        # Generate random bounding box coordinates
+        x_min = np.random.randint(10, 60)
+        y_min = np.random.randint(10, 60)
+        w = np.random.randint(20, 50)
+        h = np.random.randint(20, 50)
+
+        # Draw white rectangle on canvas
+        cv2.rectangle(img, (x_min, y_min), (x_min + w, y_min + h), (255, 255, 255), -1)
+
+        # Calculate normalized coordinates
+        x_center = (x_min + w / 2.0) / img_size
+        y_center = (y_min + h / 2.0) / img_size
+        norm_w = w / float(img_size)
+        norm_h = h / float(img_size)
+        cls_id = 1.0  # Class 1
+
+        images.append(img / 255.0)  # Normalize pixel values
+        labels.append([x_center, y_center, norm_w, norm_h, cls_id])
+
+    return np.array(images, dtype=np.float32), np.array(labels, dtype=np.float32)
+
+# 2. Generate Dataset and Split 80/20
+X, Y = create_dataset(200)
+split_idx = int(0.8 * len(X))
+X_train, X_test = X[:split_idx], X[split_idx:]
+Y_train, Y_test = Y[:split_idx], Y[split_idx:]
+
+# 3. Construct YOLO-like Architecture
+model = models.Sequential([
+    layers.Conv2D(16, (3, 3), activation='relu', input_shape=(128, 128, 3)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(32, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(128, activation='relu'),
+    layers.Dense(5, activation='sigmoid')
+])
+
+# 4. Compile and Display Model Summary
+model.compile(optimizer='adam', loss='mse')
+model.summary()
+
+# 5. Train Model for 10 Epochs
+history = model.fit(X_train, Y_train, epochs=10, batch_size=8, validation_split=0.2)
+
+# 6. Evaluate Model Test Loss
+test_loss = model.evaluate(X_test, Y_test, verbose=0)
+print(f"\nFinal Test Loss: {test_loss:.6f}")
+
+# 7. Intersection over Union (IoU) Calculation Function
+def compute_iou(boxA, boxB):
+    # Convert normalized [x_c, y_c, w, h] to corner coordinates
+    xA1 = boxA[0] - boxA[2]/2.0
+    yA1 = boxA[1] - boxA[3]/2.0
+    xA2 = boxA[0] + boxA[2]/2.0
+    yA2 = boxA[1] + boxA[3]/2.0
+
+    xB1 = boxB[0] - boxB[2]/2.0
+    yB1 = boxB[1] - boxB[3]/2.0
+    xB2 = boxB[0] + boxB[2]/2.0
+    yB2 = boxB[1] + boxB[3]/2.0
+
+    # Intersection coordinates
+    xI1 = max(xA1, xB1)
+    yI1 = max(yA1, yB1)
+    xI2 = min(xA2, xB2)
+    yI2 = min(yA2, yB2)
+
+    inter_area = max(0, xI2 - xI1) * max(0, yI2 - yI1)
+    boxA_area = (xA2 - xA1) * (yA2 - yA1)
+    boxB_area = (xB2 - xB1) * (yB2 - yB1)
+
+    union_area = boxA_area + boxB_area - inter_area
+    return inter_area / union_area if union_area > 0 else 0.0
+
+# 8. Test Predictions & IoU Evaluation
+predictions = model.predict(X_test[:5])
+for i in range(5):
+    iou = compute_iou(Y_test[i][:4], predictions[i][:4])
+    print(f"Sample {i+1} - True Box: {Y_test[i][:4]}, Pred Box: {predictions[i][:4].round(3)}, IoU: {iou:.3f}")
+    </pre>
+
+    <h3>9. Summary Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Parameter</th>
+          <th>Description & Operation</th>
+          <th>Setting / Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Output Label Format</td>
+          <td>Bounding box coordinates & class.</td>
+          <td>[x_center, y_center, width, height, class].</td>
+        </tr>
+        <tr>
+          <td>Default Dataset</td>
+          <td>Pre-trained dataset class coverage.</td>
+          <td>COCO Dataset (80 Classes).</td>
+        </tr>
+        <tr>
+          <td>Hardware Platform</td>
+          <td>GPU hardware acceleration.</td>
+          <td>Google Colab T4 GPU.</td>
+        </tr>
+        <tr>
+          <td>Input Tensor Shape</td>
+          <td>Image spatial resolution & channels.</td>
+          <td>(128, 128, 3).</td>
+        </tr>
+        <tr>
+          <td>Total Parameters</td>
+          <td>Model parameter footprint.</td>
+          <td>1,629,889 Parameters (~6.22 MB memory).</td>
+        </tr>
+        <tr>
+          <td>Optimizer & Loss</td>
+          <td>Optimization and loss metric.</td>
+          <td>Adam Optimizer, MSE Loss.</td>
+        </tr>
+        <tr>
+          <td>Evaluation Metric</td>
+          <td>Measures box overlap accuracy.</td>
+          <td>Intersection over Union (IoU).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What dual problems does YOLO solve simultaneously, how is its prediction output formatted, and what dataset is default YOLO pre-trained on?</button>
+      <div class="accordion-body">
+        <p><strong>Dual Problems Solved:</strong> YOLO addresses both object detection (a classification problem) and object localization (a regression problem) in a single step. While classification identifies what the object is, localization determines where it is located and its size using bounding boxes.</p>
+        <p><strong>Prediction Output Format:</strong> The final output layer outputs 5 core parameters for each prediction vector:</p>
+        <ol>
+          <li><strong>x-center:</strong> The horizontal center coordinate of the object.</li>
+          <li><strong>y-center:</strong> The vertical center coordinate of the object.</li>
+          <li><strong>Width (w):</strong> The width of the bounding box.</li>
+          <li><strong>Height (h):</strong> The height of the bounding box.</li>
+          <li><strong>Class:</strong> The predicted object class label.</li>
+        </ol>
+        <p><strong>Default Pre-trained Dataset:</strong> By default, YOLO models are pre-trained on the COCO dataset, which contains 80 distinct object classes. If target objects fall outside these 80 classes, a custom dataset must be created, annotated with bounding boxes, and used to fine-tune the model.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is the custom CNN architecture used to build the YOLO-like model in Topic 166, and what are its layer dimensions and parameter counts?</button>
+      <div class="accordion-body">
+        <p><strong>Feature Extraction Backbone (Repeating Conv2D & MaxPool2D Blocks):</strong></p>
+        <ul>
+          <li><strong>Layer 1:</strong> Conv2D with 16 filters (3 × 3 kernel, ReLU activation, input shape (128, 128, 3)), yielding 448 trainable parameters. Followed by MaxPooling2D downsampling to (63, 63, 16).</li>
+          <li><strong>Layer 2:</strong> Conv2D with 32 filters (3 × 3 kernel, ReLU activation), yielding 4,640 parameters. Followed by MaxPooling2D downsampling to (30, 30, 32).</li>
+          <li><strong>Layer 3:</strong> Conv2D with 64 filters (3 × 3 kernel, ReLU activation), yielding 18,496 parameters. Followed by MaxPooling2D downsampling to (14, 14, 64).</li>
+        </ul>
+        <p><strong>Classification & Localization Head:</strong></p>
+        <ul>
+          <li><strong>Flatten Layer:</strong> Converts multidimensional feature maps into a 1D vector of length 12,544.</li>
+          <li><strong>Hidden Dense Layer:</strong> 128 neurons with ReLU activation, adding ~1.6 million parameters.</li>
+          <li><strong>Output Dense Layer:</strong> 5 output nodes with Sigmoid activation to output the 5 bounding box and class values.</li>
+        </ul>
+        <p><strong>Total Parameters & Memory:</strong> The model contains 1,629,889 total trainable parameters (~6.22 MB memory footprint). It is compiled using the Adam optimizer and Mean Squared Error (MSE) loss function.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is model training evaluated in Topic 166, and how does Intersection over Union (IoU) measure bounding box accuracy?</button>
+      <div class="accordion-body">
+        <p><strong>Training Execution & Loss Reduction:</strong> The model is trained over 10 epochs using a GPU instance on Google Colab. Training loss decreases from 0.03 down to 0.00157, reaching a final test loss of 0.0012 on unseen test data.</p>
+        <p><strong>Intersection over Union (IoU):</strong> IoU is the primary performance evaluation metric used to evaluate bounding box alignment. It measures the spatial overlap between the predicted bounding box and the ground-truth bounding box:</p>
+        <pre>IoU = Intersection Area / Union Area</pre>
+        <p><strong>Performance Evaluation:</strong> Higher IoU values reflect better spatial localization and object detection accuracy. Across test predictions, individual samples achieved IoU scores ranging from 0.57 to 0.87 (with 0.87 representing the top-performing sample).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/computational-thinking-bydgoszcz.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/poland/online-stem-education-for-kids-szczecin.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-166');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-166');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '166') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Circuit logic and motor control</li><li>Sensor signal processing</li><li>Systematic debugging</li><li>Simulators first, optional hardware when ready</li></ul>
     <div class="seo-cta"><p style="color:#e2e8f0;margin:0;">Enquire about online robotics classes for kids in Warsaw</p>
     <a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
       <p style="font-size:0.85rem;color:#94a3b8;margin-top:0.5rem;"><a href="https://www.youtube.com/playlist?list=PL4fU7if8u1bfomOIOFjmy8ZchTK5eXhVR" target="_blank" rel="noopener noreferrer">100 Mission playlist</a> · <a href="https://chat.whatsapp.com/CXBIMcW2ZPv5PwrKQ2IODg" target="_blank" rel="noopener noreferrer">WhatsApp community</a> · Saturday live 12–1 PM GMT</p>
     </section>
