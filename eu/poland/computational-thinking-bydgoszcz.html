@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computational Thinking Classes in Bydgoszcz | AI &amp; Robotics Club</title>
+  <title>Computational Thinking Classes in Bydgoszcz | AI & Robotics Club</title>
   <meta name="description" content="Computational thinking classes in Bydgoszcz—decomposition, pattern recognition, abstraction and algorithms.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/poland/computational-thinking-bydgoszcz.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,219 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bydgoszcz · Poland</span><h1>Computational Thinking Classes in Bydgoszcz</h1>
     <p>Computational thinking classes in Bydgoszcz train the four core pillars—decomposition, pattern recognition, abstraction and algorithm design.</p></div>
     <div><img src="../../../images/90.webp" alt="Computational thinking Bydgoszcz" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-165">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-165">Lesson</label>
+    <select id="lesson-select-165" class="lesson-select" aria-label="Select lesson">
+      <option value="165" selected>165: Object Detection and Image Segmentation: Key Concepts Explained</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Object Detection and Image Segmentation: Key Concepts Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 165 — Object Detection and Image Segmentation: Key Concepts Explained</h2>
+
+    <h3>1. Introduction & Visual Understanding Paradigms</h3>
+    <p>In computer vision, advanced mathematical concepts underpin the most popular deep learning models used for visual understanding. Analyzing a digital image requires understanding both what objects are present and where they are located in spatial coordinates.</p>
+    <p>Computer vision solves visual understanding across two primary paradigms:</p>
+    <ul>
+      <li><strong>Object Detection:</strong> Identifies objects in an image and predicts their spatial locations using bounding boxes. The most popular deep learning model for object detection is YOLO (You Only Look Once), which is frequently fine-tuned on custom datasets for fast inference.</li>
+      <li><strong>Image Segmentation:</strong> Classifies every individual pixel in an image by assigning it to a specific class label. The benchmark model for image segmentation is U-Net, which produces precise pixel masks.</li>
+    </ul>
+    <p>Both paradigms rely heavily on foundational mathematical building blocks, including convolution operations, feature maps, differentiable loss functions, and gradient descent optimization.</p>
+
+    <h3>2. Object Detection Mechanics & The YOLO Model</h3>
+    <p><strong>A. The Convolution Operation</strong></p>
+    <p>Convolution serves as the primary tool for extracting local spatial features such as edges and textures. Mathematically, a kernel filter matrix \(K\) slides over an input image \(I\) of size \(m \times n\) using a sliding window operation to generate output feature maps.</p>
+    <p><strong>B. Grid Regression & Output Variables in YOLO</strong></p>
+    <p>YOLO simplifies object detection by framing it as a single regression problem.</p>
+    <ul>
+      <li><strong>\(S \times S\) Grid Division:</strong> The input image is divided into an \(S \times S\) spatial grid.</li>
+      <li><strong>Bounding Box Coordinates:</strong> For each grid cell, the network predicts four continuous bounding box values: starting coordinates \((x, y)\) along with the object's width (\(w\)) and height (\(h\)).</li>
+      <li><strong>Objectness Score:</strong> Represents the probability and confidence that a detected region actually contains an object.</li>
+      <li><strong>Class Probabilities:</strong> Represents the probability that the detected object belongs to a specific category class.</li>
+    </ul>
+    <p>The final prediction score for any detected object is computed by multiplying the objectness probability by the conditional class probability:</p>
+    <pre>
+Final Output Score = P(Object) × P(Class | Object)
+    </pre>
+    <p><strong>C. The Multi-Part Loss Function in YOLO</strong></p>
+    <p>To optimize bounding box positions, confidence scores, and class predictions simultaneously, YOLO uses an end-to-end differentiable multi-part loss function:</p>
+    <pre>
+L = λ_coord · L_coord + L_obj + L_noobj + L_class
+    </pre>
+    <ol>
+      <li><strong>Localization Loss (L_coord):</strong> Uses Mean Squared Error (MSE) in coordinate space to penalize inaccuracies in bounding box coordinates (x, y, w, h).</li>
+      <li><strong>Confidence Loss (L_obj and L_noobj):</strong> Penalizes false detections in background regions while encouraging high confidence on true objects.</li>
+      <li><strong>Classification Loss (L_class):</strong> Measures class prediction errors across object categories.</li>
+    </ol>
+    <p>Combining these losses into a single differentiable function allows the network to be trained end-to-end using gradient descent, simultaneously learning what an object is and where it is located.</p>
+
+    <h3>3. Image Segmentation Mechanics & The U-Net Model</h3>
+    <p><strong>A. U-Net Architecture & Building Blocks</strong></p>
+    <p>The goal of image segmentation is pixel-wise classification. The U-Net architecture achieves this using an Encoder-Decoder structure:</p>
+    <ul>
+      <li><strong>Encoder (Contracting Path):</strong> Uses standard convolution layers (f = σ(W · x + b)) for feature extraction alongside Max Pooling to reduce spatial dimensions.</li>
+      <li><strong>Bottleneck:</strong> Connects the deep feature representations between encoder and decoder.</li>
+      <li><strong>Decoder (Expanding Path):</strong> Employs Transposed Convolutions (x_up = f(Wᵀ · x + b)) to upsample feature maps back to original spatial dimensions for pixel-level prediction.</li>
+      <li><strong>Skip Connections:</strong> Pass high-resolution spatial details directly from encoder layers to decoder layers, ensuring precise pixel localization.</li>
+    </ul>
+    <p><strong>B. Loss Functions for Image Segmentation</strong></p>
+    <p>Segmentation models are trained using specialized mathematical loss functions:</p>
+    <ol>
+      <li><strong>Binary Cross-Entropy (BCE) Loss:</strong>
+        <pre>L_BCE = −(1/N) Σ [ yᵢ log(pᵢ) + (1 − yᵢ) log(1 − pᵢ) ]</pre>
+        Measures logarithmic prediction errors across individual pixels.
+      </li>
+      <li><strong>Dice Loss & Intersection over Union (IoU):</strong>
+        <pre>L_Dice = 1 − (2 · |P ∩ G|) / (|P| + |G|)</pre>
+        Measures the spatial overlap between the predicted mask (P) and the ground truth mask (G).
+      </li>
+    </ol>
+
+    <h3>4. Summary Comparison: YOLO vs. U-Net</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature / Aspect</th>
+          <th>YOLO (Object Detection)</th>
+          <th>U-Net (Image Segmentation)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Output Format</td>
+          <td>Bounding box coordinates (x, y, w, h) and class scores.</td>
+          <td>Pixel-wise segmentation masks.</td>
+        </tr>
+        <tr>
+          <td>Primary Goal</td>
+          <td>Identify and localize objects in bounding regions.</td>
+          <td>Delimit precise object boundaries pixel-by-pixel.</td>
+        </tr>
+        <tr>
+          <td>Core Mathematics</td>
+          <td>S × S Grid regression & multi-part loss.</td>
+          <td>Transposed convolutions, skip connections & overlap loss.</td>
+        </tr>
+        <tr>
+          <td>Loss Evaluation</td>
+          <td>Multi-part loss (MSE, Confidence, Classification).</td>
+          <td>Binary Cross-Entropy & Dice Loss / IoU.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How does the YOLO (You Only Look Once) model frame object detection, and what specific parameters and confidence scores does it predict?</button>
+      <div class="accordion-body">
+        <p><strong>Single Regression Problem:</strong> YOLO transforms the traditional object detection task into a single regression problem. Instead of processing multiple image regions separately, it divides the input image into an S × S grid to detect objects in a single forward pass.</p>
+        <p><strong>Bounding Box Parameters:</strong> For each detected object, the grid cell predicts 4 bounding box coordinates:</p>
+        <ul>
+          <li><strong>x, y:</strong> The starting/center position coordinates of the object within the image.</li>
+          <li><strong>w, h:</strong> The width and height of the bounding box around the object.</li>
+        </ul>
+        <p><strong>Predicted Confidence & Class Scores:</strong></p>
+        <ul>
+          <li><strong>Objectness Score:</strong> A probability indicating the model's confidence that an object actually exists within that bounding box.</li>
+          <li><strong>Class Probability:</strong> The probability that the detected object belongs to a specific class category.</li>
+          <li><strong>Final Output Score:</strong> Calculated by multiplying the objectness confidence by the class probability: Final Score = P(Object) × P(Class | Object).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is the structure of YOLO's multi-part loss function, and how does it balance different training errors?</button>
+      <div class="accordion-body">
+        <p>YOLO optimizes network parameters using a multi-part loss function that combines localization, confidence, and classification errors into a single equation:</p>
+        <pre>L = λ_coord · L_coord + L_obj + L_noobj + L_class</pre>
+        <ul>
+          <li><strong>Localization Loss (L_coord):</strong> Measures errors in predicted bounding box coordinates (x, y, w, h) compared to ground truth coordinates using Mean Squared Error (MSE) in coordinate space.</li>
+          <li><strong>Confidence Loss (L_obj & L_noobj):</strong> Evaluates confidence errors for grid cells containing true objects (L_obj) versus background grid cells without objects (L_noobj).</li>
+          <li><strong>Classification Loss (L_class):</strong> Measures classification errors when predicting which category the object belongs to.</li>
+          <li><strong>End-to-End Optimization:</strong> Combining these errors into a single loss function enables the network to learn what an object is and where it is located simultaneously using gradient descent.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is the U-Net model architecture for image segmentation, and how do its loss functions measure pixel-level performance?</button>
+      <div class="accordion-body">
+        <p><strong>Goal & Architecture:</strong> U-Net performs pixel-wise classification by assigning a class label to every individual pixel in an image. It uses an Encoder-Bottleneck-Decoder structure:</p>
+        <ul>
+          <li><strong>Encoder:</strong> Uses convolutional layers for feature extraction and max pooling layers to downsample image dimensions.</li>
+          <li><strong>Decoder:</strong> Uses transposed convolutions to upsample spatial dimensions back to the original image resolution.</li>
+          <li><strong>Skip Connections:</strong> Connect encoder layers directly to corresponding decoder layers to preserve precise spatial localization details.</li>
+        </ul>
+        <p><strong>Key Loss Functions:</strong></p>
+        <ul>
+          <li><strong>Binary Cross-Entropy (BCE):</strong> Measures logarithmic error for binary pixel class predictions.</li>
+          <li><strong>Dice Loss / Intersection over Union (IoU):</strong> Evaluates the spatial overlap between predicted pixel masks (P) and ground truth masks (G): Dice Loss = 1 − (2 · |P ∩ G|) / (|P| + |G|).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/coding-and-robotics-classes-lodz.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/poland/online-robotics-classes-for-kids-warsaw.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-165');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-165');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '165') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Decomposition of problems</li><li>Pattern recognition</li><li>Abstraction and algorithms</li><li>Free Saturday live mentorship</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Pattern Recognition and Logic: Computer Science Core Principles in Bydgoszcz</h2>
