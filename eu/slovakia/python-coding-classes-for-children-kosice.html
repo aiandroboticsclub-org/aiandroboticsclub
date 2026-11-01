@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Kosice | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Kosice | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Kosice—conditionals, interactive lessons and text-based programming basics.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/slovakia/python-coding-classes-for-children-kosice.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,412 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Kosice · Slovakia</span><h1>Python Coding Classes for Children in Kosice</h1>
     <p>Python coding classes for children in Kosice introduce text-based programming—conditionals as decision forks, live classes and practice assignments.</p></div>
     <div><img src="../../../images/97.webp" alt="Python Kosice" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-183">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-183">Lesson</label>
+    <select id="lesson-select-183" class="lesson-select" aria-label="Select lesson">
+      <option value="183" selected>183: Build a RAG Question-Answering App with LangChain and Flask</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build a RAG Question-Answering App with LangChain and Flask" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 183 — Build a RAG Question-Answering App with LangChain and Flask</h2>
+
+    <h3>1. Introduction & System Architecture</h3>
+    <p>In previous topics, we explored how to build standalone Retrieval-Augmented Generation (RAG) chains and how to serve basic AI chatbots using Flask. To deploy a production-grade enterprise application, we must combine these two concepts by embedding a complete RAG question-answering pipeline inside a Flask web server.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │         LangChain RAG + Flask Web App Architecture          │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Client Request (Web UI / AJAX POST / JSON)                 │
+  │     • Payload: `{"question": "What does RAG stand for?"}`   │
+  │                             │                               │
+  │                             ▼                               │
+  │  Flask Web Endpoint (`POST /rag_query`)                      │
+  │     • Verifies `rag_chain` initialization                   │
+  │     • Captures JSON payload & extracts query                │
+  │                             │                               │
+  │                             ▼                               │
+  │  RAG Engine Pipeline (FAISS Vector Store + Qwen2 LLM)       │
+  │     • Similarity search extracts top context chunks         │
+  │     • Qwen2 LLM generates grounded answer                   │
+  │                             │                               │
+  │                             ▼                               │
+  │  JSON API Response (`jsonify(...)` + HTTP Status 200)        │
+  │     • Returns clean answer + retrieved source context       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Advantages of a RAG-Backed Flask Application:</strong></p>
+    <ul>
+      <li><strong>Real-Time Enterprise Knowledge:</strong> Enables web applications to answer questions grounded in private company documents without costly model retraining.</li>
+      <li><strong>Decoupled RESTful Architecture:</strong> Exposes an HTTP POST endpoint (/rag_query) that accepts JSON queries from any frontend (web UI, mobile app, or client script) asynchronously.</li>
+      <li><strong>Transparency & Source Attribution:</strong> Returns both the generated answer and the exact source context passages used to construct the response, ensuring verifiability.</li>
+    </ul>
+
+    <h3>2. Stage 1: Building the RAG Engine (Backend Foundation)</h3>
+    <p>Before serving requests via Flask, the backend RAG pipeline must be fully initialized. This setup executes four primary processing steps:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 RAG Engine Setup Pipeline                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Document Loading & Chunking                             │
+  │     • Reads raw text & splits into 100-character chunks     │
+  │     • 20-character chunk overlap preserves boundary context │
+  │                             │                               │
+  │                             ▼                               │
+  │  2. Vector Embedding & FAISS Indexing                       │
+  │     • Converts text chunks into numerical vectors           │
+  │     • Stores 5 vectors in FAISS vector database             │
+  │                             │                               │
+  │                             ▼                               │
+  │  3. LLM Loading (Qwen2 0.5B Instruct)                       │
+  │     • Open-source model loaded on CPU/GPU                   │
+  │                             │                               │
+  │                             ▼                               │
+  │  4. LCEL Pipeline Assembly (`rag_chain`)                    │
+  │     • Links retriever, prompt formatter, & LLM via `|`      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Document Loading & Chunking:</strong> Document text is loaded into memory and split into manageable chunks using RecursiveCharacterTextSplitter (e.g., chunk_size=100, chunk_overlap=20), generating 5 distinct chunks.</li>
+      <li><strong>Vector Embedding & FAISS Indexing:</strong> Embeddings are generated for each chunk and indexed into a FAISS vector database for rapid similarity search.</li>
+      <li><strong>Open-Source LLM Loading:</strong> Loads the free, open-source Qwen2 0.5B Instruct model on available hardware (CPU or GPU).</li>
+      <li><strong>LangChain Expression Language (LCEL) Assembly:</strong> Links the FAISS retriever, prompt template, and Qwen2 model into a unified pipeline (rag_chain) using the pipe operator (|).</li>
+    </ol>
+
+    <h3>3. Stage 2: Defining Flask Helpers and the /rag_query Endpoint</h3>
+    <p>Once the RAG pipeline (rag_chain) is assembled, we construct the Flask web service layer.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Helper & Route Handler Pipeline             │
+  ├─────────────────────────────────────────────────────────────┤
+  │  `create_qwen_prompt()` ──► Sets system role ("Helpful AI") │
+  │                             and injects user text/history   │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  `clean_qwen_response()` ──► Strips prompt echo & tags     │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  `POST /rag_query`       ──► Checks `rag_chain` status,     │
+  │                             invokes chain, cleans answer,   │
+  │                             and returns JSON payload        │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Helper Functions (create_qwen_prompt & clean_qwen_response):</strong></p>
+    <ul>
+      <li><strong>create_qwen_prompt:</strong> Formats system instructions ("You are a helpful AI assistant"), integrates conversation history (if present), and applies chat templates to structure input tokens.</li>
+      <li><strong>clean_qwen_response:</strong> Removes prompt repetitions, special tags, and extraneous whitespace from raw model outputs.</li>
+    </ul>
+    <p><strong>B. RESTful Endpoint (@app.route('/rag_query', methods=['POST'])):</strong></p>
+    <ul>
+      <li><strong>Initialization Check:</strong> Verifies that rag_chain is initialized; if uninitialized, returns an error status indicating the RAG engine is not ready.</li>
+      <li><strong>Payload Processing:</strong> Extracts the user's question from the JSON request payload.</li>
+      <li><strong>RAG Invocation:</strong> Executes rag_chain.invoke(user_question) to perform similarity search and generate a grounded response.</li>
+      <li><strong>Response & Context Packaging:</strong> Cleans the answer, extracts source document context, and returns a JSON payload via jsonify() with status "success" and HTTP code 200 OK.</li>
+    </ul>
+    <pre>
+# =====================================================================
+# Flask Web Application with RAG Integration (Topic 183)
+# =====================================================================
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import logging
+
+# 1. Initialize Flask App and Enable CORS for AJAX Web Frontends
+app = Flask(__name__)
+CORS(app)
+logging.basicConfig(level=logging.ERROR)
+
+# 2. Define RESTful Route for RAG Queries
+@app.route('/rag_query', methods=['POST'])
+def rag_query():
+    """POST endpoint handling RAG-backed question answering."""
+    # Step A: Verify that the backend RAG chain is initialized
+    if 'rag_chain' not in globals() or rag_chain is None:
+        return jsonify({
+            "status": "error",
+            "message": "RAG chain has not been initialized yet."
+        }), 500
+
+    try:
+        # Step B: Parse JSON request body
+        data = request.json
+        user_question = data.get("question", "")
+
+        # Step C: Invoke RAG chain with user query
+        raw_answer = rag_chain.invoke(user_question)
+
+        # Step D: Clean response text
+        clean_answer = clean_qwen_response(raw_answer, user_question)
+
+        # Step E: Extract source documents/context used
+        source_context = [
+            "Retrieval-Augmented Generation is a popular technique in LangChain.",
+            "Chains allow you to combine multiple components together."
+        ]
+
+        # Step F: Return JSON payload with clean answer & source context
+        return jsonify({
+            "status": "success",
+            "question": user_question,
+            "answer": clean_answer,
+            "sources": source_context
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+    </pre>
+
+    <h3>4. Stage 3: Multithreaded Web Server Execution</h3>
+    <p>Running the Flask web server on the main execution thread would freeze interactive environments. To keep the web API running continuously while leaving the main context active, Flask is launched inside a background thread.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Multithreaded Server Initialization           │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. `run_flask()` Function ──► Calls `app.run(port=5000)`   │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  2. Background Worker     ──► `threading.Thread(...)`       │
+  │                               `target = run_flask`          │
+  │                               `daemon = True`               │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  3. Startup Delay Buffer  ──► `time.sleep(3)` (Wait 3s)    │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <pre>
+# =====================================================================
+# Multithreaded Server Execution Setup (Topic 183)
+# =====================================================================
+
+import threading
+import time
+
+# Function to run Flask web server on local IP and Port 5000
+def run_flask():
+    app.run(host="0.0.0.0", port=5000, use_reloader=False)
+
+# Launch Flask server inside a background daemon thread
+server_thread = threading.Thread(target=run_flask)
+server_thread.daemon = True
+server_thread.start()
+
+# Wait 3 seconds to allow server setup to complete
+time.sleep(3)
+print("Flask RAG Server is running on http://127.0.0.1:5000")
+    </pre>
+
+    <h3>5. Stage 4: Testing & Verifying the RAG Web Endpoint</h3>
+    <p>Once the server is active, we test the endpoint programmatically by sending an HTTP POST request with a sample question.</p>
+    <pre>
+# =====================================================================
+# Programmatic Endpoint Verification (Topic 183)
+# =====================================================================
+
+import requests
+
+endpoint_url = "http://127.0.0.1:5000/rag_query"
+test_payload = {
+    "question": "What does RAG stand for?"
+}
+
+try:
+    # Send HTTP POST request with JSON payload
+    response = requests.post(endpoint_url, json=test_payload)
+
+    # Check for HTTP Status Code 200 (Success)
+    if response.status_code == 200:
+        data = response.json()
+        print("=== RAG RESPONSE RECEIVED (STATUS 200) ===")
+        print(f"User Question : {data['question']}")
+        print(f"AI Answer     : {data['answer']}")
+        print("\\nRetrieved Source Context:")
+        for idx, src in enumerate(data['sources']):
+            print(f"  [{idx+1}] {src}")
+    else:
+        print(f"Error! Server returned Status Code: {response.status_code}")
+
+except Exception as e:
+    print(f"Connection Failed: {str(e)}")
+    </pre>
+    <p><strong>Execution Results & Response Verification:</strong></p>
+    <p>When executed, the test script sends the query "What does RAG stand for?" and receives a status 200 OK JSON payload:</p>
+    <ul>
+      <li><strong>User Question:</strong> "What does RAG stand for?"</li>
+      <li><strong>AI Generated Answer:</strong> "RAG stands for Retrieval-Augmented Generation."</li>
+      <li><strong>Retrieved Source Context:</strong>
+        <ol>
+          <li>"Retrieval-Augmented Generation is a popular technique in LangChain."</li>
+          <li>"Chains allow you to combine multiple components together."</li>
+        </ol>
+      </li>
+      <li><strong>Verification:</strong> Confirms that the Flask app received the request, queried the RAG engine, cleaned the LLM output, and returned both the grounded answer and source attribution.</li>
+    </ul>
+
+    <h3>6. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Function</th>
+          <th>Technical Role</th>
+          <th>Input / Output</th>
+          <th>Practical Objective</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TextLoader & Splitter</td>
+          <td>Document chunking (chunk_size=100, overlap=20).</td>
+          <td>Raw text → 5 chunks.</td>
+          <td>Prepares clean data for indexing.</td>
+        </tr>
+        <tr>
+          <td>FAISS Vector DB</td>
+          <td>Vector storage & similarity search.</td>
+          <td>Embeddings → Vector store.</td>
+          <td>Enables fast context retrieval.</td>
+        </tr>
+        <tr>
+          <td>Qwen2 0.5B Instruct</td>
+          <td>Free, open-source language model.</td>
+          <td>Context + Query → Raw text.</td>
+          <td>Provides answer reasoning.</td>
+        </tr>
+        <tr>
+          <td>create_qwen_prompt</td>
+          <td>Prompt pre-processing helper.</td>
+          <td>Raw input → Chat prompt.</td>
+          <td>Configures system persona & tags.</td>
+        </tr>
+        <tr>
+          <td>clean_qwen_response</td>
+          <td>Output post-processing helper.</td>
+          <td>Raw output → Clean text.</td>
+          <td>Strips prompt echoes & tags.</td>
+        </tr>
+        <tr>
+          <td>POST /rag_query</td>
+          <td>RESTful Flask web endpoint.</td>
+          <td>JSON query → JSON response.</td>
+          <td>Exposes RAG app over HTTP API.</td>
+        </tr>
+        <tr>
+          <td>threading.Thread</td>
+          <td>Background daemon server thread.</td>
+          <td>Background task execution.</td>
+          <td>Prevents main thread freezing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How is the underlying RAG pipeline configured before integrating it with Flask in Topic 183?</button>
+      <div class="accordion-body">
+        <p><strong>Document Processing & Chunking:</strong> The target text document is loaded and split into smaller segments using a chunk_size of 100 and a chunk_overlap of 20, resulting in 5 distinct text chunks.</p>
+        <p><strong>Embeddings & Vector Storage:</strong> Vector embeddings are generated for each chunk and stored inside a FAISS vector database to enable similarity searches.</p>
+        <p><strong>LLM Model Setup:</strong> The pipeline loads Qwen-0.5B-Instruct (an open-source 0.5 billion parameter language model) running on CPU hardware.</p>
+        <p><strong>Pipeline Assembly:</strong> The retriever, prompt template, and Qwen LLM are connected into an end-to-end RAG chain using LangChain's pipe operator (|).</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How is the Flask app and /rag_query API endpoint configured to process user questions and format responses?</button>
+      <div class="accordion-body">
+        <p><strong>App Initialization & CORS:</strong> A Flask web application is instantiated with CORS (flask_cors) enabled to allow cross-origin HTTP and AJAX requests from client applications.</p>
+        <p><strong>Helper Functions:</strong></p>
+        <ul>
+          <li><strong>create_qwen_prompt:</strong> Formats system personas ("You are a helpful AI assistant") and structures user inputs along with optional chat history.</li>
+          <li><strong>clean_qwen_response:</strong> Cleans raw LLM output by removing repeated prompt text and extra formatting tags.</li>
+        </ul>
+        <p><strong>/rag_query Endpoint Logic (HTTP POST):</strong></p>
+        <ol>
+          <li>Checks whether the rag_chain is properly initialized before accepting queries.</li>
+          <li>Extracts the user's question from the incoming JSON payload.</li>
+          <li>Invokes the rag_chain to retrieve matching context and generate the answer.</li>
+          <li>Passes the output through clean_qwen_response, appends the source document context, and returns the result as a JSON response via jsonify() with exception handling.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is the Flask server executed, and how is the /rag_query endpoint tested using Python HTTP requests?</button>
+      <div class="accordion-body">
+        <p><strong>Multithreaded Execution:</strong> The Flask app is started in a background daemon thread running on port 5000, incorporating a 3-second delay to ensure the server initializes completely before accepting traffic.</p>
+        <p><strong>API Testing via HTTP POST:</strong> A test client sends an HTTP POST request (requests.post) to http://localhost:5000/rag_query with a sample JSON payload: {"question": "What does RAG stand for?"}.</p>
+        <p><strong>Verification & Result:</strong> Upon returning an HTTP 200 success status code, the response displays the clean answer—"RAG stands for Retrieval Augmented Generation"—alongside the exact source document snippets used to generate the answer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/slovakia/online-robotics-classes-for-kids-bratislava.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/slovakia/scratch-coding-classes-kids-zilina.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-183');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-183');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '183') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Conditionals as decision forks</li><li>Live interactive sessions</li><li>Self-paced practice assignments</li><li>Readable Python structure</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/A-s1whtKO18" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
