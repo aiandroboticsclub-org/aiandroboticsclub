@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Zilina | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Zilina | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Zilina—event-driven programming, custom sprites and mini-games.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/slovakia/scratch-coding-classes-kids-zilina.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,447 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Zilina · Slovakia</span><h1>Scratch Coding Classes for Kids in Zilina</h1>
     <p>Scratch coding classes for kids in Zilina teach event-driven programming—code that runs on clicks and key presses—plus custom sprites and mini-games.</p></div>
     <div><img src="../../../images/99.webp" alt="Scratch Zilina" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-184">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-184">Lesson</label>
+    <select id="lesson-select-184" class="lesson-select" aria-label="Select lesson">
+      <option value="184" selected>184: Connect AI Agents and Tools in a Flask Application</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Connect AI Agents and Tools in a Flask Application" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 184 — Connect AI Agents and Tools in a Flask Application</h2>
+
+    <h3>1. Introduction & Why Integrate Agents with Flask?</h3>
+    <p>In preceding modules, we explored individual language model pipelines, memory systems, and basic REST API serving using Flask. However, building interactive, production-ready AI systems requires empowering models to interact dynamically with external tools—such as mathematical solvers, third-party web APIs, or Wikipedia fact retrievers.</p>
+    <p>Connecting LangChain Intelligent Agents with a Flask Web Framework creates a real-time bridge for serving interactive, reasoning-capable AI applications over HTTP endpoints.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │         Flask + LangChain Agent System Architecture         │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Client Request (AJAX POST / JSON Payload)                  │
+  │     • Route: `POST /agent_action` (Port 5100)               │
+  │     • Payload: `{"question": "What is 14 times 3?"}`         │
+  │                             │                               │
+  │                             ▼                               │
+  │  Flask Server Endpoint (`/agent_action`)                    │
+  │     • Receives input query & invokes Agent Executor          │
+  │                             │                               │
+  │                             ▼                               │
+  │  ReAct AI Agent (Qwen2 Base LLM)                            │
+  │     • Analyzes query & reasons dynamically                  │
+  │     • Selects appropriate tool from available Toolkit       │
+  │                             │                               │
+  │           ┌─────────────────┴─────────────────┐             │
+  │           ▼                                   ▼             │
+  │  Tool 1: `multiplier`                Tool 2: `get_weather`  │
+  │  (Multiplies two integers)          (Fetches live API info) │
+  │           │                                   │             │
+  │           └─────────────────┬─────────────────┘             │
+  │                             ▼                               │
+  │  Observation Return & Final Thought Reasoning               │
+  │                             │                               │
+  │                             ▼                               │
+  │  Clean JSON API Response (`jsonify(...)` + Status 200)      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Advantages of Agent-Driven Flask Applications:</strong></p>
+    <ul>
+      <li><strong>Dynamic Action Execution:</strong> Agents do not rely solely on static pre-trained weights; they use LLMs to perform actions and execute dynamic reasoning.</li>
+      <li><strong>Intelligent Tool Selection:</strong> Given a query, the agent evaluates its toolkit and selects the correct tool (e.g., choosing a calculator tool for math vs. a weather tool for climate queries).</li>
+      <li><strong>Extensible Infrastructure:</strong> Serving agents via Flask provides a real-time bridge that can be extended to web interfaces, voice systems, or Slack integrations.</li>
+    </ul>
+
+    <h3>2. The ReAct Agent Framework & Reasoning-Action Loop</h3>
+    <p>To make autonomous decisions, the agent uses the ReAct (Reasoning + Acting) framework. The ReAct prompt structure instructs the model to iterate through an explicit reasoning loop before returning its final answer.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 The ReAct Reasoning-Action Loop             │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   User Question Input                                       │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   1. THOUGHT         ──► "I should think about what to do"  │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   2. ACTION          ──► Selects tool from tool list        │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   3. ACTION INPUT    ──► Passes arguments to selected tool  │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   4. OBSERVATION     ──► Captures execution result from tool│
+  │        │                                                    │
+  │        └───────► (Repeats Loop N Times Until Satisfied) ────┤
+  │                                                             │
+  │        ▼                                                    │
+  │   5. FINAL THOUGHT   ──► "I now know the final answer"      │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   6. FINAL OUTPUT    ──► Returns final response to user     │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Stage-by-Stage Breakdown:</strong></p>
+    <ol>
+      <li><strong>Question:</strong> The user query received by the Flask endpoint.</li>
+      <li><strong>Thought:</strong> The agent's internal reasoning process evaluating how to address the request.</li>
+      <li><strong>Action:</strong> The specific tool name selected by the agent from its available toolkit.</li>
+      <li><strong>Action Input:</strong> The input arguments extracted from the prompt and passed to the tool.</li>
+      <li><strong>Observation:</strong> The execution output returned by the tool back to the agent.</li>
+      <li><strong>Iteration:</strong> This loop (Thought → Action → Action Input → Observation) repeats N times until the agent is confident.</li>
+      <li><strong>Final Thought & Output:</strong> The agent declares "I now know the final answer" and outputs the final result to the user.</li>
+    </ol>
+
+    <h3>3. Building Custom Tools (multiplier & get_weather)</h3>
+    <p>The agent's capabilities depend on the tools provided in its toolkit. In this implementation, two custom tools are created using LangChain's @tool decorator:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                    Agent Toolkit Definition                 │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Tool 1: `multiplier`          │ Tool 2: `get_weather`       │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Takes two integers: `A, B`. │ • Accepts city name string. │
+  │ • Performs math: `a * b`.     │ • Hits live weather URL.    │
+  │ • Returns cast string `str()`.│ • Uses `format=3` summary.  │
+  │ • Solves arithmetic queries.  │ • Checks HTTP Status 200.   │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Tool 1: Arithmetic Multiplier Tool (multiplier):</strong></p>
+    <ul>
+      <li><strong>Functionality:</strong> Takes two integer arguments (a and b), calculates their product (a * b), and returns the result cast as a string (str(a * b)) for text processing.</li>
+    </ul>
+    <p><strong>Tool 2: Live Weather API Tool (get_weather):</strong></p>
+    <ul>
+      <li><strong>Functionality:</strong> Accepts a city name parameter (e.g., "Lahore"), constructs a web API URL using format=3 for a concise weather summary, verifies an HTTP 200 OK response status code, and returns current weather conditions.</li>
+    </ul>
+
+    <h3>4. Agent Creation (create_react_agent) & Flask Endpoint (/agent_action)</h3>
+    <p>The underlying language model uses the open-source Qwen model running locally via HuggingFace pipelines and tokenizers. The agent executor is compiled using create_react_agent and wrapped inside a Flask web application.</p>
+    <pre>
+# =====================================================================
+# LangChain ReAct Agent with Flask Web Service (Topic 184)
+# =====================================================================
+
+import os
+import requests
+import threading
+import time
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+from langchain_core.tools import tool
+from langchain.agents import create_react_agent, AgentExecutor
+from langchain_core.prompts import PromptTemplate
+from langchain_community.llms import HuggingFacePipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+
+# 1. Instantiate Open-Source Base LLM (Qwen Model)
+model_id = "Qwen/Qwen2-0.5B-Instruct"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id)
+
+hf_pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=256)
+llm = HuggingFacePipeline(pipeline=hf_pipe)
+
+# 2. Define Tool 1: Multiplier Tool
+@tool
+def multiplier(a: int, b: int) -> str:
+    """Multiplies two integers a and b together and returns the product as a string."""
+    return str(a * b)
+
+# 3. Define Tool 2: Weather API Tool
+@tool
+def get_weather(city: str) -> str:
+    """Fetches live weather summary for a specified city name."""
+    url = f"https://wttr.in/{city}?format=3"
+    response = requests.get(url, timeout=10)
+    if response.status_code == 200:
+        return response.text.strip()
+    else:
+        return "Error: Unable to fetch weather data."
+
+# Toolkit Array
+tools = [multiplier, get_weather]
+
+# 4. Construct ReAct Prompt Template
+react_template = """Answer the following questions as best as you can. You have access to the following tools:
+
+{tools}
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: {input}
+Thought:{agent_scratchpad}"""
+
+prompt = PromptTemplate.from_template(react_template)
+
+# 5. Create ReAct Agent and Agent Executor
+agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
+print("Agent is ready!")
+
+# 6. Initialize Flask Web Server Layer
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/agent_action', methods=['POST'])
+def agent_action():
+    """POST endpoint receiving user queries and executing Agent actions."""
+    try:
+        data = request.json
+        user_query = data.get("question", "")
+
+        # Invoke Agent Executor
+        result = agent_executor.invoke({"input": user_query})
+
+        return jsonify({
+            "status": "success",
+            "question": user_query,
+            "output": result.get("output", "")
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+# 7. Run Flask Application in Background Daemon Thread on Port 5100
+def run_flask():
+    app.run(host="0.0.0.0", port=5100, use_reloader=False)
+
+server_thread = threading.Thread(target=run_flask, daemon=True)
+server_thread.start()
+time.sleep(3)
+print("Flask Agent Application is active on port 5100.")
+    </pre>
+
+    <h3>5. Testing & Execution Trace (Math vs. Weather Queries)</h3>
+    <p>To verify that the agent selects tools dynamically, we test two distinct queries against the /agent_action endpoint on port 5100.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Dynamic Tool Selection Traces               │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Math Query Trace              │ Weather Query Trace         │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ Query: "What is 14 times 3?"  │ Query: "Weather of Lahore?" │
+  │ Thought: Needs calculation.   │ Thought: Needs climate data.│
+  │ Action: `multiplier`          │ Action: `get_weather`       │
+  │ Action Input: `14, 3`         │ Action Input: `Lahore`      │
+  │ Observation: `42`             │ Observation: `Sunny 32-40°C`│
+  │ Final Answer: `42`            │ Final Answer: `Sunny 32-40°`│
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Execution Test 1: Mathematical Calculation</strong></p>
+    <ul>
+      <li><strong>Input Question:</strong> "What is 14 times 3?"</li>
+      <li><strong>Agent Reasoning Trace:</strong>
+        <ol>
+          <li>Thought: Recognizes that this is a mathematical problem.</li>
+          <li>Action: Dynamically selects the multiplier tool.</li>
+          <li>Action Input: 14, 3.</li>
+          <li>Observation: 42 (correct calculation).</li>
+          <li>Final Answer: 42.</li>
+        </ol>
+      </li>
+    </ul>
+    <p><strong>Execution Test 2: Live Weather Information</strong></p>
+    <ul>
+      <li><strong>Input Question:</strong> "What is the weather of Lahore?"</li>
+      <li><strong>Agent Reasoning Trace:</strong>
+        <ol>
+          <li>Thought: Recognizes a request for live location weather.</li>
+          <li>Action: Dynamically selects the get_weather tool.</li>
+          <li>Action Input: "Lahore".</li>
+          <li>Observation: "The current weather in Lahore is sunny with temperature ranging from 32 to 40°C".</li>
+          <li>Final Answer: "The current weather in Lahore is sunny with temperature ranging from 32 to 40°C".</li>
+        </ol>
+      </li>
+    </ul>
+
+    <h3>6. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect / Component</th>
+          <th>Technical Role</th>
+          <th>Implementation Parameter</th>
+          <th>Practical Benefit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Base LLM</td>
+          <td>Open-source language model.</td>
+          <td>Qwen2 0.5B Instruct.</td>
+          <td>Free, self-hosted reasoning engine.</td>
+        </tr>
+        <tr>
+          <td>Tool 1 (multiplier)</td>
+          <td>Arithmetic multiplication.</td>
+          <td>Takes integer inputs A, B.</td>
+          <td>Solves math queries precisely.</td>
+        </tr>
+        <tr>
+          <td>Tool 2 (get_weather)</td>
+          <td>Live weather API scraper.</td>
+          <td>URL call with format=3.</td>
+          <td>Pulls up-to-date climate data.</td>
+        </tr>
+        <tr>
+          <td>Agent Framework</td>
+          <td>ReAct reasoning loop.</td>
+          <td>create_react_agent.</td>
+          <td>Enables step-by-step thinking.</td>
+        </tr>
+        <tr>
+          <td>Agent Executor</td>
+          <td>Manages action loop.</td>
+          <td>AgentExecutor.</td>
+          <td>Handles tool execution & parsing.</td>
+        </tr>
+        <tr>
+          <td>Flask Route</td>
+          <td>RESTful web endpoint.</td>
+          <td>POST /agent_action (Port 5100).</td>
+          <td>Exposes agent service over HTTP.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is the purpose of connecting AI Agents and Tools in a Flask application, and how does the ReAct reasoning loop operate?</button>
+      <div class="accordion-body">
+        <p><strong>Purpose & Architecture:</strong> Integrating LangChain AI agents into Flask applications provides a real-time bridge for interactive AI systems. Agents use LLMs to perform actions and dynamically reason about tasks, allowing them to select external tools—such as calculators, weather APIs, or lookup services—to answer user queries.</p>
+        <p><strong>The ReAct Reasoning Loop:</strong> The agent follows a ReAct (Reasoning + Acting) framework that iteratively executes four key stages:</p>
+        <ol>
+          <li><strong>Thought:</strong> The agent thinks step-by-step about how to solve the user's question.</li>
+          <li><strong>Action:</strong> The agent dynamically selects one of the registered tool names (e.g., multiplier or get_weather) based on its thought process.</li>
+          <li><strong>Action Input:</strong> The specific parameters required by the tool are extracted and passed into it.</li>
+          <li><strong>Observation:</strong> The result returned by the tool execution is fed back to the agent as an observation.</li>
+        </ol>
+        <p><strong>Iterative Execution:</strong> This loop can repeat n times until the agent gathers sufficient context to output the Final Answer.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What custom tools were defined in Topic 184, and how are their Python functions structured?</button>
+      <div class="accordion-body">
+        <p><strong>Model Foundation:</strong> The system uses the open-source Qwen model configured with a tokenizer and pipeline running on CPU hardware.</p>
+        <p><strong>1. multiplier Tool:</strong></p>
+        <ul>
+          <li>Decorated using @tool imported from the LangChain tools library.</li>
+          <li>Accepts two integer arguments (a and b), calculates their product (a * b), and returns the result typecast as a string so it can be processed as text down the pipeline.</li>
+        </ul>
+        <p><strong>2. get_weather Tool:</strong></p>
+        <ul>
+          <li>Sends an HTTP API request to fetch weather data for a given location (e.g., Lahore) with summary formatting (format=3).</li>
+          <li>Evaluates whether the API response returned an HTTP 200 (OK) status code; if successful, it returns the weather text, otherwise it raises an error.</li>
+        </ul>
+        <p><strong>Tool Registration:</strong> Both tools are passed into a list [multiplier, get_weather] and supplied to create_react_agent and AgentExecutor alongside prompt instructions.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is the Flask API route configured, and how did the agent perform when tested with mathematical and weather queries?</button>
+      <div class="accordion-body">
+        <p><strong>Flask Route Setup:</strong></p>
+        <ul>
+          <li>The Flask backend exposes a custom API route at /agent_action (HTTP POST).</li>
+          <li>The application server is executed in a background thread listening on port 5100.</li>
+        </ul>
+        <p><strong>Test Case 1 — Math Calculation ("What is 14 times 3?"):</strong></p>
+        <ul>
+          <li><strong>Dynamic Tool Selection:</strong> The agent identified the calculation intent and selected the multiplier tool.</li>
+          <li><strong>Execution:</strong> Passed inputs 14 and 3, observed the tool output 42, and returned the final answer 42.</li>
+        </ul>
+        <p><strong>Test Case 2 — Real-Time Weather Inquiry ("What is the weather of Lahore?"):</strong></p>
+        <ul>
+          <li><strong>Dynamic Tool Selection:</strong> The agent recognized the location query and selected the get_weather tool.</li>
+          <li><strong>Execution:</strong> Passed input "Lahore", observed the API response payload (Sunny, 32°C to 40°C), and constructed the final summary answer for the user.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/slovakia/python-coding-classes-for-children-kosice.html">Previous lesson</a>
+    <a class="nav-btn" href="#ai-lesson-184">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-184');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-184');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '184') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Event-driven programming</li><li>Custom sprites and backdrops</li><li>Animations and mini-games</li><li>Sharing projects with peers</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/scratch-by-mit-programming-for-kids/?referralCode=9FAB21C77A9A0EC1A8BE" target="_blank" rel="noopener noreferrer sponsored">Scratch by MIT Programming for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
