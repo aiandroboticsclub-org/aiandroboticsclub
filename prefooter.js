@@ -3,6 +3,7 @@
    Areas We Serve: Gulf > Cities > Pages (loads /gulf-nav.json)
                    Europe > Countries > Pages (loads /europe-nav.json)
                    Far East > Countries > Pages (loads /far-east-nav.json)
+                   Pakistan > Cities > Pages (loads /pakistan-nav.json)
    AI Course Lessons: Artificial Intelligence Fundamentals Notes
                       (loads /lessons-data.json)
    ========================================================================== */
@@ -71,6 +72,9 @@ document.addEventListener("DOMContentLoaded", function () {
     '<div class="pf-area-item pf-area-root" id="pf-fareast-root">' +
     '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Far East <span class="pf-caret"></span></button>' +
     '<div class="pf-area-panel" id="pf-fareast-panel"><p class="pf-area-link" style="opacity:.7">Loading areas...</p></div></div>' +
+    '<div class="pf-area-item pf-area-root" id="pf-pakistan-root">' +
+    '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Pakistan <span class="pf-caret"></span></button>' +
+    '<div class="pf-area-panel" id="pf-pakistan-panel"><p class="pf-area-link" style="opacity:.7">Loading areas...</p></div></div>' +
     '</div></div>' +
     '<div class="prefooter-lessons">' +
     '<div class="pf-area-item pf-lessons-root" id="pf-lessons-root">' +
@@ -201,6 +205,16 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(function () {
       var panel = document.getElementById("pf-fareast-panel");
       if (panel) panel.innerHTML = '<p class="pf-area-link">Far East areas will appear here.</p>';
+    });
+
+  fetch(resolveJsonUrl("pakistan-nav.json"))
+    .then(function (r) { return r.json(); })
+    .then(function (PK_NAV) {
+      fillNestedNav("pf-pakistan-panel", PK_NAV.cities, "No city pages listed yet.");
+    })
+    .catch(function () {
+      var panel = document.getElementById("pf-pakistan-panel");
+      if (panel) panel.innerHTML = '<p class="pf-area-link">Pakistan areas will appear here.</p>';
     });
 
   fetch(resolveJsonUrl("lessons-data.json"))
