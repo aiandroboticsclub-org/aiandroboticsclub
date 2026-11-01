@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Novi Sad | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Novi Sad | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Novi Sad—beginner syntax, text games and software engineering logic foundations.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/serbia/python-coding-classes-for-children-novi-sad.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,340 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Novi Sad · Serbia</span><h1>Python Coding Classes for Children in Novi Sad</h1>
     <p>Python coding classes for children in Novi Sad provide an essential foundation in software engineering logic—variables, games, calculators and interactive tools—suited to a city known for its tech community.</p></div>
     <div><img src="../../../images/67.webp" alt="Python Novi Sad" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-180">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-180">Lesson</label>
+    <select id="lesson-select-180" class="lesson-select" aria-label="Select lesson">
+      <option value="180" selected>180: How to Load Documents and Prepare Data for a RAG AI Chatbot</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Load Documents and Prepare Data for a RAG AI Chatbot" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 180 — How to Load Documents and Prepare Data for a RAG AI Chatbot</h2>
+
+    <h3>1. Introduction to Document Loaders in RAG</h3>
+    <p>When building a Retrieval-Augmented Generation (RAG) pipeline, Large Language Models (LLMs) need access to external knowledge bases to answer questions accurately. Document Loaders serve as the foundational component in LangChain that ingests external data—from local files, web pages, or databases—and brings it into the RAG workflow.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Document Loader Role in RAG Pipeline           │
+  ├─────────────────────────────────────────────────────────────┤
+  │  External Knowledge Sources  ──►  Document Loaders          │
+  │  (PDFs, CSVs, Web URLs, YT)      (Ingestion & Extraction)   │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  RAG Search & Vector Index ◄── Text Chunks + Metadata       │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Definition:</strong></p>
+    <ul>
+      <li><strong>Document Loaders:</strong> Framework utilities in LangChain that read external files or streams, extract raw content, attach metadata, and format the data into standardized Document objects for processing.</li>
+    </ul>
+
+    <h3>2. Categories of Document Loaders (Structured vs. Unstructured Data)</h3>
+    <p>LangChain provides specialized loaders categorized by data type and file format:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                Document Loader Classifications              │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Structured / Semi-Structured  │ Unstructured Data           │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • PDF Loaders                 │ • Web Page Loaders          │
+  │   (PyPDFLoader,               │   (UnstructuredURLLoader)   │
+  │    PDFPlumberLoader)          │ • YouTube Loaders           │
+  │ • CSV Loaders                 │   (Extracts transcripts)    │
+  │   (CSVLoader for tables)      │                             │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>A. PDF Loaders (PyPDFLoader, PDFPlumberLoader):</strong></p>
+    <ul>
+      <li><strong>Formatting Preservation:</strong> Unlike Word or Notepad documents where formatting can shift across platforms, PDF documents preserve exact formatting and layout across different operating systems.</li>
+      <li><strong>Static Content:</strong> PDFs often store uneditable text, making dedicated PDF loaders necessary to extract clean text streams into the RAG pipeline.</li>
+    </ul>
+    <p><strong>B. CSV Loaders (CSVLoader):</strong></p>
+    <ul>
+      <li><strong>Tabular Data:</strong> Client data provided in data science workflows frequently comes in tabular format as Comma-Separated Values (CSV). CSV loaders parse structured rows and columns into usable document objects.</li>
+    </ul>
+    <p><strong>C. Web Page Loaders (UnstructuredURLLoader):</strong></p>
+    <ul>
+      <li><strong>Up-to-Date Web Content:</strong> Much of the world's current knowledge resides on the internet. Web page loaders scrape live web URLs to pull updated, unstructured text into the RAG system.</li>
+    </ul>
+    <p><strong>D. YouTube Loaders (YoutubeLoader):</strong></p>
+    <ul>
+      <li><strong>Transcript Extraction:</strong> Video loaders extract text transcripts directly from YouTube video URLs to incorporate video knowledge into the pipeline.</li>
+    </ul>
+
+    <h3>3. How Document Loaders Work</h3>
+    <p>When a document loader ingests a source file, it performs a multi-step pre-processing sequence:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Document Loader Execution Flow              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Read Source      ──► Ingests raw data from disk or URL  │
+  │  2. Text Chunking    ──► Divides long text into chunks      │
+  │  3. Attach Metadata  ──► Adds title, timestamp, URL, source │
+  │  4. Vector Embedding ──► Converts chunks to vector embeddings│
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <ol>
+      <li><strong>Read Source Data:</strong> Reads content from local hard drives or remote URLs.</li>
+      <li><strong>Text Chunking:</strong> Divides long text into smaller segments (chunks) to increase retrieval speed and processing performance.</li>
+      <li><strong>Attach Metadata:</strong> Attaches extra contextual attributes to each chunk—such as document title, creation timestamp, source URL, or page number.</li>
+      <li><strong>Vector Embedding Generation:</strong> Converts each text chunk into a high-dimensional vector embedding for vector database indexing.</li>
+    </ol>
+
+    <h3>4. Industry Best Practices for Data Preparation</h3>
+    <p>To ensure high accuracy and fast retrieval, developers should follow three key best practices:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │             Best Practices for Document Pre-Processing      │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Clean & Preprocess Data                                 │
+  │     • Remove boilerplate text, headers, & HTML tags.        │
+  │                                                             │
+  │  2. Target the 500–1,000 Token "Sweet Spot"                 │
+  │     • Balances context quality with retrieval speed.        │
+  │                                                             │
+  │  3. Attach & Preserve Metadata                              │
+  │     • Enables source tracking across massive datasets.      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Clean & Preprocess Data:</strong></p>
+    <ul>
+      <li>Remove unwanted boilerplate text, redundant elements, and raw HTML tags before feeding data into the pipeline to eliminate noise.</li>
+    </ul>
+    <p><strong>B. The 500–1,000 Token "Sweet Spot" for Chunk Size:</strong></p>
+    <p>Selecting chunk size requires balancing context quality and retrieval speed:</p>
+    <ul>
+      <li><strong>Large Chunks:</strong> Increase answer quality/context accuracy but decrease retrieval speed.</li>
+      <li><strong>Small Chunks:</strong> Increase retrieval speed but reduce answer quality due to truncated context.</li>
+      <li><strong>The Sweet Spot:</strong> Setting chunk size between 500 and 1,000 tokens delivers optimal performance, maintaining both high output quality and fast retrieval speed.</li>
+    </ul>
+    <p><strong>C. Attach & Preserve Metadata:</strong></p>
+    <ul>
+      <li>When training or retrieving from large, multi-source datasets over time, tracking content origin becomes difficult. Attaching metadata ensures every chunk retains clear provenance tracking back to its original file source.</li>
+    </ul>
+
+    <h3>5. Hands-On Python Implementation in VS Code</h3>
+    <p>Below is a complete Python script demonstrating how to write sample text to a file, load it using TextLoader, split it into chunks using RecursiveCharacterTextSplitter, and inspect the resulting chunks.</p>
+    <pre>
+# =====================================================================
+# Document Loading and Text Splitting with LangChain (Topic 180)
+# =====================================================================
+
+import os
+# 1. Import TextLoader and RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+# 2. Define Sample Text Content
+sample_content = (
+    "LangChain simplifies building applications powered by language models. "
+    "Retrieval-Augmented Generation (RAG) lets AI answer questions from documents. "
+    "Document loaders ingest external knowledge into the RAG pipeline. "
+    "Text splitters divide long documents into manageable text chunks. "
+    "Attaching metadata allows developers to track the exact source of content."
+)
+
+# 3. Save Sample Text to Local Storage File with UTF-8 Encoding
+file_name = "langchain_intro.txt"
+with open(file_name, "w", encoding="utf-8") as f:
+    f.write(sample_content)
+
+print("Sample file created successfully on disk.")
+
+# 4. Initialize TextLoader with UTF-8 Encoding
+loader = TextLoader(file_name, encoding="utf-8")
+
+# 5. Load Document Objects into Memory
+documents = loader.load()
+print(f"Loaded {len(documents)} document object(s) from storage.")
+
+# 6. Configure RecursiveCharacterTextSplitter
+# Setting chunk_size=100 characters and chunk_overlap=20 characters
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=100,
+    chunk_overlap=20,
+    length_function=len,
+    separators=["\\n", " "]
+)
+
+# 7. Split Documents into Text Chunks
+chunks = text_splitter.split_documents(documents)
+
+# 8. Output Splitting Results and Chunk Contents
+print(f"\\nTotal Text Chunks Created: {len(chunks)}\\n")
+for idx, chunk in enumerate(chunks):
+    print(f"--- Chunk {idx} ---")
+    print(f"Content : {chunk.page_content}")
+    print(f"Metadata: {chunk.metadata}\\n")
+
+# Clean up local sample file
+if os.path.exists(file_name):
+    os.remove(file_name)
+    </pre>
+    <p><strong>Execution Results:</strong></p>
+    <ul>
+      <li><strong>File Creation & Loading:</strong> The script saves raw text to langchain_intro.txt using utf-8 encoding and loads it as a Document object.</li>
+      <li><strong>Chunk Generation:</strong> RecursiveCharacterTextSplitter splits the text into 5 distinct chunks (Chunks 0 through 4) with a chunk_overlap of 20 characters to preserve context across boundaries.</li>
+    </ul>
+
+    <h3>6. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Concept</th>
+          <th>Setting / Parameter</th>
+          <th>Practical Role in RAG Pipeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Document Loader</td>
+          <td>TextLoader, PyPDFLoader, CSVLoader</td>
+          <td>Ingests external source data into standardized documents.</td>
+        </tr>
+        <tr>
+          <td>Data Types</td>
+          <td>Structured (PDF/CSV) vs. Unstructured (Web/YT)</td>
+          <td>Handles diverse client formats.</td>
+        </tr>
+        <tr>
+          <td>Text Splitter</td>
+          <td>RecursiveCharacterTextSplitter</td>
+          <td>Divides long text into smaller chunks.</td>
+        </tr>
+        <tr>
+          <td>Optimal Chunk Size</td>
+          <td>500 to 1,000 tokens</td>
+          <td>Sweet spot balancing retrieval speed and quality.</td>
+        </tr>
+        <tr>
+          <td>Chunk Overlap</td>
+          <td>chunk_overlap=20</td>
+          <td>Preserves context across chunk boundaries.</td>
+        </tr>
+        <tr>
+          <td>Metadata</td>
+          <td>Title, timestamp, URL, source</td>
+          <td>Tracks content provenance across multi-source data.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What are Document Loaders in LangChain, why are they essential for RAG pipelines, and what are the primary types of loaders available?</button>
+      <div class="accordion-body">
+        <p><strong>Purpose & Essential Role:</strong> Document loaders are specialized components in LangChain designed to bring external knowledge into a Retrieval-Augmented Generation (RAG) pipeline. To perform RAG, relevant documents must first be ingested and retrieved from external sources, and document loaders automate this process.</p>
+        <p><strong>Primary Types of Document Loaders:</strong></p>
+        <ol>
+          <li><strong>PDF Loaders (PyPDFLoader & PDFPlumberLoader):</strong> Used to load PDF files into the RAG pipeline. Unlike Word or Notepad documents where formatting may shift across platforms, PDFs preserve strict formatting across systems.</li>
+          <li><strong>CSV Loader:</strong> Ingests tabular datasets (comma-separated values) commonly provided by clients for data analysis.</li>
+          <li><strong>Unstructured URL Loader:</strong> Fetches up-to-date web page data from the internet to supply current information to the pipeline.</li>
+          <li><strong>YouTube Loader:</strong> Extracts video transcripts directly from YouTube URLs into the pipeline.</li>
+        </ol>
+        <p><strong>Structured vs. Unstructured Classification:</strong> PDF and CSV loaders process structured data, whereas web page loaders handle unstructured data.</p>
+        <p><strong>Data Processing & Metadata:</strong> Loaders read raw data from sources, split content into chunks to accelerate pipeline processing speed, and attach metadata attributes (such as document titles, timestamps, and URLs) to each chunk.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What are key best practices for preparing document data in RAG pipelines, including data cleaning, metadata tagging, and selecting optimal chunk sizes?</button>
+      <div class="accordion-body">
+        <p><strong>Data Cleaning & Preprocessing:</strong> Raw text should be cleaned prior to pipeline ingestion by stripping away boilerplate elements and irrelevant HTML tags that add noise without contributing semantic value.</p>
+        <p><strong>Optimal Chunk Size & Trade-Offs:</strong></p>
+        <ul>
+          <li><strong>Large Chunks:</strong> Improve retrieval quality and context accuracy, but reduce processing and retrieval speed.</li>
+          <li><strong>Small Chunks:</strong> Speed up retrieval processing, but degrade context quality and accuracy.</li>
+          <li><strong>Recommended Sweet Spot:</strong> Setting a chunk size of 500 to 1,000 tokens provides the optimal balance between high context quality and fast retrieval speed.</li>
+        </ul>
+        <p><strong>Metadata Tagging:</strong> Attaching metadata (such as document source, title, and timestamp) to every chunk is essential for source traceability. As models scale to train on massive, multi-source datasets over time, metadata tags allow developers to track exact document origins and prevent data loss.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How do you implement document loading and text splitting in Python using LangChain (Topic 180 implementation)?</button>
+      <div class="accordion-body">
+        <p><strong>Step 1: Module Imports:</strong> Import TextLoader from langchain_community.document_loaders and RecursiveCharacterTextSplitter from langchain_text_splitters.</p>
+        <p><strong>Step 2: File Creation & Document Loading:</strong></p>
+        <ul>
+          <li>Create or specify a text document (e.g., langchain_intro.txt) saved with UTF-8 encoding.</li>
+          <li>Instantiate TextLoader with the target file path and UTF-8 encoding parameter.</li>
+          <li>Call the .load() method on the loader instance to read the file and store the extracted data in a document object.</li>
+        </ul>
+        <p><strong>Step 3: Text Splitting Configuration & Execution:</strong></p>
+        <ul>
+          <li>Instantiate RecursiveCharacterTextSplitter with specific parameters: a chunk_size of 100, a chunk_overlap of 20 characters to preserve context across chunk boundaries, length_function=len, and newline or space characters as separators.</li>
+          <li>Call .split_documents(documents) to segment the loaded text into structured chunks (e.g., yielding 5 individual text chunks) ready for vector embedding.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/serbia/online-robotics-classes-for-kids-belgrade.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/slovakia/ai-courses-for-kids-presov.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-180');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-180');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '180') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Beginner Python syntax</li><li>Text games and calculators</li><li>Interactive logic tools</li><li>Software engineering foundations</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/Rbje-evbPeQ" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
