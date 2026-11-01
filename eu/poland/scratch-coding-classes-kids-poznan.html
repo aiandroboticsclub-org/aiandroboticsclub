@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Coding Classes for Kids in Poznan | AI &amp; Robotics Club</title>
+  <title>Scratch Coding Classes for Kids in Poznan | AI & Robotics Club</title>
   <meta name="description" content="Scratch coding classes for kids in Poznan—block coding, game design and logic without syntax errors.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/poland/scratch-coding-classes-kids-poznan.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,296 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Poznan · Poland</span><h1>Scratch Coding Classes for Kids in Poznan</h1>
     <p>Scratch coding classes for kids in Poznan use visual blocks so children design games while learning flow, conditions and loops—without typing friction.</p></div>
     <div><img src="../../../images/84.webp" alt="Scratch Poznan" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-170">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-170">Lesson</label>
+    <select id="lesson-select-170" class="lesson-select" aria-label="Select lesson">
+      <option value="170" selected>170: Prompt Engineering for Beginners: How to Get Better AI Answers</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Prompt Engineering for Beginners: How to Get Better AI Answers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 170 — Prompt Engineering for Beginners: How to Get Better AI Answers</h2>
+
+    <h3>1. Introduction to Prompt Engineering</h3>
+    <p>In previous modules on Large Language Models (LLMs), we studied the underlying technical foundations of AI models. When working with generative AI, the quality of the model's response depends heavily on how we communicate with it. This practice is known as Prompt Engineering.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Prompt Engineering Core Idea                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Prompt Definition:                                         │
+  │    • Instructions or questions provided to a Large Language │
+  │      Model (LLM).                                           │
+  │                                                             │
+  │  Golden Rule of Prompt Engineering:                         │
+  │    • Output Quality = Direct function of Prompt Clarity     │
+  │      and Structure.                                         │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. What is a Prompt?</strong></p>
+    <p>A prompt refers to the specific instructions, questions, or input text provided to an LLM to guide its output.</p>
+    <p><strong>B. Why Prompt Engineering Matters</strong></p>
+    <p>An LLM's output quality, accuracy, and relevance depend directly on the clarity, structure, and precision of the prompt provided. Vague inputs produce generic responses, whereas well-structured prompts unlock tailored, high-quality answers.</p>
+    <p><strong>C. The 3 Core Elements of a Quality Prompt:</strong></p>
+    <p>A well-engineered prompt explicitly defines three key components:</p>
+    <ol>
+      <li><strong>Role:</strong> Specifies the persona, profession, or perspective the LLM should adopt.</li>
+      <li><strong>Context:</strong> Provides background details, target audience, or environmental constraints.</li>
+      <li><strong>Desired Output:</strong> Describes the expected format, tone, length, or structure of the response.</li>
+    </ol>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Generic vs. Engineered Prompt                  │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Generic Prompt (Weak)         │ Engineered Prompt (Strong)  │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ "Explain AI"                  │ "Explain AI in simple terms │
+  │                               │ for a 10 year old."         │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Vague and broad.            │ • Defines target audience   │
+  │ • Output is often overly      │   and simplicity level      │
+  │   generic or complex.         │   explicitly.               │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+
+    <h3>2. Zero-Shot Prompting</h3>
+    <p>Zero-Shot Prompting is the simplest and most direct form of prompting.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  Zero-Shot Prompting Loop                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   User Query (No Examples Provided)                         │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   LLM Evaluates Pre-Trained Knowledge Base                  │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Direct Generated Output                                   │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Definition & Mechanism:</strong></p>
+    <p>In zero-shot prompting, the user asks the LLM to complete a task without providing any prior examples in the prompt.</p>
+    <p>Because no examples are provided, the LLM relies entirely on its pre-trained knowledge base—the vast amounts of text data it learned from during its initial training phase.</p>
+    <p><strong>B. Example:</strong></p>
+    <ul>
+      <li><strong>Prompt:</strong> "Translate 'Good Morning' into French."</li>
+      <li><strong>Output:</strong> "Bonjour"</li>
+    </ul>
+    <p><strong>C. Best Use Cases:</strong></p>
+    <p>Zero-shot prompting works best for simple, straightforward, and standard tasks where the pre-trained model already possesses extensive training data (such as basic translations or factual definitions).</p>
+
+    <h3>3. Few-Shot Prompting</h3>
+    <p>When tasks become complex or require a specific format, zero-shot prompting may fall short. In these cases, we switch to Few-Shot Prompting.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   Few-Shot Prompting Loop                   │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   Prompt Contains 2–3 Input-Output Examples                 │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   LLM Detects Pattern, Structure, & Style                   │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Generates Output Matching Example Pattern                 │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Definition & Mechanism:</strong></p>
+    <p>Few-shot prompting involves providing a few explicit input-output examples within the prompt itself before asking the final question.</p>
+    <p>These examples demonstrate the exact structure, tone, and formatting style expected in the response, allowing the model to learn the pattern in-context and continue it.</p>
+    <p><strong>B. Example:</strong></p>
+    <ul>
+      <li><strong>Prompt:</strong>
+        <ul>
+          <li>English: Hello → French: Bonjour</li>
+          <li>English: Thank you → French: Merci</li>
+          <li>English: Good night → French: Bonne nuit</li>
+          <li>English: Good morning → French:</li>
+        </ul>
+      </li>
+      <li><strong>Output:</strong> "Bonjour"</li>
+    </ul>
+    <p><strong>C. Best Use Cases:</strong></p>
+    <p>Few-shot prompting is ideal for pattern-based outputs, custom text formatting, structured data extraction (such as JSON or CSV), and maintaining specific corporate writing styles.</p>
+
+    <h3>4. Chain-of-Thought (CoT) Prompting</h3>
+    <p>For complex reasoning and multi-step problem solving, Chain-of-Thought (CoT) Prompting is the most effective technique.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Chain-of-Thought (CoT) Workflow                │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   User Instruction: "Let's reason step-by-step..."          │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   LLM Outlines Explicit Intermediate Logic Steps            │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   Derives Final Answer with Higher Accuracy                 │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Definition & Mechanism:</strong></p>
+    <p>Chain-of-Thought prompting explicitly instructs the LLM to break down its reasoning into step-by-step thinking stages before arriving at a final answer.</p>
+    <p>By forcing the model to articulate each step sequentially, CoT mimics human problem-solving and allows the LLM to build up complex logic progressively.</p>
+    <p><strong>B. Example:</strong></p>
+    <ul>
+      <li><strong>Prompt:</strong> "Let's reason step-by-step to solve this math problem: A store has 15 apples. It sells 6 in the morning and receives a shipment of 10 in the afternoon. How many apples are left?"</li>
+      <li><strong>Model Reasoning Output:</strong>
+        <ol>
+          <li>Step 1: Initial apples = 15.</li>
+          <li>Step 2: Morning sales = 15 - 6 = 9 apples remaining.</li>
+          <li>Step 3: Afternoon shipment = 9 + 10 = 19 apples.</li>
+        </ol>
+      </li>
+      <li><strong>Final Answer:</strong> 19 apples.</li>
+    </ul>
+    <p><strong>C. Primary Benefits:</strong></p>
+    <ol>
+      <li><strong>Performance & Accuracy Boost:</strong> Significantly improves accuracy on math, logic, and multi-step reasoning problems by preventing premature incorrect conclusions.</li>
+      <li><strong>Interpretability & Explainable AI:</strong> Makes the AI's answer easy to interpret and verify because humans can follow the exact logical chain used to produce the final result.</li>
+    </ol>
+
+    <h3>5. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Prompting Technique</th>
+          <th>Core Mechanism</th>
+          <th>Key Example</th>
+          <th>Primary Best Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Zero-Shot</td>
+          <td>No examples provided; relies on pre-trained memory.</td>
+          <td>"Translate Good Morning into French."</td>
+          <td>Simple, standard tasks (basic translations/lookups).</td>
+        </tr>
+        <tr>
+          <td>Few-Shot</td>
+          <td>Provides 2–3 input-output pattern examples.</td>
+          <td>English-to-French word pairs list.</td>
+          <td>Formatted outputs, custom patterns, & specific tones.</td>
+        </tr>
+        <tr>
+          <td>Chain-of-Thought</td>
+          <td>Instructs model to think step-by-step.</td>
+          <td>"Let's reason step-by-step to solve..."</td>
+          <td>Math problems, logic puzzles, & multi-step tasks.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is a prompt, what key components make up an effective prompt, and how does specifying context improve model outputs?</button>
+      <div class="accordion-body">
+        <p><strong>Definition of a Prompt:</strong> A prompt consists of the specific instructions or questions provided to a Large Language Model (LLM). The overall quality and accuracy of an LLM's output directly depend on the clarity and structure of the prompt provided.</p>
+        <p><strong>Key Components of an Effective Prompt:</strong> A well-structured prompt incorporates three core elements:</p>
+        <ol>
+          <li><strong>Role:</strong> Instructs the LLM on what persona or specific role it should assume.</li>
+          <li><strong>Context:</strong> Defines the background, target audience, or situational setting for the query.</li>
+          <li><strong>Desired Output:</strong> Specifies the exact format, tone, or structure required for the response.</li>
+        </ol>
+        <p><strong>Impact of Adding Context:</strong> Asking a generic question like "Explain AI" produces a broad, generic response. Refining the prompt to "Explain AI in simple terms for a 10 year old" provides clear context, guiding the model to generate a simplified explanation suitable for a child.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How do Zero-Shot Prompting and Few-Shot Prompting differ, and when should each technique be used?</button>
+      <div class="accordion-body">
+        <p><strong>Zero-Shot Prompting:</strong> In zero-shot prompting, the user asks the LLM to complete a task without providing any prior examples within the prompt. The model relies entirely on its pre-trained knowledge acquired during initial training on massive text datasets.</p>
+        <ul>
+          <li><strong>When to Use:</strong> Ideal for simple, direct, and straightforward tasks.</li>
+          <li><strong>Example:</strong> Asking "Translate Good Morning into French" (which outputs "Bonjour") without providing any translation examples first.</li>
+        </ul>
+        <p><strong>Few-Shot Prompting:</strong> In few-shot prompting, the prompt includes a few demonstration examples before asking the final question.</p>
+        <ul>
+          <li><strong>When to Use:</strong> Best suited for complex tasks requiring specific formatting, tone, style, or pattern-based outputs.</li>
+          <li><strong>Example:</strong> Providing several English-to-French word pairs (e.g., Hello → Bonjour, Thank you → Merci) so the model continues the exact target pattern.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What is Chain-of-Thought (CoT) Prompting, how does it function, and what key benefits does it offer for complex problem-solving?</button>
+      <div class="accordion-body">
+        <p><strong>Function of Chain-of-Thought (CoT):</strong> Chain-of-Thought prompting explicitly guides the LLM to break down its reasoning into sequential, step-by-step thinking before providing a final answer.</p>
+        <p><strong>Implementation Example:</strong> Initiating a prompt with a phrase such as "Let's reason step by step to solve this math problem" prompts the model to detail its complete logical progression.</p>
+        <p><strong>Key Benefits:</strong></p>
+        <ol>
+          <li><strong>Higher Accuracy:</strong> Forcing step-by-step reasoning significantly boosts performance and accuracy on multi-step math problems and complex logic tasks.</li>
+          <li><strong>Explainability & Interpretability:</strong> Because the model displays its step-by-step logic, users can easily interpret, verify, and explain how the AI arrived at its final answer.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/python-programming-for-students-katowice.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/poland/stem-robotics-workshops-gdansk-kids.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-170');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-170');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '170') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Logical flow without syntax errors</li><li>Conditions and loops</li><li>Custom games and showcases</li><li>Visual storytelling with code</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/bfcXgU1KctU" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Logic Without Syntax Errors: Interactive Block Coding and Game Design in Poznan</h2>
