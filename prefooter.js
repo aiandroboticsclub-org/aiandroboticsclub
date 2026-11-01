@@ -3,6 +3,8 @@
    Areas We Serve: Gulf > Cities > Pages (loads /gulf-nav.json)
                    Europe > Countries > Pages (loads /europe-nav.json)
                    Far East > Countries > Pages (loads /far-east-nav.json)
+   AI Course Lessons: Artificial Intelligence Fundamentals Notes
+                      (loads /lessons-data.json)
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", function () {
   function esc(s) {
@@ -36,7 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ".pf-area-item.open>.pf-area-panel{display:block}" +
     ".pf-area-link{display:block;padding:.18rem 0;font-size:10px;color:#94a3b8;line-height:1.35}.pf-area-link:hover{color:#38bdf8}" +
     ".pf-area-panel .pf-area-item{margin-bottom:.15rem}" +
-    "@media (max-width:700px){.prefooter-inner{grid-template-columns:1fr 1fr;gap:1rem}.pf-area-btn{max-width:100%}.pf-area-root{max-width:100%}}" +
+    ".prefooter-lessons{max-width:1100px;margin:.85rem auto 0;padding-top:.65rem;border-top:1px solid rgba(255,255,255,.06)}" +
+    ".pf-lessons-root{max-width:100%}" +
+    ".pf-lessons-root>.pf-area-btn{max-width:420px}" +
+    ".pf-lessons-panel{max-height:320px}" +
+    "@media (max-width:700px){.prefooter-inner{grid-template-columns:1fr 1fr;gap:1rem}.pf-area-btn{max-width:100%}.pf-area-root{max-width:100%}.pf-lessons-root>.pf-area-btn{max-width:100%}}" +
     "@media (max-width:400px){.prefooter-inner{grid-template-columns:1fr}}";
 
   var baseHtml =
@@ -65,6 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
     '<div class="pf-area-item pf-area-root" id="pf-fareast-root">' +
     '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Far East <span class="pf-caret"></span></button>' +
     '<div class="pf-area-panel" id="pf-fareast-panel"><p class="pf-area-link" style="opacity:.7">Loading areas...</p></div></div>' +
+    '</div></div>' +
+    '<div class="prefooter-lessons">' +
+    '<div class="pf-area-item pf-lessons-root" id="pf-lessons-root">' +
+    '<button type="button" class="pf-area-btn" data-pf-toggle aria-expanded="false">Artificial Intelligence Fundamentals Notes <span class="pf-caret"></span></button>' +
+    '<div class="pf-area-panel pf-lessons-panel" id="pf-lessons-panel"><p class="pf-area-link" style="opacity:.7">Loading lessons...</p></div>' +
     '</div></div>' +
     '<div class="prefooter-bottom">&copy; <span id="prefooter-year"></span> AI and Robotics Club. All rights reserved.</div></div>' +
     '<style>' + styles + '</style>';
@@ -145,6 +156,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function fillLessonsPanel(list) {
+    var panel = document.getElementById("pf-lessons-panel");
+    if (!panel) return;
+    if (!Array.isArray(list) || !list.length) {
+      panel.innerHTML = '<p class="pf-area-link">Lessons will appear here.</p>';
+      return;
+    }
+    var html = list.map(function (L) {
+      var href = L.url || "#";
+      if (href && href.charAt(0) !== "/" && href.indexOf("http") !== 0) {
+        href = "/" + href.replace(/^\//, "");
+      }
+      return '<a class="pf-area-link" href="' + esc(href) + '">' + esc(L.title || ("Lesson " + L.id)) + "</a>";
+    }).join("");
+    panel.innerHTML = html;
+  }
+
   fetch(resolveJsonUrl("gulf-nav.json"))
     .then(function (r) { return r.json(); })
     .then(function (GULF_NAV) {
@@ -173,5 +201,15 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch(function () {
       var panel = document.getElementById("pf-fareast-panel");
       if (panel) panel.innerHTML = '<p class="pf-area-link">Far East areas will appear here.</p>';
+    });
+
+  fetch(resolveJsonUrl("lessons-data.json"))
+    .then(function (r) { return r.json(); })
+    .then(function (list) {
+      fillLessonsPanel(list);
+    })
+    .catch(function () {
+      var panel = document.getElementById("pf-lessons-panel");
+      if (panel) panel.innerHTML = '<p class="pf-area-link">AI course lessons will appear here.</p>';
     });
 });
