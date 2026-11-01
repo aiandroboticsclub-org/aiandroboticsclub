@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Bucharest | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Bucharest | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Bucharest—automation logic, sensors and the 100-Mission pathway in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/romania/online-robotics-classes-for-kids-bucharest.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,339 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bucharest · Romania</span><h1>Online Robotics Classes for Kids in Bucharest</h1>
     <p>Online robotics classes for kids in Bucharest teach automation logic and sensor control in English, with the optional 100-Mission Hero Journey for structured progression.</p></div>
     <div><img src="../../../images/76.webp" alt="Online robotics Bucharest" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-175">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-175">Lesson</label>
+    <select id="lesson-select-175" class="lesson-select" aria-label="Select lesson">
+      <option value="175" selected>175: LangChain Agents and Tools Explained: Let AI Use Tools</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="LangChain Agents and Tools Explained: Let AI Use Tools" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 175 — LangChain Agents and Tools Explained: Let AI Use Tools</h2>
+
+    <h3>1. Introduction to AI Agents & Tools</h3>
+    <p>In standard Large Language Model (LLM) pipelines, the AI generates text based solely on static pre-trained knowledge or direct prompts. However, real-world tasks require models to interact with live external environments—such as querying enterprise databases, calling external APIs, or executing dynamic calculations.</p>
+    <p>An AI Agent is an autonomous system capable of simulating human decision-making by evaluating tasks, selecting appropriate tools, and executing actions to solve complex problems.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Static LLM vs. Autonomous Agent             │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Static LLM Model              │ Autonomous AI Agent         │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Generates text from static  │ • Simulates human decision- │
+  │   pre-trained weights.        │   making and actions.       │
+  │ • Isolated from live data     │ • Selects & executes tools  │
+  │   & external systems.         │   from an available set.    │
+  │ • Fixed execution path.       │ • Calls external APIs & SQL │
+  │                               │   databases automatically.  │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Core Capabilities of AI Agents:</strong></p>
+    <ul>
+      <li><strong>Autonomous Decision-Making:</strong> AI agents simulate human reasoning by making independent decisions and taking corresponding actions based on incoming user queries.</li>
+      <li><strong>Dynamic Tool Selection:</strong> When an agent receives an input query, it evaluates its available set of tools (toolkit) and selects the right tool required to solve the specific problem.</li>
+      <li><strong>External Actions:</strong> Agents can automatically execute queries against SQL databases or call third-party HTTP APIs to perform real-world actions and return live results to the user.</li>
+    </ul>
+
+    <h3>2. The 3 Pillars of Agent Operations: Reasoning, Action, and Feedback</h3>
+    <p>Integrating agents into LLM systems introduces Reasoning and Adaptability into software workflows:</p>
+    <ul>
+      <li><strong>Reasoning:</strong> Whenever an agent makes a decision or performs an action, it provides clear logical reasoning explaining why that specific decision was made.</li>
+      <li><strong>Adaptability:</strong> Agents can adapt to changing scenarios and circumstances by choosing the most suitable tool from their available toolkit for any given situation.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 The 3-Step Agent Workflow Loop              │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   User Task Input                                           │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   1. REASONING  ──► Analyzes task & selects tool from       │
+  │                     toolkit.                                │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   2. ACTION     ──► Executes selected tool with required    │
+  │                     parameters.                             │
+  │        │                                                    │
+  │        ▼                                                    │
+  │   3. FEEDBACK   ──► Receives execution results & returns    │
+  │                     final output to user.                   │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>The 3-Step Workflow Breakdown:</strong></p>
+    <ol>
+      <li><strong>Reasoning (Tool Selection):</strong> The agent analyzes the task input, evaluates its tool descriptions, and selects the best tool for the current situation.</li>
+      <li><strong>Action (Execution):</strong> The agent executes the selected tool with the appropriate arguments.</li>
+      <li><strong>Feedback (Output Return):</strong> The agent receives the execution output from the tool and returns the formatted result back to the user.</li>
+    </ol>
+
+    <h3>3. Advantages & Challenges of AI Agents</h3>
+    <p><strong>A. Key Advantages:</strong></p>
+    <ul>
+      <li><strong>Dynamic Pipelines:</strong> Unlike static chains with fixed execution paths, agent pipelines decide which tools to invoke dynamically at runtime.</li>
+      <li><strong>Flexible Pipelines:</strong> Developers can easily expand an agent's capability arsenal by adding new tools to its toolkit without rewriting core application logic.</li>
+    </ul>
+    <p><strong>B. Primary Challenges:</strong></p>
+    <ul>
+      <li><strong>Latency:</strong> Conducting multi-step reasoning and decision-making adds processing time compared to basic LLM calls.</li>
+      <li><strong>Reasoning Errors:</strong> The agent may occasionally make incorrect decisions or errors during the tool selection process.</li>
+      <li><strong>Unreliable Tools:</strong> Third-party tools or APIs within the agent's toolkit might fail or return unexpected responses.</li>
+    </ul>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                   Agent Strengths vs. Challenges            │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Strengths                     │ Challenges                  │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Runtime dynamic decision-   │ • High latency during complex│
+  │   making pipelines.           │   reasoning steps.          │
+  │ • Easily extendable tool      │ • Potential decision or     │
+  │   arsenal/toolkit.            │   reasoning errors.         │
+  │ • Real-time API & database    │ • Unreliable or failing     │
+  │   interactions.               │   third-party tools.        │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+
+    <h3>4. Industry Best Practices for Designing AI Agents</h3>
+    <p>To mitigate runtime errors and latency issues, developers should follow three key best practices when building agent pipelines:</p>
+    <ol>
+      <li><strong>Clear Tool Descriptions:</strong> Write detailed, explicit descriptions for every tool specifying what the tool is built for and what specific problems it can solve.</li>
+      <li><strong>Fallback & Error Handling:</strong> Implement error handling and fallback mechanisms so the agent can gracefully recover if a tool fails during execution.</li>
+      <li><strong>Incremental Tooling:</strong> Start by building and testing the agent with a single tool. Once verified, incrementally add more tools to the agent's arsenal with proper testing.</li>
+    </ol>
+
+    <h3>5. Hands-On Implementation — Building an Agent with LangChain</h3>
+    <p>Below is a complete Python implementation demonstrating how to build an autonomous AI Agent in VS Code using LangChain.</p>
+    <p><strong>A. Required Python Libraries:</strong></p>
+    <p>The implementation uses requests for API calls, ChatOpenAI from langchain_openai, the @tool decorator from langchain_core.tools, HumanMessage from langchain_core.messages, and create_agent to construct the agent.</p>
+    <p><strong>B. Complete Executable Python Script:</strong></p>
+    <pre>
+# =====================================================================
+# LangChain AI Agent and Tools Example (Topic 175)
+# =====================================================================
+
+import os
+import requests
+from dotenv import load_dotenv
+
+# Import LangChain model, tool, message, and agent modules
+from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+from langchain_core.messages import HumanMessage
+from langchain.agents import create_agent
+
+# 1. Load API Keys from environment configuration
+load_dotenv()
+
+# 2. Define a Custom Tool using the @tool Decorator
+# Description explicitly explains what problem this tool solves
+@tool
+def get_random_joke():
+    """Fetches a random programming joke from an API."""
+    # API endpoint returning random computer science/programming jokes
+    url = "https://official-joke-api.appspot.com/jokes/programming/random"
+
+    # Hit API with 20-second timeout to prevent request hanging
+    response = requests.get(url, timeout=20)
+    data = response.json()
+
+    # Extract joke setup and punchline from returned JSON array
+    joke = f"{data[0]['setup']} {data[0]['punchline']}"
+    return joke
+
+# 3. Instantiate Language Model
+# Using gpt-4o-mini with temperature 0.3 for reliable tool usage
+model = ChatOpenAI(
+    model_name="gpt-4o-mini",
+    temperature=0.3
+)
+
+# 4. Create AI Agent
+# Passes model instance and tools list containing get_random_joke
+tools = [get_random_joke]
+agent = create_agent(
+    model=model,
+    tools=tools
+)
+
+# 5. Invoke Agent with User Query
+# Query asks for a programming joke using the available tool
+user_message = HumanMessage(content="Tell me a programming joke using the tool.")
+result = agent.invoke({"messages": [user_message]})
+
+# 6. Extract and Display Final Output Content
+final_output = result["messages"][-1].content
+print("=== AGENT EXECUTION RESPONSE ===")
+print(final_output)
+    </pre>
+    <p><strong>C. Output Explanation:</strong></p>
+    <p>When executed, the agent evaluates the prompt, selects get_random_joke from its toolkit, executes the HTTP request, and returns the returned joke:</p>
+    <p>"Here is a programming joke for you: If you put a million monkeys at a million keyboards, one of them will eventually write a Java program. The rest of them will write Perl."</p>
+
+    <h3>6. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Concept / Aspect</th>
+          <th>Definition & Role</th>
+          <th>Practical Benefit / Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AI Agent</td>
+          <td>Autonomous system simulating human decisions & actions.</td>
+          <td>Solves complex, unpredictable tasks dynamically.</td>
+        </tr>
+        <tr>
+          <td>Tools</td>
+          <td>Functions or APIs available in the agent's toolkit.</td>
+          <td>Allows LLMs to query databases and external APIs.</td>
+        </tr>
+        <tr>
+          <td>Reasoning</td>
+          <td>Agent's explanation for selecting a specific tool.</td>
+          <td>Provides transparent decision-making.</td>
+        </tr>
+        <tr>
+          <td>Adaptability</td>
+          <td>Ability to choose the best tool for changing scenarios.</td>
+          <td>Handles dynamic user queries at runtime.</td>
+        </tr>
+        <tr>
+          <td>@tool Decorator</td>
+          <td>LangChain wrapper defining tool name & description.</td>
+          <td>Converts Python functions into agent tools.</td>
+        </tr>
+        <tr>
+          <td>Clear Tool Descriptions</td>
+          <td>Best practice explaining tool utility and bounds.</td>
+          <td>Guides agent to select the correct tool accurately.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What are AI Agents and Tools in LangChain, what is their core execution workflow, and how do Reasoning, Action, and Feedback contribute to their behavior?</button>
+      <div class="accordion-body">
+        <p><strong>Definition of AI Agents:</strong> AI Agents are autonomous systems capable of making independent decisions and taking actions to solve tasks, simulating human decision-making and action-taking. When given an input, an agent analyzes the problem and dynamically selects the appropriate tool from its available toolkit to execute.</p>
+        <p><strong>Core Execution Workflow:</strong></p>
+        <ol>
+          <li><strong>Task Analysis & Tool Selection:</strong> The agent receives a task, analyzes its context, and selects the optimal tool from its toolkit.</li>
+          <li><strong>Tool Execution:</strong> The agent executes the selected tool (e.g., querying a database or making an external API call).</li>
+          <li><strong>Result Return:</strong> The agent collects the output from the tool execution and returns the final answer to the user.</li>
+        </ol>
+        <p><strong>Reasoning, Action, and Feedback:</strong></p>
+        <ul>
+          <li><strong>Reasoning:</strong> Provides explicit rationale explaining why a specific decision was made and why a tool was chosen.</li>
+          <li><strong>Action:</strong> Executes the selected tool based on the reasoning step.</li>
+          <li><strong>Feedback:</strong> Uses the output returned by the tool to inform the final output or decide on subsequent steps.</li>
+        </ul>
+        <p><strong>Adaptability & Dynamics:</strong> Agents add adaptability to LLM applications by dynamically deciding which tools to run at runtime based on changing input scenarios.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What key challenges arise when working with AI Agents in LangChain, and what best practices should developers adopt to mitigate them?</button>
+      <div class="accordion-body">
+        <p><strong>Key Challenges:</strong></p>
+        <ol>
+          <li><strong>Latency:</strong> Performing multi-step reasoning and dynamic tool selection adds computational overhead and processing time compared to standard LLM calls.</li>
+          <li><strong>Reasoning Errors:</strong> The agent may occasionally misinterpret prompt instructions or choose the wrong tool for a given task.</li>
+          <li><strong>Unreliable Tools:</strong> External APIs or tools inside the toolkit may fail, time out, or return unexpected data formats.</li>
+        </ol>
+        <p><strong>Developer Best Practices:</strong></p>
+        <ol>
+          <li><strong>Clear Tool Descriptions:</strong> Write explicit, detailed descriptions for every tool explaining its precise function, input expectations, and target problem domain so the agent knows exactly when to select it.</li>
+          <li><strong>Fallback & Error Handling:</strong> Build robust error handling and fallback mechanisms into tool functions to manage execution failures gracefully without crashing the pipeline.</li>
+          <li><strong>Incremental Tool Addition:</strong> Start testing with a single tool in the toolkit, thoroughly verify its performance, and incrementally add more tools to the agent's arsenal.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is a custom API tool defined and integrated into a LangChain Agent in Python (Topic 175 implementation)?</button>
+      <div class="accordion-body">
+        <p><strong>Tool Definition with Decorator:</strong> A custom Python function is decorated with @tool from langchain_core.tools and supplied with a clear docstring/description (e.g., "fetches a random programming joke from an API").</p>
+        <p><strong>Function Logic:</strong> The function (e.g., get_random_joke) uses the requests library to hit an external HTTP API endpoint with a safety timeout (e.g., 20 seconds) and parses the returned JSON payload to extract the result.</p>
+        <p><strong>Agent Initialization & Execution:</strong></p>
+        <ol>
+          <li><strong>Model & Tool Setup:</strong> Initialize a language model (e.g., ChatOpenAI using gpt-4o-mini with temperature=0.3) and place the custom tool inside a tools list [get_random_joke].</li>
+          <li><strong>Agent Creation:</strong> Create the agent using create_agent, passing the target model instance and the tools list.</li>
+          <li><strong>Invocation:</strong> Pass a user message (e.g., "Tell me a programming joke using the tool") inside a HumanMessage object to agent.invoke(). The agent automatically recognizes the task intent, calls the joke API tool, and returns the final joke text.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/romania/ai-courses-for-kids-timisoara.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/romania/python-coding-classes-for-children-cluj-napoca.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-175');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-175');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '175') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Automation and control logic</li><li>Sensor and motor ideas</li><li>100-Mission progression pathway</li><li>English for local and international students</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/o3rKGq7wYP8" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
