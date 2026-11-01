@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online STEM Education for Kids in Szczecin | AI &amp; Robotics Club</title>
+  <title>Online STEM Education for Kids in Szczecin | AI & Robotics Club</title>
   <meta name="description" content="Online STEM education for kids in Szczecin—structured problem-solving and digital literacy in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/poland/online-stem-education-for-kids-szczecin.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,13 +21,458 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Szczecin · Poland</span><h1>Online STEM Education for Kids in Szczecin</h1>
     <p>Online STEM education for kids in Szczecin emphasises structured problem-solving—hypothesis, test, revise—from a standard home computer.</p></div>
     <div><img src="../../../images/88.webp" alt="STEM Szczecin" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-167">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-167">Lesson</label>
+    <select id="lesson-select-167" class="lesson-select" aria-label="Select lesson">
+      <option value="167" selected>167: U-Net Explained: A Deep Learning Model for Image Segmentation</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="U-Net Explained: A Deep Learning Model for Image Segmentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 167 — U-Net Explained: A Deep Learning Model for Image Segmentation</h2>
+
+    <h3>1. Introduction: What is Image Segmentation & U-Net?</h3>
+    <p>In previous modules, we explored Object Detection architectures like YOLO, which localize objects using rectangular bounding boxes. While bounding boxes work well for coarse localization, many applications—such as medical imaging, autonomous driving, and satellite analysis—require defining exact object boundaries down to the individual pixel level.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Pixel-Level Image Segmentation              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Goal: Assign every individual pixel in an input image      │
+  │        to a specific class or object mask label.            │
+  │                                                             │
+  │  Input Image (128 × 128 × 3) ──► U-Net Model ──► Output Mask│
+  │                                                  (128×128×1)│
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Definition:</strong></p>
+    <p>Image Segmentation is the task of partitioning an image into distinct segments by assigning a specific class label to every single pixel in the image.</p>
+    <p>To solve image segmentation efficiently, the U-Net architecture was introduced. U-Net is a specialized deep learning convolutional neural network designed to map input images directly to precise pixel-level segmentation masks.</p>
+
+    <h3>2. The U-Net Architectural Framework (The U-Shape)</h3>
+    <p>U-Net derives its name from its symmetrical U-shaped network architecture. It consists of three primary structural pathways:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        U-Net Symmetrical Architecture                   │
+  ├─────────────────────────────────────────────────────────────────────────┤
+  │                                                                         │
+  │  Input Image (128×128×3)                               Output Mask      │
+  │       │                                                    ▲            │
+  │  [Enc 1: 32 Filters]  ─────── Skip Connection ──────► [Dec 3: 32 Filters] │
+  │       │ (Max Pool)                                         ▲ (UpSample) │
+  │  [Enc 2: 64 Filters]  ─────── Skip Connection ──────► [Dec 2: 64 Filters] │
+  │       │ (Max Pool)                                         ▲ (UpSample) │
+  │  [Enc 3: 128 Filters] ─────── Skip Connection ──────► [Dec 1: 128 Filters]│
+  │       │ (Max Pool)                                         ▲ (UpSample) │
+  │       └────────────────► [ Bottleneck ] ───────────────────┘            │
+  │                          (256 Filters)                                  │
+  └─────────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. The Contracting Path (Encoder):</strong></p>
+    <ul>
+      <li><strong>Function:</strong> Acts as a feature extractor that captures spatial context.</li>
+      <li><strong>Structure:</strong> Consists of repeated pairs of Convolutional Blocks followed by Max Pooling layers.</li>
+      <li><strong>Spatial Shrinking:</strong> Max pooling reduces spatial dimensions (height and width) while progressively expanding feature channel depth (e.g., 32 → 64 → 128 filters).</li>
+    </ul>
+    <p><strong>B. The Bottleneck:</strong></p>
+    <ul>
+      <li><strong>Function:</strong> Connects the encoder pathway to the decoder pathway.</li>
+      <li><strong>Structure:</strong> Contains the deepest convolutional block (e.g., 256 filters). It compresses the image into its most compact, high-level feature representation.</li>
+    </ul>
+    <p><strong>C. The Expanding Path (Decoder):</strong></p>
+    <ul>
+      <li><strong>Function:</strong> Reconstructs fine spatial details to expand low-resolution feature maps back to the original image dimensions.</li>
+      <li><strong>Structure:</strong> Consists of Up-Sampling layers, Concatenation steps, and Convolutional Blocks.</li>
+      <li><strong>Spatial Expansion:</strong> Up-sampling restores spatial resolution while gradually decreasing channel depth (e.g., 128 → 64 → 32 filters).</li>
+    </ul>
+    <p><strong>D. Skip Connections:</strong></p>
+    <ul>
+      <li><strong>Function:</strong> Connects encoder feature maps directly to corresponding decoder feature maps via concatenation.</li>
+      <li><strong>Why Skip Connections Matter:</strong> Downsampling in the encoder discards fine spatial localization details. Skip connections pass high-resolution spatial feature maps directly across to the decoder, ensuring precise pixel localization.</li>
+    </ul>
+
+    <h3>3. Data Pipeline & Synthetic Dataset Creation in Google Colab</h3>
+    <p>Because U-Net requires substantial memory for pixel-level computations, training is executed in Google Colab using cloud GPU hardware acceleration.</p>
+    <pre>
+import tensorflow as tf
+from tensorflow.keras import layers, models
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+    </pre>
+    <p><strong>Synthetic Dataset Generation:</strong></p>
+    <p>We create a custom synthetic dataset consisting of 300 image samples of size 128 × 128 × 3 alongside their corresponding binary segmentation masks.</p>
+    <pre>
+# Function to generate synthetic circular shape segmentation dataset
+def create_synthetic_dataset(num_samples=300, img_size=128):
+    images = []
+    masks = []
+
+    for _ in range(num_samples):
+        # Create blank canvas for image and single-channel mask
+        img = np.zeros((img_size, img_size, 3), dtype=np.uint8)
+        mask = np.zeros((img_size, img_size, 1), dtype=np.uint8)
+
+        # Generate random circle coordinates and radius
+        center_x = np.random.randint(30, 98)
+        center_y = np.random.randint(30, 98)
+        radius = np.random.randint(15, 35)
+
+        # Draw random colored circle on image and white circle on binary mask
+        color = np.random.randint(100, 255, size=(3,)).tolist()
+        cv2.circle(img, (center_x, center_y), radius, color, -1)
+        cv2.circle(mask, (center_x, center_y), radius, 255, -1)
+
+        images.append(img / 255.0)       # Normalize image pixels (0.0 to 1.0)
+        masks.append(mask / 255.0)       # Normalize mask pixels (0 or 1)
+
+    return np.array(images, dtype=np.float32), np.array(masks, dtype=np.float32)
+
+# Generate synthetic dataset
+X, Y = create_synthetic_dataset(num_samples=300, img_size=128)
+
+# Split into 80% Training and 20% Testing sets
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+print(f"Training set: {X_train.shape}, Testing set: {X_test.shape}")
+    </pre>
+
+    <h3>4. Building U-Net with Keras Functional API</h3>
+    <p>U-Net cannot be built using models.Sequential because skip connections require branching and concatenating multiple layer tensors. Instead, we use the Keras Functional API.</p>
+    <p><strong>A. Reusable Convolutional Block Function:</strong></p>
+    <p>Each block applies two sequential 3 × 3 convolutions with padding='same' (to preserve spatial size) and ReLU activation:</p>
+    <pre>
+# Reusable Convolutional Block (2 x Conv2D + ReLU + Padding Same)
+def conv_block(x, num_filters):
+    x = layers.Conv2D(num_filters, (3, 3), padding='same', activation='relu')(x)
+    x = layers.Conv2D(num_filters, (3, 3), padding='same', activation='relu')(x)
+    return x
+    </pre>
+    <p><strong>B. Full Architecture Construction:</strong></p>
+    <pre>
+def build_unet(input_shape=(128, 128, 3)):
+    inputs = layers.Input(input_shape)  # Input tensor: (128, 128, 3)
+
+    # -----------------------------------------------------------------
+    # ENCODER (Contracting Path)
+    # -----------------------------------------------------------------
+    c1 = conv_block(inputs, 32)
+    p1 = layers.MaxPooling2D((2, 2))(c1)  # Spatial shape: 64x64x32
+
+    c2 = conv_block(p1, 64)
+    p2 = layers.MaxPooling2D((2, 2))(c2)  # Spatial shape: 32x32x64
+
+    c3 = conv_block(p2, 128)
+    p3 = layers.MaxPooling2D((2, 2))(c3)  # Spatial shape: 16x16x128
+
+    # -----------------------------------------------------------------
+    # BOTTLENECK
+    # -----------------------------------------------------------------
+    b = conv_block(p3, 256)               # Spatial shape: 16x16x256
+
+    # -----------------------------------------------------------------
+    # DECODER (Expanding Path with Skip Connections)
+    # -----------------------------------------------------------------
+    u1 = layers.UpSampling2D((2, 2))(b)
+    concat1 = layers.Concatenate()([u1, c3])  # Skip connection from c3
+    c4 = conv_block(concat1, 128)
+
+    u2 = layers.UpSampling2D((2, 2))(c4)
+    concat2 = layers.Concatenate()([u2, c2])  # Skip connection from c2
+    c5 = conv_block(concat2, 64)
+
+    u3 = layers.UpSampling2D((2, 2))(c5)
+    concat3 = layers.Concatenate()([u3, c1])  # Skip connection from c1
+    c6 = conv_block(concat3, 32)
+
+    # -----------------------------------------------------------------
+    # OUTPUT LAYER
+    # -----------------------------------------------------------------
+    outputs = layers.Conv2D(1, (1, 1), activation='sigmoid')(c6)
+
+    model = models.Model(inputs=inputs, outputs=outputs, name="U-Net")
+    return model
+
+model = build_unet()
+    </pre>
+
+    <h3>5. Model Diagnostics & Parameter Analysis (model.summary())</h3>
+    <p>Executing model.summary() displays the complete layer connectivity and trainable parameter counts:</p>
+    <pre>
+# Compile Model Configurations
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+model.summary()
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                        Model Summary Breakdown                          │
+  ├──────────────────────────────┬───────────────────┬──────────────────────┤
+  │ Layer (Type)                 │ Output Shape      │ Param #              │
+  ├──────────────────────────────┼───────────────────┼──────────────────────┤
+  │ input_1 (InputLayer)         │ (None, 128,128, 3)│ 0                    │
+  │ conv2d (Conv2D - Block 1)    │ (None, 128,128,32)│ 896                  │
+  │ conv2d_1 (Conv2D - Block 1)  │ (None, 128,128,32)│ 9,248                │
+  │ max_pooling2d (MaxPooling2D) │ (None, 64, 64, 32)│ 0                    │
+  │ ...                          │ ...               │ ...                  │
+  │ up_sampling2d (UpSampling)   │ (None, 32, 32,256)│ 0                    │
+  │ concatenate (Concatenate)    │ (None, 32, 32,384)│ 0                    │
+  │ conv2d_ output (Conv2D 1x1)  │ (None, 128,128, 1)│ 33                   │
+  ├──────────────────────────────┴───────────────────┴──────────────────────┤
+  │ Total params: 1,941,121 (1.94 Million Params / ~7.43 MB memory)         │
+  │ Trainable params: 1,941,121                                             │
+  │ Non-trainable params: 0                                                 │
+  └─────────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Parameter Takeaways:</strong></p>
+    <ul>
+      <li><strong>Total Trainable Parameters:</strong> Contains ~1.9 Million parameters (1,941,121 trainable weights) taking up ~7.43 MB of memory.</li>
+      <li><strong>Zero Parameter Layers:</strong> Input, Max Pooling, Up-Sampling, and Concatenate layers require 0 trainable weights.</li>
+      <li><strong>Output 1x1 Conv2D:</strong> Uses a 1 × 1 kernel with Sigmoid activation to output single-channel binary pixel probability maps.</li>
+    </ul>
+
+    <h3>6. Training Dynamics & Performance Evaluation (fit & evaluate)</h3>
+    <p>We train the U-Net model using model.fit() over 10 Epochs with a batch size of 8 and a 20% validation split:</p>
+    <pre>
+# Train U-Net Model
+history = model.fit(
+    X_train, Y_train,
+    epochs=10,
+    batch_size=8,
+    validation_split=0.2
+)
+    </pre>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Training Progression & Computational Weight    │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Computational Intensity:                                   │
+  │    • Segmentation is computationally heavier than object    │
+  │      detection because EVERY pixel requires a class         │
+  │      label prediction.                                      │
+  │                                                             │
+  │  Epoch Metrics Progress:                                    │
+  │    • Epoch 1  : Accuracy = 96.97% | Loss = 0.3400           │
+  │    • Epoch 10 : Accuracy = 99.98% | Loss = 0.00845          │
+  │                                                             │
+  │  Test Set Evaluation (model.evaluate):                      │
+  │    • Test Loss     : 0.00526                                │
+  │    • Test Accuracy : 99.98%                                 │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Performance Takeaways:</strong></p>
+    <ul>
+      <li><strong>High Computational Load:</strong> Training takes longer per epoch compared to basic classification networks because every pixel requires a separate classification decision.</li>
+      <li><strong>Convergence:</strong> Accuracy increases from 96.97% in Epoch 1 to 99.98% in Epoch 10, while loss drops exponentially from 0.34 down to 0.00845.</li>
+      <li><strong>Final Test Evaluation:</strong> Testing on unseen evaluation samples yields a test loss of 0.00526 and a test accuracy of 99.98%. In noisy client datasets, slightly lower real-world accuracy is expected.</li>
+    </ul>
+
+    <h3>7. Visualizing Segmentation Masks (Image vs. Ground Truth vs. Prediction)</h3>
+    <p>We visualize model predictions side-by-side using Matplotlib to compare the Original Image, True Mask (Ground Truth), and Predicted Mask:</p>
+    <pre>
+# Predict segmentation masks on test samples
+predictions = model.predict(X_test[:3])
+
+# Plot comparison figures
+plt.figure(figsize=(10, 8))
+for i in range(3):
+    # Original Image
+    plt.subplot(3, 3, i*3 + 1)
+    plt.imshow(X_test[i])
+    plt.title(f"Sample {i+1}: Input Image")
+    plt.axis('off')
+
+    # Ground Truth Mask
+    plt.subplot(3, 3, i*3 + 2)
+    plt.imshow(Y_test[i].squeeze(), cmap='gray')
+    plt.title(f"Sample {i+1}: True Mask")
+    plt.axis('off')
+
+    # Predicted Mask
+    plt.subplot(3, 3, i*3 + 3)
+    plt.imshow(predictions[i].squeeze() > 0.5, cmap='gray')
+    plt.title(f"Sample {i+1}: Predicted Mask")
+    plt.axis('off')
+
+plt.tight_layout()
+plt.show()
+    </pre>
+
+    <h3>8. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Pipeline Stage</th>
+          <th>Keras Function / Setting</th>
+          <th>Key Operational Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Input Tensor Shape</td>
+          <td>layers.Input((128, 128, 3))</td>
+          <td>Color images of size 128×128×3.</td>
+        </tr>
+        <tr>
+          <td>Encoder Path</td>
+          <td>Conv2D (3x3) + MaxPooling2D (2x2)</td>
+          <td>Shrinks spatial shape; expands filters (32, 64, 128).</td>
+        </tr>
+        <tr>
+          <td>Bottleneck</td>
+          <td>conv_block(p3, 256)</td>
+          <td>Deepest feature representation (256 filters).</td>
+        </tr>
+        <tr>
+          <td>Decoder Path</td>
+          <td>UpSampling2D + Concatenate</td>
+          <td>Restores spatial size & concatenates skip connections.</td>
+        </tr>
+        <tr>
+          <td>Skip Connections</td>
+          <td>layers.Concatenate()([u, c])</td>
+          <td>Passes high-res encoder features to decoder.</td>
+        </tr>
+        <tr>
+          <td>Output Layer</td>
+          <td>Conv2D(1, (1, 1), activation='sigmoid')</td>
+          <td>Generates 128×128×1 binary mask probabilities.</td>
+        </tr>
+        <tr>
+          <td>Total Model Footprint</td>
+          <td>model.summary()</td>
+          <td>1.94 Million parameters (~7.43 MB).</td>
+        </tr>
+        <tr>
+          <td>Compilation Settings</td>
+          <td>adam, binary_crossentropy, accuracy</td>
+          <td>Adam optimizer & binary cross-entropy loss.</td>
+        </tr>
+        <tr>
+          <td>Training Parameters</td>
+          <td>10 Epochs, Batch Size = 8, Split = 0.2</td>
+          <td>GPU training on synthetic dataset.</td>
+        </tr>
+        <tr>
+          <td>Final Test Metrics</td>
+          <td>model.evaluate()</td>
+          <td>Test Loss: 0.00526, Test Accuracy: 99.98%.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is the U-Net architecture, what are its three primary structural stages, and how do skip connections improve segmentation precision?</button>
+      <div class="accordion-body">
+        <p><strong>Core Definition:</strong> U-Net is a specialized deep learning model designed for image segmentation, where the goal is to classify every individual pixel in an image into a specific class category.</p>
+        <p><strong>Three Structural Stages:</strong></p>
+        <ol>
+          <li><strong>Encoder (Contracting Path):</strong> Captures context by passing the image through repeating blocks of convolutional layers and max-pooling layers to downsample spatial dimensions.</li>
+          <li><strong>Bottleneck:</strong> Sits between the encoder and decoder to capture the deepest, most essential feature representations of the input data.</li>
+          <li><strong>Decoder (Expanding Path):</strong> Reconstructs spatial resolution by applying upsampling layers to expand the feature maps back toward the original input image size.</li>
+        </ol>
+        <p><strong>Role of Skip Connections:</strong> Skip connections directly concatenate feature maps from corresponding encoder layers to decoder layers. This transfers fine-grained spatial and edge details directly across the network, making final localization significantly more precise.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What are the layer configurations, parameter counts, input dimensions, and output layers of the U-Net model constructed in Topic 167?</button>
+      <div class="accordion-body">
+        <p><strong>Input Specifications:</strong> Expects an input image tensor of size 128 x 128 across 3 color channels (128, 128, 3).</p>
+        <p><strong>Encoder & Bottleneck Architecture:</strong> Uses 3 encoder blocks combining 2D Convolutional layers (3x3 kernel, same padding, ReLU activation) and Max-Pooling layers with filter counts increasing from 32 to 64 to 128, followed by a bottleneck block with 256 filters.</p>
+        <p><strong>Decoder & Output Head:</strong></p>
+        <ul>
+          <li><strong>Decoder Blocks:</strong> Uses 3 expanding blocks consisting of UpSampling2D, feature concatenation (skip connections), and Conv2D blocks with filter counts decreasing from 128 to 64 to 32.</li>
+          <li><strong>Output Layer:</strong> A 1x1 Conv2D layer with a Sigmoid activation function to output a pixel-wise probability map for binary segmentation.</li>
+        </ul>
+        <p><strong>Model Scale:</strong> The entire functional model contains approximately 1.9 million trainable parameters (~7.43 MB memory footprint) with 0 non-trainable parameters.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How was the U-Net model compiled, trained, and evaluated in Topic 167, and what final performance was achieved?</button>
+      <div class="accordion-body">
+        <p><strong>Compilation Settings:</strong></p>
+        <ul>
+          <li><strong>Optimizer:</strong> Adam optimizer.</li>
+          <li><strong>Loss Function:</strong> Binary Cross-Entropy (binary_crossentropy).</li>
+          <li><strong>Metric:</strong> Accuracy.</li>
+        </ul>
+        <p><strong>Training Execution:</strong> Trained on Google Colab GPU over 10 epochs with a batch size of 8 and an 80/20 validation split. Over 10 epochs, training loss dropped from 0.34 down to 0.00845, while accuracy reached 99.98%.</p>
+        <p><strong>Final Evaluation & Visualization:</strong></p>
+        <ul>
+          <li>Testing on unseen data achieved a test loss of 0.00526 and a test accuracy of 99.98%.</li>
+          <li>Predictions were evaluated visually by plotting the original image, true ground-truth mask, and model-predicted mask side-by-side using Matplotlib.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/online-robotics-classes-for-kids-warsaw.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/poland/python-coding-classes-for-children-krakow.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-167');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-167');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '167') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Structured problem-solving</li><li>Hypothesis and iteration</li><li>Resilience through challenges</li><li>Standard PC or laptop setup</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/6O3SgBLUz00" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <article class="article-box"><h2>Interactive Online STEM: Structured Problem-Solving Pathways in Szczecin</h2>
