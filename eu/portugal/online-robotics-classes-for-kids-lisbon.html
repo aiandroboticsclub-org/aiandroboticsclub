@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Lisbon | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Lisbon | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Lisbon—English sessions and the 100-Mission pathway for the tech expat community.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/portugal/online-robotics-classes-for-kids-lisbon.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,301 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Lisbon · Portugal</span><h1>Online Robotics Classes for Kids in Lisbon</h1>
     <p>Online robotics classes for kids in Lisbon cater to the city’s growing tech expat community with clear English instruction and the optional 100-Mission Hero Journey for structured progression.</p></div>
     <div><img src="../../../images/77.webp" alt="Online robotics Lisbon" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-172">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-172">Lesson</label>
+    <select id="lesson-select-172" class="lesson-select" aria-label="Select lesson">
+      <option value="172" selected>172: How to Connect AI Models and Prompts with LangChain</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="How to Connect AI Models and Prompts with LangChain" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 172 — How to Connect AI Models and Prompts with LangChain</h2>
+
+    <h3>1. Core Fundamentals — Models and Prompts in LangChain</h3>
+    <p>When building applications powered by Large Language Models (LLMs) using LangChain, every interaction relies on two foundational components:</p>
+    <ol>
+      <li><strong>The LLM Model:</strong> The underlying AI model (e.g., OpenAI's GPT, Google's Gemini, or Anthropic's Claude) responsible for processing input queries and generating intelligent text outputs.</li>
+      <li><strong>The Prompt (Model Input):</strong> The text input, question, or instruction passed to the LLM model to guide its response.</li>
+    </ol>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │              Basic LangChain Interaction Flow               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Prompt (User Input) ──► "What is the capital of         │
+  │                            Pakistan?"                       │
+  │                                   │                         │
+  │                                   ▼                         │
+  │  2. LangChain Model Wrapper ──► OpenAI / GPT Model          │
+  │                                   │                         │
+  │                                   ▼                         │
+  │  3. LLM Response        ──► "The capital of Pakistan is     │
+  │                            Islamabad."                      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p>Connecting these two components allows developers to transition from basic manual prompts to automated, software-driven AI pipelines.</p>
+
+    <h3>2. Setting Up the Development Environment</h3>
+    <p>To build and execute LangChain scripts reliably in Python, a dedicated Virtual Environment should be created using Visual Studio Code (VS Code) or terminal commands.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │             Development Setup Pipeline in VS Code           │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Create Virtual Environment (`python -m venv venv`) │
+  │  Step 2: Activate Environment (`venv\Scripts\activate.bat`) │
+  │  Step 3: Define Dependencies in `requirements.txt`         │
+  │  Step 4: Install Packages (`pip install -r requirements.txt`)│
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Creating & Activating a Virtual Environment</strong></p>
+    <p>Creating a virtual environment isolates project dependencies, preventing version conflicts with system-wide Python libraries.</p>
+    <ul>
+      <li><strong>Create Virtual Environment:</strong> <code>python -m venv venv</code> (Where venv specifies the environment directory name).</li>
+      <li><strong>Activate Virtual Environment (Windows Command Prompt / VS Code):</strong> <code>venv\Scripts\activate.bat</code> (Upon execution, the terminal prompt reflects the active virtual environment).</li>
+    </ul>
+    <p><strong>B. Managing Dependencies via requirements.txt</strong></p>
+    <p>Project dependencies are managed by listing required packages in a requirements.txt file.</p>
+    <pre>
+# --- Core LangChain Libraries ---
+langchain
+langchain-core
+
+# --- Model Provider Integrations ---
+langchain-openai
+openai
+langchain-anthropic
+langchain-google-genai
+google-generativeai
+
+# --- Open-Source & Hugging Face Integrations ---
+langchain-community
+transformers
+huggingface_hub
+
+# --- Environment & Utility Libraries ---
+python-dotenv
+numpy
+scikit-learn
+torch
+tensorflow
+flask
+    </pre>
+    <p><strong>C. Installing Dependencies</strong></p>
+    <p>Dependencies specified in requirements.txt are installed using pip:</p>
+    <pre>
+pip install -r requirements.txt
+    </pre>
+    <p>If pip is not configured directly in the system PATH, access it via Python:</p>
+    <pre>
+python -m pip install -r requirements.txt
+    </pre>
+
+    <h3>3. Managing API Keys & Environment Variables (.env)</h3>
+    <p>Because commercial LLM APIs (such as OpenAI) require authentication, API keys must be handled securely rather than hardcoded into source files.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                Secure Key Management via `.env`             │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Generate Key  ──► Obtain API Secret from OpenAI Platform│
+  │                                                             │
+  │  2. Store in File ──► Save in `.env` file in root directory │
+  │                                                             │
+  │  3. Load in Code  ──► `load_dotenv()` loads key into        │
+  │                       environment                           │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Creating the .env Configuration File</strong></p>
+    <p>Create a file named .env in the root directory of the project containing the API secret key:</p>
+    <pre>
+OPENAI_API_KEY="your_actual_openai_api_key_here"
+    </pre>
+    <p><strong>B. Loading Environment Variables in Python</strong></p>
+    <p>The python-dotenv package automatically reads key-value pairs from the .env file and sets them as environment variables:</p>
+    <pre>
+from dotenv import load_dotenv
+
+# Load environment variables from .env file into Python execution context
+load_dotenv()
+    </pre>
+
+    <h3>4. Connecting and Invoking an AI Model in LangChain</h3>
+    <p>Once the environment and API authentication are configured, LangChain connects to the OpenAI model to process input prompts.</p>
+    <p><strong>A. Step-by-Step Python Script</strong></p>
+    <pre>
+# =====================================================================
+# Connecting OpenAI LLM with Prompts using LangChain (Topic 172)
+# =====================================================================
+
+from langchain_openai import OpenAI
+from dotenv import load_dotenv
+
+# 1. Load API Key from .env file into environment variables
+load_dotenv()
+
+# 2. Instantiate OpenAI Model Object
+# Using model "gpt-3.5-turbo-instruct" for direct completion tasks
+llm = OpenAI(model_name="gpt-3.5-turbo-instruct")
+
+# 3. Define the Prompt (Model Input)
+prompt = "What is the capital of Pakistan?"
+
+# 4. Invoke the LLM with the Prompt
+result = llm.invoke(prompt)
+
+# 5. Output the Generated Response
+print("Model Output:")
+print(result)
+    </pre>
+    <p><strong>B. Execution Flow & Network Behavior:</strong></p>
+    <ol>
+      <li><strong>Instantiation:</strong> <code>OpenAI(model_name="gpt-3.5-turbo-instruct")</code> creates an LLM wrapper object using the loaded OPENAI_API_KEY.</li>
+      <li><strong>Invocation:</strong> Calling <code>llm.invoke(prompt)</code> sends an HTTP request over the internet to OpenAI's remote API servers.</li>
+      <li><strong>Response Processing:</strong> OpenAI evaluates the prompt and returns the output text (e.g., "The capital of Pakistan is Islamabad."), which LangChain captures and outputs.</li>
+    </ol>
+
+    <h3>5. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Tool</th>
+          <th>Python Package / Command</th>
+          <th>Core Function in LangChain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Virtual Environment</td>
+          <td>python -m venv venv</td>
+          <td>Isolates project libraries from global environment.</td>
+        </tr>
+        <tr>
+          <td>Dependency Manager</td>
+          <td>pip install -r requirements.txt</td>
+          <td>Installs batch libraries listed in text file.</td>
+        </tr>
+        <tr>
+          <td>Environment Loader</td>
+          <td>from dotenv import load_dotenv</td>
+          <td>Loads API keys from .env into system environment.</td>
+        </tr>
+        <tr>
+          <td>OpenAI LLM Wrapper</td>
+          <td>from langchain_openai import OpenAI</td>
+          <td>Provides standardized interface to OpenAI models.</td>
+        </tr>
+        <tr>
+          <td>Model Invocation</td>
+          <td>llm.invoke(prompt)</td>
+          <td>Sends prompt over network and receives output.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: How do you set up the development environment and install the required dependencies for a LangChain project?</button>
+      <div class="accordion-body">
+        <p><strong>Virtual Environment Setup:</strong> In Visual Studio Code, a dedicated Python virtual environment is created using the command <code>python -m venv venv</code>. Before executing code, the virtual environment is activated (e.g., running <code>venv\Scripts\activate.bat</code>) to isolate project packages.</p>
+        <p><strong>Dependency Management via requirements.txt:</strong> Project dependencies and optional version constraints are defined inside a requirements.txt file.</p>
+        <p><strong>Key Installed Packages:</strong></p>
+        <ol>
+          <li><strong>LangChain Core:</strong> langchain and langchain-core.</li>
+          <li><strong>Model Provider Integrations:</strong> Provider packages such as langchain-openai, openai, langchain-google-genai, google-generativeai, and Hugging Face integration libraries.</li>
+          <li><strong>Environment & Utility Libraries:</strong> python-dotenv for environment variable management, alongside foundational machine learning libraries like numpy, scikit-learn, torch, and tensorflow.</li>
+        </ol>
+        <p><strong>Installation:</strong> All libraries are installed into the active environment by executing <code>pip install -r requirements.txt</code> (or <code>python -m pip install -r requirements.txt</code>).</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: How are API keys and environment variables securely managed when connecting LLMs in LangChain?</button>
+      <div class="accordion-body">
+        <p><strong>API Key Generation:</strong> Commercial model providers (such as OpenAI) require an authentication API key to process request calls.</p>
+        <p><strong>Storage in .env File:</strong> To avoid hardcoding sensitive credentials inside source code, the API key is stored in a local .env file in the project directory (e.g., <code>OPENAI_API_KEY="your_api_key_here"</code>).</p>
+        <p><strong>Loading Credentials with python-dotenv:</strong></p>
+        <ol>
+          <li>The load_dotenv function is imported from the dotenv library.</li>
+          <li>Calling load_dotenv() at the beginning of the script automatically loads the keys from the .env file into system memory.</li>
+          <li>LangChain automatically reads OPENAI_API_KEY from the environment to authenticate model calls without exposing keys in code.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: What are the basic code steps to instantiate an LLM, send a prompt, and receive an output in LangChain?</button>
+      <div class="accordion-body">
+        <p><strong>Step 1: Module Imports:</strong> Import the model wrapper from the provider integration module (e.g., <code>from langchain_openai import OpenAI</code>) and load_dotenv from dotenv.</p>
+        <p><strong>Step 2: Environment Initialization & Model Instantiation:</strong> Execute load_dotenv() to load API credentials, then initialize the model object while passing the target model name (e.g., gpt-3.5-turbo-instruct).</p>
+        <p><strong>Step 3: Prompt Invocation:</strong> Pass a prompt string to the model using the .invoke() method (e.g., <code>result = llm.invoke("What is the capital of Pakistan?")</code>).</p>
+        <p><strong>Step 4: API Execution & Output Display:</strong> The invocation sends a request over the internet to the provider's API, receives the output, and prints the result (e.g., "The capital of Pakistan is Islamabad").</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/poland/stem-robotics-workshops-gdansk-kids.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/portugal/python-coding-classes-for-children-porto.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-172');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-172');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '172') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Sensors, motors and control systems</li><li>English for tech expat families</li><li>100-Mission progression pathway</li><li>Simulators first, optional hardware later</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/AlyWZ5bZ068" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
