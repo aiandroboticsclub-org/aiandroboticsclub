@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Robotics Classes for Kids in Bratislava | AI &amp; Robotics Club</title>
+  <title>Online Robotics Classes for Kids in Bratislava | AI & Robotics Club</title>
   <meta name="description" content="Online robotics classes for kids in Bratislava—control loops, motors and automation logic in English.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/slovakia/online-robotics-classes-for-kids-bratislava.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,352 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Bratislava · Slovakia</span><h1>Online Robotics Classes for Kids in Bratislava</h1>
     <p>Online robotics classes for kids in Bratislava teach control loops, input-output processing and motor activation for local and international students.</p></div>
     <div><img src="../../../images/96.webp" alt="Online robotics Bratislava" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-182">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-182">Lesson</label>
+    <select id="lesson-select-182" class="lesson-select" aria-label="Select lesson">
+      <option value="182" selected>182: Build and Deploy an AI Chatbot with LangChain and Flask</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build and Deploy an AI Chatbot with LangChain and Flask" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 182 — Build and Deploy an AI Chatbot with LangChain and Flask</h2>
+
+    <h3>1. Introduction & Architectural Overview</h3>
+    <p>While previous modules focused on building LangChain chains, memory systems, and tools in standalone scripts, deploying artificial intelligence applications for real-world production requires wrapping them inside a scalable web server architecture.</p>
+    <p>Flask is a lightweight, comfortable, and highly efficient Python web framework ideal for serving Large Language Models (LLMs) to front-end clients via RESTful APIs.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │            LangChain + Flask System Architecture            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Client Request (Web UI / Postman / AJAX POST / JSON)       │
+  │                             │                               │
+  │                             ▼                               │
+  │  Flask Server Route (`/chat` REST Endpoint)                │
+  │                             │                               │
+  │                             ▼                               │
+  │  LangChain Pipeline (LLM + Tokenizer + Chat Memory)         │
+  │                             │                               │
+  │                             ▼                               │
+  │  JSON Response (`jsonify({"status": "success", ...})`)      │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Core Advantages of Using Flask with LangChain:</strong></p>
+    <ul>
+      <li><strong>Lightweight & Scalable:</strong> Flask integrates seamlessly with Python libraries without heavy framework overhead, making chatbot interfaces scalable.</li>
+      <li><strong>RESTful API Serving:</strong> Serves the underlying LangChain pipeline as an HTTP endpoint that can accept JSON payloads and return structured responses.</li>
+      <li><strong>Decoupled Frontend & Backend:</strong> Allows developers to build independent frontends (Web UIs, mobile apps, or testing tools like Postman) that communicate with the Flask backend asynchronously via AJAX.</li>
+      <li><strong>End-to-End Interaction Flow:</strong> The client sends a user query via an HTTP POST request to a Flask endpoint. Flask passes the query to the LangChain pipeline (combining the LLM model and memory). The LLM generates a response, which Flask returns as a JSON object to be displayed on the user's screen.</li>
+    </ul>
+
+    <h3>2. Key Flask & LangChain Helper Functions</h3>
+    <p>Before defining web routes, two essential helper functions are created to format incoming prompts and clean raw LLM responses.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Helper Processing Functions                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │   User Text + History  ──► `create_qwen_prompt()`           │
+  │                            • Sets System Role ("Helpful AI")│
+  │                            • Injects Chat History           │
+  │                            • Applies Chat Template          │
+  │                                       │                     │
+  │                                       ▼                     │
+  │   Raw LLM Output       ──► `clean_qwen_response()`          │
+  │                            • Strips Prompt Repetition       │
+  │                            • Removes Extra Tags & Whitespace│
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Prompt Construction Function (create_qwen_prompt):</strong></p>
+    <ul>
+      <li><strong>Role Assignment:</strong> Configures a system message assigning the role: "You are a helpful AI assistant".</li>
+      <li><strong>History Injection:</strong> Accepts conversation history as an optional parameter (defaulting to empty if None) to preserve chat context across turns.</li>
+      <li><strong>Chat Template Application:</strong> Applies the model tokenizer's chat template (apply_chat_template) to structure the system instructions, past conversation history, and user input into proper prompt tokens.</li>
+    </ul>
+    <p><strong>B. Response Cleaning Function (clean_qwen_response):</strong></p>
+    <ul>
+      <li><strong>Stripping Prompt Repetition:</strong> Checks if the LLM repeated the input prompt in its raw output string and removes it.</li>
+      <li><strong>Removing Unwanted Tags:</strong> Strips leftover tokens, special formatting tags, and leading/trailing whitespace before returning the clean response.</li>
+    </ul>
+
+    <h3>3. Setting Up the Flask Web Server & RESTful API Endpoints</h3>
+    <p>Setting up the Flask web application involves instantiating the app object, enabling Cross-Origin Resource Sharing (CORS), configuring error logging, and defining API routes.</p>
+    <pre>
+# =====================================================================
+# Flask Setup and RESTful Route Definition (Topic 182)
+# =====================================================================
+
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import logging
+
+# 1. Instantiate Flask Application Object
+app = Flask(__name__)
+
+# 2. Enable Cross-Origin Resource Sharing (CORS) for Global AJAX
+CORS(app)
+
+# 3. Configure Flask Logging to Capture Server Errors
+logging.basicConfig(level=logging.ERROR)
+
+# 4. Define RESTful API Route for Chatbot Interaction
+@app.route('/chat', methods=['POST'])
+def chat():
+    """POST endpoint receiving user queries and returning AI responses."""
+    try:
+        # Extract JSON payload from incoming HTTP request
+        data = request.json
+        user_message = data.get("message", "")
+
+        # Format input prompt using helper function
+        formatted_prompt = create_qwen_prompt(user_text=user_message, history=None)
+
+        # Invoke LangChain LLM model to generate raw response
+        raw_response = llm.invoke(formatted_prompt)
+
+        # Clean response using helper function
+        ai_response = clean_qwen_response(response=raw_response, prompt=formatted_prompt)
+
+        # Return success status and cleaned response formatted as JSON
+        return jsonify({
+            "status": "success",
+            "response": ai_response
+        }), 200
+
+    except Exception as e:
+        # Return error status and exception details if an error occurs
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+    </pre>
+    <p><strong>Key Implementation Details:</strong></p>
+    <ul>
+      <li><strong>methods=['POST']:</strong> The HTTP POST method is used because chat queries involve complex JSON payloads containing text strings and conversation history.</li>
+      <li><strong>CORS(app):</strong> Global CORS configuration allows web browsers to make asynchronous AJAX requests from external origins or frontends.</li>
+      <li><strong>jsonify():</strong> Converts Python dictionaries into JSON responses accompanied by standard HTTP status codes (such as 200 OK for success).</li>
+    </ul>
+
+    <h3>4. Multithreaded Server Execution & Background Worker Logic</h3>
+    <p>In Python interactive environments or complex applications, launching a web server directly on the main thread blocks subsequent code execution. To keep the server running continuously in the background, Flask is executed inside a background daemon thread.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               Multithreaded Server Execution                │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Main Program Thread ──► Launches Worker Thread             │
+  │                          (Target: `run_flask`, Port: 5000)  │
+  │                          `daemon = True`, `thread.start()` │
+  │                                    │                        │
+  │                                    ▼                        │
+  │  3-Second Delay (`time.sleep(3)`) ──► Waits for Server Ready │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>A. Multi-Threading Concepts:</strong></p>
+    <ul>
+      <li><strong>CPU Cores & Threads:</strong> Modern multi-core processors can execute multiple processes or threads simultaneously.</li>
+      <li><strong>threading.Thread:</strong> Spawns a background thread targeting the Flask server function (run_flask) running on local IP port 5000.</li>
+      <li><strong>daemon = True:</strong> Sets the thread as a background daemon process so it shuts down automatically when the main program terminates.</li>
+      <li><strong>Startup Timer (time.sleep(3)):</strong> Introduces a 3-second delay to allow the Flask web server to complete initialization before accepting incoming API queries.</li>
+    </ul>
+
+    <h3>5. Testing & Verifying the Chatbot REST API</h3>
+    <p>Once the multithreaded Flask server is active, the API endpoint can be tested programmatically using Python's requests library or external tools like Postman.</p>
+    <pre>
+# =====================================================================
+# Testing the Chatbot API Endpoint Programmatically (Topic 182)
+# =====================================================================
+
+import requests
+
+# Define target Flask API endpoint URL
+api_url = "http://127.0.0.1:5000/chat"
+
+# Prepare JSON payload containing user prompt
+payload = {
+    "message": "Introduce yourself briefly"
+}
+
+try:
+    # Send HTTP POST request to Flask endpoint
+    response = requests.post(api_url, json=payload)
+
+    # Check if HTTP status code is 200 (Success)
+    if response.status_code == 200:
+        response_data = response.json()
+        print("=== CHATBOT RESPONSE RECEIVED (STATUS 200) ===")
+        print(f"User Prompt: {payload['message']}")
+        print(f"AI Response: {response_data['response']}")
+    else:
+        print(f"API Error! Status Code: {response.status_code}")
+        print(response.text)
+
+except Exception as e:
+    print(f"Connection Failed: {str(e)}")
+    </pre>
+    <p><strong>Verification Results:</strong></p>
+    <p>When the POST request is executed against the endpoint, the server processes the query and returns an HTTP 200 OK response containing the chatbot's introduction:</p>
+    <p><em>"I am an artificial intelligence designed to assist with various tasks, including answering questions, providing information, and assisting with communication. I am available 24/7..."</em></p>
+    <p>This confirms that the LangChain pipeline has been successfully deployed as a functional web application endpoint.</p>
+
+    <h3>6. Summary Comparison Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Component / Function</th>
+          <th>Library / Tool</th>
+          <th>Primary Technical Function</th>
+          <th>Output / Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Web Framework</td>
+          <td>Flask</td>
+          <td>Provides lightweight web server architecture.</td>
+          <td>RESTful web application.</td>
+        </tr>
+        <tr>
+          <td>CORS Middleware</td>
+          <td>flask_cors.CORS</td>
+          <td>Enables cross-origin resource sharing for AJAX.</td>
+          <td>Global frontend access.</td>
+        </tr>
+        <tr>
+          <td>API Endpoint Route</td>
+          <td>@app.route('/chat')</td>
+          <td>Maps HTTP POST requests to handler logic.</td>
+          <td>Accepts JSON request payloads.</td>
+        </tr>
+        <tr>
+          <td>Prompt Helper</td>
+          <td>create_qwen_prompt</td>
+          <td>Sets system role, context, and chat templates.</td>
+          <td>Formatted model prompt string.</td>
+        </tr>
+        <tr>
+          <td>Response Cleaner</td>
+          <td>clean_qwen_response</td>
+          <td>Removes prompt echo, tags, and whitespace.</td>
+          <td>Clean AI answer text.</td>
+        </tr>
+        <tr>
+          <td>Response Formatter</td>
+          <td>jsonify()</td>
+          <td>Formats dictionaries into JSON API responses.</td>
+          <td>JSON + HTTP Status 200.</td>
+        </tr>
+        <tr>
+          <td>Server Threading</td>
+          <td>threading.Thread</td>
+          <td>Runs Flask as a background daemon process.</td>
+          <td>Non-blocking execution.</td>
+        </tr>
+        <tr>
+          <td>API Testing Tool</td>
+          <td>Postman / requests</td>
+          <td>Sends test HTTP POST payloads to verify server.</td>
+          <td>Evaluates server health.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: Why is Flask used to serve LangChain AI applications, and how does data flow between the user and the backend pipeline?</button>
+      <div class="accordion-body">
+        <p><strong>Role of Flask:</strong> Flask is a lightweight and efficient Python web framework ideal for serving Large Language Models (LLMs) via RESTful APIs. It enables developers to build scalable AI chatbot interfaces where API endpoints can be tested using tools like Postman or integrated into a Web UI.</p>
+        <p><strong>LangChain Integration:</strong> The backend logic is constructed as a LangChain pipeline that combines core components, such as the LLM model and conversation memory, into a unified workflow.</p>
+        <p><strong>Data Flow Architecture:</strong></p>
+        <ol>
+          <li>The user sends a message from the client interface to the Flask API endpoint.</li>
+          <li>Flask forwards the input text to the underlying LangChain pipeline, where the prompt is formatted and processed.</li>
+          <li>The LLM generates a response, which Flask returns as a JSON response to display back to the user.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What helper functions are implemented in Topic 182 to format prompts and clean model outputs for the Qwen chatbot?</button>
+      <div class="accordion-body">
+        <p><strong>create_qwen_prompt (Prompt Formatting):</strong> Accepts the user text and conversation history. It assigns a system role instructing the model to act as a helpful AI assistant, attaches past history, structures the current user message, and applies the tokenizer chat template (add_generation_prompt=True) to return a structured prompt.</p>
+        <p><strong>clean_qwen_response (Response Cleaning):</strong> Raw outputs generated by the LLM may contain repeated prompt text or extraneous formatting tags. This helper checks whether the prompt text was repeated in the raw output, strips out the prompt and extra tags, and returns a clean string.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is the Flask application configured, executed in a background thread, and tested using Python HTTP requests?</button>
+      <div class="accordion-body">
+        <p><strong>Route Setup & CORS:</strong> A Flask app object is initialized with CORS (Cross-Origin Resource Sharing) enabled. A /chat API endpoint is created using the HTTP POST method to handle incoming JSON payloads with exception handling.</p>
+        <p><strong>Multithreaded Server Execution:</strong> The Flask app is launched in a separate daemon thread using Python's threading.Thread targeting port 5000. A 3-second sleep delay is added to allow the server time to become ready.</p>
+        <p><strong>API Testing:</strong> The chatbot endpoint is queried by making an HTTP POST request using requests.post() with a sample JSON payload (e.g., {"message": "Introduce yourself briefly"}). Verifying an HTTP 200 success status code confirms that the clean AI response was returned successfully.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/slovakia/ai-courses-for-kids-presov.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/slovakia/python-coding-classes-for-children-kosice.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-182');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-182');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '182') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Control logic loops</li><li>Input-output signal processing</li><li>Motor activation ideas</li><li>Hardware troubleshooting habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/waAdKT96-3M" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/mblock-coding-for-kids/?referralCode=C99D14F009B5DE9EAEDA" target="_blank" rel="noopener noreferrer sponsored">mBlock Coding for Kids</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
