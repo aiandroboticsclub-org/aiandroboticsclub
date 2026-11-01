@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-core.xml</loc>
+    <loc>https://aiandroboticsclub.com/sitemap-part-1.xml</loc>
     <lastmod>2026-11-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-pakistan.xml</loc>
+    <loc>https://aiandroboticsclub.com/sitemap-part-2.xml</loc>
     <lastmod>2026-11-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-eu.xml</loc>
+    <loc>https://aiandroboticsclub.com/sitemap-part-3.xml</loc>
     <lastmod>2026-11-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-gulf.xml</loc>
-    <lastmod>2026-11-01</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-fareast.xml</loc>
-    <lastmod>2026-11-01</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://aiandroboticsclub.com/sitemap-other.xml</loc>
+    <loc>https://aiandroboticsclub.com/sitemap-part-4.xml</loc>
     <lastmod>2026-11-01</lastmod>
   </sitemap>
 </sitemapindex>
