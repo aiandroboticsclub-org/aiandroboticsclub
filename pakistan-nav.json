@@ -1,0 +1,94 @@
+{
+  "cities": {
+    "rawalpindi-askari-1": [
+      {
+        "label": "Online Robotics Classes For Kids Askari 1",
+        "href": "/pakistan/rawalpindi/askari-1/online-robotics-classes-for-kids-askari-1.html"
+      },
+      {
+        "label": "Python Coding Classes For Children Askari 1",
+        "href": "/pakistan/rawalpindi/askari-1/python-coding-classes-for-children-askari-1.html"
+      },
+      {
+        "label": "Arduino Programming Classes Kids Askari 1",
+        "href": "/pakistan/rawalpindi/askari-1/arduino-programming-classes-kids-askari-1.html"
+      }
+    ],
+    "rawalpindi-askari-2": [
+      {
+        "label": "AI Courses For Kids Askari 2 Rawalpindi",
+        "href": "/pakistan/rawalpindi/askari-2/ai-courses-for-kids-askari-2-rawalpindi.html"
+      },
+      {
+        "label": "Scratch Coding Classes Kids Askari 2",
+        "href": "/pakistan/rawalpindi/askari-2/scratch-coding-classes-kids-askari-2.html"
+      },
+      {
+        "label": "STEM Robotics Workshops Askari 2",
+        "href": "/pakistan/rawalpindi/askari-2/stem-robotics-workshops-askari-2.html"
+      },
+      {
+        "label": "Computational Thinking Classes Askari 2",
+        "href": "/pakistan/rawalpindi/askari-2/computational-thinking-classes-askari-2.html"
+      }
+    ],
+    "rawalpindi-askari-4": [
+      {
+        "label": "Python Programming For Students Askari 4",
+        "href": "/pakistan/rawalpindi/askari-4/python-programming-for-students-askari-4.html"
+      },
+      {
+        "label": "Coding And Robotics Classes Askari 4",
+        "href": "/pakistan/rawalpindi/askari-4/coding-and-robotics-classes-askari-4.html"
+      },
+      {
+        "label": "Online STEM Education For Kids Askari 4",
+        "href": "/pakistan/rawalpindi/askari-4/online-stem-education-for-kids-askari-4.html"
+      }
+    ],
+    "rawalpindi-askari-10": [
+      {
+        "label": "Online Robotics Classes For Kids Askari 10",
+        "href": "/pakistan/rawalpindi/askari-10/online-robotics-classes-for-kids-askari-10.html"
+      },
+      {
+        "label": "Python Coding Classes For Children Askari 10",
+        "href": "/pakistan/rawalpindi/askari-10/python-coding-classes-for-children-askari-10.html"
+      },
+      {
+        "label": "AI Courses For Kids Askari 10 Rawalpindi",
+        "href": "/pakistan/rawalpindi/askari-10/ai-courses-for-kids-askari-10-rawalpindi.html"
+      },
+      {
+        "label": "Coding And Robotics Classes Askari 10",
+        "href": "/pakistan/rawalpindi/askari-10/coding-and-robotics-classes-askari-10.html"
+      },
+      {
+        "label": "Arduino Programming Classes Kids Askari 10",
+        "href": "/pakistan/rawalpindi/askari-10/arduino-programming-classes-kids-askari-10.html"
+      }
+    ],
+    "rawalpindi-chaklala-scheme-3": [
+      {
+        "label": "Scratch Coding Classes Kids Chaklala Scheme 3",
+        "href": "/pakistan/rawalpindi/chaklala-scheme-3/scratch-coding-classes-kids-chaklala-scheme-3.html"
+      },
+      {
+        "label": "STEM Robotics Workshops Chaklala Scheme 3",
+        "href": "/pakistan/rawalpindi/chaklala-scheme-3/stem-robotics-workshops-chaklala-scheme-3.html"
+      },
+      {
+        "label": "Python Programming For Students Chaklala Scheme 3",
+        "href": "/pakistan/rawalpindi/chaklala-scheme-3/python-programming-for-students-chaklala-scheme-3.html"
+      },
+      {
+        "label": "Online STEM Education For Kids Chaklala Scheme 3",
+        "href": "/pakistan/rawalpindi/chaklala-scheme-3/online-stem-education-for-kids-chaklala-scheme-3.html"
+      },
+      {
+        "label": "Computational Thinking Classes Chaklala Scheme 3",
+        "href": "/pakistan/rawalpindi/chaklala-scheme-3/computational-thinking-classes-chaklala-scheme-3.html"
+      }
+    ]
+  }
+}
