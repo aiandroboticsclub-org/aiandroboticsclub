@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Coding Classes for Children in Cluj-Napoca | AI &amp; Robotics Club</title>
+  <title>Python Coding Classes for Children in Cluj-Napoca | AI & Robotics Club</title>
   <meta name="description" content="Python coding classes for children in Cluj-Napoca—variables, branching, loops and functions for a tech-hub city.">
   <link rel="canonical" href="https://aiandroboticsclub.com/eu/romania/python-coding-classes-for-children-cluj-napoca.html">
   <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
@@ -21,17 +21,305 @@
     <div class="seo-intro"><div><span class="seo-badge">Online · Cluj-Napoca · Romania</span><h1>Python Coding Classes for Children in Cluj-Napoca</h1>
     <p>Python coding classes for children in Cluj-Napoca build software foundations—variables, branching, loops and reusable functions—suited to a city known for its tech industry.</p></div>
     <div><img src="../../../images/77.webp" alt="Python Cluj-Napoca" loading="lazy" width="400" height="300"></div></div>
+
+<div class="ai-lesson-block" id="ai-lesson-176">
+  <div class="lesson-navigation-bar">
+    <label for="lesson-select-176">Lesson</label>
+    <select id="lesson-select-176" class="lesson-select" aria-label="Select lesson">
+      <option value="176" selected>176: Build Practical AI Workflows with LangChain Chains and Tools</option>
+    </select>
+  </div>
+
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Build Practical AI Workflows with LangChain Chains and Tools" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="lesson-transcript">
+    <h2>Chapter 176 — Build Practical AI Workflows with LangChain Chains and Tools</h2>
+
+    <h3>1. Introduction: Fine-Tuning Pre-Trained LLMs for Custom AI Workflows</h3>
+    <p>Large technology organizations pre-train massive Large Language Models (LLMs) on vast general datasets and make them publicly accessible. These pre-trained base models possess strong general knowledge and perform reasonably well across standard tasks. However, when building enterprise AI applications that require specialized domain expertise, relying solely on general-purpose models often falls short.</p>
+    <p>To tailor language models to custom client data and specialized domains, developers turn to Fine-Tuning.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                 Pre-Trained vs. Fine-Tuned Models           │
+  ├───────────────────────────────┬─────────────────────────────┤
+  │ Pre-Trained General LLM       │ Fine-Tuned Domain Model     │
+  ├───────────────────────────────┼─────────────────────────────┤
+  │ • Trained on massive web data │ • Trained on small, custom  │
+  │   from scratch.               │   client datasets.          │
+  │ • General-purpose answers     │ • High accuracy on domain-  │
+  │   across diverse topics.      │   specific tasks.           │
+  │ • Average performance on      │ • Optimized for enterprise  │
+  │   niche business data.        │   workflows & tools.        │
+  └───────────────────────────────┴─────────────────────────────┘
+    </pre>
+    <p><strong>Core Concept of Fine-Tuning:</strong></p>
+    <ul>
+      <li><strong>Avoiding From-Scratch Training:</strong> Fine-tuning does not require training a multi-billion parameter network from scratch on huge datasets.</li>
+      <li><strong>Adapting Pre-Trained Weights:</strong> Instead, fine-tuning takes an existing pre-trained model (such as OpenAI's gpt-3.5-turbo or open-source Hugging Face models) and updates its parameters using a smaller, clean, domain-specific dataset.</li>
+      <li><strong>LangChain Integration:</strong> Once fine-tuned, the specialized model can be deployed as a standalone API or plugged directly into a LangChain workflow as a custom model component.</li>
+    </ul>
+
+    <h3>2. The 4-Step Fine-Tuning & Deployment Pipeline</h3>
+    <p>Fine-tuning an LLM and integrating it into an AI pipeline involves four structured stages:</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │               The 4-Step Fine-Tuning Workflow               │
+  ├─────────────────────────────────────────────────────────────┤
+  │  Step 1: Dataset Preparation & Cleaning                     │
+  │          (JSONL format, cleaning, deduplication)            │
+  │                             │                               │
+  │                             ▼                               │
+  │  Step 2: Training Execution & Hyperparameter Tuning         │
+  │          (Asynchronous API job, metric tracking)            │
+  │                             │                               │
+  │                             ▼                               │
+  │  Step 3: Model Evaluation & Testing                         │
+  │          (Test on unseen prompts, compare results)          │
+  │                             │                               │
+  │                             ▼                               │
+  │  Step 4: Deployment & LangChain Integration                 │
+  │          (Standalone API or LangChain component)            │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Step 1: Dataset Preparation & Data Cleaning</strong></p>
+    <p>The success of fine-tuning relies heavily on training data quality. Preparing a dataset requires formatting, cleaning, and balancing:</p>
+    <ul>
+      <li><strong>Format Adjustment:</strong> Training data must match the input format expected by the model API (typically JSONL format containing system, user, and assistant message pairs).</li>
+      <li><strong>Data Diversity:</strong> The dataset must be diverse and representative of all target problem scenarios.</li>
+      <li><strong>Consistency:</strong> Identical inputs must yield consistent output patterns to avoid confusing the model.</li>
+      <li><strong>Deduplication & Balancing:</strong> Duplicate records must be removed, and samples across different categories must be balanced to prevent bias.</li>
+    </ul>
+    <p><strong>Step 2: Training Execution & Hyperparameter Tuning</strong></p>
+    <ul>
+      <li><strong>API & Library Fine-Tuning:</strong> Fine-tuning jobs are submitted via APIs (such as OpenAI's client.fine_tuning.jobs.create) or open-source libraries like Hugging Face.</li>
+      <li><strong>Asynchronous Execution:</strong> Because fine-tuning takes time, jobs run asynchronously on remote servers, returning a tracking Job ID.</li>
+      <li><strong>Hyperparameter Tracking:</strong> Developers track loss metrics and adjust hyperparameters across multiple training runs to identify the best-performing model.</li>
+    </ul>
+    <p><strong>Step 3: Model Evaluation & Testing</strong></p>
+    <ul>
+      <li><strong>Unseen Test Prompts:</strong> The fine-tuned model must be tested using prompts that were not included in the training dataset.</li>
+      <li><strong>Comparative Analysis:</strong> Performance on test prompts is evaluated before and after fine-tuning to verify that output quality and accuracy have improved.</li>
+    </ul>
+    <p><strong>Step 4: Deployment & LangChain Integration</strong></p>
+    <p>Once evaluation confirms superior performance, the fine-tuned model is deployed:</p>
+    <ul>
+      <li><strong>Standalone API:</strong> Hosted as a cloud microservice endpoint.</li>
+      <li><strong>LangChain Workflow Component:</strong> Placed directly inside a LangChain chain or agent pipeline by passing the fine-tuned model ID to model wrappers like ChatOpenAI(model_name="ft:gpt-3.5-turbo:...").</li>
+    </ul>
+
+    <h3>3. Hands-On Python Implementation in VS Code</h3>
+    <p>Below is the Python implementation demonstrating how to upload a domain training dataset (train.jsonl) and launch an asynchronous fine-tuning job using the OpenAI Python SDK.</p>
+    <pre>
+  ┌─────────────────────────────────────────────────────────────┐
+  │                OpenAI Fine-Tuning Code Flow                 │
+  ├─────────────────────────────────────────────────────────────┤
+  │  1. Read File in Binary Mode ──► open("train.jsonl", "rb")  │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  2. Upload File to OpenAI    ──► client.files.create(...)   │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  3. Retrieve File ID         ──► file.id                    │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  4. Submit Fine-Tuning Job   ──► jobs.create(...)           │
+  │                                           │                 │
+  │                                           ▼                 │
+  │  5. Retrieve Server Job ID   ──► job.id                     │
+  └─────────────────────────────────────────────────────────────┘
+    </pre>
+    <p><strong>Complete Executable Python Script:</strong></p>
+    <pre>
+# =====================================================================
+# Fine-Tuning an OpenAI LLM for Custom Domain Workflows (Topic 176)
+# =====================================================================
+
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+# 1. Load API Key from .env file into environment variables
+load_dotenv()
+
+# 2. Instantiate OpenAI Client Object
+# API key is automatically picked up from OPENAI_API_KEY environment variable
+client = OpenAI()
+
+# 3. Open Training Dataset File in Binary Read Mode ("rb")
+# 'train.jsonl' contains client domain data formatted for fine-tuning
+training_file_path = "train.jsonl"
+
+with open(training_file_path, "rb") as file_object:
+    # 4. Upload File to OpenAI API for Fine-Tuning
+    uploaded_file = client.files.create(
+        file=file_object,
+        purpose="fine-tune"  # Specifies purpose as fine-tuning
+    )
+
+# 5. Display Uploaded File ID
+print(f"Successfully uploaded dataset!")
+print(f"Uploaded File ID: {uploaded_file.id}")
+
+# 6. Submit Asynchronous Fine-Tuning Job to Server
+# Fine-tuning runs asynchronously on remote GPU servers
+fine_tune_job = client.fine_tuning.jobs.create(
+    training_file=uploaded_file.id,  # Pass uploaded file ID
+    model="gpt-3.5-turbo"            # Base model to fine-tune
+)
+
+# 7. Display Submitted Fine-Tuning Job ID
+print(f"\nFine-tuning job successfully submitted!")
+print(f"Fine-Tuning Job ID: {fine_tune_job.id}")
+    </pre>
+    <p><strong>Code Execution Output:</strong></p>
+    <p>When executed in VS Code, the script outputs the unique File ID and long Job ID returned by the OpenAI server:</p>
+    <pre>
+Successfully uploaded dataset!
+Uploaded File ID: file-abc123xyz456
+
+Fine-tuning job successfully submitted!
+Fine-Tuning Job ID: ftjob-987654321fedcba
+    </pre>
+    <p>This Job ID confirms that the server accepted the job and is executing the fine-tuning process asynchronously in the background.</p>
+
+    <h3>4. Summary Comparison Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Workflow Stage</th>
+          <th>Operational Process</th>
+          <th>Key Parameters / Functions</th>
+          <th>Primary Objective</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data Preparation</td>
+          <td>Cleaning, deduplication, & balancing.</td>
+          <td>JSONL format, binary read mode (rb).</td>
+          <td>Ensures high-quality, non-confusing data.</td>
+        </tr>
+        <tr>
+          <td>File Upload</td>
+          <td>Uploading training dataset.</td>
+          <td>client.files.create(purpose="fine-tune").</td>
+          <td>Registers dataset on API server.</td>
+        </tr>
+        <tr>
+          <td>Job Submission</td>
+          <td>Launching asynchronous fine-tuning.</td>
+          <td>client.fine_tuning.jobs.create().</td>
+          <td>Updates base model parameters on custom data.</td>
+        </tr>
+        <tr>
+          <td>Evaluation</td>
+          <td>Testing fine-tuned model.</td>
+          <td>Testing on unseen prompts.</td>
+          <td>Verifies performance gain over base model.</td>
+        </tr>
+        <tr>
+          <td>Deployment</td>
+          <td>Integrating into production.</td>
+          <td>Standalone API or LangChain component.</td>
+          <td>Powers domain-specific AI workflows.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="accordion-section">
+    <h3>Lesson Q&A</h3>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q1: What is Fine-Tuning in LLMs, why is it used instead of training from scratch, and how do general-purpose models compare to fine-tuned models?</button>
+      <div class="accordion-body">
+        <p><strong>Definition & Purpose:</strong> Fine-tuning involves customizing and adapting a pre-trained Large Language Model (LLM)—which has already been trained on massive generic datasets by large AI companies—using a smaller, client-specific domain dataset. It avoids the enormous time and resource cost of training a model from scratch.</p>
+        <p><strong>Data Preparation Requirements:</strong> Fine-tuning requires clean, diverse, and representative data. It needs consistent examples (where identical inputs produce consistent target outputs without confusing the model), removal of duplicate entries, and balanced samples across categories.</p>
+        <p><strong>General-Purpose vs. Fine-Tuned Models:</strong> Pre-trained general-purpose LLMs provide reasonably good answers across broad, generic tasks. In contrast, fine-tuned models excel exceptionally within a specific target domain, though their accuracy on external, unrelated domains may be lower.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q2: What is the step-by-step Python workflow for creating and submitting an OpenAI LLM Fine-Tuning job (Topic 176 implementation)?</button>
+      <div class="accordion-body">
+        <p><strong>Data Formatting & Loading:</strong> Domain-specific client data is formatted into a .jsonl file (e.g., train.jsonl). It is opened in binary read mode ("rb") and uploaded using OpenAI's file API (client.files.create(file=f, purpose="fine-tune")), returning a unique file_id.</p>
+        <p><strong>Asynchronous Job Submission:</strong> The fine-tuning job is initialized using client.fine_tuning.jobs.create(training_file=file.id, model="gpt-3.5-turbo"). Because fine-tuning takes time, the job executes asynchronously on server infrastructure, returning a unique, long job_id string while freeing up client execution.</p>
+        <p><strong>Monitoring & Tracking:</strong> Developers track fine-tuning progress via server responses and adjust hyperparameters across runs to identify the best-performing model.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" aria-expanded="false">Q3: How is a fine-tuned model evaluated before deployment, and what deployment options are available?</button>
+      <div class="accordion-body">
+        <p><strong>Testing with Unseen Prompts:</strong> Once fine-tuning completes, the model must be evaluated using test prompts that were not included in the original training dataset.</p>
+        <p><strong>Performance Comparison:</strong> Testing prompts are evaluated on the model both before and after fine-tuning to compare performance metrics directly—verifying whether responses improved, remained identical, or degraded.</p>
+        <p><strong>Deployment Options:</strong> If testing metrics are satisfactory, the fine-tuned model can be deployed into production through two main paths:</p>
+        <ol>
+          <li>As a standalone API service.</li>
+          <li>Integrated as a custom model component within a LangChain pipeline or workflow.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="lesson-footer-nav">
+    <a class="nav-btn prev-btn" href="/eu/romania/online-robotics-classes-for-kids-bucharest.html">Previous lesson</a>
+    <a class="nav-btn" href="/eu/romania/scratch-coding-classes-kids-iasi.html">Next lesson</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('ai-lesson-176');
+  if (!root) return;
+  root.querySelectorAll('.accordion-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.accordion-item');
+      var open = item.classList.contains('active');
+      root.querySelectorAll('.accordion-item').forEach(function(i){
+        i.classList.remove('active');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  var sel = document.getElementById('lesson-select-176');
+  if (sel) {
+    fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+      if (!Array.isArray(list) || !list.length) return;
+      sel.innerHTML = '';
+      list.forEach(function(L){
+        var o = document.createElement('option');
+        o.value = L.id;
+        o.textContent = L.title;
+        if (String(L.id) === '176') o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function(){
+        var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+        if (found && found.url) {
+          var u = found.url.split('#')[0];
+          window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+        }
+      });
+    }).catch(function(){});
+  }
+})();
+</script>
+
     <h2>What children can learn</h2>
     <ul><li>Variables and data types</li><li>If-else branching and loops</li><li>Reusable functions</li><li>Industry-relevant logic habits</li></ul>
     <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
     <section style="max-width:720px;margin:1.5rem auto;">
-      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey</h2>
+      <h2 style="font-size:1.1rem;">AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey</h2>
       <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.1);">
-        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI &amp; Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/s2hjgRMjwJo" title="AI and Robotics Club | The 100 Mission AI & Robotics Hero Journey" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
       </div>
     </section>
     <section class="article-box" style="margin:1.5rem 0;">
-      <h2>Recommended self-paced course for parents &amp; educators</h2>
+      <h2>Recommended self-paced course for parents & educators</h2>
       <p><a href="https://www.udemy.com/course/pythonforkids-12-pillars/?referralCode=EAEB37772E4F588DAC0A" target="_blank" rel="noopener noreferrer sponsored">Python for Kids – 12 Pillars</a> on Udemy.</p>
       <p style="font-size:0.8rem;color:#94a3b8;"><em>Disclosure: This page contains affiliate links. We may earn from qualifying purchases at no extra cost to you. Links are intended for parents and educators, not as marketing directed at young children.</em></p>
     </section>
