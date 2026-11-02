@@ -1,1 +1,94 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mBlock Robotics Classes for Kids Sai Kung Hong Kong | AI & Robotics Club</title>
+  <meta name="description" content="mBlock robotics classes for kids in Sai Kung, Hong Kong—live English STEM in HKT-friendly slots.">
+  <link rel="canonical" href="https://aiandroboticsclub.com/far-east/hong-kong/mblock-robotics-classes-for-kids-sai-kung.html">
+  <link rel="icon" type="image/webp" href="../../../images/airlogo.webp">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../seo-dark.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="../../../header.js" defer></script>
+  <script src="../../../prefooter.js" defer></script>
+  <script src="../../../footer.js" defer></script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="seo-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a> &rsaquo; Far East &rsaquo; Hong Kong &rsaquo; mBlock Robotics Classes for Kids in Sai Kung</nav>
+    <div class="seo-intro"><div><span class="seo-badge">Online · Sai Kung · Hong Kong</span><h1>mBlock Robotics Classes for Kids in Sai Kung, Hong Kong</h1>
+    <p>mBlock robotics classes for kids in Sai Kung help families explore block coding, sensors and motors through live English sessions—without inventing a private Sai Kung campus.</p></div>
+    <div><img src="../../../images/91.webp" alt="mBlock Sai Kung" loading="lazy" width="400" height="300"></div></div>
+    <div class="ai-lesson-block" id="ai-lesson-5">
+      <div class="lesson-navigation-bar">
+        <label for="lesson-select-5">Lesson</label>
+        <select id="lesson-select-5" class="lesson-select" aria-label="Select lesson">
+          <option value="5" selected>005: Who Should Avoid This AI Course? Set the Right Learning Expectations</option>
+        </select>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/tMD6SJueeQg" title="Lesson video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="lesson-transcript">
+        <h2>1. Purpose of Setting Expectations</h2>
+        <p>While Artificial Intelligence is one of the most exciting and rapidly growing fields today, not every course is suited for every learner. The primary purpose of this topic is to clearly define who should avoid this course and help prospective students set realistic expectations. Because this course is technically demanding, understanding its prerequisites early prevents frustration and ensures you invest your time in learning paths that align with your personal background, interests, and career ambitions.</p>
+        <h2>2. Groups Who Should Avoid This Course</h2>
+        <p>Content continues in the full lesson notes below.</p>
+      </div>
+      <div class="accordion-section">
+        <h3>Lesson Q&A</h3>
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" aria-expanded="false">Who should carefully reconsider taking this AI course?</button>
+          <div class="accordion-body"><p>Learners seeking a purely theoretical overview without coding practice, or those unable to commit time to hands-on programming exercises, may find other resources more suitable.</p></div>
+        </div>
+      </div>
+      <div class="lesson-footer-nav">
+        <a class="nav-btn prev-btn" href="/far-east/hong-kong/arduino-microcontroller-course-causeway-bay.html">Previous lesson</a>
+        <a class="nav-btn" href="/far-east/hong-kong/online-robotics-classes-kids-central-hong-kong.html">Next lesson</a>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var root = document.getElementById('ai-lesson-5');
+      if (!root) return;
+      root.querySelectorAll('.accordion-header').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var item = btn.closest('.accordion-item');
+          var open = item.classList.contains('active');
+          root.querySelectorAll('.accordion-item').forEach(function(i){ i.classList.remove('active'); i.querySelector('.accordion-header').setAttribute('aria-expanded','false'); });
+          if (!open) { item.classList.add('active'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+      var sel = document.getElementById('lesson-select-5');
+      if (sel) {
+        fetch('../../../lessons-data.json').then(function(r){ return r.json(); }).then(function(list){
+          if (!Array.isArray(list) || !list.length) return;
+          sel.innerHTML = '';
+          list.forEach(function(L){
+            var o = document.createElement('option');
+            o.value = L.id;
+            o.textContent = L.title;
+            if (String(L.id) === '5') o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function(){
+            var found = list.find(function(L){ return String(L.id) === String(sel.value); });
+            if (found && found.url) {
+              var u = found.url.split('#')[0];
+              window.location.href = u.startsWith('/') ? u : ('../../../' + u.replace(/^\//,''));
+            }
+          });
+        }).catch(function(){});
+      }
+    })();
+    </script>
+    <h2>What children can learn</h2>
+    <ul><li>mBlock block coding</li><li>Sensors and motors</li><li>Live English sessions</li></ul>
+    <div class="seo-cta"><a href="https://wa.me/923224217059" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp +92 322 421 7059</a></div>
+  </main>
+  <div id="site-prefooter"></div>
+  <div id="site-footer"></div>
+</body>
+</html>
